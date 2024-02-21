@@ -17,6 +17,14 @@ return require('packer').startup(function(use)
   use("mbbill/undotree")
   use("tpope/vim-fugitive")
 
+  use({
+	  'folke/tokyonight.nvim',
+	  as = 'tokyonight',
+	  config = function()
+		  vim.cmd('colorscheme tokyonight-night')
+	  end
+  })
+
   use {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v1.x',
