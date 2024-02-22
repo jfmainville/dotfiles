@@ -5,6 +5,10 @@ require("conform").setup({
     python = { "isort", "black" },
     -- Use a sub-list to run only the first available formatter
     javascript = { { "prettierd", "prettier" } },
+
+    terraform = { "terraform_fmt" },
+    tf = { "terraform_fmt" },
+    ["terraform-vars"] = { "terraform_fmt" },
   },
   format_on_save = {
     -- These options will be passed to conform.format()
