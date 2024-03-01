@@ -32,6 +32,7 @@ require('mason-lspconfig').setup({
     'cssls',
     'bashls',
     'jsonls',
+    'snyk_ls',
   },
   handlers = {
     lsp_zero.default_setup,
