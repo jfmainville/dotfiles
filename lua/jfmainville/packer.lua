@@ -16,7 +16,13 @@ return require('packer').startup(function(use)
   use('theprimeagen/harpoon')
   use("mbbill/undotree")
   use("tpope/vim-fugitive")
-  use("tpope/vim-vinegar")
+
+  use({
+    "stevearc/oil.nvim",
+    config = function()
+      require("oil").setup()
+    end,
+  })
 
   use({
     "stevearc/conform.nvim",
