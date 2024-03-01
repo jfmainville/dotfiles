@@ -32,6 +32,19 @@ return require('packer').startup(function(use)
 	  end
   })
 
+  use({
+    "jackMort/ChatGPT.nvim",
+    config = function()
+      require("chatgpt").setup()
+    end,
+    requires = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "folke/trouble.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
+  })
+
   use {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v3.x',
