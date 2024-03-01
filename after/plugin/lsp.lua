@@ -19,7 +19,20 @@ end)
 -- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = { 'lua_ls', 'tsserver', 'rust_analyzer', 'terraformls', 'yamlls', 'pyright', 'dockerls', 'docker_compose_language_service', 'ansiblels' },
+  ensure_installed = {
+    'lua_ls',
+    'tsserver',
+    'rust_analyzer',
+    'terraformls',
+    'yamlls',
+    'pyright',
+    'dockerls',
+    'docker_compose_language_service',
+    'ansiblels',
+    'cssls',
+    'bashls',
+    'jsonls',
+  },
   handlers = {
     lsp_zero.default_setup,
     lua_ls = function()
