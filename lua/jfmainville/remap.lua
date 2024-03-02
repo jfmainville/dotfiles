@@ -23,11 +23,11 @@ vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 -- Go down multiple lines
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
--- greatest remap ever
+-- Greatest remap ever
 vim.keymap.set("x", "<leader>p", [["_dP]])
 -- Return to normal mode
-vim.keymap.set("i", "<C-c>", "<Esc>")
--- format the current file
+vim.keymap.set("i", "jj", "<Esc>")
+-- Format the current file
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 -- Replace current word
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
