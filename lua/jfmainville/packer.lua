@@ -17,6 +17,7 @@ return require('packer').startup(function(use)
   use("mbbill/undotree")
   use("tpope/vim-fugitive")
   use("nvim-tree/nvim-web-devicons")
+  use({"ggandor/leap.nvim", requires = {"tpope/vim-repeat"}})
 
   use {
     "nvim-lualine/lualine.nvim",
