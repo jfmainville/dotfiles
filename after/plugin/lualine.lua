@@ -200,7 +200,7 @@ require('lualine').setup({
         }
       }
     },
-    lualine_x = { 'diagnostics', 'encoding', 'fileformat', 'filetype' },
+    lualine_x = { { 'diagnostics', sources = { 'nvim_diagnostic', 'coc', 'nvim_lsp', 'vim_lsp' } }, 'encoding', 'fileformat', 'filetype' },
     lualine_y = { 'progress', 'searchcount' },
   }
 })
