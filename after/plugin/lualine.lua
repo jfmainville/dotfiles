@@ -135,7 +135,7 @@ end
 
 require('lualine').setup({
   options = { theme = 'powerline' },
-  extensions = { 'oil', 'fugitive' },
+  extensions = { 'oil', 'fugitive', 'mason' },
   sections = {
     lualine_a = { 'mode' },
     lualine_b = {
