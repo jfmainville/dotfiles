@@ -6,8 +6,20 @@ vim.keymap.set('n', '<leader>ps', function()
 end)
 vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
 
-local telescope = require('telescope')
-telescope.setup {
+require("telescope").setup({
+  defaults = {
+    -- Remove the ripgrep indentation
+    vimgrep_arguments = {
+      "rg",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+      "--trim" -- add this value
+    }
+  },
   pickers = {
     find_files = {
       hidden = true
