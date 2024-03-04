@@ -20,7 +20,7 @@ return require("packer").startup(function(use)
   use("tpope/vim-fugitive")
   use("lewis6991/gitsigns.nvim")
   use("nvim-tree/nvim-web-devicons")
-  use("numToStr/Comment.nvim"
+  use("numToStr/Comment.nvim")
   use({
     "ggandor/leap.nvim",
     requires = {
