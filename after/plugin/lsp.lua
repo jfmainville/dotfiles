@@ -44,6 +44,15 @@ require('mason-lspconfig').setup({
   }
 })
 
+-- Add the code block below to fix the Terraform initialization error
+require("lspconfig").terraformls.setup({
+  init_options = {
+    terraform = {
+      path = "/opt/homebrew/bin/terraform"
+    }
+  }
+})
+
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
