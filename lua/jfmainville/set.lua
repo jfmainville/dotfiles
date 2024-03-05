@@ -29,3 +29,5 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
+-- Copy the buffer clipboard to the system clipboard
+vim.api.nvim_set_option("clipboard", "unnamed")
