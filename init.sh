@@ -1,7 +1,7 @@
 # !/bin/bash
 
 # Install the base tools
-brew install neovim tmux ripgrep git
+brew install neovim tmux ripgrep git lazygit
 
 # Install the Packer package manager
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
