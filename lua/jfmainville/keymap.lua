@@ -37,3 +37,7 @@ vim.keymap.set("n", "<leader><leader>", function()
 end)
 -- Open ChatGPT window
 vim.keymap.set("n", "<leader>cg", "<cmd>ChatGPT<CR>")
+-- Format the file using the Conform plugin
+vim.keymap.set("", "<leader>f", function()
+  require("conform").format({ async = true, lsp_fallback = true })
+end)
