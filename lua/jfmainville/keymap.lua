@@ -27,8 +27,6 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("x", "<leader>p", [["_dP]])
 -- Return to normal mode
 vim.keymap.set("i", "jj", "<Esc>")
--- Format the current file
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 -- Replace current word
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 -- Add the execute permission to the current file
