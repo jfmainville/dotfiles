@@ -15,4 +15,7 @@ require("conform").setup({
     timeout_ms = 500,
     lsp_fallback = true,
   },
+  cwd = require("conform.util").root_file({ ".editorconfig", "package.json" }),
+  -- When cwd is not found, don't run the formatter (default false)
+  require_cwd = true,
 })
