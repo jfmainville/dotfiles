@@ -21,17 +21,8 @@ require('mason').setup({})
 require('mason-lspconfig').setup({
   ensure_installed = {
     'lua_ls',
-    'tsserver',
     'rust_analyzer',
     'terraformls',
-    'yamlls',
-    'pyright',
-    'dockerls',
-    'docker_compose_language_service',
-    'ansiblels',
-    'cssls',
-    'bashls',
-    'jsonls',
     'typos_lsp',
     'marksman',
   },
