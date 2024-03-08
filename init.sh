@@ -11,3 +11,7 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 git clone https://github.com/mfussenegger/nvim-dap.git ~/.config/nvim/pack/plugins/start/nvim-dap
 
 cp ./lazygit/config.yaml ~/Library/Application\ Support/lazygit/
+
+pip install black
+
+npm install -g typescript-language-server
