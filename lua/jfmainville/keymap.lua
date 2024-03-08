@@ -41,3 +41,5 @@ vim.keymap.set("n", "<leader>cg", "<cmd>ChatGPT<CR>")
 vim.keymap.set("", "<leader>f", function()
   require("conform").format({ async = true, lsp_fallback = true })
 end)
+-- Open the LazyGit window
+vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>")
