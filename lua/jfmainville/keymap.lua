@@ -1,16 +1,8 @@
 -- Define the leader action to be the space bar
 vim.g.mapleader = " "
--- Save file
+-- Save file and return to the project explorer view
 vim.keymap.set("n", "zz", function()
   vim.cmd("w")
-end)
--- Save file and return to the project explorer view
-vim.keymap.set("n", "zx", function()
-  vim.cmd("w")
-  vim.cmd("Oil")
-end)
--- Navigate back to the project explorer view
-vim.keymap.set("n", "<leader>pv", function()
   vim.cmd("Oil")
 end)
 -- Move the currently selected line down
