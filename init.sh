@@ -14,4 +14,4 @@ cp ./lazygit/config.yaml ~/Library/Application\ Support/lazygit/
 
 pip install black
 
-npm install -g typescript-language-server pyright
+npm install -g typescript-language-server pyright @ansible/ansible-language-server dockerfile-language-server-nodejs
