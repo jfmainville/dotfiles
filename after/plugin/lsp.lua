@@ -23,6 +23,7 @@ require('mason-lspconfig').setup({
     'tsserver',
     'ansiblels',
     'dockerls',
+    'yamlls',
     'pyright',
     'lua_ls',
     'rust_analyzer',
