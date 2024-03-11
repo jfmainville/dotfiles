@@ -40,4 +40,4 @@ end)
 -- Open the LazyGit window
 vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>")
 -- Open a ToggleTerm terminal
-vim.keymap.set("n", "<leader>t", "<cmd>ToggleTerm<CR>")
+vim.keymap.set("n", "<leader>t", "<cmd>ToggleTerm dir=%:p:h<CR>")
