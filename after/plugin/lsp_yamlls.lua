@@ -1,6 +1,7 @@
 require('lspconfig').yamlls.setup {
   settings = {
     yaml = {
+      completion = true,
       validate = true,
       -- disable the schema store
       schemaStore = {
