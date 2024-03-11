@@ -1,5 +1,9 @@
 -- Define the leader action to be the space bar
 vim.g.mapleader = " "
+-- Save all the files that are in the buffer
+vim.keymap.set("n", "za", function()
+  vim.cmd("wa")
+end)
 -- Save file and return to the project explorer view
 vim.keymap.set("n", "zz", function()
   vim.cmd("w")
