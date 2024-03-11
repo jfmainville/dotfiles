@@ -35,3 +35,5 @@ vim.keymap.set("", "<leader>f", function()
 end)
 -- Open the LazyGit window
 vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>")
+-- Open a ToggleTerm terminal
+vim.keymap.set("n", "<leader>t", "<cmd>ToggleTerm<CR>")
