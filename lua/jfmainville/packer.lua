@@ -6,6 +6,11 @@ return require("packer").startup(function(use)
   -- Themes
   use({ "navarasu/onedark.nvim", as = "onedark" })
 
+  -- DAP
+  use("mfussenegger/nvim-dap")
+  use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
+  use({ "mfussenegger/nvim-dap-python", requires = { "mfussenegger/nvim-dap" } })
+
   -- Plugins
   use({
     "nvim-telescope/telescope.nvim",

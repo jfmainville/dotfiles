@@ -7,11 +7,14 @@ brew install neovim tmux ripgrep git lazygit
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
-# Install NVIM DAP
-git clone https://github.com/mfussenegger/nvim-dap.git ~/.config/nvim/pack/plugins/start/nvim-dap
-
 cp ./lazygit/config.yaml ~/Library/Application\ Support/lazygit/
 
 pip install black
 
 npm install -g typescript-language-server pyright @ansible/ansible-language-server dockerfile-language-server-nodejs
+
+# DAP
+mkdir .virtualenvs
+cd .virtualenvs
+python -m venv debugpy
+debugpy/bin/python -m pip install debugpy

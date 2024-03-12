@@ -39,3 +39,7 @@ vim.keymap.set("", "<leader>f", function()
 end)
 -- Open the LazyGit window
 vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>")
+-- Start the DAP debugger
+vim.keymap.set("n", "<leader>dc", "<cmd>lua require'dap'.continue()<CR>")
+-- Add a breakpoint DAP debugger
+vim.keymap.set("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>")
