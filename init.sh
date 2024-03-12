@@ -14,7 +14,7 @@ pip install black
 npm install -g typescript-language-server pyright @ansible/ansible-language-server dockerfile-language-server-nodejs
 
 # DAP
-mkdir .virtualenvs
-cd .virtualenvs
+mkdir ~/.virtualenvs
+cd ~/.virtualenvs
 python -m venv debugpy
 debugpy/bin/python -m pip install debugpy
