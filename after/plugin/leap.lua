@@ -1,5 +1,8 @@
-require('leap').create_default_mappings()
-require('leap').opts.special_keys.prev_target = '<bs>'
-require('leap').opts.special_keys.prev_group = '<bs>'
-require('leap.user').set_repeat_keys('<cr>', '<bs>')
-require('leap').opts.safe_labels = {}
+local leap = require("leap")
+
+leap.create_default_mappings()
+leap.opts.special_keys.prev_target = '<bs>'
+leap.opts.special_keys.prev_group = '<bs>'
+leap.opts.safe_labels = {}
+leap.opts.max_phase_one_targets = 0
+leap.opts.highlight_unlabeled_phase_one_targets = false
