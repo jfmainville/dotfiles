@@ -19,6 +19,7 @@ return require("packer").startup(function(use)
       { "nvim-lua/plenary.nvim" },
     }
   })
+  use("kylechui/nvim-surround")
   use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
   use("theprimeagen/harpoon")
   use("mbbill/undotree")
