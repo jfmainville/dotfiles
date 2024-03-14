@@ -3,10 +3,6 @@ vim.g.mapleader = " "
 -- Fix the terminal mode characters replacement
 vim.keymap.set("t", "<S-Space>", "<Space>")
 vim.keymap.set("t", "<S-BS>", "<BS>")
--- Save all the files that are in the buffer
-vim.keymap.set("n", "za", function()
-  vim.cmd("wa")
-end)
 -- Save file and return to the project explorer view
 vim.keymap.set("n", "zz", function()
   vim.cmd("w")
