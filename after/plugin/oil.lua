@@ -57,6 +57,7 @@ require("oil").setup({
   -- See :help oil-actions for a list of all available actions
   keymaps = {
     ["g?"] = "actions.show_help",
+    ["za"] = "actions.save",
     ["<CR>"] = "actions.select",
     ["<C-s>"] = "actions.select_vsplit",
     ["<C-h>"] = "actions.select_split",
@@ -157,4 +158,3 @@ require("oil").setup({
     border = "rounded",
   },
 })
-
