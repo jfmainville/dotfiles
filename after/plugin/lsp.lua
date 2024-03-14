@@ -28,6 +28,7 @@ require('mason-lspconfig').setup({
     'lua_ls',
     'rust_analyzer',
     'terraformls',
+    'tflint',
     'typos_lsp',
     'marksman',
   },
