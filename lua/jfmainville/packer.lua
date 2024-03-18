@@ -59,6 +59,7 @@ return require("packer").startup(function(use)
       { "neovim/nvim-lspconfig" },
       { "williamboman/mason.nvim" },
       { "williamboman/mason-lspconfig.nvim" },
+	use("folke/trouble.nvim")
 
       -- Autocompletion
       { "hrsh7th/nvim-cmp" },
