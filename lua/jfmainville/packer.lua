@@ -60,6 +60,7 @@ return require("packer").startup(function(use)
       { "williamboman/mason.nvim" },
       { "williamboman/mason-lspconfig.nvim" },
 	use("folke/trouble.nvim")
+	use({ "folke/todo-comments.nvim", requires = { "nvim-lua/plenary.nvim" } })
 
       -- Autocompletion
       { "hrsh7th/nvim-cmp" },
