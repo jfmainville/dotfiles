@@ -7,7 +7,7 @@ brew install neovim tmux ripgrep git lazygit shellcheck stylua
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
-cp ./lazygit/config.yaml ~/Library/Application\ Support/lazygit/
+cp -f ~/.config/nvim/lazygit/config.yml ~/Library/Application\ Support/lazygit/
 
 pip install black
 
