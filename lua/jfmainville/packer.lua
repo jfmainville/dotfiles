@@ -5,6 +5,7 @@ return require("packer").startup(function(use)
 
 	-- Themes
 	use({ "navarasu/onedark.nvim", as = "onedark" })
+	use({ "catppuccin/nvim", as = "catppuccin" })
 
 	-- DAP
 	use("mfussenegger/nvim-dap")
