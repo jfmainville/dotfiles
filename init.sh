@@ -10,6 +10,8 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 cp -f ~/.config/nvim/lazygit/config.yml ~/Library/Application\ Support/lazygit/
 
 pip install black
+# Copy the custom tmux configuration file to the application folder
+cp -f ~/.config/nvim/tmux/tmux.conf ~/.config/tmux/
 
 npm install -g typescript-language-server pyright @ansible/ansible-language-server dockerfile-language-server-nodejs prettier bash-language-server
 
