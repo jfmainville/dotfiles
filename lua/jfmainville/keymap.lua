@@ -42,8 +42,6 @@ vim.keymap.set("", "<leader>f", function()
 end)
 -- Open the LazyGit window
 vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>")
--- Open the LazyGit current file commit history
-vim.keymap.set("n", "<leader>ggf", "<cmd>LazyGitFilterCurrentFile<CR>")
 -- Start the DAP debugger
 vim.keymap.set("n", "<leader>dc", "<cmd>lua require'dap'.continue()<CR>")
 -- Add a breakpoint DAP debugger
