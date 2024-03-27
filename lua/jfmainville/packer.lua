@@ -20,6 +20,7 @@ return require("packer").startup(function(use)
 		},
 	})
 	use("kylechui/nvim-surround")
+	use("christoomey/vim-tmux-navigator")
 	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
 	use("theprimeagen/harpoon")
 	use("lukas-reineke/indent-blankline.nvim")
