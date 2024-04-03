@@ -88,7 +88,8 @@ require("oil").setup({
     end,
     -- This function defines what will never be shown, even when `show_hidden` is set
     is_always_hidden = function(name, bufnr)
-      return false
+      return name == ".git"
+          or name == ".."
     end,
     sort = {
       -- sort order can be "asc" or "desc"
