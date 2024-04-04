@@ -47,7 +47,7 @@ require("mason-lspconfig").setup({
 		"pyright",
 		"bashls",
 		"lua_ls",
-    "intelephense",
+		"intelephense",
 		"rust_analyzer",
 		"terraformls",
 		"tflint",
@@ -65,10 +65,6 @@ require("mason-lspconfig").setup({
 
 local cmp = require("cmp")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
-
--- this is the function that loads the extra snippets to luasnip
--- from rafamadriz/friendly-snippets
-require("luasnip.loaders.from_vscode").lazy_load()
 
 cmp.setup({
 	sources = {
