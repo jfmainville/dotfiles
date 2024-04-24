@@ -90,6 +90,8 @@ require("oil").setup({
     is_always_hidden = function(name, bufnr)
       return name == ".git"
           or name == ".."
+          or name == "__pycache__"
+          or name == ".pytest_cache"
     end,
     sort = {
       -- sort order can be "asc" or "desc"
