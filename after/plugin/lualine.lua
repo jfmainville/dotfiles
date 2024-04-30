@@ -14,11 +14,28 @@ local clients_lsp = function()
 end
 
 require("lualine").setup({
-	options = { theme = "powerline" },
+	icons_enabled = true,
+	options = {
+		theme = "auto",
+		component_separators = "",
+		section_separators = { left = "", right = "" },
+	},
+	disabled_filetypes = {
+		statusline = {},
+		winbar = {},
+	},
+	ignore_focus = {},
+	always_divide_middle = true,
+	globalstatus = false,
+	refresh = {
+		statusline = 1000,
+		tabline = 1000,
+		winbar = 1000,
+	},
 	extensions = { "oil", "lazy", "mason", "trouble" },
 	sections = {
 		lualine_a = { "mode" },
-		lualine_b = { "branch", "diff" },
+		lualine_b = { "branch" },
 		lualine_c = {
 			{
 				"filename",
@@ -43,9 +60,7 @@ require("lualine").setup({
 		lualine_x = {
 			{ "diagnostics", sources = { "nvim_diagnostic", "coc", "nvim_lsp", "vim_lsp" } },
 			clients_lsp,
-			"encoding",
 			"fileformat",
-			"filetype",
 		},
 		lualine_y = { "progress", "searchcount" },
 	},
