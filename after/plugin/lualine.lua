@@ -61,6 +61,12 @@ require("lualine").setup({
 			{ "diagnostics", sources = { "nvim_diagnostic", "coc", "nvim_lsp", "vim_lsp" } },
 			clients_lsp,
 			"fileformat",
+			{
+				"filetype",
+				colored = false, -- Displays filetype icon in color if set to true
+				icon_only = true, -- Display only an icon for filetype
+				icon = { align = "right" }, -- Display filetype icon on the right hand side
+			},
 		},
 		lualine_y = { "progress", "searchcount" },
 	},
