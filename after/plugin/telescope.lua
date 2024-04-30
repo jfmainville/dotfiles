@@ -31,6 +31,7 @@ require("telescope").setup({
 			end,
 		},
 		find_files = {
+      theme = "dropdown",
 			hidden = true,
 			file_ignore_patterns = { ".idea", "node_modules", ".git/", ".venv" },
 		},
