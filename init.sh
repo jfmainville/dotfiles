@@ -1,7 +1,20 @@
 #!/bin/bash
 
 # Install the base tools
-brew install neovim tmux ripgrep git lazygit shellcheck stylua
+brew install neovim tmux ripgrep git lazygit shellcheck stylua zsh-autosuggestions zsh-syntax-highlighting eza zoxide
+
+# Configure zsh-autosuggestions
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh >> ~/.zshrc
+
+# Configure zsh-syntax-highlighting
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh >> ~/.zshrc
+
+# Configure EZA
+echo 'alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"' >> ~/.zshrc
+
+# Configure Zoxide
+echo 'eval "$(zoxide init zsh)"' >> ~/.zshrc
+echo 'alias cd="z"' >> ~/.zshrc
 
 # Install the Packer package manager
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
