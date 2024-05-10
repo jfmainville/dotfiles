@@ -46,3 +46,6 @@ vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>")
 vim.keymap.set("n", "<leader>dc", "<cmd>lua require'dap'.continue()<CR>")
 -- Add a breakpoint DAP debugger
 vim.keymap.set("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>")
+-- Prevent unselect during indent operations
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
