@@ -34,31 +34,3 @@ lsp_zero.on_attach(function(client, bufnr)
 		vim.lsp.buf.signature_help()
 	end, opts)
 end)
-
--- to learn how to use mason.nvim with lsp-zero
--- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
-require("mason").setup({})
-require("mason-lspconfig").setup({
-	ensure_installed = {
-		"tsserver",
-		"ansiblels",
-		"dockerls",
-		"yamlls",
-		"pyright",
-		"bashls",
-		"lua_ls",
-		"intelephense",
-		"rust_analyzer",
-		"terraformls",
-		"tflint",
-		"typos_lsp",
-		"marksman",
-	},
-	handlers = {
-		lsp_zero.default_setup,
-		lua_ls = function()
-			local lua_opts = lsp_zero.nvim_lua_ls()
-			require("lspconfig").lua_ls.setup(lua_opts)
-		end,
-	},
-})
