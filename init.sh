@@ -27,7 +27,7 @@ cp -f ~/.config/nvim/lazygit/config.yml ~/Library/Application\ Support/lazygit/
 cp -f ~/.config/nvim/tmux/tmux.conf ~/.config/tmux/
 
 # LSPs and Formatters packages
-pip3 install black
+pip3 install black ansible-lint
 sudo npm install -g typescript-language-server pyright @ansible/ansible-language-server dockerfile-language-server-nodejs prettier bash-language-server intelephense
 
 # DAP base configuration
