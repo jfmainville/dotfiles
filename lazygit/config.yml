@@ -17,22 +17,22 @@ gui:
       - green
       - bold
     inactiveBorderColor:
-      - white
+      - default
     searchingActiveBorderColor:
       - cyan
       - bold
     optionsTextColor:
       - blue
     selectedLineBgColor:
-      - bold # set to `default` to have no background colour
-      - underline
-    selectedRangeBgColor:
-      - bold
-      - underline
-    cherryPickedCommitBgColor:
-      - cyan
+      - blue
     cherryPickedCommitFgColor:
       - blue
+    cherryPickedCommitBgColor:
+      - cyan
+    markedBaseCommitFgColor:
+      - blue
+    markedBaseCommitBgColor:
+      - yellow
     unstagedChangesColor:
       - red
     defaultFgColor:
