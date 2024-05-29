@@ -1,18 +1,3 @@
-local clients_lsp = function()
-	local bufnr = vim.api.nvim_get_current_buf()
-
-	local clients = vim.lsp.buf_get_clients(bufnr)
-	if next(clients) == nil then
-		return ""
-	end
-
-	local c = {}
-	for _, client in pairs(clients) do
-		table.insert(c, client.name)
-	end
-	return "\u{f085} " .. table.concat(c, "|")
-end
-
 require("lualine").setup({
 	icons_enabled = true,
 	options = {
@@ -59,7 +44,6 @@ require("lualine").setup({
 		},
 		lualine_x = {
 			{ "diagnostics", sources = { "nvim_diagnostic", "coc", "nvim_lsp", "vim_lsp" } },
-			clients_lsp,
 			"fileformat",
 			{
 				"filetype",
