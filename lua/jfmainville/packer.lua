@@ -14,7 +14,6 @@ return require("packer").startup(function(use)
 	-- Plugins
 	use({
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.5",
 		requires = {
 			{ "nvim-lua/plenary.nvim" },
 		},
