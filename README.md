@@ -47,42 +47,42 @@ backend by completing the following steps:
 
 The following table shows the list of all the plugins that are used by Neovim with their purpose:
 
-| Plugin Name          | Repository                                                 | Purpose          |
-| -------------------- | :--------------------------------------------------------- | :--------------- |
-| catppuccin           | [https://github.com/catppuccin/nvim]()                     | Theme            |
-| nvim-dap             | [https://github.com/mfussenegger/nvim-dap]()               | Debugging        |
-| nvim-dap-ui          | [https://github.com/rcarriga/nvim-dap-ui]()                | Debugging UI     |
-| nvim-dap-python      | [https://github.com/mfussenegger/nvim-dap-python]()        | Python Debugger  |
-| telescope            | [https://github.com/nvim-telescope/telescope.nvim]()       | Navigator        |
-| nvim-surround        | [https://github.com/kylechui/nvim-surround]()              | Utility          |
-| vim-tmux-navigator   | [https://github.com/christoomey/vim-tmux-navigator]()      | Navigation       |
-| nvim-treesitter      | [https://github.com/nvim-treesitter/nvim-treesitter]()     | Code Highlighter |
-| harpoon              | [https://github.com/theprimeagen/harpoon]()                | Navigation       |
-| indent-blankline     | [https://github.com/lukas-reineke/indent-blankline.nvim]() | Utility          |
-| undotree             | [https://github.com/mbbill/undotree]()                     | Utility          |
-| gitsigns.nvim        | [https://github.com/lewis6991/gitsigns.nvim]()             | Git              |
-| nvim-web-devicons    | [https://github.com/nvim-tree/nvim-web-devicons]()         | Theme            |
-| trouble.nvim         | [https://github.com/folke/trouble.nvim]()                  | Utility          |
-| todo-comments.nvim   | [https://github.com/folke/todo-comments.nvim]()            | Utility          |
-| Comment.nvim         | [https://github.com/numToStr/Comment.nvim]()               | Utility          |
-| leap.nvim            | [https://github.com/ggandor/leap.nvim]()                   | Navigation       |
-| lazygit.nvim         | [https://github.com/kdheepak/lazygit.nvim]()               | Git              |
-| lualine.nvim         | [https://github.com/nvim-lualine/lualine.nvim]()           | Theme            |
-| oil.nvim             | [https://github.com/stevearc/oil.nvim]()                   | File Explorer    |
-| conform.nvim         | [https://github.com/stevearc/conform.nvim]()               | Formatter        |
-| ChatGPT.nvim         | [https://github.com/jackMort/ChatGPT.nvim]()               | ChatGPT          |
-| lsp-zero.nvim        | [https://github.com/VonHeikemen/lsp-zero.nvim]()           | LSP              |
-| nvim-lspconfig.nvim  | [https://github.com/neovim/nvim-lspconfig]()               | LSP              |
-| mason.nvim           | [https://github.com/williamboman/mason.nvim]()             | LSP              |
-| mason-lspconfig.nvim | [https://github.com/williamboman/mason-lspconfig.nvim]()   | LSP              |
-| nvim-cmp             | [https://github.com/hrsh7th/nvim-cmp]()                    | LSP              |
-| lspkind.nvim         | [https://github.com/onsails/lspkind.nvim]()                | Autocompletion   |
-| cmp-buffer           | [https://github.com/hrsh7th/cmp-buffer]()                  | Autocompletion   |
-| cmp-path             | [https://github.com/hrsh7th/cmp-path]()                    | Autocompletion   |
-| cmp_luasnip          | [https://github.com/saadparwaiz1/cmp_luasnip]()            | Autocompletion   |
-| cmp-nvim-lsp         | [https://github.com/hrsh7th/cmp-nvim-lsp]()                | Autocompletion   |
-| cmp-nvim-lua         | [https://github.com/hrsh7th/cmp-nvim-lua]()                | Autocompletion   |
-| LuaSnip              | [https://github.com/L3MON4D3/LuaSnip]()                    | Snippets         |
-| friendly-snippers    | [https://github.com/rafamadriz/friendly-snippets]()        | Snippets         |
+| Plugin Name                                                                  | Purpose          |
+| ---------------------------------------------------------------------------- | :--------------- |
+| [catppuccin](https://github.com/catppuccin/nvim)                             | Theme            |
+| [nvim-dap](https://github.com/mfussenegger/nvim-dap)                         | Debugging        |
+| [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)                       | Debugging UI     |
+| [nvim-dap-python](https://github.com/mfussenegger/nvim-dap-python)           | Python Debugger  |
+| [telescope](https://github.com/nvim-telescope/telescope.nvim)                | Navigator        |
+| [nvim-surround](https://github.com/kylechui/nvim-surround)                   | Utility          |
+| [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)      | Navigation       |
+| [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)        | Code Highlighter |
+| [harpoon](https://github.com/theprimeagen/harpoon)                           | Navigation       |
+| [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)   | Utility          |
+| [undotree](https://github.com/mbbill/undotree)                               | Utility          |
+| [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)                  | Git              |
+| [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)          | Theme            |
+| [trouble.nvim](https://github.com/folke/trouble.nvim)                        | Utility          |
+| [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)            | Utility          |
+| [Comment.nvim](https://github.com/numToStr/Comment.nvim)                     | Utility          |
+| [leap.nvim](https://github.com/ggandor/leap.nvim)                            | Navigation       |
+| [lazygit.nvim](https://github.com/kdheepak/lazygit.nvim)                     | Git              |
+| [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)                 | Theme            |
+| [oil.nvim](https://github.com/stevearc/oil.nvim)                             | File Explorer    |
+| [conform.nvim](https://github.com/stevearc/conform.nvim)                     | Formatter        |
+| [ChatGPT.nvim](https://github.com/jackMort/ChatGPT.nvim)                     | ChatGPT          |
+| [lsp-zero.nvim](https://github.com/VonHeikemen/lsp-zero.nvim)                | LSP              |
+| [nvim-lspconfig.nvim](https://github.com/neovim/nvim-lspconfig)              | LSP              |
+| [mason.nvim](https://github.com/williamboman/mason.nvim)                     | LSP              |
+| [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim) | LSP              |
+| [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)                              | LSP              |
+| [lspkind.nvim](https://github.com/onsails/lspkind.nvim)                      | Autocompletion   |
+| [cmp-buffer](https://github.com/hrsh7th/cmp-buffer)                          | Autocompletion   |
+| [cmp-path](https://github.com/hrsh7th/cmp-path)                              | Autocompletion   |
+| [cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip)                   | Autocompletion   |
+| [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)                      | Autocompletion   |
+| [cmp-nvim-lua](https://github.com/hrsh7th/cmp-nvim-lua)                      | Autocompletion   |
+| [LuaSnip](https://github.com/L3MON4D3/LuaSnip)                               | Snippets         |
+| [friendly-snippers](https://github.com/rafamadriz/friendly-snippets)         | Snippets         |
 
 The plugins that are listed in the table above don't include the dependencies. However, the dependencies are defined for each of the plugin listed in the `packer.lua` file.
