@@ -8,6 +8,7 @@ ENSURE_INSTALLED = {
 	"pyright",
 	"bashls",
 	"lua_ls",
+  "jsonls",
 	"prismals",
 	"intelephense",
 	"rust_analyzer",
