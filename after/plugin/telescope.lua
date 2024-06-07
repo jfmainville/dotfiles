@@ -9,6 +9,8 @@ vim.keymap.set("n", "<leader>ge", function()
 end, {})
 vim.keymap.set("n", "<leader>vh", builtin.help_tags, {})
 
+local ignore_patterns = { ".idea", "node_modules", ".git/", ".venv", ".next" }
+
 require("telescope").setup({
 	defaults = {
 		-- Remove the ripgrep indentation
@@ -25,7 +27,7 @@ require("telescope").setup({
 	},
 	pickers = {
 		live_grep = {
-			file_ignore_patterns = { ".idea", "node_modules", ".git/", ".venv" },
+			file_ignore_patterns = ignore_patterns,
 			additional_args = function(_)
 				return { "--hidden" }
 			end,
@@ -33,7 +35,7 @@ require("telescope").setup({
 		find_files = {
       theme = "dropdown",
 			hidden = true,
-			file_ignore_patterns = { ".idea", "node_modules", ".git/", ".venv" },
+			file_ignore_patterns = ignore_patterns,
 		},
 	},
 })
