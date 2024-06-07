@@ -33,7 +33,6 @@ require("telescope").setup({
 			end,
 		},
 		find_files = {
-      theme = "dropdown",
 			hidden = true,
 			file_ignore_patterns = ignore_patterns,
 		},
