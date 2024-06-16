@@ -49,3 +49,6 @@ vim.keymap.set("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>
 -- Prevent unselect during indent operations
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
+-- Keymaps to open vertical and horizontal splits
+vim.keymap.set("n", "<leader>ss", "<C-w>v")
+vim.keymap.set("n", "<leader>sh", "<C-w>s")
