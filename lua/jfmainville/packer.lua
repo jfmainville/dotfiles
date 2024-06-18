@@ -4,7 +4,6 @@ return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 
 	-- Themes
-	use({ "catppuccin/nvim", as = "catppuccin" })
 
 	-- DAP
 	use("mfussenegger/nvim-dap")
