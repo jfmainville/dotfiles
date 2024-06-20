@@ -3,6 +3,8 @@ vim.opt.guicursor =
 
 vim.opt.nu = true
 vim.opt.relativenumber = false
+-- Remove the duplicate mode indicator
+vim.opt.showmode = false
 -- Enable the spellcheck functionality
 vim.opt.spell = false
 
