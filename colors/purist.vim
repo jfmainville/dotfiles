@@ -59,7 +59,7 @@ hi SpecialKey guifg=#878092 guibg=NONE gui=NONE cterm=NONE
 hi ToolbarButton guifg=#ffffff guibg=#5e556d gui=NONE cterm=NONE
 hi ToolbarLine guifg=NONE guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
 hi VertSplit guifg=#afafff guibg=NONE gui=NONE cterm=NONE
-hi Visual guifg=#0e0024 guibg=#5fd7ff gui=NONE cterm=NONE
+hi Visual guifg=#0e0024 guibg=#b2afff gui=NONE cterm=NONE
 hi VisualNOS guifg=#0e0024 guibg=#ffffff gui=NONE cterm=NONE
 hi WarningMsg guifg=#ffafff guibg=NONE gui=NONE cterm=NONE
 hi debugBreakpoint guifg=#87ff00 guibg=#5f00d7 gui=reverse cterm=reverse
