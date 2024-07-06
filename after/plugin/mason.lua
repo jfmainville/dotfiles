@@ -2,6 +2,8 @@ local lsp_zero = require("lsp-zero")
 
 ENSURE_INSTALLED = {
 	"tsserver",
+  "cssls",
+  "tailwindcss",
 	"ansiblels",
 	"dockerls",
 	"yamlls",

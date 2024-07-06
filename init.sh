@@ -28,7 +28,7 @@ cp -f ~/.config/nvim/tmux/tmux.conf ~/.config/tmux/
 
 # LSPs and Formatters packages
 pip3 install black ansible-lint
-sudo npm install -g typescript-language-server pyright @ansible/ansible-language-server dockerfile-language-server-nodejs prettier bash-language-server intelephense @prisma/language-server vscode-langservers-extracted
+sudo npm install -g typescript-language-server pyright @ansible/ansible-language-server dockerfile-language-server-nodejs prettier bash-language-server intelephense @prisma/language-server vscode-langservers-extracted @tailwindcss/language-server 
 
 # DAP base configuration
 mkdir ~/.virtualenvs
