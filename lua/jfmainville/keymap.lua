@@ -53,7 +53,7 @@ vim.keymap.set("v", ">", ">gv")
 vim.keymap.set("n", "<leader>ss", "<C-w>v")
 vim.keymap.set("n", "<leader>sh", "<C-w>s")
 -- Interact between bufferline tabs
-vim.keymap.set("n", "<leader>tc", "<CMD>BufferLinePickClose<CR>")
+vim.keymap.set("n", "<leader>bc", "<CMD>BufferLinePickClose<CR>")
 vim.keymap.set("n", "<S-l>", "<CMD>BufferLineCycleNext<CR>")
 vim.keymap.set("n", "<S-h>", "<CMD>BufferLineCyclePrev<CR>")
 vim.keymap.set("n", "<leader>1", "<CMD>BufferLineGoToBuffer1<CR>")
