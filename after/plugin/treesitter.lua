@@ -1,13 +1,27 @@
 require("nvim-treesitter.configs").setup({
 	-- A list of parser names, or "all" (the five listed parsers should always be installed)
-	entflintsure_installed = {
+	ensure_installed = {
 		"hcl",
+    "cpp",
+    "bash",
+    "dockerfile",
 		"terraform",
 		"javascript",
 		"typescript",
+    "cmake",
+    "make",
+    "markdown",
 		"python",
+    "html",
+    "json",
+    "yaml",
+    "css",
+    "scss",
+    "prisma",
 		"c",
 		"lua",
+    "php",
+    "sql",
 		"vim",
 		"vimdoc",
 		"query",
