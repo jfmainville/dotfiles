@@ -22,9 +22,9 @@ require("bufferline").setup({
 		separator_style = "line",
 		diagnostics = "nvim_lsp",
 	},
-	-- highlights = {
-	-- 	fill = {
-	-- 		bg = "#0f0125",
-	-- 	},
-	-- },
+	highlights = {
+		fill = {
+			bg = "#0f0125",
+		},
+	},
 })
