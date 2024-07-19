@@ -16,8 +16,6 @@ end)
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 -- Move the currently selected line up
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
--- Bring the line below up
-vim.keymap.set("n", "J", "mzJ`z")
 -- Go up multiple lines
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 -- Go down multiple lines
