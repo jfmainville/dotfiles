@@ -26,7 +26,6 @@ return require("packer").startup(function(use)
 	use("mbbill/undotree")
 	use("lewis6991/gitsigns.nvim")
 	use("nvim-tree/nvim-web-devicons")
-	use("folke/trouble.nvim")
 	use({ "folke/todo-comments.nvim", requires = { "nvim-lua/plenary.nvim" } })
 	use("numToStr/Comment.nvim")
 	use({

@@ -32,7 +32,7 @@ require("lualine").setup({
 		tabline = 1000,
 		winbar = 1000,
 	},
-	extensions = { "oil", "lazy", "mason", "trouble" },
+	extensions = { "oil", "lazy", "mason" },
 	sections = {
 		lualine_a = { "mode" },
 		lualine_b = { "branch" },
