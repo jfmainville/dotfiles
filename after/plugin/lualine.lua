@@ -58,7 +58,7 @@ require("lualine").setup({
 			},
 		},
 		lualine_x = {
-			{ "diagnostics", sources = { "nvim_diagnostic", "coc", "nvim_lsp", "vim_lsp" } },
+			{ "diagnostics", sources = { "nvim_diagnostic", "nvim_lsp", "vim_lsp" } },
 			"fileformat",
 			{
 				"filetype",
