@@ -60,7 +60,6 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | [undotree](https://github.com/mbbill/undotree)                               | Utility          |
 | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)                  | Git              |
 | [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)          | Theme            |
-| [trouble.nvim](https://github.com/folke/trouble.nvim)                        | Utility          |
 | [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)            | Utility          |
 | [Comment.nvim](https://github.com/numToStr/Comment.nvim)                     | Utility          |
 | [leap.nvim](https://github.com/ggandor/leap.nvim)                            | Navigation       |
