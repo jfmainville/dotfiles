@@ -49,7 +49,6 @@ The following table shows the list of all the plugins that are used by Neovim wi
 
 | Plugin Name                                                                  | Purpose          |
 | ---------------------------------------------------------------------------- | :--------------- |
-| [catppuccin](https://github.com/catppuccin/nvim)                             | Theme            |
 | [nvim-dap](https://github.com/mfussenegger/nvim-dap)                         | Debugging        |
 | [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)                       | Debugging UI     |
 | [nvim-dap-python](https://github.com/mfussenegger/nvim-dap-python)           | Python Debugger  |
