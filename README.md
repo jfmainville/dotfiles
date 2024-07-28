@@ -56,7 +56,6 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | [nvim-surround](https://github.com/kylechui/nvim-surround)                   | Utility          |
 | [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)      | Navigation       |
 | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)        | Code Highlighter |
-| [harpoon](https://github.com/theprimeagen/harpoon)                           | Navigation       |
 | [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)   | Utility          |
 | [undotree](https://github.com/mbbill/undotree)                               | Utility          |
 | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)                  | Git              |
