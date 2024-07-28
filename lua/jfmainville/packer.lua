@@ -18,8 +18,8 @@ return require("packer").startup(function(use)
 			{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
 		},
 	})
+  use({"knubie/vim-kitty-navigator", run = "cp ./*.py ~/.config/kitty/"})
 	use("kylechui/nvim-surround")
-	use("christoomey/vim-tmux-navigator")
 	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
 	use({ "akinsho/bufferline.nvim", tag = "*", requires = "nvim-tree/nvim-web-devicons" })
 	use("lukas-reineke/indent-blankline.nvim")
