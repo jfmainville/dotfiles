@@ -115,10 +115,10 @@ hi! link Typedef Type
 hi! link Terminal Normal
 hi! link MessageWindow Pmenu
 hi! link PopupNotification Todo
-hi DiffAdd guifg=#87ff00 guibg=#362b49 gui=reverse cterm=reverse
-hi DiffChange guifg=#afafff guibg=#362b49 gui=reverse cterm=reverse
-hi DiffText guifg=#d7d5db guibg=#362b49 gui=reverse cterm=reverse
-hi DiffDelete guifg=#ff5faf guibg=#362b49 gui=reverse cterm=reverse
+hi DiffAdd guifg=NONE guibg=NONE gui=NONE cterm=NONE
+hi DiffChange guifg=NONE guibg=NONE gui=NONE cterm=NONE
+hi DiffText guifg=NONE guibg=NONE gui=NONE cterm=NONE
+hi DiffDelete guifg=NONE guibg=NONE gui=NONE cterm=NONE
 
 if s:t_Co >= 256
   hi Normal ctermfg=231 ctermbg=16 cterm=NONE
