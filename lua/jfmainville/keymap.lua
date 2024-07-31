@@ -38,8 +38,8 @@ vim.keymap.set("n", "<leader>cg", "<cmd>ChatGPT<CR>")
 vim.keymap.set("", "<leader>f", function()
 	require("conform").format({ async = true, lsp_fallback = true })
 end)
--- Open the LazyGit window
-vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>")
+-- Open the Neogit window
+vim.keymap.set("n", "<leader>gg", "<cmd>Neogit<CR>")
 -- Start the DAP debugger
 vim.keymap.set("n", "<leader>dc", "<cmd>lua require'dap'.continue()<CR>")
 -- Add a breakpoint DAP debugger
