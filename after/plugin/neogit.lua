@@ -70,7 +70,7 @@ require("neogit").setup({
 	auto_close_console = true,
 	status = {
 		show_head_commit_hash = true,
-		recent_commit_count = 10,
+		recent_commit_count = 20,
 		HEAD_padding = 10,
 		HEAD_folded = false,
 		mode_padding = 3,
