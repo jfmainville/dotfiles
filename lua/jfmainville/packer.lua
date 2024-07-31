@@ -18,7 +18,7 @@ return require("packer").startup(function(use)
 			{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
 		},
 	})
-  use({"knubie/vim-kitty-navigator", run = "cp ./*.py ~/.config/kitty/"})
+	use({ "knubie/vim-kitty-navigator", run = "cp ./*.py ~/.config/kitty/" })
 	use("kylechui/nvim-surround")
 	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
 	use({ "akinsho/bufferline.nvim", tag = "*", requires = "nvim-tree/nvim-web-devicons" })
@@ -32,6 +32,14 @@ return require("packer").startup(function(use)
 		"ggandor/leap.nvim",
 		requires = {
 			{ "tpope/vim-repeat" },
+		},
+	})
+	use({
+		"NeogitOrg/neogit",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"sindrets/diffview.nvim",
+			"nvim-telescope/telescope.nvim",
 		},
 	})
 	use({
