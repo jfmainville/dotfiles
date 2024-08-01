@@ -38,8 +38,9 @@ vim.keymap.set("n", "<leader>cg", "<cmd>ChatGPT<CR>")
 vim.keymap.set("", "<leader>f", function()
 	require("conform").format({ async = true, lsp_fallback = true })
 end)
--- Open the Neogit window
-vim.keymap.set("n", "<leader>gg", "<cmd>Neogit<CR>")
+-- Interact with vim-fugitive
+vim.keymap.set("n", "<leader>gg", "<cmd>tab Git<CR>")
+vim.keymap.set("n", "<leader>gc", "<cmd>Git commit<CR>")
 -- Open current file git history with diffview
 vim.keymap.set("n", "<leader>gh", "<cmd>DiffviewFileHistory %<CR>")
 -- Open current file git history

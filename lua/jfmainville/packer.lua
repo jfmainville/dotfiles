@@ -34,20 +34,8 @@ return require("packer").startup(function(use)
 			{ "tpope/vim-repeat" },
 		},
 	})
-	use({
-		"NeogitOrg/neogit",
-		requires = {
-			"nvim-lua/plenary.nvim",
-			"sindrets/diffview.nvim",
-			"nvim-telescope/telescope.nvim",
-		},
-	})
-	use({
-		"kdheepak/lazygit.nvim",
-		requires = {
-			"nvim-lua/plenary.nvim",
-		},
-	})
+  use("sindrets/diffview.nvim")
+  use("tpope/vim-fugitive")
 	use({ "nvim-lualine/lualine.nvim", requires = { "nvim-tree/nvim-web-devicons", opt = true } })
 	use("stevearc/oil.nvim")
 	use("stevearc/conform.nvim")
