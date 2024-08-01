@@ -5,11 +5,11 @@ vim.keymap.set("t", "<S-Space>", "<Space>")
 vim.keymap.set("t", "<S-BS>", "<BS>")
 -- Save the current file in the buffer
 vim.keymap.set("n", "za", function()
-	vim.cmd("w")
+	vim.cmd("silent! w")
 end)
 -- Save file and return to the project explorer view
 vim.keymap.set("n", "zz", function()
-	vim.cmd("w")
+	vim.cmd("silent! w")
 	vim.cmd("Oil")
 end)
 -- Move the currently selected line down
