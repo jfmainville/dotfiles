@@ -55,7 +55,7 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | [telescope](https://github.com/nvim-telescope/telescope.nvim)                | Navigator        |
 | [nvim-surround](https://github.com/kylechui/nvim-surround)                   | Utility          |
 | [bufferline](https://github.com/akinsho/bufferline.nvim)                     | Utility          |
-| [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)      | Navigation       |
+| [vim-kitty-navigator](https://github.com/knubie/vim-kitty-navigator)         | Navigation       |
 | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)        | Code Highlighter |
 | [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)   | Utility          |
 | [undotree](https://github.com/mbbill/undotree)                               | Utility          |
@@ -64,8 +64,8 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)            | Utility          |
 | [Comment.nvim](https://github.com/numToStr/Comment.nvim)                     | Utility          |
 | [leap.nvim](https://github.com/ggandor/leap.nvim)                            | Navigation       |
-| [lazygit.nvim](https://github.com/kdheepak/lazygit.nvim)                     | Git              |
 | [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)                 | Theme            |
+| [vim-fugitive](https://github.com/tpope/vim-fugitive)                        | Git              |
 | [oil.nvim](https://github.com/stevearc/oil.nvim)                             | File Explorer    |
 | [conform.nvim](https://github.com/stevearc/conform.nvim)                     | Formatter        |
 | [ChatGPT.nvim](https://github.com/jackMort/ChatGPT.nvim)                     | ChatGPT          |
