@@ -40,7 +40,7 @@ vim.keymap.set("", "<leader>f", function()
 end)
 -- Interact with vim-fugitive
 vim.keymap.set("n", "<leader>gg", "<cmd>tab Git<CR>")
-vim.keymap.set("n", "<leader>gc", "<cmd>Git commit<CR>")
+vim.keymap.set("n", "<leader>gl", "<cmd>vertical Git log -p -- %<CR>")
 -- Open current file git history with diffview
 vim.keymap.set("n", "<leader>gh", "<cmd>DiffviewFileHistory %<CR>")
 -- Open current file git history
