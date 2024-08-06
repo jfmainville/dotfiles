@@ -1,1 +1,1 @@
-require("jfmainville")
+require("init")
