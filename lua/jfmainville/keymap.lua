@@ -42,6 +42,9 @@ end)
 vim.keymap.set("n", "<leader>gg", "<cmd>tab Git<CR>")
 vim.keymap.set("n", "<leader>gl", "<cmd>vertical Git log -p -- %<CR>")
 vim.keymap.set("n", "<leader>gd", "<cmd>Gdiff<CR>")
+vim.keymap.set("n", "<leader>gp", "<cmd>Git push<CR>")
+vim.keymap.set("n", "<leader>gh", ':Git commit -m "')
+vim.keymap.set("n", "<leader>ga", ':Git commit -am "')
 -- Start the DAP debugger
 vim.keymap.set("n", "<leader>dc", "<cmd>lua require'dap'.continue()<CR>")
 -- Add a breakpoint DAP debugger
