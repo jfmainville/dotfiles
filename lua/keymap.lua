@@ -30,7 +30,7 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 -- Source the current configuration
 vim.keymap.set("n", "<leader><leader>", function()
-	vim.cmd("source $MYVIMRC | source $HOME/.config/nvim/lua/jfmainville/keymap.lua")
+	vim.cmd("source $MYVIMRC | source $HOME/.config/nvim/lua/keymap.lua")
 end)
 -- Open ChatGPT window
 vim.keymap.set("n", "<leader>cg", "<cmd>ChatGPT<CR>")
