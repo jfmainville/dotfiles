@@ -76,6 +76,10 @@ hi Statement guifg=#ffafff guibg=NONE gui=NONE cterm=NONE
 hi Todo guifg=NONE guibg=NONE gui=reverse ctermfg=NONE ctermbg=NONE cterm=reverse
 hi Type guifg=#ff5faf guibg=NONE gui=NONE cterm=NONE
 hi Underlined guifg=NONE guibg=NONE gui=underline ctermfg=NONE ctermbg=NONE cterm=underline
+hi DiagnosticError guifg=#cb484a
+hi DiagnosticWarn guifg=#b28f5d
+hi DiagnosticInfo guifg=#b6d7e4
+hi DiagnosticHint guifg=info
 hi! link CurSearch IncSearch
 hi! link CursorLineFold CursorLine
 hi! link CursorLineNr CursorLine
