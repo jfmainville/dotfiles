@@ -28,9 +28,9 @@ vim.keymap.set("i", "jj", "<Esc>")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 -- Add the execute permission to the current file
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
--- Source the current file
+-- Source the current configuration
 vim.keymap.set("n", "<leader><leader>", function()
-	vim.cmd("so")
+	vim.cmd("source $MYVIMRC | source $HOME/.config/nvim/lua/jfmainville/keymap.lua")
 end)
 -- Open ChatGPT window
 vim.keymap.set("n", "<leader>cg", "<cmd>ChatGPT<CR>")
