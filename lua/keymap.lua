@@ -12,6 +12,11 @@ vim.keymap.set("n", "zz", function()
 	vim.cmd("silent! w")
 	vim.cmd("Oil")
 end)
+-- Undotree commands
+vim.keymap.set("n", "<leader>u", function()
+	vim.cmd.UndotreeToggle()
+	vim.cmd.UndotreeFocus()
+end)
 -- Move the currently selected line down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 -- Move the currently selected line up
