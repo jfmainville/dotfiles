@@ -1,6 +1,20 @@
 return {
 	"rcarriga/nvim-dap-ui",
 	dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+	keys = {
+		{
+			mode = "n",
+			"<leader>dc",
+			"<cmd>lua require'dap'.continue()<CR>",
+			desc = "Start the DAP debugger",
+		},
+		{
+			mode = "n",
+			"<leader>db",
+			"<cmd>lua require'dap'.toggle_breakpoint()<CR>",
+			desc = "Add a debug breakpoint",
+		},
+	},
 	config = function()
 		require("dapui").setup()
 
