@@ -38,7 +38,6 @@ return {
 				},
 				find_files = {
 					hidden = true,
-					no_ignore = true,
 					file_ignore_patterns = ignore_patterns,
 				},
 			},
