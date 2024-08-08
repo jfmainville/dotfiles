@@ -25,14 +25,10 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 -- Go down multiple lines
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
--- Greatest remap ever
-vim.keymap.set("x", "<leader>p", [["_dP]])
 -- Return to normal mode
 vim.keymap.set("i", "jj", "<Esc>")
 -- Replace current word
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
--- Add the execute permission to the current file
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 -- Source the current configuration
 vim.keymap.set("n", "<leader><leader>", function()
 	vim.cmd("source $MYVIMRC | source $HOME/.config/nvim/lua/keymap.lua")
