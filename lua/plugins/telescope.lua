@@ -13,7 +13,7 @@ return {
 		end, {})
 		vim.keymap.set("n", "<leader>vh", builtin.help_tags, {})
 
-		local ignore_patterns = { ".idea", "node_modules", ".git", ".venv", ".next", ".terraform" }
+		local ignore_patterns = { ".idea", "node_modules", ".git/", ".venv", ".next", ".terraform/" }
 
 		require("telescope").setup({
 			defaults = {
