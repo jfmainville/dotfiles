@@ -46,14 +46,15 @@ hi Error guifg=#d70000 guibg=#ffffff gui=reverse cterm=reverse
 hi ErrorMsg guifg=#ffffff guibg=#d70000 gui=NONE cterm=NONE
 hi FoldColumn guifg=#00afff guibg=NONE gui=NONE cterm=NONE
 hi Folded guifg=#ffaf00 guibg=#0e0024 gui=reverse cterm=reverse
-hi IncSearch guifg=#ffaf00 guibg=#0e0024 gui=reverse cterm=reverse
+hi IncSearch guifg=#ffffff guibg=#f49f70 gui=bold cterm=NONE
+hi Substitute guifg=#ffffff guibg=#ee487b gui=bold cterm=NONE
 hi LineNr guifg=#afafff guibg=NONE gui=NONE cterm=NONE
 hi MatchParen guifg=NONE guibg=NONE gui=reverse ctermfg=NONE ctermbg=NONE cterm=reverse
 hi ModeMsg guifg=#0e0024 guibg=#87ff00 gui=NONE cterm=NONE
 hi MoreMsg guifg=#87ffff guibg=NONE gui=NONE cterm=NONE
 hi Question guifg=#87ff00 guibg=NONE gui=NONE cterm=NONE
 hi QuickFixLine guifg=#ffafff guibg=#0e0024 gui=reverse cterm=reverse
-hi Search guifg=#87ffff guibg=#0e0024 gui=reverse cterm=reverse
+hi Search guifg=#0d0126 guibg=#c0c0fc gui=NONE cterm=NONE
 hi SignColumn guifg=#00afff guibg=NONE gui=NONE cterm=NONE
 hi SpecialKey guifg=#878092 guibg=NONE gui=NONE cterm=NONE
 hi ToolbarButton guifg=#ffffff guibg=#5e556d gui=NONE cterm=NONE
