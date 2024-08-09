@@ -58,7 +58,7 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)          | Theme            |
 | [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)            | Utility          |
 | [Comment.nvim](https://github.com/numToStr/Comment.nvim)                     | Utility          |
-| [flash.nvim](https://github.com/ggandor/leap.nvim)                            | Navigation       |
+| [flash.nvim](https://github.com/folke/flash.nvim)                            | Navigation       |
 | [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)                 | Theme            |
 | [vim-fugitive](https://github.com/tpope/vim-fugitive)                        | Git              |
 | [oil.nvim](https://github.com/stevearc/oil.nvim)                             | File Explorer    |
