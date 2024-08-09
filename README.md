@@ -32,11 +32,7 @@ backend by completing the following steps:
 
    `cd ~/.config/nvim`
 
-4. To be able to install plugins for Neovim, it's required to have the Packer plugin installed for Neovim, here's the command to install it:
-
-   `git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim`
-
-5. To complete the install of all the necessary dependencies for Neovim, execute the following bash script as `root`:
+4. To complete the install of all the necessary dependencies for Neovim, execute the following bash script as `root`:
 
    ```
    chmod + ~/.config/nvim/init.sh
