@@ -3,14 +3,13 @@ vim.g.mapleader = " "
 -- Fix the terminal mode characters replacement
 vim.keymap.set("t", "<S-Space>", "<Space>")
 vim.keymap.set("t", "<S-BS>", "<BS>")
--- Save the current file in the buffer
+-- Save all the files in the buffer
 vim.keymap.set("n", "za", function()
-	vim.cmd("silent! w")
+	vim.cmd("silent! wa")
 end)
--- Save file and return to the project explorer view
+-- Save the current file
 vim.keymap.set("n", "zz", function()
 	vim.cmd("silent! w")
-	vim.cmd("Oil")
 end)
 -- Move the currently selected line down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
