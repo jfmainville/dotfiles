@@ -49,7 +49,6 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)                       | Debugging UI     |
 | [nvim-dap-python](https://github.com/mfussenegger/nvim-dap-python)           | Python Debugger  |
 | [telescope](https://github.com/nvim-telescope/telescope.nvim)                | Navigator        |
-| [nvim-surround](https://github.com/kylechui/nvim-surround)                   | Utility          |
 | [bufferline](https://github.com/akinsho/bufferline.nvim)                     | Utility          |
 | [vim-kitty-navigator](https://github.com/knubie/vim-kitty-navigator)         | Navigation       |
 | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)        | Code Highlighter |
@@ -59,7 +58,7 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)          | Theme            |
 | [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)            | Utility          |
 | [Comment.nvim](https://github.com/numToStr/Comment.nvim)                     | Utility          |
-| [leap.nvim](https://github.com/ggandor/leap.nvim)                            | Navigation       |
+| [flash.nvim](https://github.com/ggandor/leap.nvim)                            | Navigation       |
 | [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)                 | Theme            |
 | [vim-fugitive](https://github.com/tpope/vim-fugitive)                        | Git              |
 | [oil.nvim](https://github.com/stevearc/oil.nvim)                             | File Explorer    |
