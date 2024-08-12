@@ -15,6 +15,18 @@ return {
 		{ mode = "n", "<S-h>", "<cmd>BufferLineCyclePrev<CR>", desc = "Cycle to the previous buffer" },
 		{
 			mode = "n",
+			"<C-,>",
+			"<CMD>BufferLineMovePrev<CR>",
+			desc = "Move the current buffer left",
+		},
+		{
+			mode = "n",
+			"<C-.>",
+			"<CMD>BufferLineMoveNext<CR>",
+			desc = "Move the current buffer right",
+		},
+		{
+			mode = "n",
 			"<leader>1",
 			"<CMD>BufferLineGoToBuffer1<CR>",
 			desc = "Navigate to the buffer with the index 1",
