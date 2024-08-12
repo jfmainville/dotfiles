@@ -1,5 +1,6 @@
 return {
 	"tpope/vim-fugitive",
+  lazy = false,
 	keys = {
 		{
 			mode = "n",

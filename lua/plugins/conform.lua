@@ -1,5 +1,6 @@
 return {
 	"stevearc/conform.nvim",
+  lazy = false,
 	keys = {
 		{
 			mode = "n",
