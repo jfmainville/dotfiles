@@ -90,5 +90,3 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | [cmp-nvim-lua](https://github.com/hrsh7th/cmp-nvim-lua)                      | Autocompletion   |
 | [LuaSnip](https://github.com/L3MON4D3/LuaSnip)                               | Snippets         |
 | [friendly-snippers](https://github.com/rafamadriz/friendly-snippets)         | Snippets         |
-
-The plugins that are listed in the table above don't include the dependencies. However, the dependencies are defined for each of the plugin listed in the `packer.lua` file.
