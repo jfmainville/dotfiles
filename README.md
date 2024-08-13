@@ -39,6 +39,19 @@ backend by completing the following steps:
    ~/.config/nvim/init.sh
    ```
 
+## Folder Structure
+
+The table below presents the folder structure for this repository:
+
+| Folder      | Description                                            |
+| ----------- | :----------------------------------------------------- |
+| colors      | Contains the custom colorscheme files                  |
+| kitty       | Contains the Kitty terminal configuration file         |
+| lazygit     | Contains the LazyGit configuration file                |
+| lua         | Contains the Neovim specific configurations            |
+| lua/plugins | Contains the list of plugins deployed using Lazy.nvim  |
+| tmux        | Contains the TMUX terminal emulator configuration file |
+
 ## Plugins
 
 The following table shows the list of all the plugins that are used by Neovim with their purpose:
