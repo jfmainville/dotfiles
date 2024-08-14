@@ -1,6 +1,6 @@
 return {
 	"stevearc/conform.nvim",
-  lazy = false,
+	lazy = false,
 	keys = {
 		{
 			mode = "n",
@@ -23,6 +23,7 @@ return {
 				tf = { "terraform_fmt" },
 				["terraform-vars"] = { "terraform_fmt" },
 				markdown = { "prettier" },
+				cpp = { "clang-format" },
 			},
 			format_on_save = {
 				-- These options will be passed to conform.format()
