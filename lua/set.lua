@@ -8,6 +8,9 @@ vim.opt.showmode = false
 -- Enable the spellcheck functionality
 vim.opt.spell = false
 
+vim.opt.listchars = "trail:-,nbsp:+,tab:| ,eol:↴"
+vim.opt.list = true
+
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
