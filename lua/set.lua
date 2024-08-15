@@ -9,7 +9,7 @@ vim.opt.showmode = false
 vim.opt.spell = false
 
 vim.opt.listchars = "trail:-,nbsp:+,tab:| ,eol:↴"
-vim.opt.list = true
+vim.opt.list = false
 
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
