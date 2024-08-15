@@ -8,6 +8,7 @@ vim.opt.showmode = false
 -- Enable the spellcheck functionality
 vim.opt.spell = false
 
+-- Set the list configuration to show hidden characters
 vim.opt.listchars = "trail:-,nbsp:+,tab:| ,eol:↴"
 vim.opt.list = false
 
