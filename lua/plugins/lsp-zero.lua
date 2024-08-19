@@ -92,5 +92,43 @@ return {
 				end,
 			},
 		})
+		require("lspconfig").yamlls.setup({
+			settings = {
+				yaml = {
+					format = {
+						enable = true,
+					},
+					schemas = {
+						["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.1-standalone-strict/all.json"] = "*/kubernetes/*.yaml",
+						["http://json.schemastore.org/kustomization"] = "kustomization.yaml",
+					},
+					schemastore = {
+						enable = true,
+					},
+				},
+			},
+		})
+		require("lspconfig").ansiblels.setup({
+			settings = {
+				ansible = {
+					ansible = {
+						path = "ansible",
+					},
+					executionEnvironment = {
+						enabled = false,
+					},
+					python = {
+						interpreterPath = "python",
+					},
+					validation = {
+						enabled = true,
+						lint = {
+							enabled = true,
+							path = "ansible-lint",
+						},
+					},
+				},
+			},
+		})
 	end,
 }
