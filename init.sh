@@ -1,16 +1,16 @@
 #!/bin/bash
 
 # Install the base tools
-brew install dpkg neovim fzf ripgrep git lazygit shellcheck clang-format stylua zsh-autosuggestions zsh-syntax-highlighting eza
+brew install dpkg neovim fzf ripgrep git lazygit shfmt clang-format stylua zsh-autosuggestions zsh-syntax-highlighting eza
 
 # Configure zsh-autosuggestions
-echo "source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
+echo "source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >>~/.zshrc
 
 # Configure zsh-syntax-highlighting
-echo "source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
+echo "source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >>~/.zshrc
 
 # Configure EZA
-echo 'alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"' >> ~/.zshrc
+echo 'alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"' >>~/.zshrc
 
 # Copy the custom LazyGit configuration over to the application folder
 cp -f ~/.config/nvim/lazygit/config.yml ~/Library/Application\ Support/lazygit/

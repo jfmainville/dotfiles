@@ -18,7 +18,7 @@ return {
 				python = { "black" },
 				javascript = { "prettier" },
 				typescript = { "prettier" },
-				bash = { "shellcheck" },
+				bash = { "shfmt" },
 				terraform = { "terraform_fmt" },
 				tf = { "terraform_fmt" },
 				["terraform-vars"] = { "terraform_fmt" },
