@@ -1,13 +1,21 @@
 return {
 	"stevearc/oil.nvim",
-  lazy = false,
+	lazy = false,
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	keys = {
 		{
 			mode = "n",
 			"<leader>o",
+			function()
+				require("oil").open_float()
+			end,
+			desc = "Open the Oil file viewer in a float",
+		},
+		{
+			mode = "n",
+			"<leader>O",
 			"<cmd>Oil<CR>",
-			desc = "Open the Oil file viewer",
+			desc = "Open the Oil file viewer in a separate buffer",
 		},
 	},
 	opts = {
@@ -138,9 +146,10 @@ return {
 			border = "rounded",
 			win_options = {
 				winblend = 0,
+				winhl = "Normal:Normal,Float:Float",
 			},
 			-- preview_split: Split direction: "auto", "left", "right", "above", "below".
-			preview_split = "auto",
+			preview_split = "right",
 			-- This is the config that will be passed to nvim_open_win.
 			-- Change values here to customize the layout
 			override = function(conf)
