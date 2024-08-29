@@ -33,3 +33,6 @@ vim.keymap.set("v", ">", ">gv")
 -- Keymaps to open vertical and horizontal splits
 vim.keymap.set("n", "<leader>ss", "<C-w>v")
 vim.keymap.set("n", "<leader>sh", "<C-w>s")
+-- Keymaps to navigate to the beginning or end of the line
+vim.keymap.set({ "n", "x", "o" }, "H", "^")
+vim.keymap.set({ "n", "x", "o" }, "L", "$")
