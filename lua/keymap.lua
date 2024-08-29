@@ -23,10 +23,6 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("i", "jj", "<Esc>")
 -- Replace current word
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
--- Source the current configuration
-vim.keymap.set("n", "<leader><leader>", function()
-	vim.cmd("source $MYVIMRC | source $HOME/.config/nvim/lua/keymap.lua")
-end)
 -- Prevent unselect during indent operations
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
@@ -37,4 +33,4 @@ vim.keymap.set("n", "<leader>sh", "<C-w>s")
 vim.keymap.set({ "n", "x", "o" }, "H", "^")
 vim.keymap.set({ "n", "x", "o" }, "L", "$")
 -- Add an additional search pattern keymap
-vim.keymap.set("n", "<CR>", "/")
+vim.keymap.set("n", "<leader><leader>", "/")
