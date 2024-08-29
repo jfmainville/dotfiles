@@ -36,3 +36,5 @@ vim.keymap.set("n", "<leader>sh", "<C-w>s")
 -- Keymaps to navigate to the beginning or end of the line
 vim.keymap.set({ "n", "x", "o" }, "H", "^")
 vim.keymap.set({ "n", "x", "o" }, "L", "$")
+-- Add an additional search pattern keymap
+vim.keymap.set("n", "<CR>", "/")
