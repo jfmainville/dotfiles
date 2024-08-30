@@ -100,6 +100,8 @@ return {
 		require("lspconfig").cssls.setup({
 			capabilities = capabilities,
 		})
+
+		-- Add customizations for the YAML language server
 		require("lspconfig").yamlls.setup({
 			settings = {
 				yaml = {
@@ -116,6 +118,8 @@ return {
 				},
 			},
 		})
+
+		-- Add customizations for the Ansible language server
 		require("lspconfig").ansiblels.setup({
 			settings = {
 				ansible = {
