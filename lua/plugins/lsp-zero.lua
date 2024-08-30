@@ -8,6 +8,7 @@ return {
 		ENSURE_INSTALLED = {
 			"tsserver",
 			"cssls",
+			"cssmodules_ls",
 			"tailwindcss",
 			"ansiblels",
 			"dockerls",
