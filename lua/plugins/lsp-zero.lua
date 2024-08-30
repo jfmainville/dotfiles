@@ -92,6 +92,14 @@ return {
 				end,
 			},
 		})
+
+		-- Enable the autocompletion for the cssls language server
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
+		capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+		require("lspconfig").cssls.setup({
+			capabilities = capabilities,
+		})
 		require("lspconfig").yamlls.setup({
 			settings = {
 				yaml = {
