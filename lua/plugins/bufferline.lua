@@ -10,6 +10,12 @@ return {
 			"<CMD>BufferLinePickClose<CR>",
 			desc = "Close the desired buffer",
 		},
+		{
+			mode = "n",
+			"<leader>bd",
+			"<CMD>bd<CR>",
+			desc = "Close the current buffer",
+		},
 		{ mode = "n", "<leader>ba", "<cmd>%bd|e#|bd#<CR>", desc = "Close all the opened buffers" },
 		{ mode = "n", "<S-l>", "<cmd>BufferLineCycleNext<CR>", desc = "Cycle to the next buffer" },
 		{ mode = "n", "<S-h>", "<cmd>BufferLineCyclePrev<CR>", desc = "Cycle to the previous buffer" },
