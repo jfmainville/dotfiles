@@ -10,6 +10,7 @@ return {
 			"cssls",
 			"cssmodules_ls",
 			"tailwindcss",
+			"emmet_language_server",
 			"ansiblels",
 			"dockerls",
 			"yamlls",
