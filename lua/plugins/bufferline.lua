@@ -13,7 +13,7 @@ return {
 		{
 			mode = "n",
 			"<leader>bd",
-			"<CMD>bd<CR>",
+			"<CMD>bw<CR>",
 			desc = "Close the current buffer",
 		},
 		{ mode = "n", "<leader>ba", "<cmd>%bd|e#|bd#<CR>", desc = "Close all the opened buffers" },
