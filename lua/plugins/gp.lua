@@ -17,7 +17,7 @@ return {
 		{
 			mode = "v",
 			"<leader>ce",
-			"<cmd>GpExplain<CR>",
+			":'<,'>GpExplain<CR>",
 			desc = "Explain the currently selected text",
 		},
 	},
