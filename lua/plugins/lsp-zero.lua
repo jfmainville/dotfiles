@@ -7,6 +7,7 @@ return {
 
 		ENSURE_INSTALLED = {
 			"tsserver",
+			"eslint",
 			"cssls",
 			"cssmodules_ls",
 			"tailwindcss",
