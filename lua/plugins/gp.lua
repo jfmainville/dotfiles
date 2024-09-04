@@ -1,6 +1,26 @@
 return {
 	"robitx/gp.nvim",
 	lazy = false,
+	keys = {
+		{
+			mode = "n",
+			"<leader>cg",
+			"<cmd>GpChatToggle<CR>",
+			desc = "Open the ChatGPT window",
+		},
+		{
+			mode = "n",
+			"<leader>cf",
+			"<cmd>GpChatFinder<CR>",
+			desc = "Open the ChatGPT finder window",
+		},
+		{
+			mode = "v",
+			"<leader>ce",
+			"<cmd>GpExplain<CR>",
+			desc = "Explain the currently selected text",
+		},
+	},
 	config = function()
 		require("gp").setup({
 			default_command_agent = "ChatGPT3-5",
