@@ -12,7 +12,13 @@ return {
 			mode = "n",
 			"<leader>gl",
 			"<cmd>vertical Git log -p -- %<CR>",
-			desc = "Open the vim-fugitive git log interface",
+			desc = "Open the vim-fugitive git log interface for the current file in the buffer",
+		},
+		{
+			mode = "n",
+			"<leader>gL",
+			":tab Git log --graph<CR>",
+			desc = "Open the vim-fugitive git log interface for the current file in the buffer",
 		},
 		{
 			mode = "n",
