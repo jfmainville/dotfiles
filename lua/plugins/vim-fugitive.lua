@@ -17,7 +17,7 @@ return {
 		{
 			mode = "n",
 			"<leader>gL",
-			":tab Git log --graph<CR>",
+			"<cmd>tab Git log --graph<CR>",
 			desc = "Open the vim-fugitive git log interface for the current file in the buffer",
 		},
 		{
