@@ -7,12 +7,7 @@ return {
 			mode = "n",
 			"<leader>o",
 			function()
-				local oil = require("oil")
-				local util = require("oil.util")
-				oil.open_float()
-				util.run_after_load(0, function()
-					oil.open_preview({ vertical = true, split = "botright" })
-				end)
+				require("oil").open_float()
 			end,
 			desc = "Open the Oil file viewer in a float",
 		},
