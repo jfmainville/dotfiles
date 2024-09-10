@@ -6,7 +6,7 @@ return {
 		local lsp_zero = require("lsp-zero")
 
 		ENSURE_INSTALLED = {
-			"tsserver",
+			"ts_ls",
 			"eslint",
 			"cssls",
 			"cssmodules_ls",
