@@ -3,6 +3,9 @@ return {
 	event = "VeryLazy",
 	opts = {
 		lsp = {
+			signature = {
+				enabled = false, -- Need to disable the signature help to prevent overlapping with the nvim-cmp plugin
+			},
 			-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
 			override = {
 				["vim.lsp.util.convert_input_to_markdown_lines"] = true,
