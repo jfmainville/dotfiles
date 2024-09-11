@@ -5,6 +5,7 @@ return {
 		local builtin = require("telescope.builtin")
 		vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
 		vim.keymap.set("n", "<leader>gf", builtin.live_grep, {})
+		vim.keymap.set("n", "<leader>fg", builtin.git_status, {})
 		vim.keymap.set("n", "<leader>fe", function()
 			builtin.find_files({ search_dirs = { "~/.config/nvim", "~/software", "~/Projects" } })
 		end, {})
