@@ -29,7 +29,7 @@ return {
 		{
 			mode = "n",
 			"<leader>gP",
-			"<cmd>Git pull --rebase<CR>",
+			"<cmd>Git pull --rebase --autostash<CR>",
 			desc = "Execute the git push command through vim-fugitive",
 		},
 		{ mode = "n", "<leader>gh", ':Git commit -m "', desc = "Quick commit using vim-fugitive" },
