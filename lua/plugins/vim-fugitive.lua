@@ -32,7 +32,24 @@ return {
 			"<cmd>Git pull --rebase --autostash<CR>",
 			desc = "Execute the git push command through vim-fugitive",
 		},
-		{ mode = "n", "<leader>gh", ':Git commit -m "', desc = "Quick commit using vim-fugitive" },
-		{ mode = "n", "<leader>ga", ':Git commit -am "', desc = "Quick commit all using vim-fugitive" },
+		{
+			mode = "n",
+			"<leader>gh",
+			function()
+				vim.cmd("Gitsigns stage_hunk")
+				vim.fn.feedkeys(':Git commit -m "')
+			end,
+			"",
+			desc = "Quick commit the current hunk using vim-fugitive",
+		},
+		{
+			mode = "n",
+			"<leader>ga",
+			function()
+				vim.cmd("Git add %")
+				vim.fn.feedkeys(':Git commit -m "')
+			end,
+			desc = "Quick commit all the hunks in the current file using vim-fugitive",
+		},
 	},
 }
