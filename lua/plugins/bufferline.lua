@@ -28,9 +28,9 @@ return {
 			"<CMD>BufferLineCloseRight<CR>",
 			desc = "Close the buffers to the right",
 		},
-		{ mode = "n", "<leader>ba", "<cmd>%bd|e#|bd#<CR>", desc = "Close all the opened buffers" },
-		{ mode = "n", "<S-l>", "<cmd>BufferLineCycleNext<CR>", desc = "Cycle to the next buffer" },
-		{ mode = "n", "<S-h>", "<cmd>BufferLineCyclePrev<CR>", desc = "Cycle to the previous buffer" },
+		{ mode = "n", "<leader>ba", "<CMD>%bd|e#|bd#<CR>", desc = "Close all the opened buffers" },
+		{ mode = "n", "<S-l>", "<CMD>BufferLineCycleNext<CR>", desc = "Cycle to the next buffer" },
+		{ mode = "n", "<S-h>", "<CMD>BufferLineCyclePrev<CR>", desc = "Cycle to the previous buffer" },
 		{
 			mode = "n",
 			"<C-,>",
