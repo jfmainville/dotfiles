@@ -16,6 +16,18 @@ return {
 			"<CMD>bw<CR>",
 			desc = "Close the current buffer",
 		},
+		{
+			mode = "n",
+			"<leader>bl",
+			"<CMD>BufferLineCloseLeft<CR>",
+			desc = "Close the buffers to the left",
+		},
+		{
+			mode = "n",
+			"<leader>br",
+			"<CMD>BufferLineCloseRight<CR>",
+			desc = "Close the buffers to the right",
+		},
 		{ mode = "n", "<leader>ba", "<cmd>%bd|e#|bd#<CR>", desc = "Close all the opened buffers" },
 		{ mode = "n", "<S-l>", "<cmd>BufferLineCycleNext<CR>", desc = "Cycle to the next buffer" },
 		{ mode = "n", "<S-h>", "<cmd>BufferLineCyclePrev<CR>", desc = "Cycle to the previous buffer" },
