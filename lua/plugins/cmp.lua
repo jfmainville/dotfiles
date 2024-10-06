@@ -14,8 +14,6 @@ return {
 		local cmp_select = { behavior = cmp.SelectBehavior.Select }
 		local lspkind = require("lspkind")
 
-		vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
-
 		cmp.setup({
 			snippet = {
 				expand = function(args)
@@ -30,7 +28,6 @@ return {
 				{ name = "path" },
 				{ name = "nvim_lsp" },
 				{ name = "nvim_lua" },
-				{ name = "copilot", group_index = 2 },
 				{ name = "luasnip", keyword_length = 2 },
 				{ name = "buffer", keyword_length = 3 },
 			},
@@ -40,7 +37,7 @@ return {
 					preset = "codicons",
 					ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
 					show_labelDetails = true, -- show labelDetails in menu. Disabled by default
-					symbol_map = { Copilot = "" },
+					symbol_map = {},
 				}),
 			},
 			mapping = cmp.mapping.preset.insert({
