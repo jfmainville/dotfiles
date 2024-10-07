@@ -23,8 +23,8 @@ return {
 	},
 	config = function()
 		require("gp").setup({
-			default_command_agent = "ChatGPT3-5",
-			default_chat_agent = "ChatGPT3-5",
+			default_command_agent = "ChatGPT4o-mini",
+			default_chat_agent = "ChatGPT4o-mini",
 			agents = {
 				{
 					name = "ChatGPT3-5",
@@ -32,6 +32,15 @@ return {
 					command = false,
 					-- string with model name or table with model name and parameters
 					model = { model = "gpt-3.5-turbo", temperature = 1.1, top_p = 1 },
+					-- system prompt (use this to specify the persona/role of the AI)
+					system_prompt = require("gp.defaults").chat_system_prompt,
+				},
+				{
+					name = "ChatGPT4o-mini",
+					chat = true,
+					command = false,
+					-- string with model name or table with model name and parameters
+					model = { model = "gpt-4o-mini", temperature = 1.1, top_p = 1 },
 					-- system prompt (use this to specify the persona/role of the AI)
 					system_prompt = require("gp.defaults").chat_system_prompt,
 				},
