@@ -20,6 +20,9 @@ vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
+-- Hide the tab name by default
+vim.opt.showtabline = 0
+
 vim.opt.smartindent = true
 
 vim.opt.wrap = true
