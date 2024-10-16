@@ -58,11 +58,7 @@ The following table shows the list of all the plugins that are used by Neovim wi
 
 | Plugin Name                                                                  | Purpose          |
 | ---------------------------------------------------------------------------- | :--------------- |
-| [nvim-dap](https://github.com/mfussenegger/nvim-dap)                         | Debugging        |
-| [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)                       | Debugging UI     |
-| [nvim-dap-python](https://github.com/mfussenegger/nvim-dap-python)           | Python Debugger  |
 | [telescope](https://github.com/nvim-telescope/telescope.nvim)                | Navigator        |
-| [bufferline](https://github.com/akinsho/bufferline.nvim)                     | Utility          |
 | [vim-kitty-navigator](https://github.com/knubie/vim-kitty-navigator)         | Navigation       |
 | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)        | Code Highlighter |
 | [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)   | Utility          |
@@ -76,7 +72,7 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | [vim-fugitive](https://github.com/tpope/vim-fugitive)                        | Git              |
 | [oil.nvim](https://github.com/stevearc/oil.nvim)                             | File Explorer    |
 | [conform.nvim](https://github.com/stevearc/conform.nvim)                     | Formatter        |
-| [ChatGPT.nvim](https://github.com/jackMort/ChatGPT.nvim)                     | ChatGPT          |
+| [gp.nvim](git@github.com:Robitx/gp.nvim.git)                                 | ChatGPT          |
 | [lsp-zero.nvim](https://github.com/VonHeikemen/lsp-zero.nvim)                | LSP              |
 | [nvim-lspconfig.nvim](https://github.com/neovim/nvim-lspconfig)              | LSP              |
 | [mason.nvim](https://github.com/williamboman/mason.nvim)                     | LSP              |
