@@ -32,7 +32,7 @@ vim.keymap.set("n", "<leader>sh", "<C-w>s")
 -- Add an additional search pattern keymap
 vim.keymap.set("n", "<leader><leader>", "/")
 -- Close all the buffers except the one currently opened
-vim.keymap.set("n", "<leader>ba", "[[:%bd|e#|bd#<CR>]]")
+vim.keymap.set("n", "<leader>bd", "[[:%bd|e#|bd#<CR>]]")
 -- Navigate across opened buffers
 vim.keymap.set("n", "<S-h>", "<cmd>bprev<CR>")
 vim.keymap.set("n", "<S-l>", "<cmd>bnext<CR>")
