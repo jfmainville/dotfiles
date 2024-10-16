@@ -5,7 +5,7 @@ return {
 		{
 			mode = "n",
 			"<leader>gg",
-			"<cmd>tab Git<CR>",
+			"<cmd>vertical Git<CR>",
 			desc = "Open the vim-fugitive git interface",
 		},
 		{
@@ -17,7 +17,7 @@ return {
 		{
 			mode = "n",
 			"<leader>gL",
-			"<cmd>tab Git log --graph<CR>",
+			"<cmd>vertical Git log --graph<CR>",
 			desc = "Open the vim-fugitive git log interface for the current file in the buffer",
 		},
 		{
