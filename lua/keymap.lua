@@ -31,3 +31,5 @@ vim.keymap.set("n", "<leader>ss", "<C-w>v")
 vim.keymap.set("n", "<leader>sh", "<C-w>s")
 -- Add an additional search pattern keymap
 vim.keymap.set("n", "<leader><leader>", "/")
+-- Close all the buffers except the one currently opened
+vim.keymap.set("n", "<leader>ba", "[[:%bd|e#|bd#<CR>]]")
