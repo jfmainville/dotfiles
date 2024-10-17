@@ -2,6 +2,17 @@ return {
 	"folke/noice.nvim",
 	event = "VeryLazy",
 	opts = {
+		routes = {
+			{
+				filter = {
+					event = "notify",
+					find = "No information available",
+				},
+				opts = {
+					skip = true,
+				},
+			},
+		},
 		lsp = {
 			signature = {
 				enabled = false, -- Need to disable the signature help to prevent overlapping with the nvim-cmp plugin
