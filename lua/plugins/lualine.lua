@@ -86,7 +86,7 @@ return {
 						icon = { align = "right" }, -- Display filetype icon on the right hand side
 					},
 				},
-				lualine_y = { "progress", "searchcount" },
+				lualine_y = { "progress" },
 			},
 		})
 	end,
