@@ -82,7 +82,7 @@ return {
 					{
 						"filetype",
 						colored = false, -- Displays filetype icon in color if set to true
-						icon_only = true, -- Display only an icon for filetype
+						icon_only = false, -- Display only an icon for filetype
 						icon = { align = "right" }, -- Display filetype icon on the right hand side
 					},
 				},
