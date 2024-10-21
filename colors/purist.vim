@@ -81,6 +81,20 @@ hi DiagnosticError guifg=#cb484a
 hi DiagnosticWarn guifg=#b28f5d
 hi DiagnosticInfo guifg=#b6d7e4
 hi DiagnosticHint guifg=info
+hi GitSignsAddPreview guifg=#c1f4c4 guibg=#0f270b gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
+hi GitSignsDeletePreview guifg=#ecbbb4 guibg=#3a0c0a gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
+hi GitSignsAddVirtLn guifg=#c1f4c4 guibg=#0f270b gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
+hi GitSignsChangeVirtLn guifg=#ecbbb4 guibg=#3a0c0a gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
+hi GitSignsDeleteVirtLn guifg=#ecbbb4 guibg=#3a0c0a gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
+hi GitSignsAddInline guifg=#c1f4c4 guibg=#0f270b gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
+hi GitSignsChangeInline guifg=#ecbbb4 guibg=#3a0c0a gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
+hi GitSignsDeleteInline guifg=#ecbbb4 guibg=#3a0c0a gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
+hi GitSignsAddLnInline guifg=#c1f4c4 guibg=#0f270b gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
+hi GitSignsChangeLnInline guifg=#ecbbb4 guibg=#3a0c0a gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
+hi GitSignsDeleteLnInline guifg=#ecbbb4 guibg=#3a0c0a gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
+hi GitSignsAddVirtLnInline guifg=#c1f4c4 guibg=#0f270b gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
+hi GitSignsChangeVirtLnInline guifg=#ecbbb4 guibg=#3a0c0a gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
+hi GitSignsDeleteVirtLnInline guifg=#ecbbb4 guibg=#3a0c0a gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
 hi! link CurSearch IncSearch
 hi! link CursorLineFold CursorLine
 hi! link CursorLineNr CursorLine
