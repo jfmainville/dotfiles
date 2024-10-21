@@ -37,7 +37,7 @@ return {
 			"<leader>gh",
 			function()
 				vim.cmd("Gitsigns stage_hunk")
-				vim.cmd("Gitsigns preview_hunk")
+				vim.cmd("Gitsigns preview_hunk_inline")
 				vim.fn.feedkeys(':Git commit -m "')
 			end,
 			"",
