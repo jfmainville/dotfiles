@@ -42,27 +42,21 @@ return {
 		end
 
 		vim.keymap.set("n", "<leader>ff", function()
-			require("mini.files").close() -- Need to close mini.files before opening the Telescope window
 			builtin.find_files()
 		end, {})
 		vim.keymap.set("n", "<leader>gf", function()
-			require("mini.files").close() -- Need to close mini.files before opening the Telescope window
 			builtin.live_grep()
 		end, {})
 		vim.keymap.set("n", "<leader>fg", function()
-			require("mini.files").close() -- Need to close mini.files before opening the Telescope window
 			builtin.git_status()
 		end, {})
 		vim.keymap.set("n", "<leader>fb", function()
-			require("mini.files").close() -- Need to close mini.files before opening the Telescope window
 			BUFFER_SEARCHER()
 		end, {})
 		vim.keymap.set("n", "<leader>fe", function()
-			require("mini.files").close() -- Need to close mini.files before opening the Telescope window
 			builtin.find_files({ search_dirs = { "~/.config/nvim", "~/software", "~/Projects" } })
 		end, {})
 		vim.keymap.set("n", "<leader>ge", function()
-			require("mini.files").close() -- Need to close mini.files before opening the Telescope window
 			builtin.live_grep({ search_dirs = { "~/.config/nvim", "~/software", "~/Projects" } })
 		end, {})
 
