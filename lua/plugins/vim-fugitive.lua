@@ -5,7 +5,7 @@ return {
 		{
 			mode = "n",
 			"<leader>gg",
-			"<cmd>vertical Git<CR>",
+			"<cmd>horizontal Git<CR>",
 			desc = "Open the vim-fugitive git interface",
 		},
 		{
