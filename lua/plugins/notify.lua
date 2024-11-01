@@ -13,9 +13,9 @@ return {
 			},
 			level = 2,
 			minimum_width = 50,
-			maximum_width = 100,
-			render = "default",
-			stages = "slide",
+			maximum_width = 50,
+			render = "compact",
+			stages = "fade_in_slide_out",
 			time_formats = {
 				notification = "%T",
 				notification_history = "%FT%T",
