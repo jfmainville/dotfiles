@@ -9,6 +9,7 @@ return {
 			persist_mode = false,
 			start_in_insert = true,
 			direction = "horizontal",
+			autochdir = true,
 
 			-- Keymaps
 			vim.keymap.set("n", "<leader>ta", function()
