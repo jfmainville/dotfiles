@@ -10,6 +10,7 @@ return {
 			start_in_insert = true,
 			direction = "horizontal",
 
+			-- Keymaps
 			vim.keymap.set("n", "<leader>ta", function()
 				vim.cmd("silent! ToggleTermToggleAll")
 			end),
