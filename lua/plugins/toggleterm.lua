@@ -13,6 +13,9 @@ return {
 			vim.keymap.set("n", "<leader>ta", function()
 				vim.cmd("silent! ToggleTermToggleAll")
 			end),
+			vim.keymap.set("n", "<leader>tf", function()
+				vim.cmd("silent! 5TermExec cmd='' direction=float")
+			end),
 		})
 
 		function _G.set_terminal_keymaps()
