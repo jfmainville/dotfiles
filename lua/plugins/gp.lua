@@ -48,7 +48,7 @@ return {
 			chat_free_cursor = true,
 			chat_confirm_delete = false,
 			chat_finder_pattern = "topic ",
-			toggle_target = "vsplit",
+			toggle_target = "split",
 			chat_shortcut_respond = { modes = { "n", "i", "v", "x" }, shortcut = "<C-g>g" },
 			chat_shortcut_delete = { modes = { "n", "i", "v", "x" }, shortcut = "<C-g>d" },
 			chat_shortcut_stop = { modes = { "n", "i", "v", "x" }, shortcut = "<C-g>s" },
