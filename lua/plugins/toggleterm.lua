@@ -24,6 +24,7 @@ return {
 			local opts = { buffer = 0 }
 			vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
 			vim.keymap.set("t", "jj", [[<C-\><C-n>]], opts)
+			vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd k<CR>]], opts) -- Need to pass the k command for the keymap binding to work properly
 			vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
 			vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
 			vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
