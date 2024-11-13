@@ -32,7 +32,7 @@ vim.keymap.set("n", "<leader>sh", "<C-w>s")
 -- Add an additional search pattern keymap
 vim.keymap.set("n", "<leader><leader>", "/")
 -- Close all the buffers and tabs except the one currently opened
-vim.keymap.set("n", "<leader>bd", "<cmd>%bd|e#|bd#|tabo<CR>")
+vim.keymap.set("n", "<leader>bd", "<cmd>%bd!|e#|bd#|tabo<CR>")
 -- Navigate between windows
 vim.keymap.set("n", "<C-h>", [[<Cmd>wincmd h<CR>]])
 vim.keymap.set("n", "<C-j>", [[<Cmd>wincmd j<CR>]])
