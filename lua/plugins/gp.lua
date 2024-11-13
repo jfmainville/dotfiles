@@ -65,7 +65,7 @@ return {
 					system_prompt = require("gp.defaults").chat_system_prompt,
 				},
 			},
-			chat_free_cursor = true,
+			chat_free_cursor = false,
 			chat_confirm_delete = false,
 			chat_finder_pattern = "topic ",
 			toggle_target = "split",
