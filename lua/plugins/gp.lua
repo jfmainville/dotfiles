@@ -4,15 +4,35 @@ return {
 	keys = {
 		{
 			mode = "n",
-			"<leader>cg",
-			"<cmd>GpChatToggle<CR>",
-			desc = "Open the ChatGPT window",
+			"<leader>cn",
+			"<cmd>GpChatNew popup<CR>",
+			desc = "Open a new chat window",
+		},
+		{
+			mode = "n",
+			"<leader>ci",
+			"<cmd>GpImplement<CR>",
+			desc = "Write code based on a comment",
+		},
+		{
+			mode = "v",
+			"<leader>cr",
+			function()
+				vim.fn.feedkeys(":'<,'>GpRewrite ")
+			end,
+			desc = "Rewrite the currently selected text based on a prompt",
+		},
+		{
+			mode = "n",
+			"<leader>cp",
+			"<cmd>GpChatPaste popup<CR>",
+			desc = "Paste the currently selected code in a new chat window",
 		},
 		{
 			mode = "n",
 			"<leader>cf",
 			"<cmd>GpChatFinder<CR>",
-			desc = "Open the ChatGPT finder window",
+			desc = "Open the chat finder window",
 		},
 		{
 			mode = "v",
