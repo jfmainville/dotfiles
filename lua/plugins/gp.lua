@@ -23,9 +23,9 @@ return {
 			desc = "Rewrite the currently selected text based on a prompt",
 		},
 		{
-			mode = "n",
+			mode = "v",
 			"<leader>cp",
-			"<cmd>GpChatPaste popup<CR>",
+			":'<,'>GpChatPaste popup<CR>",
 			desc = "Paste the currently selected code in a new chat window",
 		},
 		{
@@ -37,7 +37,7 @@ return {
 		{
 			mode = "v",
 			"<leader>ce",
-			":'<,'>GpExplain<CR>",
+			":'<,'>GpExplain popup<CR>",
 			desc = "Explain the currently selected text",
 		},
 	},
