@@ -17,6 +17,8 @@ The following applications need to be installed on the local workstation to use 
 
 ### Initialization
 
+#### MacOS / Linux
+
 Once you installed all the required prerequisites, you can now proceed with the initialization of the providers and
 backend by completing the following steps:
 
