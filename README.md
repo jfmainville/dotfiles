@@ -72,7 +72,7 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | [vim-fugitive](https://github.com/tpope/vim-fugitive)                        | Git              |
 | [oil.nvim](https://github.com/stevearc/oil.nvim)                             | File Explorer    |
 | [conform.nvim](https://github.com/stevearc/conform.nvim)                     | Formatter        |
-| [gp.nvim](git@github.com:Robitx/gp.nvim.git)                                 | ChatGPT          |
+| [gp.nvim](https://github.com/Robitx/gp.nvim)                                 | ChatGPT          |
 | [lsp-zero.nvim](https://github.com/VonHeikemen/lsp-zero.nvim)                | LSP              |
 | [nvim-lspconfig.nvim](https://github.com/neovim/nvim-lspconfig)              | LSP              |
 | [mason.nvim](https://github.com/williamboman/mason.nvim)                     | LSP              |
