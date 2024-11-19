@@ -45,14 +45,12 @@ backend by completing the following steps:
 
 The table below presents the folder structure for this repository:
 
-| Folder      | Description                                            |
-| ----------- | :----------------------------------------------------- |
-| colors      | Contains the custom colorscheme files                  |
-| kitty       | Contains the Kitty terminal configuration file         |
-| lazygit     | Contains the LazyGit configuration file                |
-| lua         | Contains the Neovim specific configurations            |
-| lua/plugins | Contains the list of plugins deployed using Lazy.nvim  |
-| tmux        | Contains the TMUX terminal emulator configuration file |
+| Folder      | Description                                           |
+| ----------- | :---------------------------------------------------- |
+| colors      | Contains the custom colorscheme files                 |
+| kitty       | Contains the Kitty terminal configuration file        |
+| lua         | Contains the Neovim specific configurations           |
+| lua/plugins | Contains the list of plugins deployed using Lazy.nvim |
 
 ## Plugins
 
