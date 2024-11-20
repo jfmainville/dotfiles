@@ -17,8 +17,8 @@ return {
 		{
 			mode = "n",
 			"<leader>gL",
-			"<cmd>vertical Git log --graph<CR>",
-			desc = "Open the vim-fugitive git log interface for the current file in the buffer",
+			"<cmd>vertical Git log -p<CR>",
+			desc = "Open the vim-fugitive git log interface for all commits",
 		},
 		{
 			mode = "n",
