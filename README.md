@@ -85,4 +85,4 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)                      | Autocompletion   |
 | [cmp-nvim-lua](https://github.com/hrsh7th/cmp-nvim-lua)                      | Autocompletion   |
 | [LuaSnip](https://github.com/L3MON4D3/LuaSnip)                               | Snippets         |
-| [friendly-snippers](https://github.com/rafamadriz/friendly-snippets)         | Snippets         |
+| [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)         | Snippets         |
