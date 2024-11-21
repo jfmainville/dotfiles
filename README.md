@@ -59,7 +59,6 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | Plugin Name                                                                  | Purpose          |
 | ---------------------------------------------------------------------------- | :--------------- |
 | [telescope](https://github.com/nvim-telescope/telescope.nvim)                | Navigator        |
-| [vim-kitty-navigator](https://github.com/knubie/vim-kitty-navigator)         | Navigation       |
 | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)        | Code Highlighter |
 | [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)   | Utility          |
 | [undotree](https://github.com/mbbill/undotree)                               | Utility          |
