@@ -11,13 +11,13 @@ return {
 		{
 			mode = "n",
 			"<leader>gl",
-			"<cmd>vertical Git log -p -- %<CR>",
+			"<cmd>horizontal Git log -p -- %<CR>",
 			desc = "Open the vim-fugitive git log interface for the current file in the buffer",
 		},
 		{
 			mode = "n",
 			"<leader>gL",
-			"<cmd>vertical Git log -p<CR>",
+			"<cmd>horizontal Git log -p<CR>",
 			desc = "Open the vim-fugitive git log interface for all commits",
 		},
 		{
