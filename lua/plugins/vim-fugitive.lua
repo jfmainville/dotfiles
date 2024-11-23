@@ -17,7 +17,7 @@ return {
 		{
 			mode = "n",
 			"<leader>gL",
-			"<cmd>horizontal Git log -p<CR>",
+			"<cmd>horizontal Git log<CR>",
 			desc = "Open the vim-fugitive git log interface for all commits",
 		},
 		{
