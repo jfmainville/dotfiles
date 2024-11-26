@@ -75,7 +75,7 @@ return {
 					},
 				},
 				lualine_x = {
-					{ "diagnostics", sources = { "nvim_diagnostic", "nvim_lsp", "vim_lsp" } },
+					{ "diagnostics", sources = { "nvim_diagnostic" } },
 					"fileformat",
 					{
 						"filetype",
