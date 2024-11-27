@@ -23,7 +23,16 @@ return {
 			builtin.live_grep({ search_dirs = { "~/.config/nvim", "~/software", "~/Projects" } })
 		end, {})
 
-		local ignore_patterns = { ".idea", "node_modules", ".git/", ".venv", ".next", ".terraform/", "__snapshots__/" }
+		local ignore_patterns = {
+			".idea",
+			"node_modules",
+			".git/",
+			".venv",
+			".next",
+			".terraform/",
+			"__snapshots__/",
+			"__init__.py",
+		}
 
 		require("telescope").setup({
 			defaults = {
