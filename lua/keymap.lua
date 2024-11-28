@@ -27,7 +27,7 @@ vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 -- Keymaps to open vertical and horizontal splits
-vim.keymap.set("n", "<leader>ss", "<C-w>v")
+vim.keymap.set("n", "<leader>sv", "<C-w>v")
 vim.keymap.set("n", "<leader>sh", "<C-w>s")
 -- Add an additional search pattern keymap
 vim.keymap.set("n", "<leader><leader>", "/")
