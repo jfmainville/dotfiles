@@ -4,11 +4,11 @@ vim.g.mapleader = " "
 vim.keymap.set("t", "<S-Space>", "<Space>")
 vim.keymap.set("t", "<S-BS>", "<BS>")
 -- Save all the files in the buffer
-vim.keymap.set("n", "za", function()
+vim.keymap.set("n", "<leader>wa", function()
 	vim.cmd("silent! wa")
 end)
 -- Save the current file
-vim.keymap.set("n", "zz", function()
+vim.keymap.set("n", "<leader><leader>", function()
 	vim.cmd("silent! w")
 end)
 -- Move the currently selected line down
