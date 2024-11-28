@@ -22,7 +22,7 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 -- Return to normal mode
 vim.keymap.set("i", "jj", "<Esc>")
 -- Replace current word
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 -- Prevent unselect during indent operations
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
