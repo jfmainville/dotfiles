@@ -8,25 +8,11 @@ return {
 				return "Recording @" .. recording_register
 			end
 		end
-		local custom_auto = require("lualine.themes.auto")
-
-		custom_auto.normal.c.fg = "#100128"
-		custom_auto.normal.c.bg = "#c0c0ff"
-		custom_auto.insert.c.fg = "#100128"
-		custom_auto.insert.c.bg = "#fffe5c"
-		custom_auto.visual.c.fg = "#100128"
-		custom_auto.visual.c.bg = "#8cfb00"
-		custom_auto.replace.c.fg = "#100128"
-		custom_auto.replace.c.bg = "#fffe5c"
-		custom_auto.command.c.fg = "#100128"
-		custom_auto.command.c.bg = "#8dfcff"
-		custom_auto.inactive.c.fg = "#100128"
-		custom_auto.inactive.c.bg = "#c0c0ff"
 
 		require("lualine").setup({
 			icons_enabled = true,
 			options = {
-				theme = custom_auto,
+				theme = "fluorescent",
 				component_separators = { left = "", right = "" },
 				section_separators = { left = "", right = "" },
 			},
