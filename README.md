@@ -41,6 +41,14 @@ backend by completing the following steps:
    ~/.config/nvim/init.sh
    ```
 
+5. Execute the following command to complete the installation of the Telescope FZF extension plugin:
+
+```
+cd ~/.local/share/nvim/lazy/telescope-fzf-native.nvim && make && cd -
+```
+
+6. Open the Neovim application and load all the plugins using the `Lazy` command
+
 ## Folder Structure
 
 The table below presents the folder structure for this repository:
@@ -85,3 +93,7 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | [cmp-nvim-lua](https://github.com/hrsh7th/cmp-nvim-lua)                      | Autocompletion   |
 | [LuaSnip](https://github.com/L3MON4D3/LuaSnip)                               | Snippets         |
 | [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)         | Snippets         |
+
+```
+
+```
