@@ -43,9 +43,9 @@ backend by completing the following steps:
 
 5. Execute the following command to complete the installation of the Telescope FZF extension plugin:
 
-```
-cd ~/.local/share/nvim/lazy/telescope-fzf-native.nvim && make && cd -
-```
+   ```
+   cd ~/.local/share/nvim/lazy/telescope-fzf-native.nvim && make && cd -
+   ```
 
 6. Open the Neovim application and load all the plugins using the `Lazy` command
 
