@@ -1,7 +1,21 @@
 #!/bin/bash
 
 # Install the base tools
-brew install dpkg neovim fzf ripgrep git shfmt clang-format stylua zsh-autosuggestions zsh-syntax-highlighting eza python-packaging
+case "$(uname -s)" in
+Linux)
+  OS="Linux"
+  ;;
+Darwin)
+  OS="MacOS"
+  brew install dpkg neovim fzf ripgrep git shfmt clang-format stylua zsh-autosuggestions zsh-syntax-highlighting eza python-packaging
+  ;;
+CYGWIN* | MINGW32* | MSYS* | MINGW*)
+  OS="Windows"
+  ;;
+*)
+  OS="Unknown"
+  ;;
+esac
 
 # Configure zsh-autosuggestions
 echo "source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >>~/.zshrc
