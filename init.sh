@@ -18,14 +18,19 @@ CYGWIN* | MINGW32* | MSYS* | MINGW*)
   ;;
 esac
 
-# Configure zsh-autosuggestions
-echo "source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >>~/.zshrc
+# Check the existence of the ~/.zshrc configuration file
+if [ -f ~/.zshrc ]; then
+  # Configure zsh-autosuggestions
+  echo "source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >>~/.zshrc
 
-# Configure zsh-syntax-highlighting
-echo "source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >>~/.zshrc
+  # Configure zsh-syntax-highlighting
+  echo "source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >>~/.zshrc
 
-# Configure EZA
-echo 'alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"' >>~/.zshrc
+  # Configure EZA
+  echo 'alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"' >>~/.zshrc
+else
+  echo "~/.zshrc file does not exist."
+fi
 
 # LSPs and Formatters packages
 pip3 install black ansible-lint
