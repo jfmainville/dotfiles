@@ -4,6 +4,7 @@
 case "$(uname -s)" in
 Linux)
   OS="Linux"
+  sudo apt-get update && sudo apt-get install -y neovim fzf ripgrep git shfmt clang-format stylua zsh-autosuggestions zsh-syntax-highlighting eza python-packaging
   ;;
 Darwin)
   OS="MacOS"
