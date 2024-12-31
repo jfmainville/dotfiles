@@ -32,6 +32,7 @@ Darwin)
     zsh-syntax-highlighting \
     eza \
     python-packaging
+  PATH_PREFIX=$(brew --prefix)
   ;;
 CYGWIN* | MINGW32* | MSYS* | MINGW*)
   OS="Windows"
@@ -44,10 +45,10 @@ esac
 # Check the existence of the ~/.zshrc configuration file
 if [ -f ~/.zshrc ]; then
   # Configure zsh-autosuggestions
-  echo "source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >>~/.zshrc
+  echo "source $PATH_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >>~/.zshrc
 
   # Configure zsh-syntax-highlighting
-  echo "source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >>~/.zshrc
+  echo "source $PATH_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >>~/.zshrc
 
   # Configure EZA
   echo 'alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"' >>~/.zshrc
