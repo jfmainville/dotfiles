@@ -33,5 +33,9 @@ else
 fi
 
 # LSPs and Formatters packages
-pip3 install black ansible-lint
-sudo npm install -g typescript-language-server pyright @ansible/ansible-language-server dockerfile-language-server-nodejs prettier bash-language-server intelephense @prisma/language-server vscode-langservers-extracted @tailwindcss/language-server cssmodules-language-server @olrtg/emmet-language-server
+if command -v python3 &>/dev/null; then
+  pip3 install black ansible-lint
+else
+  echo "Python3 is not installed."
+fi
+
