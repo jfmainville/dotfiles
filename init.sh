@@ -4,11 +4,34 @@
 case "$(uname -s)" in
 Linux)
   OS="Linux"
-  sudo apt-get update && sudo apt-get install -y neovim fzf ripgrep git shfmt clang-format stylua zsh-autosuggestions zsh-syntax-highlighting eza python-packaging
+  sudo apt-get update && sudo apt-get install -y \
+    neovim \
+    fzf \
+    ripgrep \
+    git \
+    shfmt \
+    clang-format \
+    stylua \
+    zsh-autosuggestions \
+    zsh-syntax-highlighting \
+    eza \
+    python-packaging
   ;;
 Darwin)
   OS="MacOS"
-  brew install dpkg neovim fzf ripgrep git shfmt clang-format stylua zsh-autosuggestions zsh-syntax-highlighting eza python-packaging
+  brew install \
+    dpkg \
+    neovim \
+    fzf \
+    ripgrep \
+    git \
+    shfmt \
+    clang-format \
+    stylua \
+    zsh-autosuggestions \
+    zsh-syntax-highlighting \
+    eza \
+    python-packaging
   ;;
 CYGWIN* | MINGW32* | MSYS* | MINGW*)
   OS="Windows"
@@ -40,7 +63,19 @@ else
 fi
 
 if command -v npm &>/dev/null; then
-  sudo npm install -g typescript-language-server pyright @ansible/ansible-language-server dockerfile-language-server-nodejs prettier bash-language-server intelephense @prisma/language-server vscode-langservers-extracted @tailwindcss/language-server cssmodules-language-server @olrtg/emmet-language-server
+  sudo npm install -g \
+    typescript-language-server \
+    pyright \
+    @ansible/ansible-language-server \
+    dockerfile-language-server-nodejs \
+    prettier \
+    bash-language-server \
+    intelephense \
+    @prisma/language-server \
+    vscode-langservers-extracted \
+    @tailwindcss/language-server \
+    cssmodules-language-server \
+    @olrtg/emmet-language-server
 else
   echo "NPM is not installed."
 fi
