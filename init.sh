@@ -39,3 +39,8 @@ else
   echo "Python3 is not installed."
 fi
 
+if command -v npm &>/dev/null; then
+  sudo npm install -g typescript-language-server pyright @ansible/ansible-language-server dockerfile-language-server-nodejs prettier bash-language-server intelephense @prisma/language-server vscode-langservers-extracted @tailwindcss/language-server cssmodules-language-server @olrtg/emmet-language-server
+else
+  echo "NPM is not installed."
+fi
