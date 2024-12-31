@@ -14,7 +14,7 @@ The following applications need to be installed on the local workstation to use 
 | :----------------- | :-------------: | :-------------------------------------------------------------- |
 | neovim             |     0.9.5 +     | [Link](https://github.com/neovim/neovim/blob/master/INSTALL.md) |
 | brew (MacOS only)  |    4.3.21 +     | [Link](https://brew.sh/)                                        |
-| WSL (Windows only) |     2.3.26      | [Link](https://github.com/microsoft/WSL)                        |
+| WSL (Windows only) |    2.3.26 +     | [Link](https://github.com/microsoft/WSL)                        |
 
 ### Initialization
 
