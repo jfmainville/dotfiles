@@ -81,3 +81,8 @@ if command -v npm &>/dev/null; then
 else
   echo "NPM is not installed."
 fi
+
+# Base git commands
+git config --global push.autoSetupRemote true
+git config --global user.email jfmainville@outlook.com
+git config --global user.name Jean-Frederic Mainville
