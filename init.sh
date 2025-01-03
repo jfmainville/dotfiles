@@ -15,6 +15,7 @@ Linux)
     zsh-autosuggestions \
     zsh-syntax-highlighting \
     eza \
+    gcc \
     python-packaging
   ;;
 Darwin)
