@@ -27,7 +27,6 @@ Darwin)
     git \
     shfmt \
     clang-format \
-    stylua \
     zsh-autosuggestions \
     zsh-syntax-highlighting \
     eza \
@@ -76,7 +75,8 @@ if command -v npm &>/dev/null; then
     vscode-langservers-extracted \
     @tailwindcss/language-server \
     cssmodules-language-server \
-    @olrtg/emmet-language-server
+    @olrtg/emmet-language-server \
+    @johnnymorganz/stylua-bin
 else
   echo "NPM is not installed."
 fi
