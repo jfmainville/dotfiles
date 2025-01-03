@@ -15,6 +15,7 @@ return {
 				"cmake",
 				"make",
 				"markdown",
+				"markdown_inline",
 				"http",
 				"python",
 				"html",
