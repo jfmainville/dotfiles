@@ -1,6 +1,7 @@
 return {
 	"stevearc/conform.nvim",
 	lazy = false,
+	event = { "BufReadPre", "BufNewFile" },
 	keys = {
 		{
 			mode = "n",
@@ -30,6 +31,7 @@ return {
 				["terraform-vars"] = { "terraform_fmt" },
 				markdown = { "prettier" },
 				cpp = { "clang-format" },
+				["*"] = { "trim_whitespace", "trim_newlines" },
 			},
 			format_on_save = {
 				-- These options will be passed to conform.format()
