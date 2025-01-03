@@ -71,6 +71,12 @@ return {
 
 			return arch:match("arm64") ~= nil
 		end
+
+		local function is_wsl()
+			local wsl_env = os.getenv("WSLENV")
+			return wsl_env ~= nil
+		end
+
 		if is_debian_arm64() then
 			-- Create a function to remove an item from a table using a string
 			local function remove_item(tbl, item)
@@ -82,6 +88,28 @@ return {
 			end
 
 			remove_item(ENSURE_INSTALLED, "lua_ls")
+		end
+
+		if is_wsl() then
+			-- Create a function to remove an item from a table using a string
+			local function add_item(tbl, item)
+				for i, v in pairs(tbl) do
+					if v == item then
+						return table.insert(tbl, i)
+					end
+				end
+			end
+
+			add_item(ENSURE_INSTALLED, "powershell_es")
+			require("lspconfig").powershell_es.setup({
+				filetypes = { "ps1", "psm1", "psd1" },
+				bundle_path = "C:/Users/jfmainville/Documents/Tools/PowerShellEditorServices",
+				shell = "powershell.exe",
+				settings = { powershell = { codeFormatting = { Preset = "OTBS" } } },
+				init_options = {
+					enableProfileLoading = false,
+				},
+			})
 		end
 
 		require("mason").setup({})
