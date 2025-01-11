@@ -5,8 +5,14 @@ return {
 		{
 			mode = "n",
 			"<leader>cn",
-			"<cmd>GpChatNew popup<CR>",
+			"<cmd>GpChatNew split<CR>",
 			desc = "Open a new chat window",
+		},
+		{
+			mode = "n",
+			"<leader>cg",
+			"<cmd>GpChatToggle split<CR>",
+			desc = "Re-open the last chat window",
 		},
 		{
 			mode = "n",
@@ -25,7 +31,7 @@ return {
 		{
 			mode = "v",
 			"<leader>cp",
-			":'<,'>GpChatPaste popup<CR>",
+			":'<,'>GpChatPaste split<CR>",
 			desc = "Paste the currently selected code in a new chat window",
 		},
 		{
@@ -80,7 +86,7 @@ return {
 						.. "```{{filetype}}\n{{selection}}\n```\n\n"
 						.. "Please respond by explaining the code above."
 					local agent = gp.get_chat_agent()
-					gp.Prompt(params, gp.Target.popup, agent, template)
+					gp.Prompt(params, gp.Target.split, agent, template)
 				end,
 			},
 		})
