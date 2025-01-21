@@ -25,6 +25,9 @@ return {
 		vim.keymap.set("n", "<leader>fd", function()
 			builtin.lsp_document_symbols({ symbols = "function" })
 		end, {})
+		vim.keymap.set("n", "<leader>fo", function()
+			builtin.oldfiles({ only_cwd = true })
+		end, {})
 
 		local ignore_patterns = {
 			".idea",
