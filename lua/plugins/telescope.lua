@@ -22,6 +22,9 @@ return {
 		vim.keymap.set("n", "<leader>ge", function()
 			builtin.live_grep({ search_dirs = { "~/.config/nvim", "~/software", "~/Projects" } })
 		end, {})
+		vim.keymap.set("n", "<leader>fd", function()
+			builtin.lsp_document_symbols({ symbols = "function" })
+		end, {})
 
 		local ignore_patterns = {
 			".idea",
