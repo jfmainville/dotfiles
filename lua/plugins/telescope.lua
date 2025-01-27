@@ -7,7 +7,7 @@ return {
 		vim.keymap.set("n", "<leader>ff", function()
 			builtin.find_files()
 		end, {})
-		vim.keymap.set("n", "<leader>fg", function()
+		vim.keymap.set("n", "<leader>gf", function()
 			builtin.live_grep()
 		end, {})
 		vim.keymap.set("n", "<leader>fb", function()
