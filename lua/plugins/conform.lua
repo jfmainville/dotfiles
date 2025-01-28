@@ -2,16 +2,6 @@ return {
 	"stevearc/conform.nvim",
 	lazy = false,
 	event = { "BufReadPre", "BufNewFile" },
-	keys = {
-		{
-			mode = "n",
-			"<leader>f",
-			function()
-				require("conform").format({ async = true, lsp_fallback = true })
-			end,
-			desc = "Format the current file using the Conform plugin",
-		},
-	},
 	config = function()
 		require("conform").setup({
 			formatters_by_ft = {
