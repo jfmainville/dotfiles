@@ -6,7 +6,7 @@ return {
 		config = function()
 			local fm = require("fluorescent")
 			fm.setup({
-				glow = true,
+				glow = false,
 				theme = "fluorescent",
 				transparent = false,
 			})
