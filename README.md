@@ -70,6 +70,7 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | ---------------------------------------------------------------------------- | :--------------- |
 | [autopairs](https://github.com/windwp/nvim-autopairs)                        | Utility          |
 | [autotag](https://github.com/windwp/nvim-ts-autotag)                         | Utility          |
+| [aerial](https://github.com/stevearc/aerial.nvim)                            | Utility          |
 | [telescope](https://github.com/nvim-telescope/telescope.nvim)                | Navigator        |
 | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)        | Code Highlighter |
 | [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)   | Utility          |
@@ -83,7 +84,7 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | [vim-fugitive](https://github.com/tpope/vim-fugitive)                        | Git              |
 | [oil.nvim](https://github.com/stevearc/oil.nvim)                             | File Explorer    |
 | [conform.nvim](https://github.com/stevearc/conform.nvim)                     | Formatter        |
-| [kulala.nvim](https://github.com/mistweaverco/kulala.nvim)                   | Utility          |
+| [markview](https://github.com/OXY2DEV/markview.nvim)                         | Utility          |
 | [harpoon](https://github.com/ThePrimeagen/harpoon/tree/harpoon2)             | Navigation       |
 | [noice](https://github.com/folke/noice.nvim)                                 | Utility          |
 | [nvim-notify](https://github.com/rcarriga/nvim-notify)                       | Utility          |
