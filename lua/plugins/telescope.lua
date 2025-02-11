@@ -36,6 +36,8 @@ return {
 			".terraform/",
 			"__snapshots__/",
 			"__init__.py",
+			"pgsql/",
+			".DStore",
 		}
 
 		require("telescope").setup({
