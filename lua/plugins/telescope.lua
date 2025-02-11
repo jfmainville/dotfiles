@@ -49,7 +49,7 @@ return {
 					"--line-number",
 					"--column",
 					"--smart-case",
-					"--trim", -- add this value
+					"--trim",
 				},
 			},
 			pickers = {
