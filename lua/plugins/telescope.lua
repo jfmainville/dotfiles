@@ -28,6 +28,7 @@ return {
 
 		local ignore_patterns = {
 			".idea",
+			".vscode",
 			"node_modules",
 			".git/",
 			".venv",
