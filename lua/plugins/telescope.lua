@@ -62,6 +62,7 @@ return {
 					end,
 				},
 				find_files = {
+					no_ignore = true,
 					hidden = true,
 					file_ignore_patterns = ignore_patterns,
 				},
