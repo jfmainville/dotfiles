@@ -49,6 +49,7 @@ return {
 					"--no-heading",
 					"--with-filename",
 					"--line-number",
+					"--no-ignore-vcs",
 					"--column",
 					"--smart-case",
 					"--trim",
