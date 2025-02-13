@@ -21,6 +21,11 @@ return {
 			minimize_diff = true, -- Whether to remove unchanged lines when applying a code block
 			enable_token_counting = true, -- Whether to enable token counting. Default to true.
 		},
+		windows = {
+			sidebar_header = {
+				enabled = false, -- true, false to enable/disable the header
+			},
+		},
 	},
 	build = "make",
 	dependencies = {
