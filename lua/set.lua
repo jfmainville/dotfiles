@@ -5,6 +5,8 @@ vim.opt.guicursor =
 vim.opt.cursorline = true
 
 vim.opt.nu = true
+-- Required for the Avante plugin
+vim.opt.laststatus = 3
 vim.opt.relativenumber = true
 -- Remove the duplicate mode indicator
 vim.opt.showmode = false
