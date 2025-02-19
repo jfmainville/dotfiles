@@ -131,7 +131,7 @@ local act = wezterm.action
 config.keys = {
 	{
 		key = "I",
-		mods = "SUPER|SHIFT",
+		mods = "CTRL|SHIFT",
 		action = act.PromptInputLine({
 			description = "Enter new name for tab",
 			action = wezterm.action_callback(function(window, pane, line)
@@ -156,7 +156,7 @@ config.keys = {
 	{ key = "8", mods = "CTRL", action = act.ActivateTab(7) },
 	{
 		key = "X",
-		mods = "SUPER|SHIFT",
+		mods = "CTRL|SHIFT",
 		action = wezterm.action.CloseCurrentTab({ confirm = true }),
 	},
 }
