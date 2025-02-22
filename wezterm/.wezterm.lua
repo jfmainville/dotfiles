@@ -11,6 +11,7 @@ else
 end
 
 -- Customizations
+config.default_cwd = wezterm.home_dir
 config.font = wezterm.font("JetBrains Mono")
 config.cursor_blink_rate = 400
 config.visual_bell = {
