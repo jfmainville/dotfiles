@@ -4,7 +4,7 @@ return {
 	keys = {
 		{
 			mode = "n",
-			"<leader>mt",
+			"<leader>tm",
 			"<cmd>Markview Toggle<CR>",
 			desc = "Toggle the Markview markdown preview mode",
 		},
