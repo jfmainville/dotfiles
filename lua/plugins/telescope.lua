@@ -58,6 +58,7 @@ return {
 			pickers = {
 				live_grep = {
 					file_ignore_patterns = ignore_patterns,
+					prompt_prefix = "> ",
 					additional_args = function(_)
 						return { "--hidden" }
 					end,
@@ -66,6 +67,7 @@ return {
 					no_ignore = true,
 					hidden = true,
 					file_ignore_patterns = ignore_patterns,
+					prompt_prefix = "🔍 ",
 				},
 			},
 			extensions = {
