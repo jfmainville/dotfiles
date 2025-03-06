@@ -26,20 +26,6 @@ return {
 			builtin.oldfiles({ only_cwd = true })
 		end, {})
 
-		local ignore_patterns = {
-			".idea",
-			".vscode",
-			"node_modules",
-			".git/",
-			".venv",
-			".next",
-			".terraform/",
-			"__snapshots__/",
-			"__init__.py",
-			"pgsql/",
-			".DStore",
-		}
-
 		require("telescope").setup({
 			defaults = {
 				-- Remove the ripgrep indentation
@@ -57,7 +43,6 @@ return {
 			},
 			pickers = {
 				live_grep = {
-					file_ignore_patterns = ignore_patterns,
 					prompt_prefix = "> ",
 					additional_args = function(_)
 						return { "--hidden" }
@@ -66,7 +51,6 @@ return {
 				find_files = {
 					no_ignore = true,
 					hidden = true,
-					file_ignore_patterns = ignore_patterns,
 					prompt_prefix = "🔍 ",
 				},
 			},
