@@ -4,5 +4,19 @@ return {
 		"nvim-lua/plenary.nvim",
 		"sindrets/diffview.nvim",
 	},
-	config = true,
+	keys = {
+		{
+			mode = "n",
+			"<leader>gg",
+			"<cmd>Neogit<CR>",
+			desc = "Open the Neogit interface",
+		},
+	},
+	config = function()
+		require("neogit").setup({
+			disable_signs = false,
+			disable_builtin_notifications = false,
+			disable_hint = false,
+		})
+	end,
 }
