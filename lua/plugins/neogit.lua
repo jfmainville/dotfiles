@@ -46,7 +46,7 @@ return {
 			disable_signs = true,
 			disable_builtin_notifications = false,
 			disable_hint = false,
-
+			graph_style = "unicode",
 			integrations = {
 				diffview = true,
 			},
