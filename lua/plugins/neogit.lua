@@ -46,6 +46,10 @@ return {
 			disable_signs = false,
 			disable_builtin_notifications = false,
 			disable_hint = false,
+
+			integrations = {
+				diffview = true,
+			},
 		})
 	end,
 }
