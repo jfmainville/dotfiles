@@ -8,6 +8,8 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 else
 	config.default_domain = "local"
 	config.font_size = 14.0
+	-- Need to add this line to send composed key when left alt is pressed
+	config.send_composed_key_when_left_alt_is_pressed = true
 end
 
 -- Customizations
