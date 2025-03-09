@@ -6,14 +6,6 @@ return {
 		{
 			mode = "n",
 			"<leader>o",
-			function()
-				require("oil").open_float()
-			end,
-			desc = "Open the Oil file viewer in a float",
-		},
-		{
-			mode = "n",
-			"<leader>O",
 			"<cmd>Oil<CR>",
 			desc = "Open the Oil file viewer in a separate buffer",
 		},
