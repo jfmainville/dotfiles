@@ -43,7 +43,7 @@ return {
 	},
 	config = function()
 		require("neogit").setup({
-			disable_signs = false,
+			disable_signs = true,
 			disable_builtin_notifications = false,
 			disable_hint = false,
 
