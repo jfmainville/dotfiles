@@ -5,7 +5,7 @@ local config = wezterm.config_builder()
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	config.default_domain = "WSL:Ubuntu"
 	config.font_size = 12.0
-else
+elseif wezterm.target_triple == "aarch64-apple-darwin" or wezterm.target_triple == "x86_64-apple-darwin" then
 	config.default_domain = "local"
 	config.font_size = 14.0
 	-- Need to add this line to send composed key when left alt is pressed
