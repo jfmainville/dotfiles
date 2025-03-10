@@ -43,9 +43,15 @@ return {
 	},
 	config = function()
 		require("neogit").setup({
-			disable_signs = true,
-			disable_builtin_notifications = false,
-			disable_hint = true,
+			disable_signs = false,
+			signs = {
+				-- { CLOSED, OPENED }
+				hunk = { "", "" },
+				item = { ">", "v" },
+				section = { ">", "v" },
+			},
+
+			disable_hint = false,
 			graph_style = "unicode",
 			integrations = {
 				telescope = true,
