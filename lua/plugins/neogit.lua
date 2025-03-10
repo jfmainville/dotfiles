@@ -45,9 +45,10 @@ return {
 		require("neogit").setup({
 			disable_signs = true,
 			disable_builtin_notifications = false,
-			disable_hint = false,
+			disable_hint = true,
 			graph_style = "unicode",
 			integrations = {
+				telescope = true,
 				diffview = true,
 			},
 		})

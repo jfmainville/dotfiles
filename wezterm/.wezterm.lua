@@ -10,6 +10,8 @@ else
 	config.font_size = 14.0
 	-- Need to add this line to send composed key when left alt is pressed
 	config.send_composed_key_when_left_alt_is_pressed = true
+	-- Need to add this line to send composed key when right alt is pressed
+	config.send_composed_key_when_right_alt_is_pressed = true
 end
 
 -- Customizations
