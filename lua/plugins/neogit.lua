@@ -56,6 +56,11 @@ return {
 				telescope = true,
 				diffview = true,
 			},
+			-- Need to pass this for autorefreshing the buffers after an update
+			vim.api.nvim_create_autocmd(
+				{ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" },
+				{ pattern = "*", command = "silent! checktime" }
+			),
 		})
 	end,
 }
