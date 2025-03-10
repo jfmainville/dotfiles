@@ -52,7 +52,6 @@ return {
 			},
 
 			disable_hint = false,
-			graph_style = "unicode",
 			integrations = {
 				telescope = true,
 				diffview = true,
