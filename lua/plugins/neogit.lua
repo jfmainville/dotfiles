@@ -40,6 +40,22 @@ return {
 			end,
 			desc = "Quick commit all the hunks in the current file using vim-fugitive",
 		},
+		{
+			mode = "n",
+			"<leader>gp",
+			function()
+				vim.cmd("!git push")
+			end,
+			desc = "Execute the git push command through vim-fugitive",
+		},
+		{
+			mode = "n",
+			"<leader>gP",
+			function()
+				vim.cmd("!git pull --rebase --autostash")
+			end,
+			desc = "Execute the git push command through vim-fugitive",
+		},
 	},
 	config = function()
 		require("neogit").setup({
