@@ -4,6 +4,12 @@ return {
 	keys = {
 		{
 			mode = "n",
+			"<leader>dl",
+			"<cmd>DiffviewFileHistory<CR>",
+			desc = "Open the diffview for the current file",
+		},
+		{
+			mode = "n",
 			"<leader>df",
 			"<cmd>DiffviewFileHistory %<CR>",
 			desc = "Open the diffview for the current file",
