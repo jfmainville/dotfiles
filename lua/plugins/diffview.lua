@@ -6,7 +6,7 @@ return {
 			mode = "n",
 			"<leader>dl",
 			"<cmd>DiffviewFileHistory<CR>",
-			desc = "Open the diffview for the current file",
+			desc = "Open the diffview for all the files",
 		},
 		{
 			mode = "n",
