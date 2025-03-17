@@ -14,6 +14,21 @@ return {
 		},
 		{
 			mode = "n",
+			"<leader>gl",
+			function()
+				local branch_name = vim.fn.input("Source Branch: ")
+				if branch_name == "" then
+					return
+				end
+				local success_branch_name = vim.cmd("Git log --oneline " .. branch_name .. "..")
+				if not success_branch_name then
+					return
+				end
+			end,
+			desc = "Show the list of commits on a specific branch through vim-fugitive",
+		},
+		{
+			mode = "n",
 			"<leader>gp",
 			"<cmd>Git push<CR>",
 			desc = "Execute the git push command through vim-fugitive",
