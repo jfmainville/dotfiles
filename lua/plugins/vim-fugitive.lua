@@ -52,14 +52,16 @@ return {
 				vim.cmd("Gitsigns stage_hunk")
 				vim.cmd("Gitsigns preview_hunk_inline")
 
-				local commit_message = vim.fn.input("Commit Message: ")
-				if commit_message == "" then
-					return
-				end
-				local success_commit_message = vim.cmd('Git commit -m "' .. commit_message .. '"')
-				if not success_commit_message then
-					return
-				end
+				vim.defer_fn(function()
+					local commit_message = vim.fn.input("Commit Message: ")
+					if commit_message == "" then
+						return
+					end
+					local success_commit_message = vim.cmd('Git commit -m "' .. commit_message .. '"')
+					if not success_commit_message then
+						return
+					end
+				end, 100)
 			end,
 			"",
 			desc = "Quick commit the current hunk using vim-fugitive",
@@ -69,14 +71,17 @@ return {
 			"<leader>ga",
 			function()
 				vim.cmd("Git add %")
-				local commit_message = vim.fn.input("Commit Message: ")
-				if commit_message == "" then
-					return
-				end
-				local success_commit_message = vim.cmd('Git commit -m "' .. commit_message .. '"')
-				if not success_commit_message then
-					return
-				end
+
+				vim.defer_fn(function()
+					local commit_message = vim.fn.input("Commit Message: ")
+					if commit_message == "" then
+						return
+					end
+					local success_commit_message = vim.cmd('Git commit -m "' .. commit_message .. '"')
+					if not success_commit_message then
+						return
+					end
+				end, 100)
 			end,
 			desc = "Quick commit all the hunks in the current file using vim-fugitive",
 		},
