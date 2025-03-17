@@ -8,15 +8,9 @@ return {
 	keys = {
 		{
 			mode = "n",
-			"<leader>gl",
-			"<cmd>horizontal Git log -p -- %<CR>",
-			desc = "Open the vim-fugitive git log interface for the current file in the buffer",
-		},
-		{
-			mode = "n",
-			"<leader>gL",
-			"<cmd>horizontal Git log<CR>",
-			desc = "Open the vim-fugitive git log interface for all commits",
+			"<leader>gg",
+			"<cmd>tab Git<CR>",
+			desc = "Open the vim-fugitive git interface",
 		},
 		{
 			mode = "n",
