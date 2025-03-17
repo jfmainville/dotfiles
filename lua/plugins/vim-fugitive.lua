@@ -26,6 +26,12 @@ return {
 		},
 		{
 			mode = "n",
+			"<leader>gu",
+			"<cmd>Git reset HEAD~<CR>",
+			desc = "Execute the git push command through vim-fugitive",
+		},
+		{
+			mode = "n",
 			"<leader>gh",
 			function()
 				vim.cmd("Gitsigns stage_hunk")
