@@ -28,7 +28,7 @@ return {
 			mode = "n",
 			"<leader>gu",
 			"<cmd>Git reset HEAD~<CR>",
-			desc = "Execute the git push command through vim-fugitive",
+			desc = "Undo the latest commit through vim-fugitive",
 		},
 		{
 			mode = "n",
