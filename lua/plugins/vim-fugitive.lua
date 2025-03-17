@@ -14,6 +14,21 @@ return {
 		},
 		{
 			mode = "n",
+			"<leader>gc",
+			function()
+				local branch_name = vim.fn.input("Branch: ")
+				if branch_name == "" then
+					return
+				end
+				local success_branch_name = vim.cmd("Git checkout " .. branch_name)
+				if not success_branch_name then
+					return
+				end
+			end,
+			desc = "Checkout a specific branch through vim-fugitive",
+		},
+		{
+			mode = "n",
 			"<leader>gl",
 			function()
 				local branch_name = vim.fn.input("Source Branch: ")
