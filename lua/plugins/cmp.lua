@@ -46,20 +46,23 @@ return {
 					show_labelDetails = true, -- show labelDetails in menu. Disabled by default
 				}),
 			},
+
 			mapping = cmp.mapping.preset.insert({
 				["<C-u>"] = cmp.mapping.scroll_docs(-4),
 				["<C-d>"] = cmp.mapping.scroll_docs(4),
-				["<Tab>"] = vim.schedule_wrap(function(fallback)
-					if cmp.visible() and has_words_before() then
-						cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-					else
-						fallback()
-					end
-				end),
-				cmp.mapping.select_next_item(cmp_select),
-				["<S-Tab>"] = cmp.mapping.select_prev_item(cmp_select),
+				["<C-k>"] = cmp.mapping.select_prev_item(cmp_select),
+				["<C-j>"] = cmp.mapping.select_next_item(cmp_select),
 				["<CR>"] = cmp.mapping.confirm({ select = true }),
 			}),
+
+			-- Hide the cmp panel when having copilot suggestions
+			cmp.event:on("menu_opened", function()
+				vim.b.copilot_suggestion_hidden = true
+			end),
+
+			cmp.event:on("menu_closed", function()
+				vim.b.copilot_suggestion_hidden = false
+			end),
 		})
 	end,
 }
