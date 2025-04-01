@@ -19,7 +19,7 @@ return {
 				enabled = true,
 				auto_trigger = true,
 				keymap = {
-					accept = "<C-CR>",
+					accept = "<S-Tab>",
 					accept_word = false,
 					accept_line = false,
 					next = "<C-j>",
