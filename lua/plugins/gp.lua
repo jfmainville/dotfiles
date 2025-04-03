@@ -5,13 +5,13 @@ return {
 		{
 			mode = "n",
 			"<leader>cn",
-			"<cmd>GpChatNew tab<CR>",
+			"<cmd>GpChatNew tabnew<CR>",
 			desc = "Open a new chat window",
 		},
 		{
 			mode = "n",
 			"<leader>cg",
-			"<cmd>GpChatToggle tab<CR>",
+			"<cmd>GpChatToggle tabnew<CR>",
 			desc = "Re-open the last chat window",
 		},
 		{
@@ -31,7 +31,7 @@ return {
 		{
 			mode = "v",
 			"<leader>cp",
-			":'<,'>GpChatPaste tab<CR>",
+			":'<,'>GpChatPaste tabnew<CR>",
 			desc = "Paste the currently selected code in a new chat window",
 		},
 		{
