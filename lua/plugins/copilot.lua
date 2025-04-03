@@ -16,7 +16,7 @@ return {
 				enabled = false,
 			},
 			suggestion = {
-				enabled = true,
+				enabled = false,
 				auto_trigger = true,
 				keymap = {
 					accept = "<S-Tab>",
