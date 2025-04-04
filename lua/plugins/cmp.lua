@@ -26,10 +26,9 @@ return {
 			},
 			sources = {
 				{ name = "copilot", group_index = 2 },
-				{ name = "path", group_index = 2 },
 				{ name = "nvim_lsp", group_index = 2 },
-				{ name = "nvim_lua", group_index = 2 },
 				{ name = "luasnip", keyword_length = 2, group_index = 2 },
+				{ name = "path", group_index = 2 },
 				{ name = "buffer", keyword_length = 3, group_index = 2 },
 			},
 			formatting = {
