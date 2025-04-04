@@ -49,6 +49,11 @@ return {
 				}),
 			},
 			vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" }),
+
+			-- Enable the documentation popup on the first item
+			completion = {
+				completeopt = "menu,menuone,noinsert",
+			},
 			mapping = cmp.mapping.preset.insert({
 				["<C-u>"] = cmp.mapping.scroll_docs(-4),
 				["<C-d>"] = cmp.mapping.scroll_docs(4),
