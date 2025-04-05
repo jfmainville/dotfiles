@@ -20,17 +20,6 @@ return {
 					require("neo-tree.command").execute({ action = "close" })
 				end,
 			},
-			{
-				-- Automatically enable the preview mode when the Neotree window is opened
-				event = "after_render",
-				handler = function()
-					local state = require("neo-tree.sources.manager").get_state("filesystem")
-					if not require("neo-tree.sources.common.preview").is_active() then
-						state.config = { use_float = false }
-						state.commands.toggle_preview(state)
-					end
-				end,
-			},
 		},
 		filesystem = {
 			follow_current_file = {
