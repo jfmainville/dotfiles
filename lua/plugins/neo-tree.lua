@@ -75,6 +75,15 @@ return {
 						-- title = 'Neo-tree Preview',
 					},
 				},
+				["e"] = function()
+					vim.api.nvim_exec("Neotree focus filesystem current", true)
+				end,
+				["b"] = function()
+					vim.api.nvim_exec("Neotree focus buffers current", true)
+				end,
+				["g"] = function()
+					vim.api.nvim_exec("Neotree focus git_status current", true)
+				end,
 			},
 		},
 	},
