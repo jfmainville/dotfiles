@@ -12,6 +12,7 @@ return {
 	---@module "neo-tree"
 	---@type neotree.Config?
 	opts = {
+		enable_diagnostics = false,
 		event_handlers = {
 			{
 				-- Automatically close the Neotree window when a file is opened
