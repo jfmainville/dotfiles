@@ -6,7 +6,12 @@ return {
 		"MunifTanjim/nui.nvim",
 	},
 	keys = {
-		{ "<leader>e", "<cmd>Neotree toggle<cr>", desc = "NeoTree" },
+		{
+			mode = "n",
+			"<leader>e",
+			"<cmd>Neotree toggle<CR>",
+			desc = "Toggle the Neotree interface",
+		},
 	},
 	lazy = false, -- neo-tree will lazily load itself
 	---@module "neo-tree"
