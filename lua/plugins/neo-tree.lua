@@ -43,6 +43,7 @@ return {
 					".env.local",
 					".env.development.local",
 					".env.production.local",
+					"environments",
 				},
 			},
 
