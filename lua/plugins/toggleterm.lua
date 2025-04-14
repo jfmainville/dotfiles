@@ -5,10 +5,12 @@ return {
 			size = 20,
 			open_mapping = [[<C-a>]],
 			shade_terminals = false,
-			persist_mode = false,
+			persist_mode = true,
 			start_in_insert = true,
 			direction = "horizontal",
 			autochdir = true,
+			auto_scroll = true,
+			hide_numbers = false,
 
 			-- Keymaps
 			vim.keymap.set("n", "<leader>ta", function()
