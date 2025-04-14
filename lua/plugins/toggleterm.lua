@@ -33,5 +33,17 @@ return {
 
 		-- if you only want these mappings for toggle term use term://*toggleterm#* instead
 		vim.cmd("autocmd! TermOpen term://*toggleterm#* lua set_terminal_keymaps()")
+
+		-- Fix the yanking multiple lines issue in terminal mode where newlines would be automatically added
+		vim.api.nvim_create_autocmd("TextYankPost", {
+			pattern = "*",
+			callback = function()
+				if vim.bo.buftype == "terminal" then
+					local yanked_text = vim.fn.getreg('"')
+					local cleaned_text = string.gsub(yanked_text, "\n", "")
+					vim.fn.setreg("*", cleaned_text)
+				end
+			end,
+		})
 	end,
 }
