@@ -84,6 +84,7 @@ return {
 		},
 		window = {
 			mappings = {
+				["<Tab>"] = "open",
 				["P"] = {
 					"toggle_preview",
 					config = {
