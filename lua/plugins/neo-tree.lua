@@ -34,7 +34,7 @@ return {
 			hijack_netrw_behavior = "open_current",
 			filtered_items = {
 				visible = false,
-				hide_dotfiles = false,
+				hide_dotfiles = true,
 				hide_gitignored = true,
 				hide_hidden = true,
 				always_show = {
