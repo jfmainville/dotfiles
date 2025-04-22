@@ -46,6 +46,9 @@ return {
 					"environments",
 					"data",
 					"reports",
+					".pipeline",
+					".github",
+					".gitlab-ci.yml",
 				},
 			},
 
