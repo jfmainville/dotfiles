@@ -46,10 +46,12 @@ return {
 							["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.1-standalone-strict/all.json"] = "*/kubernetes/*.yaml",
 							["http://json.schemastore.org/kustomization.json"] = "kustomization.yaml",
 							["https://raw.githubusercontent.com/microsoft/azure-pipelines-vscode/master/service-schema.json"] = {
-								"*/pipelines/*.yml",
-								"*/.pipelines/*.yml",
-								"*/pipelines/*.yaml",
-								"*/.pipelines/*.yaml",
+								"*/pipeline/*.yml",
+								"*/.pipeline/*.yml",
+								"*/pipeline/*.yaml",
+								"*/.pipeline/*.yaml",
+								"*/.build/*.yml",
+								"*/.build/*.yaml",
 							},
 						},
 						schemastore = {
