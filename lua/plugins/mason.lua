@@ -48,6 +48,8 @@ return {
 							["https://raw.githubusercontent.com/microsoft/azure-pipelines-vscode/master/service-schema.json"] = {
 								"*/pipelines/*.yml",
 								"*/.pipelines/*.yml",
+								"*/pipelines/*.yaml",
+								"*/.pipelines/*.yaml",
 							},
 						},
 						schemastore = {
