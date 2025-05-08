@@ -69,7 +69,6 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | Plugin Name                                                                  | Purpose          |
 | ---------------------------------------------------------------------------- | :--------------- |
 | [autopairs](https://github.com/windwp/nvim-autopairs)                        | Utility          |
-| [autotag](https://github.com/windwp/nvim-ts-autotag)                         | Utility          |
 | [aerial](https://github.com/stevearc/aerial.nvim)                            | Utility          |
 | [telescope](https://github.com/nvim-telescope/telescope.nvim)                | Navigator        |
 | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)        | Code Highlighter |
@@ -82,16 +81,13 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | [flash.nvim](https://github.com/folke/flash.nvim)                            | Navigation       |
 | [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)                 | Theme            |
 | [vim-fugitive](https://github.com/tpope/vim-fugitive)                        | Git              |
-| [oil.nvim](https://github.com/stevearc/oil.nvim)                             | File Explorer    |
 | [conform.nvim](https://github.com/stevearc/conform.nvim)                     | Formatter        |
 | [markview](https://github.com/OXY2DEV/markview.nvim)                         | Utility          |
 | [harpoon](https://github.com/ThePrimeagen/harpoon/tree/harpoon2)             | Navigation       |
 | [noice](https://github.com/folke/noice.nvim)                                 | Utility          |
 | [nvim-notify](https://github.com/rcarriga/nvim-notify)                       | Utility          |
-| [neoscroll](https://github.com/karb94/neoscroll.nvim)                        | Navigation       |
 | [trouble.nvim](https://github.com/folke/trouble.nvim)                        | Utility          |
 | [gp.nvim](https://github.com/Robitx/gp.nvim)                                 | ChatGPT          |
-| [lsp-zero.nvim](https://github.com/VonHeikemen/lsp-zero.nvim)                | LSP              |
 | [nvim-lspconfig.nvim](https://github.com/neovim/nvim-lspconfig)              | LSP              |
 | [mason.nvim](https://github.com/williamboman/mason.nvim)                     | LSP              |
 | [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim) | LSP              |
