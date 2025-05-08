@@ -150,7 +150,7 @@ config.keys = {
 	},
 	{ key = "'", mods = "CTRL|SHIFT", action = act.MoveTabRelative(-1) },
 	{ key = ".", mods = "CTRL|SHIFT", action = act.MoveTabRelative(1) },
-	{ key = "t", mods = "CTRL", action = act.SpawnTab("CurrentPaneDomain") },
+	{ key = "t", mods = "CTRL|SHIFT", action = act.SpawnTab("CurrentPaneDomain") },
 	{ key = "h", mods = "CTRL|SHIFT", action = act.ActivateTabRelative(-1) },
 	{ key = "l", mods = "CTRL|SHIFT", action = act.ActivateTabRelative(1) },
 	{ key = "1", mods = "CTRL", action = act.ActivateTab(0) },
