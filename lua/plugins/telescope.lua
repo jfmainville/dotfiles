@@ -25,6 +25,9 @@ return {
 		vim.keymap.set("n", "<leader>fo", function()
 			builtin.oldfiles({ only_cwd = true })
 		end, {})
+		vim.keymap.set("n", "<leader>fg", function()
+			builtin.git_status()
+		end, {})
 
 		require("telescope").setup({
 			defaults = {
