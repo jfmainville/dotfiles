@@ -68,11 +68,12 @@ The following table shows the list of all the plugins that are used by Neovim wi
 
 | Plugin Name                                                                  | Purpose          |
 | ---------------------------------------------------------------------------- | :--------------- |
-| [autopairs](https://github.com/windwp/nvim-autopairs)                        | Utility          |
+| [autotag](https://github.com/windwp/nvim-ts-autotag)                         | Utility          |
 | [aerial](https://github.com/stevearc/aerial.nvim)                            | Utility          |
 | [telescope](https://github.com/nvim-telescope/telescope.nvim)                | Navigator        |
 | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)        | Code Highlighter |
 | [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)   | Utility          |
+| [diffview](https://github.com/sindrets/diffview.nvim)                        | Utility          |
 | [undotree](https://github.com/mbbill/undotree)                               | Utility          |
 | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)                  | Git              |
 | [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)          | Theme            |
@@ -85,6 +86,7 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | [markview](https://github.com/OXY2DEV/markview.nvim)                         | Utility          |
 | [harpoon](https://github.com/ThePrimeagen/harpoon/tree/harpoon2)             | Navigation       |
 | [noice](https://github.com/folke/noice.nvim)                                 | Utility          |
+| [neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim)                   | Utility          |
 | [nvim-notify](https://github.com/rcarriga/nvim-notify)                       | Utility          |
 | [trouble.nvim](https://github.com/folke/trouble.nvim)                        | Utility          |
 | [gp.nvim](https://github.com/Robitx/gp.nvim)                                 | ChatGPT          |
@@ -98,6 +100,8 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | [cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip)                   | Autocompletion   |
 | [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)                      | Autocompletion   |
 | [cmp-nvim-lua](https://github.com/hrsh7th/cmp-nvim-lua)                      | Autocompletion   |
+| [copilot.lua](https://github.com/zbirenbaum/copilot.lua)                     | Autocompletion   |
+| [copilot-cmp](https://github.com/zbirenbaum/copilot-cmp)                     | Autocompletion   |
 | [LuaSnip](https://github.com/L3MON4D3/LuaSnip)                               | Snippets         |
 | [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)         | Snippets         |
 | [fluorescent](https://github.com/jfmainville/fluorescent.nvim)               | Theme            |
