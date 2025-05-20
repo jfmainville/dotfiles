@@ -14,6 +14,12 @@ return {
 		},
 		{
 			mode = "n",
+			"<leader>gn",
+			"<cmd>GBrowse<CR>",
+			desc = "Open the current repository in the browser",
+		},
+		{
+			mode = "n",
 			"<leader>gc",
 			function()
 				local branch_name = vim.fn.input("Branch: ")
