@@ -23,10 +23,8 @@ return {
 		{
 			mode = "v",
 			"<leader>cr",
-			function()
-				vim.fn.feedkeys(":'<,'>GpRewrite ")
-			end,
-			desc = "Rewrite the currently selected text based on a prompt",
+			"<cmd>GpRewrite<CR>",
+			desc = "Rewrite the highlighted text according to a specified prompt",
 		},
 		{
 			mode = "v",
