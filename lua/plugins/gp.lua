@@ -23,7 +23,7 @@ return {
 		{
 			mode = "v",
 			"<leader>cr",
-			"<cmd>GpRewrite<CR>",
+			":'<,'>GpRewrite<CR>",
 			desc = "Rewrite the highlighted text according to a specified prompt",
 		},
 		{
