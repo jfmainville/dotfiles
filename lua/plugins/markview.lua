@@ -13,6 +13,10 @@ return {
 		local presets = require("markview.presets")
 
 		require("markview").setup({
+			-- Required to fix a racing condition when starting up neovim
+			experimental = {
+				check_rtp_message = false,
+			},
 			markdown = {
 				headings = presets.headings.marker,
 			},
