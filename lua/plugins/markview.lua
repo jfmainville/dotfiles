@@ -16,6 +16,10 @@ return {
 			markdown = {
 				headings = presets.headings.marker,
 			},
+			preview = {
+				filetypes = { "markdown", "codecompanion" },
+				ignore_buftypes = {},
+			},
 		})
 	end,
 }
