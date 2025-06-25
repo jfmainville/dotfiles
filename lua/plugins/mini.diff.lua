@@ -2,6 +2,9 @@ return {
 	"echasnovski/mini.diff",
 	version = "*",
 	config = function()
-		require("mini.diff").setup({})
+		local diff = require("mini.diff")
+		diff.setup({
+			source = diff.gen_source.none(),
+		})
 	end,
 }
