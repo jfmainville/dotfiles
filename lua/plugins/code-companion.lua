@@ -1,6 +1,10 @@
 return {
 	"olimorris/codecompanion.nvim",
-	opts = {},
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"nvim-treesitter/nvim-treesitter",
+	},
+	lazy = false,
 	keys = {
 		{
 			"<leader>cc",
@@ -10,10 +14,22 @@ return {
 			mode = "n",
 			desc = "CodeCompanion: Generate Commit Message",
 		},
-	},
-	dependencies = {
-		"nvim-lua/plenary.nvim",
-		"nvim-treesitter/nvim-treesitter",
+		{
+			"<leader>cn",
+			function()
+				require("codecompanion").chat()
+			end,
+			mode = "n",
+			desc = "CodeCompanion: New Chat Window",
+		},
+		{
+			"<leader>ct",
+			function()
+				require("codecompanion").toggle_chat()
+			end,
+			mode = "n",
+			desc = "CodeCompanion: Toggle Latest Chat Window",
+		},
 	},
 	config = function()
 		require("codecompanion").setup({
@@ -46,7 +62,7 @@ return {
 								return [[You are an expert at following the Conventional Commit specification                       based on the following diff:
 ]] .. vim.fn.system("git diff --cached") .. [[
 
-Generate a commit message for me. Follow the below structure:
+Generate a commit message for me on a single line. Follow the below structure:
 
    (fix | refactor | feat | chore | docs) {Summary}
 
