@@ -19,9 +19,9 @@ config.default_cwd = wezterm.home_dir
 config.font = wezterm.font("JetBrains Mono")
 config.colors = {
 	-- The default text color
-	foreground = "#efeffd",
+	foreground = "#dfdfe0",
 	-- The default background color
-	background = "#1e0c32",
+	background = "#161616",
 
 	-- Overrides the cell background color when the current cell is occupied by the
 	-- cursor and the cursor style is set to Block
