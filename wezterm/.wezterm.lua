@@ -17,13 +17,6 @@ end
 -- Customizations
 config.default_cwd = wezterm.home_dir
 config.font = wezterm.font("JetBrains Mono")
-config.cursor_blink_rate = 400
-config.visual_bell = {
-	fade_in_function = "Linear",
-	fade_in_duration_ms = 0,
-	fade_out_function = "Linear",
-	fade_out_duration_ms = 0,
-}
 config.colors = {
 	-- The default text color
 	foreground = "#efeffd",
@@ -32,11 +25,11 @@ config.colors = {
 
 	-- Overrides the cell background color when the current cell is occupied by the
 	-- cursor and the cursor style is set to Block
-	cursor_bg = "#c0ff98",
+	cursor_bg = "#d3cdc3",
 	-- Specifies the border color of the cursor when the cursor style is set to Block,
 	-- or the color of the vertical or horizontal bar when the cursor style is set to
 	-- Bar or Underline.
-	cursor_border = "#c0ff98",
+	cursor_border = "#d3cdc3",
 	-- the foreground color of selected text
 	selection_fg = "#efeffd",
 	-- the background color of selected text
