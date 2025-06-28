@@ -39,7 +39,7 @@ return {
 					opts = {
 						index = 9,
 						is_default = true,
-						is_slash_cmd = true,
+						is_slash_cmd = false,
 						short_name = "commit",
 						auto_submit = true,
 						placement = "before",
