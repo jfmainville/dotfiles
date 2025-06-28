@@ -7,14 +7,6 @@ return {
 	lazy = false,
 	keys = {
 		{
-			"<leader>cc",
-			function()
-				require("codecompanion").prompt("commit")
-			end,
-			mode = "n",
-			desc = "CodeCompanion: Generate Commit Message",
-		},
-		{
 			"<leader>cn",
 			function()
 				require("codecompanion").chat()
