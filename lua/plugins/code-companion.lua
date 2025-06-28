@@ -16,9 +16,7 @@ return {
 		},
 		{
 			"<leader>ct",
-			function()
-				require("codecompanion").toggle_chat()
-			end,
+			"<cmd>CodeCompanionChat Toggle<CR>",
 			mode = "n",
 			desc = "CodeCompanion: Toggle Latest Chat Window",
 		},
