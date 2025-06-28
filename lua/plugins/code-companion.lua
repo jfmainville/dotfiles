@@ -22,6 +22,9 @@ return {
 		},
 	},
 	config = function()
+		-- Disable the user approval prompts
+		vim.g.codecompanion_auto_tool_mode = true
+
 		require("codecompanion").setup({
 			display = {
 				diff = {
