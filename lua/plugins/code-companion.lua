@@ -31,6 +31,10 @@ return {
 					opts = { "internal", "filler", "closeoff", "algorithm:patience", "followwrap", "linematch:120" },
 					provider = "mini_diff", -- default|mini_diff
 				},
+				chat = {
+					start_in_insert_mode = true,
+				},
+			},
 			},
 			prompt_library = {
 				["Generate a Commit Message"] = {
