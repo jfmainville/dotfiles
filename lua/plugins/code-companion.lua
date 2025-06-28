@@ -35,6 +35,19 @@ return {
 					start_in_insert_mode = true,
 				},
 			},
+			strategies = {
+				chat = {
+					adapter = "openai",
+					model = "gpt-4o",
+				},
+				inline = {
+					adapter = "openai",
+					model = "gpt-4o",
+				},
+				cmd = {
+					adapter = "openai",
+					model = "gpt-4o",
+				},
 			},
 			prompt_library = {
 				["Generate a Commit Message"] = {
