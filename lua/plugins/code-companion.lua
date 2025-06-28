@@ -42,6 +42,14 @@ return {
 				chat = {
 					adapter = "openai",
 					model = "gpt-4o",
+					tools = {
+						opts = {
+							default_tools = {
+								"full_stack_dev",
+								"files",
+							},
+						},
+					},
 				},
 				inline = {
 					adapter = "openai",
