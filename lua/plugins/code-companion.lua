@@ -20,6 +20,12 @@ return {
 			mode = "n",
 			desc = "CodeCompanion: Toggle Latest Chat Window",
 		},
+		{
+			"<leader>ci",
+			"<cmd>CodeCompanion<CR>",
+			mode = { "n", "v" },
+			desc = "CodeCompanion: Inline Code Companion",
+		},
 	},
 	config = function()
 		-- Disable the user approval prompts
@@ -44,6 +50,8 @@ return {
 					model = "gpt-4o",
 					tools = {
 						opts = {
+							auto_submit_errors = true,
+							auto_submit_success = true,
 							default_tools = {
 								"full_stack_dev",
 								"files",
