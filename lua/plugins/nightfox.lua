@@ -1,5 +1,6 @@
 return {
-	"EdenEast/nightfox.nvim",
+	"jfmainville/nightfox.nvim",
+	branch = "feat/add-flash-module",
 	config = function()
 		require("nightfox").setup({
 			options = {
