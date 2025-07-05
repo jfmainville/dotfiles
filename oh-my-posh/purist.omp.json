@@ -5,14 +5,6 @@
       "alignment": "left",
       "segments": [
         {
-          "background": "#69ABFF",
-          "foreground": "#0C0C0C",
-          "leading_diamond": "\u256d\u2500\ue0b6",
-          "style": "diamond",
-          "template": "\uf120 {{ .Name }} ",
-          "type": "shell"
-        },
-        {
           "background": "#B6B8BB",
           "foreground": "#0C0C0C",
           "style": "diamond",
