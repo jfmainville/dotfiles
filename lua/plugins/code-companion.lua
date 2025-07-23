@@ -62,6 +62,16 @@ return {
 				inline = {
 					adapter = "openai",
 					model = "gpt-4o",
+					keymaps = {
+						accept_change = {
+							modes = { n = "ga", v = "ga" },
+							description = "Accept the suggested change",
+						},
+						reject_change = {
+							modes = { n = "gr", v = "gr" },
+							description = "Reject the suggested change",
+						},
+					},
 				},
 				cmd = {
 					adapter = "openai",
