@@ -44,6 +44,8 @@ return {
 					".env.development.local",
 					".env.production.local",
 					"environments",
+					".pipelines",
+					".build",
 					"data",
 					"reports",
 					".pipeline",
