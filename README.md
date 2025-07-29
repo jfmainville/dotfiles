@@ -75,6 +75,7 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)   | Utility          |
 | [diffview](https://github.com/sindrets/diffview.nvim)                        | Utility          |
 | [undotree](https://github.com/mbbill/undotree)                               | Utility          |
+| [kulala](https://github.com/mistweaverco/kulala.nvim)                        | Utility          |
 | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)                  | Git              |
 | [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)          | Theme            |
 | [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)            | Utility          |
@@ -89,12 +90,11 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | [neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim)                   | Utility          |
 | [nvim-notify](https://github.com/rcarriga/nvim-notify)                       | Utility          |
 | [trouble.nvim](https://github.com/folke/trouble.nvim)                        | Utility          |
-| [gp.nvim](https://github.com/Robitx/gp.nvim)                                 | ChatGPT          |
+| [code-companion](https://github.com/olimorris/codecompanion.nvim)            | ChatGPT          |
 | [nvim-lspconfig.nvim](https://github.com/neovim/nvim-lspconfig)              | LSP              |
 | [mason.nvim](https://github.com/williamboman/mason.nvim)                     | LSP              |
 | [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim) | LSP              |
 | [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)                              | LSP              |
-| [lspkind.nvim](https://github.com/onsails/lspkind.nvim)                      | Autocompletion   |
 | [cmp-buffer](https://github.com/hrsh7th/cmp-buffer)                          | Autocompletion   |
 | [cmp-path](https://github.com/hrsh7th/cmp-path)                              | Autocompletion   |
 | [cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip)                   | Autocompletion   |
@@ -104,4 +104,3 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | [copilot-cmp](https://github.com/zbirenbaum/copilot-cmp)                     | Autocompletion   |
 | [LuaSnip](https://github.com/L3MON4D3/LuaSnip)                               | Snippets         |
 | [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)         | Snippets         |
-| [fluorescent](https://github.com/jfmainville/fluorescent.nvim)               | Theme            |
