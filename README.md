@@ -56,9 +56,9 @@ The table below presents the folder structure for this repository:
 
 | Folder      | Description                                           |
 | ----------- | :---------------------------------------------------- |
-| colors      | Contains the custom colorscheme files                 |
 | fonts       | Contains the fonts that needs to be deployed          |
-| kitty       | Contains the Kitty terminal configuration file        |
+| wezterm     | Contains the Wezterm terminal configuration file      |
+| tmux        | Contains the Tmux configuration files                 |
 | lua         | Contains the Neovim specific configurations           |
 | lua/plugins | Contains the list of plugins deployed using Lazy.nvim |
 
