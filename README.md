@@ -59,8 +59,18 @@ The table below presents the folder structure for this repository:
 | fonts       | Contains the fonts that needs to be deployed          |
 | wezterm     | Contains the Wezterm terminal configuration file      |
 | tmux        | Contains the Tmux configuration files                 |
+| oh-my-posh  | Contains the Oh My Posh configuration files           |
 | lua         | Contains the Neovim specific configurations           |
 | lua/plugins | Contains the list of plugins deployed using Lazy.nvim |
+
+## Oh My Posh
+
+The `oh-my-posh` folder contains the configuration files for the Oh My Posh terminal theme configuration. To make it more flexible, it's possible to point the configuration to a remote file hosted in GitHub. Add the following line to the `~/.bashrc` or `~/.zshrc` file:
+
+```bash
+# Oh My Posh
+eval "$(oh-my-posh init zsh --config https://raw.githubusercontent.com/jfmainville/nvim/refs/heads/main/oh-my-posh/purist.omp.json)"
+```
 
 ## Plugins
 
