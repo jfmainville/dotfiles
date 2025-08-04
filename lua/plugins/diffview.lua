@@ -4,14 +4,26 @@ return {
 	keys = {
 		{
 			mode = "n",
-			"<leader>dl",
+			"<leader>da",
 			"<cmd>DiffviewFileHistory<CR>",
 			desc = "Open the diffview for all the files",
 		},
 		{
 			mode = "n",
 			"<leader>df",
-			"<cmd>DiffviewFileHistory %<CR>",
+			"<cmd>DiffviewFileHistory --follow %<CR>",
+			desc = "Open the diffview for the current file",
+		},
+		{
+			mode = "n",
+			"<leader>dv",
+			"<Esc><Cmd>'<,'>DiffviewFileHistory --follow<CR>",
+			desc = "Open the diffview for the current file",
+		},
+		{
+			mode = "n",
+			"<leader>dl",
+			"<Cmd>.DiffviewFileHistory --follow<CR>",
 			desc = "Open the diffview for the current file",
 		},
 		{
