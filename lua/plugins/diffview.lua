@@ -33,4 +33,7 @@ return {
 			desc = "Close the diffview tab",
 		},
 	},
+	opts = {
+		show_help_hints = false,
+	},
 }
