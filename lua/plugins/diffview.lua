@@ -28,6 +28,18 @@ return {
 		},
 		{
 			mode = "n",
+			"<leader>db",
+			function()
+				local source_branch = vim.fn.input("Source Branch: ")
+				if source_branch == "" then
+					return
+				end
+				vim.cmd("DiffviewOpen " .. source_branch .. "..")
+			end,
+			desc = "Open the diffview for the repository",
+		},
+		{
+			mode = "n",
 			"<leader>dc",
 			"<cmd>DiffviewClose<CR>",
 			desc = "Close the diffview tab",
