@@ -21,7 +21,7 @@ return {
 			desc = "Open the diffview for the current file",
 		},
 		{
-			mode = "n",
+			mode = "v",
 			"<leader>dl",
 			"<Cmd>.DiffviewFileHistory --follow<CR>",
 			desc = "Open the diffview for the current file",
