@@ -12,7 +12,7 @@ vim.keymap.set("n", "<leader><leader>", function()
 	vim.cmd("silent! w")
 end)
 -- Keep the copied data in the clipboard after pasting
-vim.keymap.set("v", "p", '"_dP')
+vim.keymap.set("x", "p", '"_dP')
 -- Move the currently selected line down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 -- Move the currently selected line up
