@@ -32,6 +32,17 @@ return {
 		vim.g.codecompanion_auto_tool_mode = true
 
 		require("codecompanion").setup({
+			adapters = {
+				openai = function()
+					return require("codecompanion.adapters").extend("openai", {
+						schema = {
+							model = {
+								default = "gpt-4o-mini",
+							},
+						},
+					})
+				end,
+			},
 			display = {
 				diff = {
 					enabled = true,
@@ -47,7 +58,6 @@ return {
 			strategies = {
 				chat = {
 					adapter = "openai",
-					model = "gpt-4o",
 					tools = {
 						opts = {
 							auto_submit_errors = true,
@@ -61,7 +71,6 @@ return {
 				},
 				inline = {
 					adapter = "openai",
-					model = "gpt-4o",
 					keymaps = {
 						accept_change = {
 							modes = { n = "ga", v = "ga" },
@@ -75,7 +84,6 @@ return {
 				},
 				cmd = {
 					adapter = "openai",
-					model = "gpt-4o",
 				},
 			},
 			prompt_library = {
