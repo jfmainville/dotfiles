@@ -52,7 +52,7 @@ return {
 					provider = "mini_diff", -- default|mini_diff
 				},
 				chat = {
-					start_in_insert_mode = true,
+					start_in_insert_mode = false,
 				},
 			},
 			strategies = {
