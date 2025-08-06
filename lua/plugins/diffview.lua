@@ -4,6 +4,12 @@ return {
 	keys = {
 		{
 			mode = "n",
+			"<leader>ds",
+			"<cmd>DiffviewOpen<CR>",
+			desc = "Open the merge tool for the current files",
+		},
+		{
+			mode = "n",
 			"<leader>da",
 			"<cmd>DiffviewFileHistory<CR>",
 			desc = "Open the diffview for all the files",
