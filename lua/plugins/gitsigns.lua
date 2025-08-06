@@ -4,7 +4,7 @@ return {
 	keys = {
 		{
 			mode = "n",
-			"<leader>gh",
+			"<leader>hv",
 			function()
 				vim.cmd("Gitsigns preview_hunk")
 			end,
