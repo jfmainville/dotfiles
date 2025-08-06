@@ -60,3 +60,6 @@ vim.filetype.add({
 		[".*/ansible/.*%.yml"] = "yaml.ansible",
 	},
 })
+
+-- Set diagonal lines in place of deleted lines in diff-mode
+vim.opt.fillchars:append({ diff = "╱" })
