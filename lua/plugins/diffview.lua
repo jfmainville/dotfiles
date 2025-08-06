@@ -24,13 +24,13 @@ return {
 			mode = "n",
 			"<leader>dv",
 			"<Esc><Cmd>'<,'>DiffviewFileHistory --follow<CR>",
-			desc = "Open the diffview for the current file",
+			desc = "Open the diffview for the current visual lines",
 		},
 		{
 			mode = "v",
 			"<leader>dl",
 			"<Cmd>.DiffviewFileHistory --follow<CR>",
-			desc = "Open the diffview for the current file",
+			desc = "Open the diffview for the current line",
 		},
 		{
 			mode = "n",
