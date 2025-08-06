@@ -1,6 +1,16 @@
 return {
 	"lewis6991/gitsigns.nvim",
 	lazy = false,
+	keys = {
+		{
+			mode = "n",
+			"<leader>gh",
+			function()
+				vim.cmd("Gitsigns preview_hunk")
+			end,
+			desc = "Preview the git hunks in the current file",
+		},
+	},
 	config = function()
 		require("gitsigns").setup({
 			signs = {
