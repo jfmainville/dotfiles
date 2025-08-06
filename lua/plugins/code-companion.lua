@@ -103,14 +103,9 @@ return {
 							role = "user",
 							contains_code = true,
 							content = function()
-								return [[You are an expert at following the Conventional Commit specification                       based on the following diff:
-]] .. vim.fn.system("git diff --cached") .. [[
-
-Generate a commit message for me on a single line. Follow the below structure:
-
-   (fix | refactor | feat | chore | docs) {Summary}
-
-Return the code only and no markdown codeblocks.
+								return [[You are an expert at following the Conventional Commit specification based on the following diff:]]
+									.. vim.fn.system("git diff --cached")
+									.. [[ Generate a commit message for me on a single line. Follow the standard conventional commit structure: (fix | refactor | feat | chore | docs)({scope}): {summary of the changes} Return the code only and no markdown codeblocks.
                     ]]
 							end,
 						},
