@@ -1,4 +1,4 @@
-Dotfiles
+# Dotfiles
 
 This repository contains the code used to deploy my dotfiles configuration.
 
