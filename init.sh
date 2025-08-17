@@ -6,6 +6,7 @@ Linux)
   OS="Linux"
   sudo apt-get update && sudo apt-get install -y \
     neovim \
+    gh \
     fzf \
     ripgrep \
     git \
@@ -23,6 +24,7 @@ Darwin)
   brew install \
     dpkg \
     neovim \
+    gh\
     fzf \
     ripgrep \
     git \
