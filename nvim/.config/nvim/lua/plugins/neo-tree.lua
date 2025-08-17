@@ -51,6 +51,8 @@ return {
 					".pipeline",
 					".github",
 					".gitlab-ci.yml",
+					".config",
+					".wezterm.lua",
 				},
 			},
 
