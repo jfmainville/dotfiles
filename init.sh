@@ -7,6 +7,7 @@ Linux)
   sudo apt-get update && sudo apt-get install -y \
     neovim \
     gh \
+    stow \
     fzf \
     ripgrep \
     git \
@@ -25,6 +26,7 @@ Darwin)
     dpkg \
     neovim \
     gh\
+    stow \
     fzf \
     ripgrep \
     git \
