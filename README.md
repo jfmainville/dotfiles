@@ -77,7 +77,7 @@ The `oh-my-posh` folder contains the configuration files for the Oh My Posh term
 
 ```bash
 # Oh My Posh
-eval "$(oh-my-posh init zsh --config https://raw.githubusercontent.com/jfmainville/nvim/refs/heads/main/oh-my-posh/purist.omp.json)"
+eval "$(oh-my-posh init zsh --config https://raw.githubusercontent.com/jfmainville/dotfiles/refs/heads/main/oh-my-posh/purist.omp.json)"
 ```
 
 ## Plugins
