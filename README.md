@@ -1,6 +1,6 @@
-# Neovim
+Dotfiles
 
-This repository contains the code used to deploy my Neovim configuration.
+This repository contains the code used to deploy my dotfiles configuration.
 
 ## Getting Started
 
@@ -23,30 +23,39 @@ The following applications need to be installed on the local workstation to use 
 Once you installed all the required prerequisites, you can now proceed with the initialization of the providers and
 backend by completing the following steps:
 
-1. Create the following directory on your local workstation:
+1. Install the `stow` application using the below command:
 
-   `mdkir -p ~/.config/nvim`
+```bash
+# MacOS
+brew install neovim tmux stow
+
+# Debian/Ubuntu
+sudo apt-get install neovim tmux stow
+```
 
 2. Execute the below command to download the repository to your local machine:
 
-   `git clone git@github.com:jfmainville/nvim.git ~/.config/nvim`
+`git clone git@github.com:jfmainville/dotfiles.git ~`
 
-3. Navigate to the repository directory:
+3. Navigate to the dotfiles repository directory:
 
-   `cd ~/.config/nvim`
+`cd ~/dotfiles`
 
 4. To complete the install of all the necessary dependencies for Neovim, execute the following bash script as `root`:
 
-   ```
-   chmod + ~/.config/nvim/init.sh
-   ~/.config/nvim/init.sh
-   ```
+```bash
+stow nvim tmux wezterm
+chmod + ~/.config/nvim/init.sh
+~/.config/nvim/init.sh
+
+```
 
 5. Execute the following command to complete the installation of the Telescope FZF extension plugin:
 
-   ```
-   cd ~/.local/share/nvim/lazy/telescope-fzf-native.nvim && make && cd -
-   ```
+```bash
+cd ~/.local/share/nvim/lazy/telescope-fzf-native.nvim && make && cd -
+
+```
 
 6. Open the Neovim application and load all the plugins using the `Lazy` command
 
@@ -54,14 +63,13 @@ backend by completing the following steps:
 
 The table below presents the folder structure for this repository:
 
-| Folder      | Description                                           |
-| ----------- | :---------------------------------------------------- |
-| fonts       | Contains the fonts that needs to be deployed          |
-| wezterm     | Contains the Wezterm terminal configuration file      |
-| tmux        | Contains the Tmux configuration files                 |
-| oh-my-posh  | Contains the Oh My Posh configuration files           |
-| lua         | Contains the Neovim specific configurations           |
-| lua/plugins | Contains the list of plugins deployed using Lazy.nvim |
+| Folder     | Description                                      |
+| ---------- | :----------------------------------------------- |
+| fonts      | Contains the fonts that needs to be deployed     |
+| nvim       | Contains the Neovim configuration files          |
+| oh-my-posh | Contains the Oh My Posh configuration files      |
+| tmux       | Contains the Tmux configuration files            |
+| wezterm    | Contains the Wezterm terminal configuration file |
 
 ## Oh My Posh
 
@@ -96,6 +104,7 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | [conform.nvim](https://github.com/stevearc/conform.nvim)                     | Formatter        |
 | [markview](https://github.com/OXY2DEV/markview.nvim)                         | Utility          |
 | [harpoon](https://github.com/ThePrimeagen/harpoon/tree/harpoon2)             | Navigation       |
+| [octo.nvim](https://github.com/pwntester/octo.nvim)                          | Utility          |
 | [noice](https://github.com/folke/noice.nvim)                                 | Utility          |
 | [neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim)                   | Utility          |
 | [nvim-notify](https://github.com/rcarriga/nvim-notify)                       | Utility          |
