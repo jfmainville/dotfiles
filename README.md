@@ -45,8 +45,8 @@ sudo apt-get install neovim tmux stow
 
 ```bash
 stow nvim tmux wezterm
-chmod + ~/.config/nvim/init.sh
-~/.config/nvim/init.sh
+chmod + ~/dotfiles/init.sh
+~/dotfiles/init.sh
 
 ```
 
