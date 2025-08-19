@@ -172,9 +172,9 @@
 
 # kubernetes_context.sh {
 	# Kubernetes config context display mode {"name_namespace", "name", "namespace"}.
-	# export TMUX_POWERLINE_SEG_KUBERNETES_CONTEXT_DISPLAY_MODE="name_namespace"
+	export TMUX_POWERLINE_SEG_KUBERNETES_CONTEXT_DISPLAY_MODE="name"
 	# Kubernetes config context symbol.
-	# export TMUX_POWERLINE_SEG_KUBERNETES_CONTEXT_SYMBOL="󱃾"
+	export TMUX_POWERLINE_SEG_KUBERNETES_CONTEXT_SYMBOL="󱃾"
 	# Kubernetes config context symbol colour.
 	# export TMUX_POWERLINE_SEG_KUBERNETES_CONTEXT_SYMBOL_COLOUR="255"
 	# Separator for display mode "name_namespace"
@@ -183,7 +183,7 @@
 
 # lan_ip.sh {
 	# Symbol for LAN IP.
-	# export TMUX_POWERLINE_SEG_LAN_IP_SYMBOL="ⓛ "
+	export TMUX_POWERLINE_SEG_LAN_IP_SYMBOL="󰌗 "
 	# Symbol colour for LAN IP
 	# export TMUX_POWERLINE_SEG_LAN_IP_SYMBOL_COLOUR="255"
 # }
@@ -333,7 +333,7 @@
 # tmux_session_info.sh {
 	# Session info format to feed into the command: tmux display-message -p
 	# For example, if FORMAT is '[ #S ]', the command is: tmux display-message -p '[ #S ]'
-	export TMUX_POWERLINE_SEG_TMUX_SESSION_INFO_FORMAT="#S:#I.#P"
+	export TMUX_POWERLINE_SEG_TMUX_SESSION_INFO_FORMAT=" #S:#I.#P"
 # }
 
 # utc_time.sh {
@@ -414,7 +414,7 @@
 
 # wan_ip.sh {
 	# Symbol for WAN IP
-	# export TMUX_POWERLINE_SEG_WAN_IP_SYMBOL="ⓦ "
+	export TMUX_POWERLINE_SEG_WAN_IP_SYMBOL="󰖈 "
 	# Symbol colour for WAN IP
 	# export TMUX_POWERLINE_SEG_WAN_IP_SYMBOL_COLOUR="255"
 # }
