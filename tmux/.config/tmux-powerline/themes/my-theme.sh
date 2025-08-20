@@ -124,7 +124,7 @@ if [ -z "$TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS" ]; then
 		#"tmux_mem_cpu_load 234 136"
 		"kubernetes_context #D70000 #E3E2E2"
 		#"air ${TMUX_POWERLINE_SEG_AIR_COLOR} 255"
-		"weather #E4E4E4 #080808"
+		# "weather #E4E4E4 #080808"
 		#"rainbarf 0 ${TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR}"
 		#"xkb_layout 125 117"
 		#"date_day 235 216"
