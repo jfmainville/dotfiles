@@ -97,12 +97,12 @@ if [ -z "$TMUX_POWERLINE_LEFT_STATUS_SEGMENTS" ]; then
 	TMUX_POWERLINE_LEFT_STATUS_SEGMENTS=(
 		"tmux_session_info #A4D847 #15150B"
 		#"hostname 33 0"
-		#"mode_indicator 165 0"
 		#"ifstat 30 255"
 		#"ifstat_sys 30 255"
 		"lan_ip #0387FF #FFFFFF ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN}"
 		#"vpn 24 255 ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN}"
 		"wan_ip #0387FF #FFFFFF"
+    "mode_indicator 235 #A4D847"
 		#"vcs_branch 29 88"
 		#"vcs_compare 60 255"
 		#"vcs_staged 64 255"
