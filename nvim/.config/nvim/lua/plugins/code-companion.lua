@@ -33,27 +33,29 @@ return {
 
 		require("codecompanion").setup({
 			adapters = {
-				openai = function()
-					return require("codecompanion.adapters").extend("openai", {
-						schema = {
-							model = {
-								default = "gpt-4.1",
+				http = {
+					openai = function()
+						return require("codecompanion.adapters").extend("openai", {
+							schema = {
+								model = {
+									default = "gpt-4.1",
+								},
 							},
-						},
-					})
-				end,
-				copilot = function()
-					return require("codecompanion.adapters").extend("copilot", {
-						schema = {
-							model = {
-								default = "gpt-5",
+						})
+					end,
+					copilot = function()
+						return require("codecompanion.adapters").extend("copilot", {
+							schema = {
+								model = {
+									default = "gpt-5",
+								},
 							},
-						},
-					})
-				end,
-				opts = {
-					show_defaults = false,
-					show_model_choices = true,
+						})
+					end,
+					opts = {
+						show_defaults = false,
+						show_model_choices = true,
+					},
 				},
 			},
 			display = {
