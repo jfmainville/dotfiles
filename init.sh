@@ -5,3 +5,6 @@ sudo chsh -s /bin/zsh
 
 # Fix the telescope-fzf-native.nvim plugin integration
 cd ~/.local/share/nvim/lazy/telescope-fzf-native.nvim && make && cd -
+
+# Install the latest node version
+nvm install 22
