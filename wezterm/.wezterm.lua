@@ -17,7 +17,7 @@ end
 -- Customizations
 config.default_cwd = wezterm.home_dir
 config.font = wezterm.font("JetBrains Mono")
-config.color_scheme = "tokyonight_storm"
+config.color_scheme = "tokyonight_night"
 config.window_padding = {
 	left = 0,
 	right = 0,
