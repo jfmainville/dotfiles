@@ -15,8 +15,8 @@ else
 fi
 
 # See Color formatting section below for details on what colors can be used here.
-TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR="#1A1B26"
-TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR="#A0A7CB"
+TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR="#A0A7CB"
+TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR="#1A1B26"
 # shellcheck disable=SC2034
 TMUX_POWERLINE_SEG_AIR_COLOR=$(air_color)
 
@@ -26,7 +26,7 @@ TMUX_POWERLINE_SEG_AIR_COLOR=$(air_color)
 # shellcheck disable=SC2128
 if [ -z "$TMUX_POWERLINE_WINDOW_STATUS_CURRENT" ]; then
 	TMUX_POWERLINE_WINDOW_STATUS_CURRENT=(
-		"#[$(format inverse)]"
+		"#[$(format regular)]"
 		" #I  "
 		" #W "
 		"#[$(format regular)]"
@@ -43,7 +43,7 @@ fi
 # shellcheck disable=SC2128
 if [ -z "$TMUX_POWERLINE_WINDOW_STATUS_FORMAT" ]; then
 	TMUX_POWERLINE_WINDOW_STATUS_FORMAT=(
-		"#[$(format regular)]"
+		"#[$(format inverse)]"
 		"  #I#{?window_flags,  , }"
 		" #W "
 	)
