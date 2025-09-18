@@ -119,7 +119,7 @@ return {
 			end
 
 			add_item(lsp_servers, "powershell_es")
-			require("lspconfig").powershell_es.setup({
+			vim.lsp.config("powershell_es", {
 				filetypes = { "ps1", "psm1", "psd1" },
 				bundle_path = "C:/Users/jfmainville/Documents/Tools/PowerShellEditorServices",
 				shell = "powershell.exe",
