@@ -119,5 +119,15 @@ return {
 				})
 			end,
 		})
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "GitCommitPost",
+			callback = function(args)
+				local gs = package.loaded.gitsigns
+				if gs then
+					gs.refresh(args.buf)
+				end
+			end,
+			desc = "Refresh Gitsigns after a commit",
+		})
 	end,
 }
