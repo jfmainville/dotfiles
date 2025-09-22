@@ -29,7 +29,7 @@ return {
 	},
 	config = function()
 		-- Disable the user approval prompts
-		vim.g.codecompanion_auto_tool_mode = true
+		vim.g.codecompanion_yolo_mode = true
 
 		require("codecompanion").setup({
 			adapters = {
