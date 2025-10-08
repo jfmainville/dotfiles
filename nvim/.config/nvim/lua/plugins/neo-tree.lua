@@ -53,6 +53,7 @@ return {
 					".gitlab-ci.yml",
 					".config",
 					".wezterm.lua",
+					".alacritty.toml",
 				},
 			},
 
