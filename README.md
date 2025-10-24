@@ -63,13 +63,13 @@ cd ~/.local/share/nvim/lazy/telescope-fzf-native.nvim && make && cd -
 
 The table below presents the folder structure for this repository:
 
-| Folder     | Description                                      |
-| ---------- | :----------------------------------------------- |
-| fonts      | Contains the fonts that needs to be deployed     |
-| nvim       | Contains the Neovim configuration files          |
-| oh-my-posh | Contains the Oh My Posh configuration files      |
-| tmux       | Contains the Tmux configuration files            |
-| wezterm    | Contains the Wezterm terminal configuration file |
+| Folder     | Description                                        |
+| ---------- | :------------------------------------------------- |
+| fonts      | Contains the fonts that needs to be deployed       |
+| nvim       | Contains the Neovim configuration files            |
+| oh-my-posh | Contains the Oh My Posh configuration files        |
+| tmux       | Contains the Tmux configuration files              |
+| alacritty  | Contains the alacritty terminal configuration file |
 
 ## Oh My Posh
 
