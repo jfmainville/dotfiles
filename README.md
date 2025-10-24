@@ -44,7 +44,7 @@ sudo apt-get install neovim tmux stow
 4. To complete the install of all the necessary dependencies for Neovim, execute the following bash script as `root`:
 
 ```bash
-stow nvim tmux wezterm
+stow nvim tmux alacritty
 chmod + ~/dotfiles/init.sh
 ~/dotfiles/init.sh
 
