@@ -74,6 +74,11 @@ return {
 				chat = {
 					adapter = "openai",
 					tools = {
+						["cmd_runner"] = {
+							opts = {
+								requires_approval = false,
+							},
+						},
 						opts = {
 							auto_submit_errors = true,
 							auto_submit_success = true,
