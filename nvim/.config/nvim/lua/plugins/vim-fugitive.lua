@@ -122,9 +122,14 @@ return {
 		vim.api.nvim_create_autocmd("User", {
 			pattern = "GitCommitPost",
 			callback = function(args)
-				local gs = package.loaded.gitsigns
-				if gs then
-					gs.refresh(args.buf)
+				for _, buf in ipairs(vim.fn.getbufinfo({ buflisted = 1 })) do
+					-- Only reload if the file has changed outside nvim
+					if vim.fn.getbufvar(buf.bufnr, "&mod") == 0 and vim.fn.getftime(buf.name) > 0 then
+						-- This opens the file in the buffer again, updating its contents
+						vim.api.nvim_buf_call(buf.bufnr, function()
+							vim.cmd("checktime")
+						end)
+					end
 				end
 			end,
 			desc = "Refresh Gitsigns after a commit",
