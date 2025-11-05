@@ -4,6 +4,7 @@ return {
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
 	},
+	version = "v17.29.0", // Temporarily lock the version until the @insert_edit_into_file tool issue is fixed
 	lazy = false,
 	keys = {
 		{
