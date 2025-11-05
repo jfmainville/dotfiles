@@ -83,6 +83,10 @@ return {
 						opts = {
 							auto_submit_errors = true,
 							auto_submit_success = true,
+							default_tools = {
+								"full_stack_dev",
+								"files",
+							},
 						},
 					},
 				},
