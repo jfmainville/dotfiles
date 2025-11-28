@@ -25,7 +25,6 @@ return {
 				documentation = cmp.config.window.bordered(),
 			},
 			sources = {
-				{ name = "copilot", group_index = 2 },
 				{ name = "nvim_lsp", group_index = 2 },
 				{ name = "luasnip", keyword_length = 2, group_index = 2 },
 				{ name = "path", group_index = 2 },
@@ -37,10 +36,8 @@ return {
 					preset = "codicons",
 					ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
 					show_labelDetails = true, -- show labelDetails in menu. Disabled by default
-					symbol_map = { Copilot = "" },
 				}),
 			},
-			vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" }),
 
 			-- Enable the documentation popup on the first item
 			completion = {
