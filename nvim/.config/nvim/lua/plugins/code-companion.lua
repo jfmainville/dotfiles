@@ -44,15 +44,6 @@ return {
 							},
 						})
 					end,
-					copilot = function()
-						return require("codecompanion.adapters").extend("copilot", {
-							schema = {
-								model = {
-									default = "gpt-5",
-								},
-							},
-						})
-					end,
 					opts = {
 						show_defaults = false,
 						show_model_choices = true,
