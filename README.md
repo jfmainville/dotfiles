@@ -117,7 +117,5 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | [cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip)                   | Autocompletion   |
 | [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)                      | Autocompletion   |
 | [cmp-nvim-lua](https://github.com/hrsh7th/cmp-nvim-lua)                      | Autocompletion   |
-| [copilot.lua](https://github.com/zbirenbaum/copilot.lua)                     | Autocompletion   |
-| [copilot-cmp](https://github.com/zbirenbaum/copilot-cmp)                     | Autocompletion   |
 | [LuaSnip](https://github.com/L3MON4D3/LuaSnip)                               | Snippets         |
 | [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)         | Snippets         |
