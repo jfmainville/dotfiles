@@ -1,5 +1,6 @@
 -- Define the leader action to be the space bar
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 -- Fix the terminal mode characters replacement
 vim.keymap.set("t", "<S-Space>", "<Space>")
 vim.keymap.set("t", "<S-BS>", "<BS>")
