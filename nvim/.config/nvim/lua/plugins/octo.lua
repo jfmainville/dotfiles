@@ -12,6 +12,11 @@ return {
 	},
 	keys = {
 		{
+			"<leader>or",
+			"<CMD>Octo review<CR>",
+			desc = "Review current GitHub Pull Request",
+		},
+		{
 			"<leader>oi",
 			"<CMD>Octo issue list<CR>",
 			desc = "List GitHub Issues",
