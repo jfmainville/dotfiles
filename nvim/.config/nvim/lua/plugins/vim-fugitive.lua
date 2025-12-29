@@ -97,7 +97,7 @@ return {
 		vim.api.nvim_create_autocmd("FileType", {
 			pattern = "gitcommit",
 			callback = function()
-				require("codecompanion").prompt("commit")
+				require("codecompanion").prompt("generate_commit_message")
 			end,
 			desc = "Trigger CodeCompanion commit prompt when opening Fugitive commit buffer",
 		})
