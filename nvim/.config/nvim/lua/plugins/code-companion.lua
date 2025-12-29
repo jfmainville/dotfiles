@@ -96,13 +96,11 @@ return {
 			},
 			prompt_library = {
 				["Generate a Commit Message"] = {
-					strategy = "inline",
+					interaction = "inline",
 					description = "Generate a commit message",
 					opts = {
-						index = 9,
-						is_default = true,
+						alias = "generate_commit_message",
 						is_slash_cmd = false,
-						short_name = "commit",
 						auto_submit = true,
 						placement = "before",
 					},
