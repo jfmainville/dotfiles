@@ -110,21 +110,20 @@ return {
 							contains_code = true,
 							content = function()
 								return [[You are an expert at following the Conventional Commit specification based on the following diff:]]
-									.. vim.fn.system("git diff --cached")
+									.. vim.system({ "git", "diff", "--no-ext-diff", "--staged" }, { text = true })
+										:wait().stdout
 									.. [[ Generate a commit message for me on a single line. Follow the standard conventional commit structure: (fix | refactor | feat | chore | docs)({scope}): {summary of the changes} Return the code only and no markdown codeblocks.
                     ]]
 							end,
 						},
 					},
 				},
-				{
-					strategy = "chat",
-					description = "Create or update a Pull Request (PR)",
+				["Create a Pull Request (PR)"] = {
+					interaction = "chat",
+					description = "Create a Pull Request (PR)",
 					opts = {
-						index = 10,
-						is_default = true,
+						alias = "create_pr",
 						is_slash_cmd = true,
-						short_name = "pr",
 						auto_submit = true,
 						placement = "chat",
 					},
@@ -137,7 +136,7 @@ return {
 									.. vim.fn.system(
 										"git log origin/$(git remote show origin | awk '/HEAD branch/ {print $NF}')..HEAD --oneline"
 									)
-									.. [[ Create or update a Pull Request (PR) description for me using markdown. I want a Change section (Heading 2) and an Additional Notes section (Heading 2). In the Changes section list out the changes made in the PR as bullet points exclusively, no code snippets. I want you to use the conventional commit structure, exclude the commit SHA and wrap functions, version numbers and other symbols in an inline code block. In the Additional Notes section, list out any additional notes about the PR as a bullet list. If there's a PR already created for this branch, update the Changes section bullet list with the new changes. Use the proper CLI tool that's already installed on the workstation to perform the PR related operations. You can perform the required operations immediately and without approval. Delete temporary markdown files once all the operations are done. ]]
+									.. [[ Create a Pull Request (PR) description for me using markdown. I want a Change section (Heading 2) and an Additional Notes section (Heading 2). In the Changes section list out the changes made in the PR as bullet points exclusively, no code snippets. I want you to use the conventional commit structure, exclude the commit SHA and wrap functions, version numbers and other symbols in an inline code block. In the Additional Notes section, list out any additional notes about the PR as a bullet list. Use the proper CLI tool that's already installed on the workstation to perform the PR related operations. You can perform the required operations immediately and without approval. Delete temporary markdown files once all the operations are done. ]]
 							end,
 						},
 					},
