@@ -11,6 +11,7 @@ return {
 				desc = "Toggle the Markview markdown preview mode",
 			},
 		},
+		ft = { "markdown", "codecompanion" },
 		opts = {},
 	},
 }
