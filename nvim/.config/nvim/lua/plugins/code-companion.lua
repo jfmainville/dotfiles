@@ -50,24 +50,17 @@ return {
 				},
 			},
 			display = {
-				diff = {
-					enabled = false,
-					close_chat_at = 240, -- Close an open chat buffer if the total columns of your display are less than...
-					layout = "vertical", -- vertical|horizontal split for default provider
-					opts = { "internal", "filler", "closeoff", "algorithm:patience", "followwrap", "linematch:120" },
-					provider = "mini_diff", -- default|mini_diff
-				},
 				chat = {
 					start_in_insert_mode = false,
 				},
 			},
-			strategies = {
+			interactions = {
 				chat = {
 					adapter = "openai",
 					tools = {
 						["cmd_runner"] = {
 							opts = {
-								requires_approval = false,
+								require_approval_before = false,
 							},
 						},
 						opts = {
@@ -83,6 +76,10 @@ return {
 				inline = {
 					adapter = "openai",
 					keymaps = {
+						always_accept = {
+							modes = { n = "gy", v = "gy" },
+							description = "Always accept the suggested change",
+						},
 						accept_change = {
 							modes = { n = "ga", v = "ga" },
 							description = "Accept the suggested change",
