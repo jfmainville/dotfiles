@@ -27,6 +27,7 @@ return {
 					return
 				end
 				local success_branch_name = vim.cmd("Git checkout " .. branch_name)
+				vim.cmd("Git pull --rebase --autostash")
 				if not success_branch_name then
 					return
 				end
