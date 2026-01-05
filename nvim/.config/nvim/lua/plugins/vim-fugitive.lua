@@ -88,14 +88,6 @@ return {
 		},
 	},
 	config = function()
-		-- Trigger CodeCompanion prompt when opening Fugitive commit buffer
-		vim.api.nvim_create_autocmd("FileType", {
-			pattern = "gitcommit",
-			callback = function()
-				require("codecompanion").prompt("generate_commit_message")
-			end,
-			desc = "Trigger CodeCompanion commit prompt when opening Fugitive commit buffer",
-		})
 		-- Customize the vim-fugitive keymaps
 		vim.api.nvim_create_autocmd("FileType", {
 			pattern = { "fugitiveblame", "fugitive" },
