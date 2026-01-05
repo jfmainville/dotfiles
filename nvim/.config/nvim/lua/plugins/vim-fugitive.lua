@@ -8,12 +8,6 @@ return {
 	keys = {
 		{
 			mode = "n",
-			"<leader>gg",
-			"<cmd>tab Git<CR>",
-			desc = "Open the vim-fugitive git interface",
-		},
-		{
-			mode = "n",
 			"<leader>gn",
 			"<cmd>GBrowse<CR>",
 			desc = "Open the current repository in the browser",
