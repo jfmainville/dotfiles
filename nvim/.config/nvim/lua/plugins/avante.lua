@@ -21,6 +21,10 @@ return {
 		instructions_file = "avante.md",
 		provider = "copilot",
 		disabled_tools = { "web_search" },
+		selection = {
+			enabled = true,
+			hint_display = "none",
+		},
 		shortcuts = {
 			{
 				name = "refactor",
