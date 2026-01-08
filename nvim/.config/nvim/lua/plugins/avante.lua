@@ -25,6 +25,9 @@ return {
 			enabled = true,
 			hint_display = "none",
 		},
+		selector = {
+			provider = "telescope",
+		},
 		shortcuts = {
 			{
 				name = "refactor",
