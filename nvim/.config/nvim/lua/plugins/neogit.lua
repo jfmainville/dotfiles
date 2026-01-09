@@ -10,4 +10,12 @@ return {
 	keys = {
 		{ "<leader>gg", "<cmd>Neogit<cr>", desc = "Show Neogit UI" },
 	},
+	config = function()
+		require("neogit").setup({
+			disable_signs = true,
+			integrations = {
+				diffview = true,
+			},
+		})
+	end,
 }
