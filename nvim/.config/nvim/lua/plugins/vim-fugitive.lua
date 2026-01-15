@@ -14,6 +14,12 @@ return {
 		},
 		{
 			mode = "n",
+			"<leader>gL",
+			"<cmd>Git log --graph --abbrev-commit --decorate --format=format:'%h - %ai (%ar) - %an - %s' --all<CR>",
+			desc = "Open the Git log of all branches in a new split",
+		},
+		{
+			mode = "n",
 			"<leader>gn",
 			"<cmd>GBrowse<CR>",
 			desc = "Open the current repository in the browser",
