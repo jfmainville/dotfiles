@@ -48,7 +48,7 @@ return {
 				if branch_name == "" then
 					return
 				end
-				local success_branch_name = vim.cmd("Git log --oneline " .. branch_name .. "..")
+				local success_branch_name = vim.cmd("Git log --oneline --format=format:'- %s' " .. branch_name .. "..")
 				if not success_branch_name then
 					return
 				end
