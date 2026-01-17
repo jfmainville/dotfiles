@@ -20,7 +20,7 @@ return {
 			builtin.live_grep({ search_dirs = { "~/.config/nvim", "~/projects" } })
 		end, {})
 		vim.keymap.set("n", "<leader>fd", function()
-			builtin.lsp_document_symbols()
+			require("telescope").extensions.aerial.aerial()
 		end, {})
 		vim.keymap.set("n", "<leader>fo", function()
 			builtin.oldfiles({ only_cwd = true })
