@@ -12,6 +12,7 @@ return {
 				"terraform",
 				"javascript",
 				"typescript",
+				"tsx",
 				"cmake",
 				"make",
 				"markdown",
