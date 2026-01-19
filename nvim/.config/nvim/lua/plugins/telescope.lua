@@ -56,6 +56,7 @@ return {
 					"--glob=!**/__snapshots__/*",
 					"--glob=!**/pgsql/*",
 					"--glob=!**/.DStore/*",
+					"--glob=**/*.tfvars",
 				},
 			},
 			pickers = {
@@ -86,6 +87,7 @@ return {
 						"--glob=!**/__snapshots__/*",
 						"--glob=!**/pgsql/*",
 						"--glob=!**/.DStore/*",
+						"--glob=**/*.tfvars",
 					},
 				},
 			},
