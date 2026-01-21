@@ -1,5 +1,6 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
+	branch = "master", -- This branch is frozen and will be removed eventually, need to upgrade soon
 	build = ":TSUpdate",
 	config = function()
 		require("nvim-treesitter.configs").setup({
