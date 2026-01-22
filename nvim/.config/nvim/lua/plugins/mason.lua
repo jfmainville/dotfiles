@@ -5,15 +5,10 @@ return {
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-		vim.lsp.enable("ts_ls")
-		vim.lsp.enable("eslint")
 		vim.lsp.config("cssls", {
 			capabilities = capabilities,
 		})
 		vim.lsp.enable("cssls")
-		vim.lsp.enable("cssmodules_ls")
-		vim.lsp.enable("tailwindcss")
-		vim.lsp.enable("emmet_language_server")
 		vim.lsp.config("ansiblels", {
 			settings = {
 				ansible = {
@@ -36,8 +31,6 @@ return {
 				},
 			},
 		})
-		vim.lsp.enable("ansiblels")
-		vim.lsp.enable("dockerls")
 		vim.lsp.config("yamlls", {
 			settings = {
 				yaml = {
@@ -62,9 +55,6 @@ return {
 				},
 			},
 		})
-		vim.lsp.enable("yamlls")
-		vim.lsp.enable("pyright")
-		vim.lsp.enable("bashls")
 		vim.lsp.config("lua_ls", {
 			settings = {
 				Lua = {
@@ -74,7 +64,18 @@ return {
 				},
 			},
 		})
+
+		vim.lsp.enable("ts_ls")
+		vim.lsp.enable("eslint")
+		vim.lsp.enable("cssmodules_ls")
+		vim.lsp.enable("tailwindcss")
+		vim.lsp.enable("emmet_language_server")
 		vim.lsp.enable("lua_ls")
+		vim.lsp.enable("yamlls")
+		vim.lsp.enable("ansiblels")
+		vim.lsp.enable("dockerls")
+		vim.lsp.enable("pyright")
+		vim.lsp.enable("bashls")
 		vim.lsp.enable("jsonls")
 		vim.lsp.enable("prismals")
 		vim.lsp.enable("intelephense")
