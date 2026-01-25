@@ -34,6 +34,14 @@ return {
 
 		require("telescope").setup({
 			defaults = {
+				layout_strategy = "vertical",
+				sorting_strategy = "ascending",
+				layout_config = {
+					height = vim.o.lines,
+					width = vim.o.columns,
+					prompt_position = "top",
+					preview_height = 0.6,
+				},
 				-- Remove the ripgrep indentation
 				vimgrep_arguments = {
 					"rg",
