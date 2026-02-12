@@ -1,17 +1,11 @@
 return {
-	"folke/tokyonight.nvim",
-	lazy = false,
+	"navarasu/onedark.nvim",
 	priority = 1000,
 	config = function()
-		require("tokyonight").setup({
-			style = "moon",
-			transparent = true, -- Enable transparent background
-			terminal_colors = true, -- Enable terminal colors
-			styles = {
-				sidebars = "transparent", -- Transparent sidebars
-				floats = "transparent", -- Transparent floating windows
-			},
+		require("onedark").setup({
+			style = "darker",
+			transparent = true,
 		})
-		vim.cmd("colorscheme tokyonight-moon")
+		require("onedark").load()
 	end,
 }
