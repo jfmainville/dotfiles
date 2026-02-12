@@ -15,7 +15,7 @@ else
 fi
 
 # See Color formatting section below for details on what colors can be used here.
-TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR="#A0A7CB"
+TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR="#ABF782"
 TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR="#1A1B26"
 # shellcheck disable=SC2034
 TMUX_POWERLINE_SEG_AIR_COLOR=$(air_color)
