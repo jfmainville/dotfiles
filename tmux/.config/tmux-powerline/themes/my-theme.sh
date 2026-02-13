@@ -15,7 +15,7 @@ else
 fi
 
 # See Color formatting section below for details on what colors can be used here.
-TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR="#ABF782"
+TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR="#B89EF7"
 TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR="#1A1B26"
 # shellcheck disable=SC2034
 TMUX_POWERLINE_SEG_AIR_COLOR=$(air_color)
@@ -106,7 +106,7 @@ if [ -z "$TMUX_POWERLINE_LEFT_STATUS_SEGMENTS" ]; then
 		#"vcs_branch 29 88"
 		#"vcs_compare 60 255"
 		#"vcs_staged 64 255"
-		#"vcs_modified 9 255"
+		"vcs_modified #E4E4E4 #080808"
 		#"vcs_others 245 0"
 	)
 fi
@@ -122,15 +122,15 @@ if [ -z "$TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS" ]; then
 		#"cpu 240 136"
 		#"load 237 167"
 		#"tmux_mem_cpu_load 234 136"
+		"battery #E4E4E4 #080808"
 		"kubernetes_context ${TMUX_POWERLINE_BACKGROUND_COLOR} ${TMUX_POWERLINE_FOREGROUND_COLOR}"
 		#"air ${TMUX_POWERLINE_SEG_AIR_COLOR} 255"
-		# "weather #E4E4E4 #080808"
+		"weather #E4E4E4 #080808"
 		#"rainbarf 0 ${TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR}"
 		#"xkb_layout 125 117"
-		#"date_day 235 216"
+		"date_day ${TMUX_POWERLINE_BACKGROUND_COLOR} ${TMUX_POWERLINE_FOREGROUND_COLOR}"
 		#"time 235 216"
 		#"utc_time ${TMUX_POWERLINE_BACKGROUND_COLOR} ${TMUX_POWERLINE_FOREGROUND_COLOR}"
-    #"date ${TMUX_POWERLINE_BACKGROUND_COLOR} ${TMUX_POWERLINE_FOREGROUND_COLOR}"
-		#"battery 149 234"
+    "date ${TMUX_POWERLINE_BACKGROUND_COLOR} ${TMUX_POWERLINE_FOREGROUND_COLOR}"
 	)
 fi
