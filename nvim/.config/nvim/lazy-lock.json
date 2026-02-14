@@ -14,6 +14,7 @@
   "fugitive-azure-devops.vim": { "branch": "master", "commit": "f5fc65a35a08662f8f3b1df457cc37597004f43a" },
   "gitsigns.nvim": { "branch": "main", "commit": "31217271a7314c343606acb4072a94a039a19fb5" },
   "harpoon": { "branch": "harpoon2", "commit": "87b1a3506211538f460786c23f98ec63ad9af4e5" },
+  "inc-rename.nvim": { "branch": "main", "commit": "2597bccb57d1b570fbdbd4adf88b955f7ade715b" },
   "indent-blankline.nvim": { "branch": "master", "commit": "005b56001b2cb30bfa61b7986bc50657816ba4ba" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "lualine.nvim": { "branch": "master", "commit": "47f91c416daef12db467145e16bed5bbfe00add8" },

@@ -75,6 +75,46 @@ return {
 		},
 		{
 			mode = "n",
+			"<leader>gh",
+			function()
+				vim.cmd("Gitsigns stage_hunk")
+				vim.cmd("Gitsigns preview_hunk_inline")
+
+				vim.defer_fn(function()
+					local commit_message = vim.fn.input("Commit Message: ")
+					if commit_message == "" then
+						return
+					end
+					local success_commit_message = vim.cmd('Git commit -m "' .. commit_message .. '"')
+					if not success_commit_message then
+						return
+					end
+				end, 100)
+			end,
+			"",
+			desc = "Quick commit the current hunk using vim-fugitive",
+		},
+		{
+			mode = "n",
+			"<leader>ga",
+			function()
+				vim.cmd("Git add %")
+
+				vim.defer_fn(function()
+					local commit_message = vim.fn.input("Commit Message: ")
+					if commit_message == "" then
+						return
+					end
+					local success_commit_message = vim.cmd('Git commit -m "' .. commit_message .. '"')
+					if not success_commit_message then
+						return
+					end
+				end, 100)
+			end,
+			desc = "Quick commit all the hunks in the current file using vim-fugitive",
+		},
+		{
+			mode = "n",
 			"<leader>gb",
 			function()
 				local checkout_branch = vim.fn.input("Source Branch: ")
