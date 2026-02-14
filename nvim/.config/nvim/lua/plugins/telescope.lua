@@ -5,16 +5,16 @@ return {
 		local builtin = require("telescope.builtin")
 
 		vim.keymap.set("n", "<leader>ff", function()
-			builtin.find_files()
+			builtin.find_files({ previewer = false })
 		end, {})
 		vim.keymap.set("n", "<leader>gf", function()
-			builtin.live_grep()
+			builtin.live_grep({ layout_strategy = "vertical" })
 		end, {})
 		vim.keymap.set("n", "<leader>fb", function()
-			builtin.buffers()
+			builtin.buffers({ previewer = false })
 		end, {})
 		vim.keymap.set("n", "<leader>fe", function()
-			builtin.find_files({ search_dirs = { "~/.config/nvim", "~/projects" } })
+			builtin.find_files({ previewer = false, search_dirs = { "~/.config/nvim", "~/projects" } })
 		end, {})
 		vim.keymap.set("n", "<leader>ge", function()
 			builtin.live_grep({ search_dirs = { "~/.config/nvim", "~/projects" } })
@@ -23,24 +23,28 @@ return {
 			require("telescope").extensions.aerial.aerial()
 		end, {})
 		vim.keymap.set("n", "<leader>fs", function()
-			builtin.current_buffer_fuzzy_find()
+			builtin.current_buffer_fuzzy_find({ layout_strategy = "vertical" })
 		end, {})
 		vim.keymap.set("n", "<leader>fo", function()
 			builtin.oldfiles({ only_cwd = true })
 		end, {})
 		vim.keymap.set("n", "<leader>fg", function()
-			builtin.git_status()
+			builtin.git_status({ layout_strategy = "vertical" })
 		end, {})
 
 		require("telescope").setup({
 			defaults = {
-				layout_strategy = "vertical",
 				sorting_strategy = "ascending",
 				layout_config = {
-					height = vim.o.lines,
-					width = vim.o.columns,
 					prompt_position = "top",
-					preview_height = 0.6,
+					vertical = {
+						width = 0.6,
+						height = 0.4,
+					},
+					horizontal = {
+						width = 0.6,
+						height = 0.4,
+					},
 				},
 				-- Remove the ripgrep indentation
 				vimgrep_arguments = {
