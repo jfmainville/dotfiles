@@ -5,7 +5,7 @@ return {
 		local builtin = require("telescope.builtin")
 
 		vim.keymap.set("n", "<leader>ff", function()
-			builtin.find_files({ previewer = false })
+			builtin.find_files({ layout_strategy = "vertical" })
 		end, {})
 		vim.keymap.set("n", "<leader>gf", function()
 			builtin.live_grep({ layout_strategy = "vertical" })
