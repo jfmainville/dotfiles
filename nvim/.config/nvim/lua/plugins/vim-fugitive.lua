@@ -44,7 +44,7 @@ return {
 			mode = "n",
 			"<leader>gl",
 			function()
-				local branch_name = vim.fn.input("Source Branch: ")
+				local branch_name = vim.fn.input("Source Branch Name: ")
 				if branch_name == "" then
 					return
 				end
@@ -117,7 +117,7 @@ return {
 			mode = "n",
 			"<leader>gb",
 			function()
-				local checkout_branch = vim.fn.input("Source Branch: ")
+				local checkout_branch = vim.fn.input("Source Branch Name: ")
 				if checkout_branch == "" then
 					return
 				end
@@ -127,7 +127,7 @@ return {
 				end
 				vim.cmd("Git pull --rebase --autostash")
 
-				local new_branch = vim.fn.input("New Branch: ")
+				local new_branch = vim.fn.input("New Branch Name: ")
 				if new_branch == "" then
 					return
 				end
