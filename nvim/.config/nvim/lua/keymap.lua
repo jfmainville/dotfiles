@@ -36,6 +36,9 @@ vim.keymap.set("n", "<leader>wh", "<C-w>s")
 vim.keymap.set("n", "<leader>s", "/")
 -- Close all the buffers and tabs except the one currently opened
 vim.keymap.set("n", "<leader>bd", "<cmd>%bd!|e#|bd#|tabo<CR>")
+-- Navigate between buffers
+vim.keymap.set("n", "<TAB>", "<cmd>bnext<CR>")
+vim.keymap.set("n", "<S-TAB>", "<cmd>bprevious<CR>")
 -- Navigate between windows
 vim.keymap.set("n", "<C-h>", [[<Cmd>wincmd h<CR>]])
 vim.keymap.set("n", "<C-j>", [[<Cmd>wincmd j<CR>]])
