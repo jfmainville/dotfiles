@@ -38,12 +38,12 @@ return {
 				layout_config = {
 					prompt_position = "top",
 					vertical = {
-						width = 0.6,
-						height = 0.4,
+						width = 0.8,
+						height = 0.8,
 					},
 					horizontal = {
-						width = 0.6,
-						height = 0.4,
+						width = 0.8,
+						height = 0.8,
 					},
 				},
 				-- Remove the ripgrep indentation
