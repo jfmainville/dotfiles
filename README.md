@@ -23,14 +23,14 @@ The following applications need to be installed on the local workstation to use 
 Once you installed all the required prerequisites, you can now proceed with the initialization of the providers and
 backend by completing the following steps:
 
-1. Install the `stow` application using the below command:
+1. Install the prerequisites using the below command:
 
 ```bash
 # MacOS
-brew install neovim tmux stow
+brew install neovim tmux stow ripgrep fzf
 
 # Debian/Ubuntu
-sudo apt-get install neovim tmux stow
+sudo apt-get install neovim tmux stow ripgrep fzf
 ```
 
 2. Execute the below command to download the repository to your local machine:
