@@ -123,7 +123,7 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)            | Utility          |
 | [treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context) | Utility          |
 | [trouble.nvim](https://github.com/folke/trouble.nvim)                            | Utility          |
-| [avante](https://github.com/yetone/avante.nvim)                                  | LLM              |
+| [sidekick](https://github.com/folke/sidekick.nvim)                                  | LLM              |
 | [nvim-lspconfig.nvim](https://github.com/neovim/nvim-lspconfig)                  | LSP              |
 | [mason.nvim](https://github.com/williamboman/mason.nvim)                         | LSP              |
 | [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)     | LSP              |
