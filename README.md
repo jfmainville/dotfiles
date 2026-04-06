@@ -27,7 +27,9 @@ backend by completing the following steps:
 
 ```bash
 # MacOS
-brew install neovim tmux stow ripgrep fzf
+brew install neovim tmux stow ripgrep fzf zsh zsh-autosuggestions zsh-syntax-highlighting jandedobbeleer/oh-my-posh/oh-my-posh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 
 # Debian/Ubuntu
 sudo apt-get install neovim tmux stow ripgrep fzf
@@ -35,7 +37,7 @@ sudo apt-get install neovim tmux stow ripgrep fzf
 
 2. Execute the below command to download the repository to your local machine:
 
-`git clone git@github.com:jfmainville/dotfiles.git ~`
+`git clone https://github.com/jfmainville/dotfiles.git`
 
 3. Navigate to the dotfiles repository directory:
 
@@ -46,7 +48,7 @@ sudo apt-get install neovim tmux stow ripgrep fzf
 ```bash
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 stow nvim tmux alacritty
-chmod + ~/dotfiles/init.sh
+chmod +x ~/dotfiles/init.sh
 ~/dotfiles/init.sh
 
 ```
@@ -79,6 +81,16 @@ The `oh-my-posh` folder contains the configuration files for the Oh My Posh term
 ```bash
 # Oh My Posh
 eval "$(oh-my-posh init zsh --config https://raw.githubusercontent.com/jfmainville/dotfiles/refs/heads/main/oh-my-posh/purist.omp.json)"
+```
+
+## Git
+
+To make sure that the git configuration is properly setup, execute the following `git` commands:
+
+```bash
+git config --global user.name "Jean-Frederic Mainville"
+git config --global user.email "jfmainville@outlook.com"
+git config --global --type bool push.autoSetupRemote true
 ```
 
 ## Plugins
