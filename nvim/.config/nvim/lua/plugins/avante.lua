@@ -34,30 +34,6 @@ return {
 		selector = {
 			provider = "telescope",
 		},
-		mappings = {
-			ask = "<leader>ca",
-			new_ask = "<leader>cn",
-			zen_mode = "<leader>cz",
-			edit = "<leader>ce",
-			refresh = "<leader>cr",
-			focus = "<leader>cf",
-			stop = "<leader>cS",
-			toggle = {
-				default = "<leader>ct",
-				debug = "<leader>cd",
-				selection = "<leader>cC",
-				suggestion = "<leader>cs",
-				repomap = "<leader>cR",
-			},
-			files = {
-				add_current = "<leader>cc",
-				add_all_buffers = "<leader>cB",
-			},
-			select_model = "<leader>c?",
-			select_history = "<leader>ch",
-			select_acp_model = "<leader>cM",
-			select_acp_mode = "<leader>cm",
-		},
 		shortcuts = {
 			{
 				name = "refactor",
