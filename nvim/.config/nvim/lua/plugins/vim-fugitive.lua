@@ -188,7 +188,7 @@ return {
 										.. diff,
 								},
 							},
-							max_tokens = 100,
+							max_tokens = 3000,
 							temperature = 0.2,
 							stream = false,
 						}),
