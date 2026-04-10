@@ -34,6 +34,11 @@ return {
 		selector = {
 			provider = "telescope",
 		},
+		windows = {
+			sidebar_header = {
+				enabled = false,
+			},
+		},
 		shortcuts = {
 			{
 				name = "refactor",
