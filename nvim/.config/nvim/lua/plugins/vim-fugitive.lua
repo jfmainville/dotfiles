@@ -176,7 +176,7 @@ return {
 							["Copilot-Integration-Id"] = "vscode-chat",
 						},
 						body = vim.json.encode({
-							model = "gpt-4o",
+							model = "gpt-4.1",
 							messages = {
 								{
 									role = "system",
