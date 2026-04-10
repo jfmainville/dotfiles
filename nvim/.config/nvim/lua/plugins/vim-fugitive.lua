@@ -140,6 +140,131 @@ return {
 		},
 	},
 	config = function()
+		-- Auto-generate a one-line commit message using Copilot
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = "gitcommit",
+			callback = function(ev)
+				local buf = ev.buf
+
+				-- Only trigger for new commits (first line must be empty)
+				local first_line = vim.api.nvim_buf_get_lines(buf, 0, 1, false)[1] or ""
+				if first_line ~= "" then
+					return
+				end
+
+				-- Get the staged diff; abort if nothing is staged
+				local diff = vim.fn.system("git diff --cached")
+				if vim.v.shell_error ~= 0 or vim.trim(diff) == "" then
+					return
+				end
+
+				-- Truncate diff to avoid exceeding token limits
+				if #diff > 8000 then
+					diff = diff:sub(1, 8000) .. "\n... (truncated)"
+				end
+
+				-- Inner function: call the Copilot chat-completions endpoint directly
+				local function generate(github_token)
+					local base_url = (github_token.endpoints and github_token.endpoints.api)
+						or "https://api.githubcopilot.com"
+					local curl = require("plenary.curl")
+
+					curl.post(base_url .. "/chat/completions", {
+						headers = {
+							["Authorization"] = "Bearer " .. github_token.token,
+							["Content-Type"] = "application/json",
+							["User-Agent"] = "GitHubCopilotChat/0.26.7",
+							["Editor-Version"] = "vscode/1.105.1",
+							["Editor-Plugin-Version"] = "copilot-chat/0.26.7",
+							["Copilot-Integration-Id"] = "vscode-chat",
+						},
+						body = vim.json.encode({
+							model = "gpt-4o",
+							messages = {
+								{
+									role = "system",
+									content = "You generate concise git commit messages following the Conventional Commits specification. Respond with a single-line commit message only. Add a scope as necessary. No explanations, no markdown, no quotes.",
+								},
+								{
+									role = "user",
+									content = "Generate a conventional commit message for the following staged changes:\n\n"
+										.. diff,
+								},
+							},
+							max_tokens = 100,
+							temperature = 0.2,
+							stream = false,
+						}),
+						callback = vim.schedule_wrap(function(response)
+							if not vim.api.nvim_buf_is_valid(buf) then
+								return
+							end
+
+							if response.status ~= 200 then
+								vim.notify(
+									"avante: failed to generate commit message (HTTP "
+										.. tostring(response.status)
+										.. ")",
+									vim.log.levels.WARN
+								)
+								return
+							end
+
+							local ok, body = pcall(vim.json.decode, response.body)
+							if not ok or not body.choices or not body.choices[1] then
+								return
+							end
+
+							local message = vim.trim(body.choices[1].message.content or "")
+							-- Strip surrounding quotes when the model wraps the message in them
+							message = message:gsub('^"(.*)"$', "%1"):gsub("^'(.*)'$", "%1")
+
+							if message ~= "" then
+								-- Insert only when the user has not started typing yet
+								local current = vim.api.nvim_buf_get_lines(buf, 0, 1, false)[1] or ""
+								if current == "" then
+									vim.api.nvim_buf_set_lines(buf, 0, 1, false, { message })
+									local win = vim.fn.bufwinid(buf)
+									if win ~= -1 then
+										vim.api.nvim_win_set_cursor(win, { 1, #message })
+									end
+								end
+							end
+						end),
+					})
+				end
+
+				-- Load avante's copilot provider and ensure it is initialised
+				local ok, copilot = pcall(require, "avante.providers.copilot")
+				if not ok then
+					vim.notify("avante.nvim: copilot provider not available", vim.log.levels.WARN)
+					return
+				end
+
+				if not copilot._is_setup then
+					copilot.setup()
+				end
+
+				-- If the token is ready, generate immediately; otherwise retry once after a
+				-- short delay to allow the async token refresh triggered by setup() to complete
+				if copilot.state and copilot.state.github_token then
+					generate(copilot.state.github_token)
+				else
+					vim.defer_fn(function()
+						if copilot.state and copilot.state.github_token then
+							generate(copilot.state.github_token)
+						else
+							vim.notify(
+								"avante: copilot token not available, commit message not generated",
+								vim.log.levels.WARN
+							)
+						end
+					end, 1500)
+				end
+			end,
+			desc = "Auto-generate commit message using avante.nvim (GPT-4o via Copilot)",
+		})
+
 		-- Customize the vim-fugitive keymaps
 		vim.api.nvim_create_autocmd("FileType", {
 			pattern = { "fugitiveblame", "fugitive" },
