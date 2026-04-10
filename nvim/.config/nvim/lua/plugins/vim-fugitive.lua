@@ -140,7 +140,7 @@ return {
 		},
 	},
 	config = function()
-		-- Auto-generate a one-line commit message using Copilot
+		-- Auto-generate a one-line commit message using the GitHub Copilot API
 		vim.api.nvim_create_autocmd("FileType", {
 			pattern = "gitcommit",
 			callback = function(ev)
@@ -163,7 +163,6 @@ return {
 					diff = diff:sub(1, 8000) .. "\n... (truncated)"
 				end
 
-				-- Inner function: call the Copilot chat-completions endpoint directly
 				local function generate(github_token)
 					local base_url = (github_token.endpoints and github_token.endpoints.api)
 						or "https://api.githubcopilot.com"
@@ -174,8 +173,6 @@ return {
 							["Authorization"] = "Bearer " .. github_token.token,
 							["Content-Type"] = "application/json",
 							["User-Agent"] = "GitHubCopilotChat/0.26.7",
-							["Editor-Version"] = "vscode/1.105.1",
-							["Editor-Plugin-Version"] = "copilot-chat/0.26.7",
 							["Copilot-Integration-Id"] = "vscode-chat",
 						},
 						body = vim.json.encode({
@@ -262,7 +259,7 @@ return {
 					end, 1500)
 				end
 			end,
-			desc = "Auto-generate commit message using avante.nvim (GPT-4o via Copilot)",
+			desc = "Auto-generate commit messages using the GitHub Copilot API",
 		})
 
 		-- Customize the vim-fugitive keymaps
@@ -282,21 +279,6 @@ return {
 					end,
 				})
 			end,
-		})
-		vim.api.nvim_create_autocmd("User", {
-			pattern = "GitCommitPost",
-			callback = function(args)
-				for _, buf in ipairs(vim.fn.getbufinfo({ buflisted = 1 })) do
-					-- Only reload if the file has changed outside nvim
-					if vim.fn.getbufvar(buf.bufnr, "&mod") == 0 and vim.fn.getftime(buf.name) > 0 then
-						-- This opens the file in the buffer again, updating its contents
-						vim.api.nvim_buf_call(buf.bufnr, function()
-							vim.cmd("checktime")
-						end)
-					end
-				end
-			end,
-			desc = "Refresh Gitsigns after a commit",
 		})
 	end,
 }
