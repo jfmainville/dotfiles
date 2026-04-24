@@ -27,6 +27,9 @@ return {
 		},
 		provider = "copilot",
 		disabled_tools = { "web_search" },
+		behaviour = {
+			enable_token_counting = false,
+		},
 		selection = {
 			enabled = true,
 			hint_display = "none",
@@ -37,6 +40,9 @@ return {
 		windows = {
 			sidebar_header = {
 				enabled = false,
+			},
+			input = {
+				height = 10,
 			},
 		},
 		shortcuts = {
