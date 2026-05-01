@@ -29,7 +29,7 @@ return {
 				tabline = 1000,
 				winbar = 1000,
 			},
-			extensions = { "neo-tree", "lazy", "fugitive", "avante", "aerial", "mason" },
+			extensions = { "neo-tree", "lazy", "fugitive", "aerial", "mason" },
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = {
