@@ -101,7 +101,6 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | -------------------------------------------------------------------------------- | :--------------- |
 | [autotag](https://github.com/windwp/nvim-ts-autotag)                             | Utility          |
 | [aerial](https://github.com/stevearc/aerial.nvim)                                | LSP              |
-| [copilot.lua](https://github.com/zbirenbaum/copilot.lua)                         | LLM              |
 | [colorful-winsep](https://github.com/nvim-zh/colorful-winsep.nvim)               | Navigation       |
 | [telescope](https://github.com/nvim-telescope/telescope.nvim)                    | Navigator        |
 | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)            | Code Highlighter |
@@ -123,7 +122,6 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)            | Utility          |
 | [treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context) | Utility          |
 | [trouble.nvim](https://github.com/folke/trouble.nvim)                            | Utility          |
-| [sidekick](https://github.com/folke/sidekick.nvim)                                  | LLM              |
 | [nvim-lspconfig.nvim](https://github.com/neovim/nvim-lspconfig)                  | LSP              |
 | [mason.nvim](https://github.com/williamboman/mason.nvim)                         | LSP              |
 | [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)     | LSP              |
