@@ -82,6 +82,11 @@ return {
 		vim.lsp.enable("rust_analyzer")
 		vim.lsp.enable("terraformls")
 		vim.lsp.enable("tflint")
+		vim.lsp.config("typos_lsp", {
+			init_options = {
+				config = vim.fn.expand("~/.config/nvim/typos.toml"),
+			},
+		})
 		vim.lsp.enable("typos_lsp")
 		vim.lsp.enable("marksman")
 
