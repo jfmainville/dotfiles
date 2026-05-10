@@ -22,7 +22,11 @@ return {
 			"<CMD>Octo discussion list<CR>",
 			desc = "List GitHub Discussions",
 		},
-
+		{
+			"<leader>rc",
+			"<CMD>Octo review close<CR>",
+			desc = "Close current GitHub PR review window",
+		},
 		{
 			"<leader>on",
 			"<CMD>Octo notification list<CR>",
