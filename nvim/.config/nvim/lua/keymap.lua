@@ -6,7 +6,7 @@ vim.keymap.set("n", "<leader>wa", function()
 	vim.cmd("silent! wa")
 end)
 -- Save the current file
-vim.keymap.set("n", "<leader><leader>", function()
+vim.keymap.set("n", "<Space><Space>", function()
 	vim.cmd("silent! w")
 end)
 -- Keep the copied data in the clipboard after pasting
