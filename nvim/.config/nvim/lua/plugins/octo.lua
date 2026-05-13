@@ -44,5 +44,10 @@ return {
 	opts = {
 		picker = "telescope",
 		enable_builtin = true,
+		mappings = {
+			submit_win = {
+				approve_review = { lhs = "<leader>ra", desc = "approve review", mode = { "n" } },
+			},
+		},
 	},
 }
