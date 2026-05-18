@@ -8,3 +8,6 @@ cd ~/.local/share/nvim/lazy/telescope-fzf-native.nvim && make && cd -
 
 # Install the latest node version
 nvm install 22
+
+# Install the tree-sitter-cli NPM package
+npm install -g tree-sitter-cli
