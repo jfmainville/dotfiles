@@ -1,3 +1,7 @@
+-- Map the leader keymaps
+vim.g.mapleader = " "
+vim.g.maplocalleader = ","
+
 -- Enable highlighting of the current line
 vim.opt.cursorline = true
 

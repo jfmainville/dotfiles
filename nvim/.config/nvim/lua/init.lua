@@ -1,4 +1,3 @@
-require("keymap")
 require("set")
+require("keymap")
 require("config.lazy")
-require("utils.code-companion-lualine-spinner")
