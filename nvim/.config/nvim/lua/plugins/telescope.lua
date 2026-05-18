@@ -11,7 +11,12 @@ return {
 			builtin.live_grep({ layout_strategy = "vertical" })
 		end, {})
 		vim.keymap.set("n", "<leader>fb", function()
-			builtin.buffers({ previewer = false })
+			builtin.buffers({
+				layout_strategy = "vertical",
+				previewer = true,
+				sort_mru = true,
+				ignore_current_buffer = true,
+			})
 		end, {})
 		vim.keymap.set("n", "<leader>fe", function()
 			builtin.find_files({ previewer = false, search_dirs = { "~/.config/nvim", "~/projects" } })
