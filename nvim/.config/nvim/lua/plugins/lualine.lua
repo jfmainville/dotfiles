@@ -2,7 +2,6 @@ return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
-		local spinner = require("utils.code-companion-lualine-spinner")
 		local function show_macro_recording()
 			local recording_register = vim.fn.reg_recording()
 			if recording_register ~= "" then
@@ -62,7 +61,6 @@ return {
 					},
 				},
 				lualine_x = {
-					spinner,
 					{ "diagnostics", sources = { "nvim_diagnostic" } },
 					"fileformat",
 					{
