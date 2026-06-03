@@ -106,7 +106,7 @@ if [ -z "$TMUX_POWERLINE_LEFT_STATUS_SEGMENTS" ]; then
 		#"vcs_branch 29 88"
 		#"vcs_compare 60 255"
 		#"vcs_staged 64 255"
-		"vcs_modified #E4E4E4 #080808"
+		#"vcs_modified #E4E4E4 #080808"
 		#"vcs_others 245 0"
 	)
 fi
