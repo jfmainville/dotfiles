@@ -116,6 +116,9 @@ return {
 			},
 		})
 
+		-- Fix for pyright to prevent the constant notifications
+		vim.lsp.handlers["$/progress"] = function() end
+
 		vim.api.nvim_create_autocmd("LspAttach", {
 			desc = "LSP actions",
 			callback = function(event)
