@@ -112,6 +112,16 @@
             "command": "git log --pretty=format:%cr -1 || date +%H:%M:%S",
             "shell": "bash"
           }
+        },
+        {
+          "type": "executiontime",
+          "style": "plain",
+          "template": " {{ .FormattedMs }} ",
+          "options": {
+            "threshold": 500,
+            "style": "austin",
+            "always_enabled": true
+          }
         }
       ],
       "type": "prompt"
