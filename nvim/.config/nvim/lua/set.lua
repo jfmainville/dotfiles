@@ -67,3 +67,7 @@ vim.filetype.add({
 
 -- Set diagonal lines in place of deleted lines in diff-mode
 vim.opt.fillchars:append({ diff = "╱" })
+-- Set inline diagnostics configuration
+vim.diagnostic.config({
+	virtual_text = true,
+})
