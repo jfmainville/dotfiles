@@ -31,6 +31,12 @@
           "template": "\u279c "
         },
         {
+          "type": "session",
+          "style": "plain",
+          "foreground": "p:terminal-yellow",
+          "template": "{{ .HostName }} "
+        },
+        {
           "type": "path",
           "style": "plain",
           "foreground": "p:terminal-magenta",
