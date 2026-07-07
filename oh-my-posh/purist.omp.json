@@ -69,6 +69,12 @@
       "overflow": "hide",
       "segments": [
         {
+          "type": "kubectl",
+          "style": "plain",
+          "foreground": "p:light-sky-blue",
+          "template": " 󱃾 {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}} "
+        },
+        {
           "type": "node",
           "style": "plain",
           "foreground": "p:pistachio-green",
