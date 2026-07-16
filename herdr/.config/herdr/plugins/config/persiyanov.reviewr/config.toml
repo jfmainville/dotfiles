@@ -1,0 +1,11 @@
+theme = "gruvbox"
+base_branches = ["origin/main", "main", "master"]
+default_scope = "branch"
+navigator_position = "right"
+toggle_placement = "tab"
+toggle_direction = "down"
+auto_open = false
+
+[keybindings]
+next-hunk = ["]", "h"]
+prev-hunk = ["[", "H"]
