@@ -76,6 +76,7 @@ return {
 					"--glob=!**/__snapshots__/*",
 					"--glob=!**/pgsql/*",
 					"--glob=!**/.DStore/*",
+					"--glob=!**/.terragrunt-cache/*",
 				},
 			},
 			pickers = {
@@ -106,6 +107,7 @@ return {
 						"--glob=!**/__snapshots__/*",
 						"--glob=!**/pgsql/*",
 						"--glob=!**/.DStore/*",
+						"--glob=!**/.terragrunt-cache/*",
 					},
 				},
 			},
