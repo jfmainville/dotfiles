@@ -58,7 +58,7 @@ return {
 		{
 			mode = "n",
 			"<leader>gp",
-			"<cmd>Git push --quiet<CR>",
+			"<cmd>Git push<CR>",
 			desc = "Execute the git push command through vim-fugitive",
 		},
 		{
