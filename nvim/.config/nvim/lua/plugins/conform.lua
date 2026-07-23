@@ -36,6 +36,7 @@ return {
 				terraform = { "terraform_fmt" },
 				tf = { "terraform_fmt" },
 				["terraform-vars"] = { "terraform_fmt" },
+				hcl = { "hcl" },
 				markdown = { "prettier" },
 				cpp = { "clang-format" },
 				["*"] = { "trim_whitespace", "trim_newlines" },
