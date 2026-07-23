@@ -77,6 +77,7 @@ return {
 					"--glob=!**/pgsql/*",
 					"--glob=!**/.DStore/*",
 					"--glob=!**/.terragrunt-cache/*",
+					"--glob=!**/openspec/*",
 				},
 			},
 			pickers = {
@@ -108,6 +109,7 @@ return {
 						"--glob=!**/pgsql/*",
 						"--glob=!**/.DStore/*",
 						"--glob=!**/.terragrunt-cache/*",
+						"--glob=!**/openspec/*",
 					},
 				},
 			},
