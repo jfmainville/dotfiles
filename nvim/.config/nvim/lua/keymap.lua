@@ -46,3 +46,6 @@ end)
 vim.keymap.set("n", "<TAB>", "<cmd>cnext<CR>")
 vim.keymap.set("n", "<S-TAB>", "<cmd>cprev<CR>")
 vim.keymap.set("n", "<leader>co", "<cmd>copen<CR>")
+-- Center view when moving to the next (n) or previous (N) search result
+vim.keymap.set("n", "n", "nzzzv", { desc = "Center search next" })
+vim.keymap.set("n", "N", "Nzzzv", { desc = "Center search prev" })

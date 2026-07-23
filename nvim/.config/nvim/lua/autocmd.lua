@@ -11,3 +11,11 @@ vim.api.nvim_create_user_command("Browse", function(opts)
 		vim.fn.system({ opener, url })
 	end
 end, { nargs = 1 })
+
+-- Center first search result
+vim.api.nvim_create_autocmd("CmdlineEnter", {
+	pattern = "/",
+	callback = function()
+		vim.cmd("cnoremap <CR> <CR>zz")
+	end,
+})
