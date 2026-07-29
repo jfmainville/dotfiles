@@ -1,4 +1,4 @@
-theme = "gruvbox"
+theme = "dracula"
 base_branches = ["origin/main", "main", "master"]
 default_scope = "branch"
 navigator_position = "right"
