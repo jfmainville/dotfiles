@@ -105,7 +105,7 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | [telescope](https://github.com/nvim-telescope/telescope.nvim)                    | Navigator        |
 | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)            | Code Highlighter |
 | [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)       | Utility          |
-| [diffview](https://github.com/sindrets/diffview.nvim)                            | Utility          |
+| [codediff](https://github.com/esmuellert/codediff.nvim)                          | Utility          |
 | [undotree](https://github.com/mbbill/undotree)                                   | Utility          |
 | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)                      | Git              |
 | [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)              | Theme            |
