@@ -17,6 +17,6 @@ return {
 				return vim.tbl_contains(hidden, name)
 			end,
 		},
-		skip_confirm_for_simple_edits = false,
+		skip_confirm_for_simple_edits = true,
 	},
 }
