@@ -21,16 +21,10 @@ return {
 			desc = "Open the diffview for the current file",
 		},
 		{
-			mode = "n",
-			"<leader>dv",
-			"<Esc><Cmd>'<,'>CodeDiff history<CR>",
-			desc = "Open the diffview for the current visual lines",
-		},
-		{
 			mode = "v",
 			"<leader>dl",
-			"<Cmd>.CodeDiff history<CR>",
-			desc = "Open the diffview for the current line",
+			"<Esc><Cmd>'<,'>CodeDiff history<CR>",
+			desc = "Open the commit history for the current visual lines",
 		},
 		{
 			mode = "n",
