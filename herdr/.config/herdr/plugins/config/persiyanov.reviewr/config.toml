@@ -2,7 +2,7 @@ theme = "dracula"
 base_branches = ["origin/main", "main", "master"]
 default_scope = "branch"
 navigator_position = "bottom"
-toggle_placement = "tab"
+toggle_placement = "split"
 toggle_direction = "down"
 auto_open = false
 
