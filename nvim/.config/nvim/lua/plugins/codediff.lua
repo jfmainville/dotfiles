@@ -43,10 +43,15 @@ return {
 	},
 	opts = {
 		diff = {
-			layout = "side-by-side",
+			layout = "inline",
 		},
 		explorer = {
-			view_mode = "tree",
+			view_mode = "list",
+		},
+		keymaps = {
+			view = {
+				focus_explorer = "<leader>o",
+			},
 		},
 	},
 }
