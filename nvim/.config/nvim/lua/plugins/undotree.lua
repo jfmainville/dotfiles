@@ -8,7 +8,7 @@ return {
 				vim.cmd.UndotreeToggle()
 				vim.cmd.UndotreeFocus()
 			end,
-      desc = "Toggle the Undotree window",
+			desc = "Toggle the Undotree window",
 		},
 	},
 }
