@@ -124,5 +124,49 @@ return {
 			},
 		})
 		require("telescope").load_extension("fzf")
+
+		-- Add Telescope-based LSP pickers when an LSP attaches to a buffer.
+		vim.api.nvim_create_autocmd("LspAttach", {
+			group = vim.api.nvim_create_augroup("telescope-lsp-attach", { clear = true }),
+			callback = function(event)
+				local buf = event.buf
+
+				-- Find references for the word under the cursor.
+				vim.keymap.set("n", "grr", function()
+					builtin.lsp_references({ layout_strategy = "vertical" })
+				end, { buffer = buf, desc = "[G]oto [R]eferences" })
+
+				-- Jump to the implementation of the word under the cursor.
+				-- Useful when the language has ways of declaring types without an actual implementation.
+				vim.keymap.set("n", "gri", function()
+					builtin.lsp_implementations({ layout_strategy = "vertical" })
+				end, { buffer = buf, desc = "[G]oto [I]mplementation" })
+
+				-- Jump to the definition of the word under the cursor.
+				-- This is where a variable was first declared, or where a function is defined, etc.
+				-- To jump back, press <C-t>.
+				vim.keymap.set("n", "grd", function()
+					builtin.lsp_definitions({ layout_strategy = "vertical" })
+				end, { buffer = buf, desc = "[G]oto [D]efinition" })
+
+				-- Fuzzy find all the symbols in the current document.
+				-- Symbols are things like variables, functions, types, etc.
+				vim.keymap.set("n", "gO", function()
+					builtin.lsp_document_symbols({ layout_strategy = "vertical" })
+				end, { buffer = buf, desc = "Open Document Symbols" })
+
+				-- Fuzzy find all the symbols in the current workspace.
+				-- Similar to document symbols, except searches over the entire project.
+				vim.keymap.set("n", "gW", function()
+					builtin.lsp_dynamic_workspace_symbols({ layout_strategy = "vertical" })
+				end, { buffer = buf, desc = "Open Workspace Symbols" })
+
+				-- Jump to the type of the word under the cursor.
+				-- the definition of its *type*, not where it was *defined*.
+				vim.keymap.set("n", "grt", function()
+					builtin.lsp_type_definitions({ layout_strategy = "vertical" })
+				end, { buffer = buf, desc = "[G]oto [T]ype Definition" })
+			end,
+		})
 	end,
 }
