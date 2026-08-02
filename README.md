@@ -101,7 +101,6 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | -------------------------------------------------------------------------------- | :--------------- |
 | [autotag](https://github.com/windwp/nvim-ts-autotag)                             | Utility          |
 | [aerial](https://github.com/stevearc/aerial.nvim)                                | LSP              |
-| [colorful-winsep](https://github.com/nvim-zh/colorful-winsep.nvim)               | Navigation       |
 | [telescope](https://github.com/nvim-telescope/telescope.nvim)                    | Navigator        |
 | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)            | Code Highlighter |
 | [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)       | Utility          |
@@ -111,15 +110,11 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)              | Theme            |
 | [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)                | Utility          |
 | [Comment.nvim](https://github.com/numToStr/Comment.nvim)                         | Utility          |
-| [flash.nvim](https://github.com/folke/flash.nvim)                                | Navigation       |
 | [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)                     | Theme            |
 | [vim-fugitive](https://github.com/tpope/vim-fugitive)                            | Git              |
 | [conform.nvim](https://github.com/stevearc/conform.nvim)                         | Formatter        |
 | [render-markdown](https://github.com/MeanderingProgrammer/render-markdown.nvim)  | Utility          |
 | [noice](https://github.com/folke/noice.nvim)                                     | Utility          |
-| [neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim)                       | Utility          |
-| [nvim-notify](https://github.com/rcarriga/nvim-notify)                           | Utility          |
-| [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)            | Utility          |
 | [treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context) | Utility          |
 | [trouble.nvim](https://github.com/folke/trouble.nvim)                            | Utility          |
 | [nvim-lspconfig.nvim](https://github.com/neovim/nvim-lspconfig)                  | LSP              |
@@ -128,3 +123,7 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | [blink.cmp](https://github.com/saghen/blink.cmp)                                 | LSP              |
 | [LuaSnip](https://github.com/L3MON4D3/LuaSnip)                                   | Snippets         |
 | [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)             | Snippets         |
+| [oil.nvim](https://github.com/stevearc/oil.nvim)                                 | Navigator        |
+| [octo.nvim](https://github.com/pwntester/octo.nvim)                              | Git              |
+| [fluovibe.nvim](https://github.com/jfmainville/fluovibe.nvim)                    | Theme            |
+| [nudge.nvim](https://github.com/jfmainville/nudge.nvim)                          | Utility          |
