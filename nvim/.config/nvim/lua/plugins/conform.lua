@@ -51,27 +51,27 @@ return {
 			cwd = require("conform.util").root_file({ ".editorconfig", "package.json" }),
 			-- When cwd is not found, don't run the formatter (default false)
 			require_cwd = true,
+		})
 
-			-- Commands for toggling formmatting
-			vim.api.nvim_create_user_command("ConformDisable", function(args)
-				if args.bang then
-					-- :ConformDisable! disables autoformat for this buffer only
-					vim.b.disable_autoformat = true
-				else
-					-- :ConformDisable disables autoformat globally
-					vim.g.disable_autoformat = true
-				end
-			end, {
-				desc = "Disable autoformat-on-save",
-				bang = true, -- allows the ! variant
-			}),
+		-- Commands for toggling formmatting
+		vim.api.nvim_create_user_command("ConformDisable", function(args)
+			if args.bang then
+				-- :ConformDisable! disables autoformat for this buffer only
+				vim.b.disable_autoformat = true
+			else
+				-- :ConformDisable disables autoformat globally
+				vim.g.disable_autoformat = true
+			end
+		end, {
+			desc = "Disable autoformat-on-save",
+			bang = true, -- allows the ! variant
+		})
 
-			vim.api.nvim_create_user_command("ConformEnable", function()
-				vim.b.disable_autoformat = false
-				vim.g.disable_autoformat = false
-			end, {
-				desc = "Re-enable autoformat-on-save",
-			}),
+		vim.api.nvim_create_user_command("ConformEnable", function()
+			vim.b.disable_autoformat = false
+			vim.g.disable_autoformat = false
+		end, {
+			desc = "Re-enable autoformat-on-save",
 		})
 	end,
 }
