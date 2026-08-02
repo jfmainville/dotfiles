@@ -4,8 +4,7 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		"nvim-tree/nvim-web-devicons",
 	},
-
-	opts = function()
+	config = function()
 		require("aerial").setup({
 			filter_kind = false,
 			-- optionally use on_attach to set keymaps when aerial has attached to a buffer
@@ -14,7 +13,7 @@ return {
 				vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
 				vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
 			end,
-			vim.keymap.set("n", "<leader>zz", "<cmd>AerialNavToggle<CR>"),
 		})
+		vim.keymap.set("n", "<leader>zz", "<cmd>AerialNavToggle<CR>", { desc = "Toggle Aerial nav" })
 	end,
 }
