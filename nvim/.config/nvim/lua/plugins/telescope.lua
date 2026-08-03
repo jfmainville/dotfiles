@@ -10,6 +10,9 @@ return {
 		vim.keymap.set("n", "<leader>gf", function()
 			builtin.live_grep({ layout_strategy = "vertical" })
 		end, {})
+		vim.keymap.set("n", "<leader>gr", function()
+			builtin.live_grep({ default_text = vim.fn.expand("<cword>"), layout_strategy = "vertical" })
+		end, {})
 		vim.keymap.set("n", "<leader>fb", function()
 			builtin.buffers({
 				layout_strategy = "vertical",
