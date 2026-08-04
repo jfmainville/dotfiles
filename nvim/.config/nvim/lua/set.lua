@@ -48,7 +48,7 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 -- Copy the buffer clipboard to the system clipboard
-vim.opt.clipboard = "unnamed"
+vim.opt.clipboard = "unnamedplus"
 
 -- Improve search text highlighting
 vim.on_key(function(char)
