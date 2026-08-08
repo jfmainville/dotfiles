@@ -1,6 +1,6 @@
 return {
 	"emrearmagan/atlas.nvim",
-	dir = "~/projects/atlas.nvim", -- For development only
+	-- dir = "~/projects/atlas.nvim", -- For development only
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
 		"MeanderingProgrammer/render-markdown.nvim",
