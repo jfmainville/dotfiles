@@ -1,6 +1,5 @@
 theme = "dracula"
-base_branches = ["origin/main", "main", "master"]
-default_scope = "branch"
+default_scope = "uncommitted"
 navigator_position = "bottom"
 toggle_placement = "tab"
 toggle_direction = "down"
