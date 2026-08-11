@@ -28,13 +28,13 @@ return {
 						{
 							name = "Me",
 							key = "1",
-							layout = "plain",
+							layout = "compact",
 							search = "author:@me assignee:@me sort:updated-desc",
 						},
 						{
 							name = "Team",
 							key = "2",
-							layout = "plain",
+							layout = "compact",
 							search = "assignee:@me assignee:mbonin_gswc assignee:fbgirard_gswc assignee:pbtrudel_gswc assignee:pojasmin_gswc org:sherweb-operations org:sherweb-development sort:updated-desc",
 						},
 					},
