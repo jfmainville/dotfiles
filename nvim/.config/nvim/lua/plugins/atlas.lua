@@ -13,6 +13,12 @@ return {
 			"<cmd>AtlasPulls<cr>",
 			desc = "Open the list of PRs",
 		},
+		{
+			mode = "n",
+			"<leader>oc",
+			"<cmd>AtlasCreatePR<cr>",
+			desc = "Create a new PR",
+		},
 	},
 	opts = {
 		pulls = {
