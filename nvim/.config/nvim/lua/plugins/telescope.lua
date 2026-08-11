@@ -4,11 +4,67 @@ return {
 	config = function()
 		local builtin = require("telescope.builtin")
 
+		local function live_grep_with_glob(opts)
+			opts = opts or {}
+			opts.cwd = opts.cwd and vim.fn.expand(opts.cwd) or vim.uv.cwd()
+
+			local finders = require("telescope.finders")
+			local pickers = require("telescope.pickers")
+			local sorters = require("telescope.sorters")
+			local make_entry = require("telescope.make_entry")
+			local conf = require("telescope.config").values
+			local flatten = require("telescope.utils").flatten
+
+			local base_args = flatten({ conf.vimgrep_arguments, { "--hidden" } })
+
+			local grepper = finders.new_job(function(prompt)
+				if not prompt or prompt == "" then
+					return nil
+				end
+
+				-- Split the prompt into space-separated words, then peel off any
+				-- trailing words that look like glob patterns (start with "*"),
+				-- e.g. "*.md" for an extension filter or "*plugins/*" for a
+				-- partial path filter. What's left is the actual search text.
+				local words = {}
+				for w in prompt:gmatch("%S+") do
+					table.insert(words, w)
+				end
+
+				local globs = {}
+				while #words > 0 and words[#words]:sub(1, 1) == "*" do
+					table.insert(globs, 1, table.remove(words))
+				end
+
+				local search = table.concat(words, " ")
+				if search == "" then
+					return nil
+				end
+
+				local args = vim.deepcopy(base_args)
+				for _, g in ipairs(globs) do
+					table.insert(args, "--glob=" .. g)
+				end
+
+				return flatten({ args, "--", search })
+			end, opts.entry_maker or make_entry.gen_from_vimgrep(opts), nil, opts.cwd)
+
+			pickers
+				.new(opts, {
+					prompt_title = "Live Grep (filter: <query> *.ext / *path*)",
+					finder = grepper,
+					previewer = conf.grep_previewer(opts),
+					sorter = sorters.highlighter_only(opts),
+					push_cursor_on_edit = true,
+				})
+				:find()
+		end
+
 		vim.keymap.set("n", "<leader>ff", function()
 			builtin.find_files({ layout_strategy = "vertical" })
 		end, {})
 		vim.keymap.set("n", "<leader>gf", function()
-			builtin.live_grep({ layout_strategy = "vertical" })
+			live_grep_with_glob({ layout_strategy = "vertical" })
 		end, {})
 		vim.keymap.set("n", "<leader>gr", function()
 			builtin.live_grep({ default_text = vim.fn.expand("<cword>"), layout_strategy = "vertical" })
