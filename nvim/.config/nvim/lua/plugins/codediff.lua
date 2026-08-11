@@ -23,8 +23,8 @@ return {
 		{
 			mode = "v",
 			"<leader>dl",
-			"<Esc><Cmd>'<,'>CodeDiff history<CR>",
-			desc = "Open the commit history for the current visual lines",
+			"<Esc><Cmd>'<,'>CodeDiff history %<CR>",
+			desc = "Open the git history for the currently selected visual lines",
 		},
 		{
 			mode = "n",
