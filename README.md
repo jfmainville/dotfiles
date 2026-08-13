@@ -12,9 +12,14 @@ The following applications need to be installed on the local workstation to use 
 
 | Application        | Minimum Version | Link                                                            |
 | :----------------- | :-------------: | :-------------------------------------------------------------- |
-| neovim             |     0.9.5 +     | [Link](https://github.com/neovim/neovim/blob/master/INSTALL.md) |
+| neovim             |     0.11 +      | [Link](https://github.com/neovim/neovim/blob/master/INSTALL.md) |
+| nvm                |     0.39 +      | [Link](https://github.com/nvm-sh/nvm)                           |
 | brew (MacOS only)  |    4.3.21 +     | [Link](https://brew.sh/)                                        |
 | WSL (Windows only) |    2.3.26 +     | [Link](https://github.com/microsoft/WSL)                        |
+
+> Neovim `0.11` or later is required: the LSP setup in `nvim/.config/nvim/lua/plugins/mason.lua` uses the
+> `vim.lsp.config()` / `vim.lsp.enable()` API, and `nvim-treesitter` is pinned to its `main` branch. `nvm` is required
+> because `init.sh` uses it to install Node and the `tree-sitter-cli` package.
 
 ### Initialization
 
@@ -43,24 +48,25 @@ sudo apt-get install neovim tmux stow ripgrep fzf
 
 `cd ~/dotfiles`
 
-4. To complete the install of all the necessary dependencies for Neovim, execute the following bash script as `root`:
+4. To complete the install of all the necessary dependencies for Neovim, symlink the configuration files and execute
+   the following bash script as your regular user (it calls `sudo` where needed):
 
 ```bash
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-stow nvim tmux alacritty
+stow nvim tmux alacritty herdr
 chmod +x ~/dotfiles/init.sh
 ~/dotfiles/init.sh
 
 ```
 
-5. Execute the following command to complete the installation of the Telescope FZF extension plugin:
+5. Open the Neovim application and load all the plugins using the `Lazy` command
+
+6. If the Telescope FZF extension fails to load, build it manually (`init.sh` already runs this step):
 
 ```bash
 cd ~/.local/share/nvim/lazy/telescope-fzf-native.nvim && make && cd -
 
 ```
-
-6. Open the Neovim application and load all the plugins using the `Lazy` command
 
 ## Folder Structure
 
@@ -73,6 +79,10 @@ The table below presents the folder structure for this repository:
 | oh-my-posh | Contains the Oh My Posh configuration files        |
 | tmux       | Contains the Tmux configuration files              |
 | alacritty  | Contains the alacritty terminal configuration file |
+| herdr      | Contains the Herdr terminal multiplexer config     |
+
+Every folder except `fonts` and `oh-my-posh` is a [GNU Stow](https://www.gnu.org/software/stow/) package: its contents
+mirror the target tree under `$HOME`, so `stow nvim` symlinks `nvim/.config/nvim` to `~/.config/nvim`.
 
 ## Oh My Posh
 
@@ -92,6 +102,12 @@ git config --global user.name "Jean-Frederic Mainville"
 git config --global user.email "jfmainville@outlook.com"
 git config --global --type bool push.autoSetupRemote true
 ```
+
+## Neovim
+
+The Neovim configuration is managed with [lazy.nvim](https://github.com/folke/lazy.nvim) and lives in
+`nvim/.config/nvim`. See [its README](nvim/.config/nvim/README.md) for the module load order, the folder layout, where
+the LSP servers are declared, and how to add a new plugin.
 
 ## Plugins
 
@@ -124,6 +140,11 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | [LuaSnip](https://github.com/L3MON4D3/LuaSnip)                                   | Snippets         |
 | [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)             | Snippets         |
 | [oil.nvim](https://github.com/stevearc/oil.nvim)                                 | Navigator        |
-| [octo.nvim](https://github.com/pwntester/octo.nvim)                              | Git              |
+| [atlas.nvim](https://github.com/emrearmagan/atlas.nvim)                          | Git              |
 | [fluovibe.nvim](https://github.com/jfmainville/fluovibe.nvim)                    | Theme            |
 | [nudge.nvim](https://github.com/jfmainville/nudge.nvim)                          | Utility          |
+| [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)                         | Utility          |
+| [nui.nvim](https://github.com/MunifTanjim/nui.nvim)                              | Utility          |
+| [telescope-fzf-native](https://github.com/nvim-telescope/telescope-fzf-native.nvim) | Navigator     |
+| [vim-rhubarb](https://github.com/tpope/vim-rhubarb)                              | Git              |
+| [fugitive-azure-devops](https://github.com/cedarbaum/fugitive-azure-devops.vim)  | Git              |
