@@ -115,6 +115,18 @@ return {
 		},
 		{
 			mode = "n",
+			"<leader>gv",
+			function()
+				local branch = vim.fn.input("Target branch: ")
+				if branch == "" then
+					return
+				end
+				vim.cmd("Git diff " .. branch .. "...HEAD")
+			end,
+			desc = "Show the diff of the current branch against a target branch in a split",
+		},
+		{
+			mode = "n",
 			"<leader>gb",
 			function()
 				local checkout_branch = vim.fn.input("Source Branch Name: ")
