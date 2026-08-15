@@ -46,5 +46,26 @@ return {
 				github = {},
 			},
 		},
+		keymaps = {
+			ui = {
+				submit = "<leader><leader>",
+			},
+			pulls = {
+				review = {
+					explorer = {
+						next_file = { "f", "<Tab>" },
+						previous_file = { "F", "<S-Tab>" },
+						next_unreviewed_file = "un",
+						previous_unreviewed_file = "up",
+					},
+					diff = {
+						next_hunk = "h",
+						previous_hunk = "H",
+						next_comment = "gcn",
+						previous_comment = "gcp",
+					},
+				},
+			},
+		},
 	},
 }
