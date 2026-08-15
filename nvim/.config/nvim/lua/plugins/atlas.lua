@@ -10,13 +10,13 @@ return {
 		{
 			mode = "n",
 			"<leader>op",
-			"<cmd>AtlasPulls<cr>",
+			"<cmd>Atlas pulls<cr>",
 			desc = "Open the list of PRs",
 		},
 		{
 			mode = "n",
 			"<leader>oc",
-			"<cmd>AtlasCreatePR<cr>",
+			"<cmd>Atlas create pr<cr>",
 			desc = "Create a new PR",
 		},
 	},
