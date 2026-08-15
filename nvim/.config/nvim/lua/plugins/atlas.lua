@@ -22,6 +22,8 @@ return {
 	},
 	opts = {
 		pulls = {
+			default_merge_method = "squash",
+			default_delete_branch = true,
 			providers = {
 				github = {
 					views = {
