@@ -24,6 +24,10 @@ return {
 		pulls = {
 			default_merge_method = "squash",
 			default_delete_branch = true,
+			explorer = {
+				show_commits = true,
+				initial_focus = "diff",
+			},
 			providers = {
 				github = {
 					views = {
