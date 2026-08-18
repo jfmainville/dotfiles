@@ -44,7 +44,7 @@ return {
 							name = "Team",
 							key = "2",
 							layout = "compact",
-							search = "assignee:@me assignee:mbonin_gswc assignee:fbgirard_gswc assignee:pbtrudel_gswc assignee:pojasmin_gswc org:sherweb-operations org:sherweb-development sort:updated-desc",
+							search = "assignee:mbonin_gswc assignee:fbgirard_gswc assignee:pbtrudel_gswc assignee:pojasmin_gswc org:sherweb-operations org:sherweb-development sort:updated-desc",
 						},
 					},
 				},
