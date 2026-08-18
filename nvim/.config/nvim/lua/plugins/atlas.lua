@@ -24,6 +24,9 @@ return {
 		pulls = {
 			default_merge_method = "squash",
 			default_delete_branch = true,
+			diff = {
+				show_review_panel = true,
+			},
 			explorer = {
 				show_commits = true,
 				initial_focus = "diff",
