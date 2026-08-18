@@ -57,7 +57,7 @@ return {
 		},
 		keymaps = {
 			ui = {
-				submit = "<leader><leader>",
+				submit = "<C-s>",
 			},
 			pulls = {
 				review = {
