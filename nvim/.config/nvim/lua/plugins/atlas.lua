@@ -31,6 +31,13 @@ return {
 					initial_focus = "diff",
 				},
 			},
+			repo_config = {
+				paths = {
+					["jfmainville/*"] = "~/projects/*",
+					["nuagir/*"] = "~/projects/*",
+					["sherweb-development/*"] = "~/projects/*",
+					["sherweb-operations/*"] = "~/projects/*",
+				},
 			},
 			providers = {
 				github = {
