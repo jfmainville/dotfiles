@@ -26,10 +26,11 @@ return {
 			default_delete_branch = true,
 			diff = {
 				show_review_panel = true,
+				explorer = {
+					show_commits = true,
+					initial_focus = "diff",
+				},
 			},
-			explorer = {
-				show_commits = true,
-				initial_focus = "diff",
 			},
 			providers = {
 				github = {
