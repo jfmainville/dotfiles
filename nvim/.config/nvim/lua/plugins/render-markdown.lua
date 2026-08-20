@@ -12,6 +12,8 @@ return {
 			},
 		},
 		ft = { "markdown", "codecompanion" },
-		opts = {},
+		opts = {
+			latex = { enabled = false },
+		},
 	},
 }
