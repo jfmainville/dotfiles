@@ -38,7 +38,7 @@ return {
 				tabline = 1000,
 				winbar = 1000,
 			},
-			extensions = { "neo-tree", "lazy", "fugitive", "aerial", "mason" },
+			extensions = { "oil", "lazy", "fugitive", "aerial", "mason", "quickfix", "trouble" },
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = {
