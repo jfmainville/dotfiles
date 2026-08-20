@@ -17,7 +17,17 @@ return {
 				section_separators = { left = "", right = "" },
 			},
 			disabled_filetypes = {
-				statusline = {},
+				statusline = {
+					"atlas",
+					"atlas-detail",
+					"atlas-picker",
+					"atlas-notifications",
+					"atlas-logs",
+					"atlas-review",
+					"atlas-review-thread",
+					"atlas-diff-files",
+					"atlas-diff-commits",
+				},
 				winbar = {},
 			},
 			ignore_focus = {},
