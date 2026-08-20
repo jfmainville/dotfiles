@@ -32,6 +32,7 @@ return {
 			"c",
 			"lua",
 			"php",
+			"regex",
 			"sql",
 			"vim",
 			"vimdoc",
