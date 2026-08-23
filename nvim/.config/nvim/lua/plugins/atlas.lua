@@ -19,6 +19,21 @@ return {
 			"<cmd>Atlas create pr<cr>",
 			desc = "Create a new PR",
 		},
+		{
+			mode = "n",
+			"<leader>or",
+			function()
+				local pr_url = vim.fn.input("PR URL: ")
+				if pr_url == "" then
+					return
+				end
+				local success_pr_url = vim.cmd("Atlas review " .. pr_url)
+				if not success_pr_url then
+					return
+				end
+			end,
+			desc = "Complete a PR review from an URL",
+		},
 	},
 	opts = {
 		pulls = {
