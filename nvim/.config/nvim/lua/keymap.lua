@@ -29,8 +29,9 @@ vim.keymap.set("v", ">", ">gv")
 -- Keymaps to open vertical and horizontal splits
 vim.keymap.set("n", "<leader>wv", "<C-w>v")
 vim.keymap.set("n", "<leader>wh", "<C-w>s")
--- Add an additional search pattern keymap
-vim.keymap.set("n", "s", "/")
+-- Keymaps for searching forward and backward
+vim.keymap.set("n", "<leader>s", "/")
+vim.keymap.set("n", "<leader>S", "?")
 -- Close all the buffers and tabs except the one currently opened
 vim.keymap.set("n", "<leader>bd", "<cmd>%bd!|e#|bd#|tabo<CR>")
 -- Navigate between windows
