@@ -84,7 +84,9 @@ return {
 			},
 			pulls = {
 				review = {
+					find_file = "<leader>of",
 					explorer = {
+						find_file = { "<leader>of" },
 						next_file = { "f", "<Tab>" },
 						previous_file = { "F", "<S-Tab>" },
 						next_unreviewed_file = "un",
