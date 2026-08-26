@@ -40,10 +40,13 @@ return {
 			default_merge_method = "squash",
 			default_delete_branch = true,
 			diff = {
+				compact = true,
+				compact_context_lines = 10,
 				show_review_panel = true,
 				explorer = {
-					show_commits = true,
+					show_commits = false,
 					initial_focus = "diff",
+					preview = false,
 				},
 			},
 			repo_config = {
