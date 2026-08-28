@@ -36,6 +36,9 @@ return {
 		},
 	},
 	opts = {
+		providers = {
+			github = {},
+		},
 		pulls = {
 			default_merge_method = "squash",
 			default_delete_branch = true,
@@ -57,29 +60,25 @@ return {
 					["sherweb-operations/*"] = "~/projects/*",
 				},
 			},
-			providers = {
-				github = {
-					views = {
-						{
-							name = "Me",
-							key = "1",
-							layout = "compact",
-							search = "author:@me sort:updated-desc",
-						},
-						{
-							name = "Team",
-							key = "2",
-							layout = "compact",
-							search = "assignee:mbonin_gswc assignee:fbgirard_gswc assignee:pbtrudel_gswc assignee:pojasmin_gswc assignee:dfournier_gswc org:sherweb-operations org:sherweb-development sort:updated-desc",
-						},
+			github = {
+				views = {
+					{
+						name = "Me",
+						key = "1",
+						layout = "compact",
+						search = "author:@me sort:updated-desc",
+					},
+					{
+						name = "Team",
+						key = "2",
+						layout = "compact",
+						search = "assignee:mbonin_gswc assignee:fbgirard_gswc assignee:pbtrudel_gswc assignee:pojasmin_gswc assignee:dfournier_gswc org:sherweb-operations org:sherweb-development sort:updated-desc",
 					},
 				},
 			},
 		},
 		issues = {
-			providers = {
-				github = {},
-			},
+			github = {},
 		},
 		keymaps = {
 			ui = {
