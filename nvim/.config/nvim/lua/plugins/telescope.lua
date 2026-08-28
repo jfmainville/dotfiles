@@ -22,10 +22,6 @@ return {
 					return nil
 				end
 
-				-- Split the prompt into space-separated words, then peel off any
-				-- trailing words that look like glob patterns (start with "*"),
-				-- e.g. "*.md" for an extension filter or "*plugins/*" for a
-				-- partial path filter. What's left is the actual search text.
 				local words = {}
 				for w in prompt:gmatch("%S+") do
 					table.insert(words, w)
