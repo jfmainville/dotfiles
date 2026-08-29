@@ -9,11 +9,6 @@ vim.opt.nu = true
 vim.opt.relativenumber = true
 -- Remove the duplicate mode indicator
 vim.opt.showmode = false
--- Enable the spellcheck functionality
-vim.opt.spell = false
-
--- Set the list configuration to show hidden characters
-vim.opt.listchars = "trail:-,nbsp:+,tab:| ,eol:↴"
 vim.opt.list = false
 
 vim.opt.tabstop = 2
@@ -35,11 +30,8 @@ vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
 -- Set the quick search configurations
-vim.opt.incsearch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-
-vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
@@ -67,7 +59,3 @@ vim.filetype.add({
 
 -- Set diagonal lines in place of deleted lines in diff-mode
 vim.opt.fillchars:append({ diff = "╱" })
--- Set inline diagnostics configuration
-vim.diagnostic.config({
-	virtual_text = true,
-})
