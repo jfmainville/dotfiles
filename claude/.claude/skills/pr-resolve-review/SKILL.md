@@ -1,16 +1,16 @@
 ---
-name: pr-resolve-reviews
-description: Resolve all PR review comments (human and bot) on current PR. Fetches unanswered comments, evaluates each one, fixes real issues, dismisses false positives, and replies to every comment with the outcome.
+name: pr-resolve-review
+description: Reply to all PR review comments (human and bot) on current PR without resolving them. Fetches comments awaiting a reply, evaluates each one, fixes real issues, dismisses false positives, and replies to every comment with the outcome, leaving every thread open so the user can validate before resolving it themselves.
 license: MIT
 compatibility: Requires git and gh (GitHub CLI) installed.
 allowed-tools: Bash(gh api *) Bash(gh pr *) Bash(git add *) Bash(git commit *) Bash(git push *)
 metadata:
   author: jfmainville
-  version: "1.0.0"
+  version: "1.1.0"
   homepage: https://github.com/jfmainville/dotfiles
 ---
 
-Automatically resolve all review comments (both human and bot) already submitted on the current PR review.
+Process all review comments (both human and bot) already submitted on the current PR review: fetch them, evaluate each one, fix real issues, and reply to every comment with the outcome. Never resolve a thread — every thread is left open so the user can validate the fix or reply before resolving it themselves.
 
 ### Step 1: Fetch All Comments
 
@@ -23,7 +23,13 @@ gh pr view --json number,headRepositoryOwner,headRepository \
 
 If this command fails (no PR associated with the current branch), print "No PR found for the current branch" and stop — do not proceed with any of the steps below.
 
-Fetch inline review-thread comments, including resolution state and thread IDs, via GraphQL:
+Determine your own GitHub login, used below to tell your own replies apart from the reviewer's:
+
+```bash
+gh api user -q .login
+```
+
+Fetch inline review-thread comments, including resolution state, thread IDs, and each comment's author, via GraphQL:
 
 ```bash
 gh api graphql -f query='
@@ -58,7 +64,7 @@ Also fetch PR-level (non-inline) issue comments, which cannot be threaded:
 gh api "repos/$OWNER/$REPO/issues/$PR_NUMBER/comments"
 ```
 
-Treat any `reviewThreads` node with `isResolved: false` as unanswered. Treat any issue comment without a prior reply from you as unanswered.
+Because threads are never resolved by this skill, `isResolved` alone doesn't tell you whether a thread still needs a reply — a thread you already replied to stays unresolved on purpose. Treat a `reviewThreads` node as unanswered only if its most recent comment is NOT authored by your own login. Treat an issue comment as unanswered only if there is no later issue comment authored by your own login.
 
 If zero unanswered comments are found, print "No unanswered comments found" and stop.
 
@@ -151,10 +157,10 @@ After evaluating and fixing ALL unanswered comments:
 
 ### Step 4: Reply to All Comments
 
-Now that the commit hash exists, reply to every processed comment. Do not reply for fresh fixes that reviewers should still verify themselves — every other outcome gets a reply:
+Now that the commit hash exists, reply to every processed comment. Do not reply for fresh fixes that reviewers should still verify themselves — every other outcome gets a reply. Never resolve a thread, for any outcome — replying is the only action taken, and every thread is left for the user to validate and resolve themselves:
 
-- **Closing outcomes** (false positive, already addressed, fixed and pushed): reply with the outcome and resolve the thread.
-- **DISCUSSION / UNCERTAIN outcomes**: reply asking the reviewer to clarify (state the tradeoff or what's unclear), and leave the thread unresolved so the reviewer can respond.
+- **Closing outcomes** (false positive, already addressed, fixed and pushed): reply with the outcome. Leave the thread unresolved.
+- **DISCUSSION / UNCERTAIN outcomes**: reply asking the reviewer to clarify (state the tradeoff or what's unclear). Leave the thread unresolved.
 
 **Reply message style:** plain sentences only. No em dashes, no semicolons. Do not include the commit SHA.
 
@@ -163,15 +169,6 @@ Now that the commit hash exists, reply to every processed comment. Do not reply 
 ```bash
 gh api "repos/$OWNER/$REPO/pulls/$PR_NUMBER/comments" \
   -f body="<outcome or clarifying question>" -F in_reply_to="$COMMENT_DATABASE_ID"
-```
-
-For closing outcomes only, resolve the thread:
-
-```bash
-gh api graphql -f query='
-  mutation($threadId: ID!) {
-    resolveReviewThread(input: { threadId: $threadId }) { thread { id isResolved } }
-  }' -f threadId="$THREAD_ID"
 ```
 
 **Non-threadable comments:** If a comment was posted as a PR-level issue comment or review-summary submission (not an inline review comment on a specific line), reply with:
@@ -194,7 +191,7 @@ gh pr comment "$PR_NUMBER" --body "<outcome>"
 - When uncertain about a finding, or facing an architectural/business-logic tradeoff, don't guess: reply on the thread asking the reviewer to clarify, and move on
 - It's better to ask the reviewer than to make a wrong fix or wrong dismissal
 - Human reviewers often have context you don't - defer to them via a clarifying reply when unsure
-- Leave clarification threads unresolved; only resolve threads you've actually closed out
+- Never resolve a thread yourself, for any outcome — the user validates the fix or reply and resolves it themselves
 
 ### Best Practices
 
