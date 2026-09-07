@@ -4,6 +4,7 @@ navigator_position = "bottom"
 toggle_placement = "tab"
 toggle_direction = "down"
 auto_open = false
+editor = "nvim +{line} {file}"
 
 [keybindings]
 next-hunk = ["]", "h"]
