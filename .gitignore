@@ -1,2 +1,6 @@
-tmux/.config/tmux/plugins
+# Herdr
 herdr/.config/herdr/plugins/github/
+
+# Claude
+claude/.claude/skills/synced
+claude/.claude/skills/.trash
