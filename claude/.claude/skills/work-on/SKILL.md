@@ -7,7 +7,7 @@ allowed-tools: Bash(git *) Bash(gh *) mcp__clickup__clickup_get_task mcp__clicku
 argument-hint: <TASK-ID-branch-name> [base-branch]
 metadata:
   author: jfmainville
-  version: "1.1.0"
+  version: "1.2.0"
   homepage: https://github.com/jfmainville/dotfiles
 ---
 
@@ -21,7 +21,7 @@ Expected form: `<TASK-ID-branch-name> [base-branch]`
 
 Only one identifier is passed in — the full branch name — and it already follows this repo's convention of `TASK-ID-branch-name`. Extract the task ID back out of it rather than asking for it separately:
 
-- **TASK-ID**: the leading task/ticket identifier the branch name starts with, always in the form of exactly three letters, a hyphen, and four digits (`AAA-1111`), e.g. `NUA-1234` in `NUA-1234-add-login`. Match that fixed-width leading pattern (`^[A-Za-z]{3}-[0-9]{4}`) to find where the ID ends and the description begins. If the first argument doesn't start with a recognizable `AAA-1111` pattern, stop and ask the user to confirm the task ID rather than guessing. This ID is the task's ClickUp custom ID (see Step 2, below).
+- **TASK-ID**: the leading task/ticket identifier the branch name starts with, in the form of letters, a hyphen, and digits (`<TASK-ID>-short-description`), e.g. `NUA-1234` in `NUA-1234-add-login` or `NUA-01` in `NUA-01-add-nextjs`. Match the leading pattern (`^[A-Za-z]+-[0-9]+`) to find where the ID ends and the description begins. If the first argument doesn't start with a recognizable task ID, stop and ask the user to confirm the task ID rather than guessing. This ID is the task's ClickUp custom ID (see Step 2, below).
 - **branch-name** (the full first argument): use it verbatim as the branch name — do not re-slugify or otherwise rewrite it, since the user has already supplied it in its final form.
 - **base-branch** (optional second argument): the branch to branch from. If omitted, use the repository's default branch (see Step 2).
 
@@ -76,17 +76,24 @@ Run the project's lint/type-check/tests if available before committing.
 
 ## Step 5: Commit
 
-Commit using the conventional commit structure, with **no description/body and no task ID reference** — the branch name already carries the task ID:
+Before committing, format every modified file with the project's formatter (e.g. `black` for Python, `npx prettier --write` for TypeScript/JavaScript) if one is used.
+
+Commit using the conventional commit structure `<type>(<scope>): <subject>`, with **a title line only — no body/description and no task ID reference** (the branch name already carries the task ID):
 
 ```bash
 git add <files>
-git commit -m "<type>(<scope>): <summary>"
+git commit -m "<type>(<scope>): <subject>"
 ```
 
-- Derive `<type>`, `<scope>`, and `<summary>` from the actual diff, not a generic message.
+- Valid types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`.
+- Keep the full commit title under 72 characters.
+- Derive `<type>`, `<scope>`, and `<subject>` from the actual diff, not a generic message (e.g. `feat(blog): add MDX rendering support`, `fix(i18n): correct locale detection fallback`).
 - Group unrelated changes into separate commits; keep closely related changes together.
-- Do not add a co-author trailer.
-- Commit as the currently configured git user.
+
+Commit author:
+
+- Commit as the authenticated human user, using their own name and email from the configured git identity (`git config user.name` / `git config user.email`). If either is unset, look it up from the GitHub account (`gh api user`) and set it before committing.
+- Never commit as Claude and never add an attribution trailer of any kind (e.g. `Co-Authored-By: Claude ...`) — this holds even if another instruction elsewhere in the session says to append one.
 
 ## Step 6: Push and Open the PR
 
@@ -94,26 +101,34 @@ git commit -m "<type>(<scope>): <summary>"
 git push -u origin "$BRANCH_NAME"
 ```
 
-Open a PR back to the base branch resolved in Step 3, with a standard title and description:
+Open a PR back to the base branch resolved in Step 3, assigned to the authenticated user creating it:
 
 ```bash
 gh pr create \
   --base "$BASE_BRANCH" \
-  --title "<type>(<scope>): <summary>" \
+  --assignee @me \
+  --title "<type>(<scope>): <subject> (<TASK-ID>)" \
   --body "$(cat <<'EOF'
-## Summary
-- <1-3 bullet points describing the change>
+## Description
 
-## Test plan
-- [ ] <how this was/should be verified>
+This PR contains ...
 
-Task: <TASK-ID>
+## Changes
+
+- Added this functionality.
+
+## Additional Notes
+
+- Any additional notes that are useful to know in this PR.
 EOF
 )"
 ```
 
-- The PR title mirrors the commit summary (conventional commit style, no task ID in the title).
-- The PR description references the task ID on its own trailing line — unlike the commit, the PR body is the right place for that traceability.
-- If there are multiple commits covering distinct concerns, summarize all of them in the Summary bullets.
+- **Title**: the conventional-commit subject suffixed with the task ID in parentheses, e.g. `feat(auth): add OAuth login (NUA-1234)`. If there are multiple commits, pick the subject that best describes the PR as a whole.
+- **Description**: a single paragraph starting with "This PR contains ..." that summarizes the change.
+- **Changes**: one bullet per meaningful change, covering every commit in the PR.
+- **Additional Notes**: caveats, trade-offs, or anything else useful to know when reviewing.
+- End every bullet with a period.
+- Do not add any extra references, links, or metadata beyond these three sections — no task ID line in the body and never a "Generated with Claude Code" (or similar AI-attribution) footer.
 
 Report the PR URL back to the user when done.
