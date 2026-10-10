@@ -1,7 +1,7 @@
 theme = "dracula"
 default_scope = "branch"
 navigator_position = "bottom"
-toggle_placement = "overlay"
+toggle_placement = "tab"
 toggle_direction = "down"
 auto_open = false
 editor = "nvim +{line} {file}"
