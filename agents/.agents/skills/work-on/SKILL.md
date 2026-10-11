@@ -7,7 +7,7 @@ allowed-tools: Bash(git *) Bash(gh *) Agent mcp__clickup__clickup_get_task mcp__
 argument-hint: <TASK-ID-branch-name> [base-branch]
 metadata:
   author: jfmainville
-  version: "1.6.0"
+  version: "1.8.0"
   homepage: https://github.com/jfmainville/dotfiles
 ---
 
@@ -166,6 +166,7 @@ EOF
 - **Changes**: one bullet per meaningful change, covering every commit in the PR.
 - **Additional Notes**: caveats, trade-offs, or anything else useful to know when reviewing.
 - End every bullet with a period.
+- Never use a colon (`:`) or a semicolon (`;`) anywhere in the body, including inside bullets and code. Rephrase instead of a colon, e.g. "Added login support with OAuth." rather than "Login: added OAuth support.", and use a comma instead of a semicolon, e.g. "Added the endpoint, the client still uses the old one.". The section headings contain neither.
 - Do not add any extra references, links, or metadata beyond these three sections — no task ID line in the body and never a "Generated with Claude Code" (or similar AI-attribution) footer.
 
 ## Step 8: Review the PR

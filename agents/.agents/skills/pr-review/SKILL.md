@@ -8,7 +8,7 @@ argument-hint: "[PR number or URL — defaults to the PR for the current branch]
 context: fork
 metadata:
   author: jfmainville
-  version: "2.1.0"
+  version: "2.3.0"
   homepage: https://github.com/jfmainville/dotfiles
 ---
 
@@ -63,6 +63,7 @@ Every rule below is a pass/fail check. Record each failure with what was found a
 - **Changes** is a bullet list with one bullet per meaningful change, and covers every commit in the PR (compare against the commit list and the diff).
 - **Additional Notes** is a bullet list.
 - Every bullet ends with a period.
+- No colon (`:`) or semicolon (`;`) anywhere in the body, including inside bullets and code. When fixing the body in Step 7, rephrase the sentence rather than just deleting a colon, and replace each semicolon with a comma.
 - No task ID line, extra links, or metadata in the body.
 - No AI attribution of any kind: no "Generated with Claude Code" (or any other tool) footer, no 🤖 line, no `Co-Authored-By` line.
 
