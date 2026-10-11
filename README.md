@@ -53,7 +53,7 @@ sudo apt-get install neovim tmux stow ripgrep fzf
 
 ```bash
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-stow nvim tmux alacritty herdr
+stow nvim tmux alacritty herdr agents
 chmod +x ~/dotfiles/init.sh
 ~/dotfiles/init.sh
 
@@ -80,9 +80,20 @@ The table below presents the folder structure for this repository:
 | tmux       | Contains the Tmux configuration files              |
 | alacritty  | Contains the alacritty terminal configuration file |
 | herdr      | Contains the Herdr terminal multiplexer config     |
+| agents     | Contains the shared AI coding agent skills         |
 
 Every folder except `fonts` and `oh-my-posh` is a [GNU Stow](https://www.gnu.org/software/stow/) package: its contents
 mirror the target tree under `$HOME`, so `stow nvim` symlinks `nvim/.config/nvim` to `~/.config/nvim`.
+
+## Agents
+
+The `agents` package holds the [Agent Skills](https://agentskills.io) shared by every AI coding harness. The skills
+live in `agents/.agents/skills`, which `stow agents` links to `~/.agents/skills`, the global skills folder read by
+Codex and OpenCode. Claude Code only reads `~/.claude/skills`, so the package also ships `agents/.claude/skills`, a
+symlink to `../.agents/skills`, which stow links into `~/.claude`.
+
+Stow only links `~/.claude/skills`, not the whole `~/.claude` folder, because Claude Code keeps credentials, history
+and session state there. If `~/.claude/skills` already exists, remove it before running `stow agents`.
 
 ## Oh My Posh
 

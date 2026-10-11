@@ -1,13 +1,13 @@
 ---
 name: work-on
-description: Start work on a task - takes a single TASK-ID-branch-name argument, looks up TASK-ID as a ClickUp custom task ID to pull the task's requirements, creates the branch from the default branch (or a specified base), makes the requested changes, commits with a conventional-commit message, and opens a PR back to the default branch. Use when the user says things like "work on NUA-1234-add-login", or asks to begin/kick off a ticket/task.
+description: Start work on a task - takes a single TASK-ID-branch-name argument, looks up TASK-ID as a ClickUp custom task ID to pull the task's requirements, creates the branch from the default branch (or a specified base), makes the requested changes, commits with a conventional-commit message, has the tester skill write unit tests for the finished implementation, opens a PR back to the default branch, and reviews it with the pr-review skill. Use when the user says things like "work on NUA-1234-add-login", or asks to begin/kick off a ticket/task.
 license: MIT
 compatibility: Requires git and gh (GitHub CLI) installed, an authenticated gh session for the current repo, and the ClickUp MCP server connected.
-allowed-tools: Bash(git *) Bash(gh *) mcp__clickup__clickup_get_task mcp__clickup__clickup_get_task_comments
+allowed-tools: Bash(git *) Bash(gh *) Agent mcp__clickup__clickup_get_task mcp__clickup__clickup_get_task_comments
 argument-hint: <TASK-ID-branch-name> [base-branch]
 metadata:
   author: jfmainville
-  version: "1.2.0"
+  version: "1.6.0"
   homepage: https://github.com/jfmainville/dotfiles
 ---
 
@@ -72,7 +72,9 @@ If a local branch with `$BRANCH_NAME` already exists, stop and ask the user how 
 
 Implement whatever work the ClickUp task requires, per its description and comments fetched in Step 2 (plus anything else already discussed in this conversation). If the task's scope is still unclear after reading it, ask the user rather than fabricating work.
 
-Run the project's lint/type-check/tests if available before committing.
+Finish the whole implementation before moving on: the tester (Step 6) and the review (Step 8) only start once it's done. Don't write new unit tests yourself; the tester writes them in Step 6. Only update existing tests that your change breaks.
+
+Run the project's lint, type-check and existing tests before committing.
 
 ## Step 5: Commit
 
@@ -95,7 +97,42 @@ Commit author:
 - Commit as the authenticated human user, using their own name and email from the configured git identity (`git config user.name` / `git config user.email`). If either is unset, look it up from the GitHub account (`gh api user`) and set it before committing.
 - Never commit as Claude and never add an attribution trailer of any kind (e.g. `Co-Authored-By: Claude ...`) — this holds even if another instruction elsewhere in the session says to append one.
 
-## Step 6: Push and Open the PR
+## Step 6: Test the Implementation
+
+Once the implementation is committed, hand the testing to the tester in its own git worktree, so it works with a fresh context and never touches your working tree.
+
+Skip this step when the task has no unit-testable code, e.g. docs-only, CI/config-only, dotfiles, or pure styling changes. Say so in the PR's Additional Notes.
+
+Spawn the tester with the Agent tool:
+
+- `subagent_type`: `general-purpose`
+- `isolation`: `worktree`
+- `description`: `Test <TASK-ID>`
+- `prompt`:
+
+```
+Read ~/.agents/skills/tester/SKILL.md and follow it. You have no prior context; everything you need is below.
+
+You are in a git worktree of the branch <BRANCH_NAME>. The target is every change on it compared to the base branch: git diff origin/<BASE_BRANCH>...HEAD
+
+Requirements the code must meet (ClickUp <TASK-ID>: <task name>):
+<task description and relevant comments, verbatim>
+
+Do not commit. Do not edit production code.
+In your report, list every test file you created or changed (paths relative to the repo root), the exact test command, and every suspected bug.
+```
+
+Wait for its completion notification before continuing (never poll for it, and never assume its result before it arrives). Then:
+
+1. Copy the test files it lists from its worktree into the main working tree.
+2. Remove the worktree and its branch (`git worktree remove <path>`, `git branch -D <worktree-branch>`).
+3. For every suspected bug it reports, check the code against the ClickUp requirements. If the code is wrong, fix it and commit the fix as `fix(<scope>): <subject>`. Never weaken or delete a test just to make it pass.
+4. Run the project's formatter, lint, type-check and full test suite. Everything must pass.
+5. Commit the tests separately from the implementation, as `test(<scope>): <subject>`, following the commit rules in Step 5.
+
+Put the tester's unresolved suspected bugs and test gaps in the PR's Additional Notes.
+
+## Step 7: Push and Open the PR
 
 ```bash
 git push -u origin "$BRANCH_NAME"
@@ -131,4 +168,29 @@ EOF
 - End every bullet with a period.
 - Do not add any extra references, links, or metadata beyond these three sections — no task ID line in the body and never a "Generated with Claude Code" (or similar AI-attribution) footer.
 
-Report the PR URL back to the user when done.
+## Step 8: Review the PR
+
+Once the PR is open, hand the review to the `pr-review` skill in its own git worktree, so it reviews with a fresh context and never touches your working tree. Spawn it with the Agent tool:
+
+- `subagent_type`: `general-purpose`
+- `isolation`: `worktree`
+- `description`: `Review PR for <TASK-ID>`
+- `prompt`:
+
+```
+Read ~/.agents/skills/pr-review/SKILL.md and follow it for PR #<PR number>. You have no prior context; everything you need is in the PR and the repository.
+You are in a separate git worktree, and the PR branch is checked out in another one: work on a detached HEAD as the skill describes.
+```
+
+Wait for its completion notification before continuing. It pushes its fixes to the PR branch and may rewrite the branch's commits, so then:
+
+1. Remove its worktree and branch (`git worktree remove <path>`, `git branch -D <worktree-branch>`).
+2. Sync your branch with what it pushed: `git fetch origin "$BRANCH_NAME"` then `git reset --hard "origin/$BRANCH_NAME"`. This is safe only because everything was pushed in Step 7 and nothing was committed locally since: check `git status` is clean first, and stop and ask the user if it isn't.
+
+Don't fix its findings yourself afterwards, and don't push over its commits.
+
+Report back to the user:
+
+- the PR URL;
+- the review's verdict, and every finding it couldn't fix (❌), with the reason;
+- any secret it says must be rotated.

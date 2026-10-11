@@ -1,6 +1,6 @@
 # Herdr
 herdr/.config/herdr/plugins/github/
 
-# Claude
-claude/.claude/skills/synced
-claude/.claude/skills/.trash
+# Agents
+agents/.agents/skills/synced
+agents/.agents/skills/.trash
