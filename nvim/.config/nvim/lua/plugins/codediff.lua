@@ -21,6 +21,28 @@ return {
 			desc = "Open the diffview for the current file",
 		},
 		{
+			mode = "n",
+			"<leader>db",
+			function()
+				local ref = vim.fn.systemlist("git symbolic-ref --short refs/remotes/origin/HEAD")[1]
+				if vim.v.shell_error ~= 0 or not ref or ref == "" then
+					for _, candidate in ipairs({ "origin/main", "origin/master" }) do
+						vim.fn.system("git rev-parse --verify --quiet " .. candidate)
+						if vim.v.shell_error == 0 then
+							ref = candidate
+							break
+						end
+					end
+				end
+				if not ref or ref == "" then
+					vim.notify("Unable to determine the default branch", vim.log.levels.ERROR)
+					return
+				end
+				vim.cmd("CodeDiff " .. ref .. "...HEAD")
+			end,
+			desc = "Open the diffview of the current branch against the default branch",
+		},
+		{
 			mode = "v",
 			"<leader>dl",
 			"<Esc><Cmd>'<,'>CodeDiff history %<CR>",
