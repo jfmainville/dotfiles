@@ -62,11 +62,20 @@ return {
 			layout = "inline",
 		},
 		explorer = {
-			view_mode = "list",
+			position = "bottom",
+			view_mode = "tree",
+			auto_open_on_cursor = true,
+			line_stats = {
+				enabled = true,
+			},
 		},
 		keymaps = {
 			view = {
 				focus_explorer = "<leader>o",
+				next_hunk = "h",
+				prev_hunk = "H",
+				next_file = "f",
+				prev_file = "F",
 			},
 		},
 	},
