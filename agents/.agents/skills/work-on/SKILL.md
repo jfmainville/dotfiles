@@ -7,7 +7,7 @@ allowed-tools: Bash(git *) Bash(gh *) mcp__clickup__clickup_get_task mcp__clicku
 argument-hint: <TASK-ID-branch-name> [base-branch]
 metadata:
   author: jfmainville
-  version: "1.9.0"
+  version: "1.11.0"
   homepage: https://github.com/jfmainville/dotfiles
 ---
 
@@ -71,6 +71,13 @@ If a local branch with `$BRANCH_NAME` already exists, stop and ask the user how 
 ## Step 4: Make the Changes
 
 Implement whatever work the ClickUp task requires, per its description and comments fetched in Step 2 (plus anything else already discussed in this conversation). If the task's scope is still unclear after reading it, ask the user rather than fabricating work.
+
+Follow these rules while implementing:
+
+- **Reuse before writing.** Before adding any function, hook, component, style, constant, or type, search the codebase (and the project's existing dependencies) for one that already does the job, and use it. If an existing one almost fits, extend it with a parameter, prop, or variant instead of copying it. Only write something new when nothing reusable exists, and make it reusable too: put it in the project's shared location (e.g. `utils/`, `components/`, `shared/`) when more than one place needs it.
+- **Use SCSS variables.** When the project uses SCSS, never hard-code colors, spacing, font sizes, font weights, radii, shadows, z-indexes, transitions, or breakpoints: use the existing variables (and mixins/functions) from the project's variables files. If a value you need has no variable yet, add one to the existing variables file and use it, rather than writing the raw value.
+- **Merge and clean up as you go.** In the files and modules you touch for the task, merge duplicated functions, components, and styles into one shared version, and delete dead code: unused functions, components, imports, variables, types, CSS classes, SCSS variables and mixins, unreachable branches, and stale feature flags. Before deleting anything, search the whole codebase for references, including dynamic ones (string lookups, templates, config, routes, exports used by other packages), and keep it if you can't confirm it's unused. Stay within the area you're working in rather than cleaning up the whole repo. Commit the cleanup separately from the feature (e.g. `refactor(<scope>): merge duplicate date helpers`, `chore(<scope>): remove unused button styles`) and list it in the PR's Changes.
+- **Comments only when necessary.** Don't add a comment unless the code can't be made clear on its own (e.g. a non-obvious workaround or business rule). A comment is never more than one line. Never comment what the code already says, and never leave commented-out code.
 
 Run the project's lint/type-check/tests if available before committing.
 
