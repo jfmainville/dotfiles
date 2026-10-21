@@ -53,7 +53,7 @@ sudo apt-get install neovim tmux stow ripgrep fzf
 
 ```bash
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-stow nvim tmux alacritty herdr agents
+stow nvim tmux alacritty ghostty herdr agents zsh
 chmod +x ~/dotfiles/init.sh
 ~/dotfiles/init.sh
 
@@ -81,6 +81,7 @@ The table below presents the folder structure for this repository:
 | alacritty  | Contains the alacritty terminal configuration file |
 | herdr      | Contains the Herdr terminal multiplexer config     |
 | agents     | Contains the shared AI coding agent skills         |
+| zsh        | Contains the Zsh configuration file                |
 
 Every folder except `fonts` and `oh-my-posh` is a [GNU Stow](https://www.gnu.org/software/stow/) package: its contents
 mirror the target tree under `$HOME`, so `stow nvim` symlinks `nvim/.config/nvim` to `~/.config/nvim`.
