@@ -50,7 +50,7 @@ fi
 # Ctrl+T: pick a file and open it in nvim
 fzf-nvim-widget() {
   local file
-  file=$(rg --files --hidden --glob '!.git' | fzf --preview "$BAT_CMD --color=always --style=numbers --line-range=:500 {}") || { zle reset-prompt; return }
+  file=$(rg --files --hidden --glob '!.git' ~ | fzf --preview "$BAT_CMD --color=always --style=numbers --line-range=:500 {}") || { zle reset-prompt; return }
   BUFFER="nvim ${(q)file}"
   zle accept-line
 }
