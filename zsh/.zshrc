@@ -7,6 +7,15 @@ DISABLE_MAGIC_FUNCTIONS="true"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
+# Platform-specific locations (Homebrew on macOS, apt on Debian/Ubuntu)
+if [[ $OSTYPE == darwin* ]]; then
+  ZSH_SHARE="${HOMEBREW_PREFIX:-/opt/homebrew}/share"
+  BAT_CMD="bat"
+else
+  ZSH_SHARE="/usr/share"
+  BAT_CMD="batcat"
+fi
+
 # Paths
 export PATH="$HOME/.local/bin:$HOME/.local/bin/nvim/bin:$HOME/bin:$PATH"
 
@@ -17,7 +26,7 @@ export PATH="$HOME/.local/bin:$HOME/.local/bin/nvim/bin:$HOME/bin:$PATH"
 alias v="nvim"
 alias vi="nvim"
 alias vim="nvim"
-alias duh="du -h --max-depth=1 | sort -h"
+alias duh="du -h -d 1 | sort -h"
 alias dfh="df -h"
 alias k="kubectl"
 alias kx="kubectx"
@@ -30,14 +39,18 @@ alias ka="kubectl apply -f"
 eval "$(oh-my-posh init zsh --config ~/dotfiles/oh-my-posh/purist.omp.json)"
 
 # Crtl+R: pick a command in history
-export FZF_CTRL_R_OPTS="--preview 'echo {} | batcat --color=always --language=zsh --style=plain' --preview-window down:3:wrap"
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
+export FZF_CTRL_R_OPTS="--preview 'echo {} | $BAT_CMD --color=always --language=zsh --style=plain' --preview-window down:3:wrap"
+if [[ $OSTYPE == darwin* ]]; then
+  source <(fzf --zsh)
+else
+  source /usr/share/doc/fzf/examples/key-bindings.zsh
+  source /usr/share/doc/fzf/examples/completion.zsh
+fi
 
 # Ctrl+T: pick a file and open it in nvim
 fzf-nvim-widget() {
   local file
-  file=$(rg --files --hidden --glob '!.git' | fzf --preview 'batcat --color=always --style=numbers --line-range=:500 {}') || { zle reset-prompt; return }
+  file=$(rg --files --hidden --glob '!.git' | fzf --preview "$BAT_CMD --color=always --style=numbers --line-range=:500 {}") || { zle reset-prompt; return }
   BUFFER="nvim ${(q)file}"
   zle accept-line
 }
@@ -56,5 +69,5 @@ nvm() {
 }
 
 # Must be sourced last
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZSH_SHARE/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $ZSH_SHARE/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
