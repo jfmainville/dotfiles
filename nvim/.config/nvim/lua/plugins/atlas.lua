@@ -37,6 +37,9 @@ return {
 		},
 	},
 	opts = {
+		ui = {
+			wrap = true,
+		},
 		providers = {
 			github = {},
 		},
@@ -44,6 +47,7 @@ return {
 			default_merge_method = "squash",
 			default_delete_branch = true,
 			diff = {
+				open_cmd = "AtlasDiff",
 				compact = true,
 				compact_context_lines = 10,
 				show_review_panel = true,
