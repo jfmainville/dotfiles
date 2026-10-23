@@ -48,9 +48,10 @@ return {
 				compact_context_lines = 10,
 				show_review_panel = true,
 				explorer = {
-					show_commits = false,
+					show_commits = true,
 					initial_focus = "diff",
-					preview = false,
+					preview = true,
+					focus_on_select = true,
 				},
 			},
 			repo_config = {
