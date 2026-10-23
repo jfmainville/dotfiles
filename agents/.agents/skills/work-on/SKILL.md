@@ -7,7 +7,7 @@ allowed-tools: Bash(git *) Bash(gh *) mcp__clickup__clickup_get_task mcp__clicku
 argument-hint: <TASK-ID-branch-name> [base-branch]
 metadata:
   author: jfmainville
-  version: "1.11.0"
+  version: "1.12.0"
   homepage: https://github.com/jfmainville/dotfiles
 ---
 
@@ -136,6 +136,8 @@ EOF
 - **Changes**: one bullet per meaningful change, covering every commit in the PR.
 - **Additional Notes**: caveats, trade-offs, or anything else useful to know when reviewing.
 - End every bullet with a period.
+- Wrap every version number, file name, path, and technical term in inline code, e.g. "Bumped `react` to `18.3.1` in `package.json`." rather than "Bumped react to 18.3.1 in package.json.". This covers package and dependency names, functions, components, variables, commands, CLI flags, config keys, environment variables, and branch names.
+- The last bullet of **Additional Notes** is the last line of the body. Never leave an empty line after it, and never end the body with a trailing blank line or whitespace. The `EOF` line goes directly after that last bullet, as shown above.
 - Never use a colon (`:`) or a semicolon (`;`) anywhere in the body, including inside bullets and code. Rephrase instead of a colon, e.g. "Added login support with OAuth." rather than "Login: added OAuth support.", and use a comma instead of a semicolon, e.g. "Added the endpoint, the client still uses the old one.". The section headings contain neither.
 - Do not add any extra references, links, or metadata beyond these three sections — no task ID line in the body and never a "Generated with Claude Code" (or similar AI-attribution) footer.
 
