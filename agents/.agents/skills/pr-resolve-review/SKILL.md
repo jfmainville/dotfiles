@@ -1,16 +1,16 @@
 ---
 name: pr-resolve-review
-description: Reply to all PR review comments (human and bot) on current PR without resolving them. Fetches comments awaiting a reply, evaluates each one, fixes real issues, dismisses false positives, and replies to every comment with the outcome, leaving every thread open so the user can validate before resolving it themselves.
+description: Reply to all PR review comments (human and bot) on current PR. Fetches comments awaiting a reply, evaluates each one, fixes real issues, dismisses false positives, updates the PR description with the new changes, and replies to every comment with the outcome. Resolves only bot threads whose issue was fixed and pushed, leaving every human thread, dismissal, and question open so the user or reviewer can validate before resolving it.
 license: MIT
 compatibility: Requires git and gh (GitHub CLI) installed.
 allowed-tools: Bash(gh api *) Bash(gh pr *) Bash(git add *) Bash(git commit *) Bash(git push *)
 metadata:
   author: jfmainville
-  version: "1.1.0"
+  version: "1.5.0"
   homepage: https://github.com/jfmainville/dotfiles
 ---
 
-Process all review comments (both human and bot) already submitted on the current PR review: fetch them, evaluate each one, fix real issues, and reply to every comment with the outcome. Never resolve a thread — every thread is left open so the user can validate the fix or reply before resolving it themselves.
+Process all review comments (both human and bot) already submitted on the current PR review: fetch them, evaluate each one, fix real issues, and reply to every comment with the outcome. Only bot threads whose issue was fixed and pushed get resolved. Every other thread is left open, so an unresolved thread always means a person still needs to look at it.
 
 ### Step 1: Fetch All Comments
 
@@ -64,7 +64,7 @@ Also fetch PR-level (non-inline) issue comments, which cannot be threaded:
 gh api "repos/$OWNER/$REPO/issues/$PR_NUMBER/comments"
 ```
 
-Because threads are never resolved by this skill, `isResolved` alone doesn't tell you whether a thread still needs a reply — a thread you already replied to stays unresolved on purpose. Treat a `reviewThreads` node as unanswered only if its most recent comment is NOT authored by your own login. Treat an issue comment as unanswered only if there is no later issue comment authored by your own login.
+Skip resolved threads. Because this skill leaves most threads open on purpose, `isResolved: false` alone doesn't tell you whether a thread still needs a reply. Treat an unresolved `reviewThreads` node as unanswered only if its most recent comment is NOT authored by your own login. Treat an issue comment as unanswered only if there is no later issue comment authored by your own login.
 
 If zero unanswered comments are found, print "No unanswered comments found" and stop.
 
@@ -137,9 +137,9 @@ For both bot and human comments:
 
 **If UNCERTAIN:** Do NOT change the code. Track the comment ID and what specifically is unclear.
 
-Never pause execution to ask the user. For DISCUSSION and UNCERTAIN comments, keep going — they get a clarifying reply in Step 4 instead of a code change.
+Never pause execution to ask the user. For DISCUSSION and UNCERTAIN comments, keep going — they get a clarifying reply in Step 5 instead of a code change.
 
-Do NOT reply to comments yet. Replies happen after the commit (Step 4).
+Do NOT reply to comments yet. Replies happen after the commit (Step 5).
 
 ### Step 3: Commit and Push
 
@@ -155,14 +155,62 @@ After evaluating and fixing ALL unanswered comments:
    ```
 4. Capture each commit's hash from the output.
 
-### Step 4: Reply to All Comments
+### Step 4: Update the PR Description
 
-Now that the commit hash exists, reply to every processed comment. Do not reply for fresh fixes that reviewers should still verify themselves — every other outcome gets a reply. Never resolve a thread, for any outcome — replying is the only action taken, and every thread is left for the user to validate and resolve themselves:
+If Step 3 produced no commits, skip this step. Otherwise, fetch the current PR body:
 
-- **Closing outcomes** (false positive, already addressed, fixed and pushed): reply with the outcome. Leave the thread unresolved.
+```bash
+gh pr view "$PR_NUMBER" --json body -q .body
+```
+
+Add one bullet to the **Changes** section for each meaningful change pushed in Step 3, after the existing bullets. Keep every existing bullet, and only edit the Description paragraph or **Additional Notes** when a fix makes them inaccurate. Rewrite the whole body so it follows the same standards as the `work-on` skill:
+
+```bash
+gh pr edit "$PR_NUMBER" --body "$(cat <<'EOF'
+## Description
+
+This PR contains ...
+
+## Changes
+
+- Added this functionality.
+
+## Additional Notes
+
+- Any additional notes that are useful to know in this PR.
+EOF
+)"
+```
+
+- **Description**: a single paragraph starting with "This PR contains ..." that summarizes the change.
+- **Changes**: one bullet per meaningful change, covering every commit in the PR.
+- **Additional Notes**: caveats, trade-offs, or anything else useful to know when reviewing.
+- End every bullet with a period.
+- Wrap every version number, file name, path, and technical term in inline code, e.g. "Bumped `react` to `18.3.1` in `package.json`." rather than "Bumped react to 18.3.1 in package.json.". This covers package and dependency names, functions, components, variables, commands, CLI flags, config keys, environment variables, and branch names.
+- The last bullet of **Additional Notes** is the last line of the body. Never leave an empty line after it, and never end the body with a trailing blank line or whitespace. The `EOF` line goes directly after that last bullet, as shown above.
+- Never use a colon (`:`) or a semicolon (`;`) anywhere in the body, including inside bullets and code. Rephrase instead of a colon, e.g. "Added login support with OAuth." rather than "Login: added OAuth support.", and use a comma instead of a semicolon, e.g. "Added the endpoint, the client still uses the old one.". The section headings contain neither.
+- Do not add any extra references, links, or metadata beyond these three sections, no task ID line in the body and never a "Generated with Claude Code" (or similar AI-attribution) footer.
+
+### Step 5: Reply to All Comments
+
+Now that the commits are pushed, reply to every processed comment, then resolve only the threads listed as resolvable below:
+
+- **Bot TRUE POSITIVE, fixed and pushed**: reply with the fix, then resolve the thread. This is the only outcome that gets resolved.
+- **Bot FALSE POSITIVE**: reply with why it is not a real bug. Leave the thread unresolved, since the dismissal contradicts the comment and the user should validate it.
+- **Human comment, any outcome** (ACTIONABLE fixed and pushed, ALREADY ADDRESSED): reply with the outcome. Leave the thread unresolved so the reviewer can confirm and resolve it.
 - **DISCUSSION / UNCERTAIN outcomes**: reply asking the reviewer to clarify (state the tradeoff or what's unclear). Leave the thread unresolved.
 
-**Reply message style:** plain sentences only. No em dashes, no semicolons. Do not include the commit SHA.
+When in doubt whether a fix was straightforward, leave the thread unresolved.
+
+**Reply message style:** follow the same standards as the PR description in Step 4:
+
+- Keep it as short as possible while staying clear. One sentence is the target, two at most. Lead with the outcome, e.g. "Fixed, `token` is now checked for `null` before use." or "Not a bug, `retry` is intentionally capped at `3`.".
+- No greetings, thanks, restating the comment, or explaining what the reviewer already said.
+- Plain sentences only, each ending with a period. No em dashes.
+- Wrap every version number, file name, path, and technical term in inline code.
+- Never use a colon (`:`) or a semicolon (`;`) anywhere in the reply, including inside code. Rephrase instead, or use a comma.
+- No trailing blank lines or whitespace at the end of the reply.
+- No commit SHA, links, references, AI-attribution prefix, or AI-attribution footer.
 
 **Threaded (inline) comments:** reply in-thread using the original comment's `databaseId`:
 
@@ -175,6 +223,17 @@ gh api "repos/$OWNER/$REPO/pulls/$PR_NUMBER/comments" \
 
 ```bash
 gh pr comment "$PR_NUMBER" --body "<outcome>"
+```
+
+Non-threadable comments have no thread to resolve, so the reply is the only action.
+
+**Resolving a thread:** after replying, resolve a resolvable thread using its GraphQL thread `id` from Step 1:
+
+```bash
+gh api graphql -f query='
+  mutation($threadId: ID!) {
+    resolveReviewThread(input: {threadId: $threadId}) { thread { isResolved } }
+  }' -f threadId="$THREAD_ID"
 ```
 
 ## Important Notes
@@ -191,7 +250,7 @@ gh pr comment "$PR_NUMBER" --body "<outcome>"
 - When uncertain about a finding, or facing an architectural/business-logic tradeoff, don't guess: reply on the thread asking the reviewer to clarify, and move on
 - It's better to ask the reviewer than to make a wrong fix or wrong dismissal
 - Human reviewers often have context you don't - defer to them via a clarifying reply when unsure
-- Never resolve a thread yourself, for any outcome — the user validates the fix or reply and resolves it themselves
+- Only resolve bot threads whose issue was fixed and pushed. Never resolve a human thread, a dismissed false positive, or a thread with an open question
 
 ### Best Practices
 
