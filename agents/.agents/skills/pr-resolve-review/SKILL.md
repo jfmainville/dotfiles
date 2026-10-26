@@ -1,16 +1,16 @@
 ---
 name: pr-resolve-review
-description: Reply to all PR review comments (human and bot) on current PR. Fetches comments awaiting a reply, evaluates each one, fixes real issues, dismisses false positives, updates the PR description with the new changes, and replies to every comment with the outcome. Resolves only bot threads whose issue was fixed and pushed, leaving every human thread, dismissal, and question open so the user or reviewer can validate before resolving it.
+description: Reply to all PR review comments (human and bot) on current PR. Fetches comments awaiting a reply, evaluates each one, fixes real issues, dismisses false positives, applies suggestion blocks, fixes change requests from review summaries, updates the PR description with the new changes, and replies in-thread to every inline review comment with the outcome, never posting a new PR comment. Resolves only bot threads whose issue was fixed and pushed, leaving every human thread, dismissal, and question open so the user or reviewer can validate before resolving it.
 license: MIT
 compatibility: Requires git and gh (GitHub CLI) installed.
 allowed-tools: Bash(gh api *) Bash(gh pr *) Bash(git add *) Bash(git commit *) Bash(git push *)
 metadata:
   author: jfmainville
-  version: "1.5.0"
+  version: "1.8.0"
   homepage: https://github.com/jfmainville/dotfiles
 ---
 
-Process all review comments (both human and bot) already submitted on the current PR review: fetch them, evaluate each one, fix real issues, and reply to every comment with the outcome. Only bot threads whose issue was fixed and pushed get resolved. Every other thread is left open, so an unresolved thread always means a person still needs to look at it.
+Process all review comments (both human and bot) already submitted on the current PR review: fetch them, evaluate each one, fix real issues, and reply in-thread to every comment with the outcome. Never post a new top-level PR comment, only replies inside existing review threads. Only bot threads whose issue was fixed and pushed get resolved. Every other thread is left open, so an unresolved thread always means a person still needs to look at it.
 
 ### Step 1: Fetch All Comments
 
@@ -43,6 +43,7 @@ gh api graphql -f query='
             isResolved
             path
             line
+            startLine
             comments(first: 50) {
               nodes {
                 databaseId
@@ -58,19 +59,31 @@ gh api graphql -f query='
   }' -f owner="$OWNER" -f repo="$REPO" -F pr="$PR_NUMBER"
 ```
 
-Also fetch PR-level (non-inline) issue comments, which cannot be threaded:
+Skip resolved threads. Because this skill leaves most threads open on purpose, `isResolved: false` alone doesn't tell you whether a thread still needs a reply. Decide whether an unresolved `reviewThreads` node is unanswered based on who started it:
+
+- **Thread started by another account** (human reviewer or bot): unanswered only if its most recent comment is NOT authored by your own login.
+- **Thread started by your own login** (a comment or suggestion the user left on their own PR from this `gh` account): replies to these carry the `🤖 *AI Agent:* ` prefix (see Step 5), which is the only way to tell them apart from the user's own comments. The thread is unanswered if its most recent comment does NOT start with that prefix.
+
+Treat a comment from your own login that doesn't start with the prefix as a human comment from the user.
+
+Also fetch the submitted reviews, to pick up change requests written in a review summary instead of an inline comment:
 
 ```bash
-gh api "repos/$OWNER/$REPO/issues/$PR_NUMBER/comments"
+gh api --paginate "repos/$OWNER/$REPO/pulls/$PR_NUMBER/reviews" \
+  -q '.[] | {id, state, body, submitted_at, author: .user.login}'
 ```
 
-Skip resolved threads. Because this skill leaves most threads open on purpose, `isResolved: false` alone doesn't tell you whether a thread still needs a reply. Treat an unresolved `reviewThreads` node as unanswered only if its most recent comment is NOT authored by your own login. Treat an issue comment as unanswered only if there is no later issue comment authored by your own login.
+Keep only the latest review from each reviewer other than your own login. If that review's `state` is `CHANGES_REQUESTED` and its `body` is not empty, treat the body as an unanswered **change request**. A change request has no thread to reply in, so it is fixed but never replied to (see Step 5). Plain PR-level issue comments are ignored.
 
-If zero unanswered comments are found, print "No unanswered comments found" and stop.
+If zero unanswered comments and zero change requests are found, print "No unanswered comments found" and stop.
 
 ### Step 2: Process Each Unanswered Comment
 
-For each unanswered comment, apply the appropriate evaluation based on whether the author is a bot or a human.
+For each unanswered comment and change request, apply the appropriate evaluation based on whether the author is a bot or a human. Evaluate a change request like a human comment. If its concern is already fixed in the code from an earlier run, it is ALREADY ADDRESSED and needs no change.
+
+#### Suggestions
+
+When a comment contains a ```` ```suggestion ```` block, the reviewer has proposed the exact replacement for the commented lines. Evaluate it like any other comment. If it is correct, apply the suggested code verbatim to the lines the comment covers (`line`, and `startLine` for a multi-line suggestion), then adjust only what is needed to keep the code compiling and passing lint. If it is wrong or partly wrong, treat it as FALSE POSITIVE, DISCUSSION, or UNCERTAIN as usual, and say in the reply what is wrong with it.
 
 #### For Bot Comments
 
@@ -202,30 +215,28 @@ Now that the commits are pushed, reply to every processed comment, then resolve 
 
 When in doubt whether a fix was straightforward, leave the thread unresolved.
 
+**AI Agent prefix:** when the thread was started by your own login, start the reply with `🤖 *AI Agent:* ` so the user can tell the agent's reply apart from their own comments, since both are posted from the same account. Never add the prefix in a thread started by any other account, human or bot.
+
 **Reply message style:** follow the same standards as the PR description in Step 4:
 
 - Keep it as short as possible while staying clear. One sentence is the target, two at most. Lead with the outcome, e.g. "Fixed, `token` is now checked for `null` before use." or "Not a bug, `retry` is intentionally capped at `3`.".
 - No greetings, thanks, restating the comment, or explaining what the reviewer already said.
 - Plain sentences only, each ending with a period. No em dashes.
 - Wrap every version number, file name, path, and technical term in inline code.
-- Never use a colon (`:`) or a semicolon (`;`) anywhere in the reply, including inside code. Rephrase instead, or use a comma.
+- Never use a colon (`:`) or a semicolon (`;`) anywhere in the reply, including inside code. Rephrase instead, or use a comma. The only exception is the colon inside the `🤖 *AI Agent:* ` prefix.
 - No trailing blank lines or whitespace at the end of the reply.
-- No commit SHA, links, references, AI-attribution prefix, or AI-attribution footer.
+- No commit SHA, links, references, or AI-attribution footer. The `🤖 *AI Agent:* ` prefix is the only attribution, and only in threads started by your own login.
 
-**Threaded (inline) comments:** reply in-thread using the original comment's `databaseId`:
+Reply in-thread using the thread's first comment `databaseId`:
 
 ```bash
 gh api "repos/$OWNER/$REPO/pulls/$PR_NUMBER/comments" \
   -f body="<outcome or clarifying question>" -F in_reply_to="$COMMENT_DATABASE_ID"
 ```
 
-**Non-threadable comments:** If a comment was posted as a PR-level issue comment or review-summary submission (not an inline review comment on a specific line), reply with:
+**Change requests:** never reply to a change request from a review summary, since the only way would be a new comment. Fix it in Step 3, list it in the PR description in Step 4, and include it in the final report below.
 
-```bash
-gh pr comment "$PR_NUMBER" --body "<outcome>"
-```
-
-Non-threadable comments have no thread to resolve, so the reply is the only action.
+Never post a new top-level PR comment (`gh pr comment`, the issue comments endpoint, or a new review). Every message this skill posts is a reply inside an existing review thread.
 
 **Resolving a thread:** after replying, resolve a resolvable thread using its GraphQL thread `id` from Step 1:
 
@@ -236,11 +247,15 @@ gh api graphql -f query='
   }' -f threadId="$THREAD_ID"
 ```
 
+### Step 6: Report
+
+Print a short summary for the user with one line per processed thread and change request, giving its outcome and whether the thread was resolved. List change requests separately, since they got no reply and the user should tell the reviewer or re-request their review.
+
 ## Important Notes
 
 ### Response Policy
 
-- **Every comment gets a response** - No silent ignores
+- **Every review thread gets a reply** - No silent ignores, and no new top-level comments
 - For bots: responses help train them and prevent re-raised false positives
 - For humans: replies keep reviewers informed and unblock approvals
 
@@ -258,5 +273,5 @@ gh api graphql -f query='
 - Keep fixes minimal and focused - don't refactor unrelated code
 - Ensure type-check and lint pass before committing
 - Group related fixes into a single commit
-- Copilot `suggestion` blocks often contain ready-to-use fixes
+- `suggestion` blocks, from humans or Copilot, often contain ready-to-use fixes
 - If a human reviewer suggests a specific code change, prefer their version unless it introduces issues
