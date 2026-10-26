@@ -6,7 +6,7 @@ compatibility: Requires git and gh (GitHub CLI) installed.
 allowed-tools: Bash(gh api *) Bash(gh pr *) Bash(git add *) Bash(git commit *) Bash(git push *)
 metadata:
   author: jfmainville
-  version: "1.8.0"
+  version: "1.9.0"
   homepage: https://github.com/jfmainville/dotfiles
 ---
 
@@ -170,13 +170,13 @@ After evaluating and fixing ALL unanswered comments:
 
 ### Step 4: Update the PR Description
 
-If Step 3 produced no commits, skip this step. Otherwise, fetch the current PR body:
+If Step 3 produced no commits, or none of its fixes are critical, skip this step. Otherwise, fetch the current PR body:
 
 ```bash
 gh pr view "$PR_NUMBER" --json body -q .body
 ```
 
-Add one bullet to the **Changes** section for each meaningful change pushed in Step 3, after the existing bullets. Keep every existing bullet, and only edit the Description paragraph or **Additional Notes** when a fix makes them inaccurate. Rewrite the whole body so it follows the same standards as the `work-on` skill:
+Only add a bullet to the **Changes** section when a fix pushed in Step 3 is a critical change (see below). Most review fixes are minor and get no bullet. Keep every existing bullet, and only edit the Description paragraph or **Additional Notes** when a fix makes them inaccurate. Rewrite the whole body so it follows the same standards as the `work-on` skill:
 
 ```bash
 gh pr edit "$PR_NUMBER" --body "$(cat <<'EOF'
@@ -196,8 +196,8 @@ EOF
 ```
 
 - **Description**: a single paragraph starting with "This PR contains ..." that summarizes the change.
-- **Changes**: one bullet per meaningful change, covering every commit in the PR.
-- **Additional Notes**: caveats, trade-offs, or anything else useful to know when reviewing.
+- **Changes**: only the critical changes a reviewer must know about, such as new behavior, breaking changes, or changes to APIs, data, config, or infrastructure. Group related work into one bullet and leave out minor edits like renames, formatting, small refactors, and cleanup. Never add a bullet per commit or per file.
+- **Additional Notes**: only critical caveats, risks, or trade-offs a reviewer must know about. Leave out anything obvious from the diff.
 - End every bullet with a period.
 - Wrap every version number, file name, path, and technical term in inline code, e.g. "Bumped `react` to `18.3.1` in `package.json`." rather than "Bumped react to 18.3.1 in package.json.". This covers package and dependency names, functions, components, variables, commands, CLI flags, config keys, environment variables, and branch names.
 - The last bullet of **Additional Notes** is the last line of the body. Never leave an empty line after it, and never end the body with a trailing blank line or whitespace. The `EOF` line goes directly after that last bullet, as shown above.

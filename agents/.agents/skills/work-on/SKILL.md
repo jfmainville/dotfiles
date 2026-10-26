@@ -7,7 +7,7 @@ allowed-tools: Bash(git *) Bash(gh *) mcp__clickup__clickup_get_task mcp__clicku
 argument-hint: <TASK-ID-branch-name> [base-branch]
 metadata:
   author: jfmainville
-  version: "1.12.0"
+  version: "1.13.0"
   homepage: https://github.com/jfmainville/dotfiles
 ---
 
@@ -76,7 +76,7 @@ Follow these rules while implementing:
 
 - **Reuse before writing.** Before adding any function, hook, component, style, constant, or type, search the codebase (and the project's existing dependencies) for one that already does the job, and use it. If an existing one almost fits, extend it with a parameter, prop, or variant instead of copying it. Only write something new when nothing reusable exists, and make it reusable too: put it in the project's shared location (e.g. `utils/`, `components/`, `shared/`) when more than one place needs it.
 - **Use SCSS variables.** When the project uses SCSS, never hard-code colors, spacing, font sizes, font weights, radii, shadows, z-indexes, transitions, or breakpoints: use the existing variables (and mixins/functions) from the project's variables files. If a value you need has no variable yet, add one to the existing variables file and use it, rather than writing the raw value.
-- **Merge and clean up as you go.** In the files and modules you touch for the task, merge duplicated functions, components, and styles into one shared version, and delete dead code: unused functions, components, imports, variables, types, CSS classes, SCSS variables and mixins, unreachable branches, and stale feature flags. Before deleting anything, search the whole codebase for references, including dynamic ones (string lookups, templates, config, routes, exports used by other packages), and keep it if you can't confirm it's unused. Stay within the area you're working in rather than cleaning up the whole repo. Commit the cleanup separately from the feature (e.g. `refactor(<scope>): merge duplicate date helpers`, `chore(<scope>): remove unused button styles`) and list it in the PR's Changes.
+- **Merge and clean up as you go.** In the files and modules you touch for the task, merge duplicated functions, components, and styles into one shared version, and delete dead code: unused functions, components, imports, variables, types, CSS classes, SCSS variables and mixins, unreachable branches, and stale feature flags. Before deleting anything, search the whole codebase for references, including dynamic ones (string lookups, templates, config, routes, exports used by other packages), and keep it if you can't confirm it's unused. Stay within the area you're working in rather than cleaning up the whole repo. Commit the cleanup separately from the feature (e.g. `refactor(<scope>): merge duplicate date helpers`, `chore(<scope>): remove unused button styles`) and only mention it in the PR's Changes when it is significant.
 - **Comments only when necessary.** Don't add a comment unless the code can't be made clear on its own (e.g. a non-obvious workaround or business rule). A comment is never more than one line. Never comment what the code already says, and never leave commented-out code.
 
 Run the project's lint/type-check/tests if available before committing.
@@ -133,8 +133,8 @@ EOF
 
 - **Title**: the conventional-commit subject suffixed with the task ID in parentheses, e.g. `feat(auth): add OAuth login (NUA-1234)`. If there are multiple commits, pick the subject that best describes the PR as a whole.
 - **Description**: a single paragraph starting with "This PR contains ..." that summarizes the change.
-- **Changes**: one bullet per meaningful change, covering every commit in the PR.
-- **Additional Notes**: caveats, trade-offs, or anything else useful to know when reviewing.
+- **Changes**: only the critical changes a reviewer must know about, such as new behavior, breaking changes, or changes to APIs, data, config, or infrastructure. Group related work into one bullet and leave out minor edits like renames, formatting, small refactors, and cleanup. Never add a bullet per commit or per file.
+- **Additional Notes**: only critical caveats, risks, or trade-offs a reviewer must know about. Leave out anything obvious from the diff.
 - End every bullet with a period.
 - Wrap every version number, file name, path, and technical term in inline code, e.g. "Bumped `react` to `18.3.1` in `package.json`." rather than "Bumped react to 18.3.1 in package.json.". This covers package and dependency names, functions, components, variables, commands, CLI flags, config keys, environment variables, and branch names.
 - The last bullet of **Additional Notes** is the last line of the body. Never leave an empty line after it, and never end the body with a trailing blank line or whitespace. The `EOF` line goes directly after that last bullet, as shown above.

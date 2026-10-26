@@ -8,7 +8,7 @@ argument-hint: "[PR number or URL — defaults to the PR for the current branch]
 context: fork
 metadata:
   author: jfmainville
-  version: "2.3.0"
+  version: "2.4.0"
   homepage: https://github.com/jfmainville/dotfiles
 ---
 
@@ -60,8 +60,8 @@ Every rule below is a pass/fail check. Record each failure with what was found a
   ## Additional Notes
   ```
 - **Description** is a single paragraph that starts with "This PR contains".
-- **Changes** is a bullet list with one bullet per meaningful change, and covers every commit in the PR (compare against the commit list and the diff).
-- **Additional Notes** is a bullet list.
+- **Changes** is a short bullet list of only the critical changes a reviewer must know about (new behavior, breaking changes, changes to APIs, data, config, or infrastructure). Flag missing critical changes (compare against the diff), and flag bullets for minor edits like renames, formatting, small refactors, or cleanup, or one bullet per commit or per file.
+- **Additional Notes** is a bullet list of only critical caveats, risks, or trade-offs.
 - Every bullet ends with a period.
 - No colon (`:`) or semicolon (`;`) anywhere in the body, including inside bullets and code. When fixing the body in Step 7, rephrase the sentence rather than just deleting a colon, and replace each semicolon with a comma.
 - No task ID line, extra links, or metadata in the body.
@@ -199,7 +199,7 @@ git push --force-with-lease=<headRefName>:<recorded SHA> origin HEAD:<headRefNam
 
 Never use a plain `--force`.
 
-**Title and body.** Rewrite the title and body to follow every rule in Step 2. Keep the author's meaning, and make **Changes** cover every commit, including the fixes you just pushed. Put findings you couldn't fix, and any secret that must be rotated, in **Additional Notes** (without the secret's value).
+**Title and body.** Rewrite the title and body to follow every rule in Step 2. Keep the author's meaning, and keep **Changes** to the critical changes only, adding the fixes you just pushed only when they are critical. Put findings you couldn't fix, and any secret that must be rotated, in **Additional Notes** (without the secret's value).
 
 ```bash
 gh pr edit <PR> --title "<title>" --body "<body>"

@@ -7,7 +7,7 @@ allowed-tools: Bash(git *) Bash(gh *)
 argument-hint: "[product, service, or path to document - defaults to the whole repo] [output directory - defaults to docs]"
 metadata:
   author: jfmainville
-  version: "1.0.0"
+  version: "1.1.0"
   homepage: https://github.com/jfmainville/dotfiles
 ---
 
@@ -172,8 +172,8 @@ EOF
 
 - **Title**: the conventional-commit subject. If the branch name starts with a task ID (e.g. `NUA-1234-...`), suffix the title with it in parentheses, e.g. `docs(billing): add architecture docs (NUA-1234)`. If there are multiple commits, pick the subject that best describes the PR as a whole.
 - **Description**: a single paragraph starting with "This PR contains ..." that summarizes the change.
-- **Changes**: one bullet per meaningful change, covering every commit in the PR.
-- **Additional Notes**: caveats, trade-offs, or anything else useful to know when reviewing, such as parts of the system that could not be confirmed from the code.
+- **Changes**: only the critical changes a reviewer must know about, such as which products got new docs or which existing docs were removed or significantly changed. Group related work into one bullet and never add a bullet per commit or per file.
+- **Additional Notes**: only critical notes, such as parts of the system that could not be confirmed from the code.
 - End every bullet with a period.
 - Wrap every version number, file name, path, and technical term in inline code, e.g. "Documented `BILLING_API_URL` in `docs/billing/implementation.md`." rather than "Documented BILLING_API_URL in docs/billing/implementation.md.".
 - The last bullet of **Additional Notes** is the last line of the body. Never leave an empty line after it, and never end the body with a trailing blank line or whitespace. The `EOF` line goes directly after that last bullet, as shown above.
