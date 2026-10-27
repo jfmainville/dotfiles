@@ -50,7 +50,10 @@ return {
 				open_cmd = "AtlasDiff",
 				compact = true,
 				compact_context_lines = 10,
-				show_review_panel = true,
+				review_panel = {
+					hidden = false,
+					height = 10,
+				},
 				explorer = {
 					show_commits = true,
 					initial_focus = "diff",
