@@ -97,19 +97,19 @@ return {
 				review = {
 					find_file = "<leader>of",
 					next_comment = "gnc",
-					previous_comment = "gpc",
+					prev_comment = "gpc",
 					next_unresolved = "gnu",
 					prev_unresolved = "gpu",
 					explorer = {
 						find_file = { "<leader>of" },
 						next_unreviewed_file = "gun",
-						previous_unreviewed_file = "gup",
+						prev_unreviewed_file = "gup",
 					},
 					atlas = {
 						next_file = { "f", "<Tab>" },
-						previous_file = { "F", "<S-Tab>" },
+						prev_file = { "F", "<S-Tab>" },
 						next_hunk = "h",
-						previous_hunk = "H",
+						prev_hunk = "H",
 						open_file = "gf",
 					},
 				},
