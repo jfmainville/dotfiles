@@ -78,7 +78,7 @@ return {
 						name = "Sherweb",
 						key = "2",
 						layout = "compact",
-						search = "assignee:mbonin_gswc assignee:fbgirard_gswc assignee:pbtrudel_gswc assignee:pojasmin_gswc assignee:dfournier_gswc org:sherweb-operations org:sherweb-development sort:updated-desc",
+						search = "assignee:dlarin_gswc assignee:mbonin_gswc assignee:fbgirard_gswc assignee:pbtrudel_gswc assignee:pojasmin_gswc assignee:dfournier_gswc org:sherweb-operations org:sherweb-development sort:updated-desc",
 					},
 				},
 			},
