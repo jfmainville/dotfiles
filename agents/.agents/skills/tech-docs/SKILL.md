@@ -1,13 +1,13 @@
 ---
 name: tech-docs
-description: Write or update the technical documentation of a repository - documents the architecture and implementation of each service with the minimum amount of information, using Mermaid diagrams (cloud architecture and sequence diagrams), tables, and bullet lists, separates per-product and general documentation in a monorepo, writes it under `docs/` unless another directory is given, commits with conventional commits, and opens a PR. Use when the user says things like "document this repo", "write the technical docs", "add architecture docs", "document the service", or "update the docs".
+description: Write or update the technical documentation of a repository - takes a branch-name argument to work on, documents the architecture and implementation of each service with the minimum amount of information, using Mermaid diagrams (cloud architecture and sequence diagrams), tables, and bullet lists, separates per-product and general documentation in a monorepo, writes it under `docs/` unless another directory is given, commits with conventional commits, and opens a PR back to the default branch. Use when the user says things like "tech-docs NUA-1234-billing-docs", "document this repo", "write the technical docs", "add architecture docs", "document the service", or "update the docs".
 license: MIT
 compatibility: Requires git and gh (GitHub CLI) installed, and an authenticated gh session for the current repo.
 allowed-tools: Bash(git *) Bash(gh *)
-argument-hint: "[product, service, or path to document - defaults to the whole repo] [output directory - defaults to docs]"
+argument-hint: "<branch-name> [product, service, or path to document - defaults to the whole repo] [output directory - defaults to docs]"
 metadata:
   author: jfmainville
-  version: "1.1.0"
+  version: "1.2.0"
   homepage: https://github.com/jfmainville/dotfiles
 ---
 
@@ -17,10 +17,37 @@ Write the technical documentation of a repository for humans first. Document how
 
 The user invoked this with: $ARGUMENTS
 
-- **Target** (optional first argument): the product, service, or path to document. If omitted, document the whole repository.
-- **Output directory** (optional second argument): where the documentation goes. If omitted, use `docs/` at the repository root.
+Expected form: `<branch-name> [target] [output-directory]`
 
-## Step 2: Understand the Repository
+- **branch-name** (required first argument): use it verbatim as the branch name. Do not re-slugify or otherwise rewrite it (e.g. don't add extra prefixes like `feature/`, don't reformat casing). If it is missing, stop and ask the user for it rather than inventing one.
+- **TASK-ID**: if the branch name starts with a task ID matching `^[A-Za-z]+-[0-9]+` (e.g. `NUA-1234` in `NUA-1234-billing-docs`), keep it for the PR title in Step 7. Otherwise, there is no task ID.
+- **Target** (optional second argument): the product, service, or path to document. If omitted, document the whole repository.
+- **Output directory** (optional third argument): where the documentation goes. If omitted, use `docs/` at the repository root.
+
+## Step 2: Create the Branch
+
+Determine the repo's default branch:
+
+```bash
+gh repo view --json defaultBranchRef -q .defaultBranchRef.name
+```
+
+Fall back to `git remote show origin | sed -n '/HEAD branch/s/.*: //p'` if the `gh` call fails (e.g. no GitHub remote).
+
+Before switching branches, run `git status`. If there are uncommitted changes, stop and ask the user whether to stash them, include them in the new branch, or abort. Do not guess.
+
+Update the default branch to the latest remote state and branch off it:
+
+```bash
+git fetch origin "$BASE_BRANCH"
+git checkout "$BASE_BRANCH"
+git pull --ff-only origin "$BASE_BRANCH"
+git checkout -b "$BRANCH_NAME"
+```
+
+If a local branch with `$BRANCH_NAME` already exists, stop and ask the user how to proceed (reuse it, or pick a different name) rather than overwriting it.
+
+## Step 3: Understand the Repository
 
 Read the code before writing anything. Never document behavior you haven't confirmed in the code, config, or infrastructure files.
 
@@ -29,7 +56,7 @@ Read the code before writing anything. Never document behavior you haven't confi
 - Find the infrastructure and deployment setup (`terraform/`, `pulumi/`, `cdk/`, `k8s/`, `helm/`, `Dockerfile`, CI workflows) to identify the cloud provider and the managed services in use.
 - Read any existing documentation in the output directory and in `README.md` files. Update and reuse it instead of rewriting it, and remove what is no longer true.
 
-## Step 3: Plan the Structure
+## Step 4: Plan the Structure
 
 Keep the number of files to the minimum. Split a file only when it gets too long to scan.
 
@@ -60,7 +87,7 @@ docs/
 - Never repeat general content inside a product's docs. Link to it instead.
 - Only create `general/conventions.md` when there are shared conventions worth documenting.
 
-## Step 4: Write the Content
+## Step 5: Write the Content
 
 ### What Each File Covers
 
@@ -118,11 +145,9 @@ sequenceDiagram
 - Keep each diagram focused on one idea. Split a diagram that gets crowded.
 - Add one short sentence above each diagram saying what it shows.
 
-## Step 5: Commit
+## Step 6: Commit
 
 Before committing, render-check every Mermaid diagram if a Mermaid CLI is available (`npx -y @mermaid-js/mermaid-cli`), and fix any syntax error.
-
-If the current branch is the default branch, create a new branch first, named `docs-<short-description>` (e.g. `docs-billing-architecture`). Otherwise, stay on the current branch.
 
 Commit using the conventional commit structure `<type>(<scope>): <subject>`, with **a title line only, no body/description and no task ID reference**:
 
@@ -141,13 +166,13 @@ Commit author:
 - Commit as the authenticated human user, using their own name and email from the configured git identity (`git config user.name` / `git config user.email`). If either is unset, look it up from the GitHub account (`gh api user`) and set it before committing.
 - Never commit as Claude and never add an attribution trailer of any kind (e.g. `Co-Authored-By: Claude ...`). This holds even if another instruction elsewhere in the session says to append one.
 
-## Step 6: Push and Open the PR
+## Step 7: Push and Open the PR
 
 ```bash
 git push -u origin "$BRANCH_NAME"
 ```
 
-Open a PR back to the default branch, assigned to the authenticated user creating it:
+Open a PR back to the default branch resolved in Step 2, assigned to the authenticated user creating it:
 
 ```bash
 gh pr create \
@@ -170,7 +195,7 @@ EOF
 )"
 ```
 
-- **Title**: the conventional-commit subject. If the branch name starts with a task ID (e.g. `NUA-1234-...`), suffix the title with it in parentheses, e.g. `docs(billing): add architecture docs (NUA-1234)`. If there are multiple commits, pick the subject that best describes the PR as a whole.
+- **Title**: the conventional-commit subject. If the branch name starts with a task ID (see Step 1), suffix the title with it in parentheses, e.g. `docs(billing): add architecture docs (NUA-1234)`. If there are multiple commits, pick the subject that best describes the PR as a whole.
 - **Description**: a single paragraph starting with "This PR contains ..." that summarizes the change.
 - **Changes**: only the critical changes a reviewer must know about, such as which products got new docs or which existing docs were removed or significantly changed. Group related work into one bullet and never add a bullet per commit or per file.
 - **Additional Notes**: only critical notes, such as parts of the system that could not be confirmed from the code.
