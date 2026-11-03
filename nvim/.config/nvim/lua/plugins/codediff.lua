@@ -1,3 +1,18 @@
+local function default_branch_ref()
+	local ref = vim.fn.systemlist("git symbolic-ref --short refs/remotes/origin/HEAD")[1]
+	if vim.v.shell_error ~= 0 or not ref or ref == "" then
+		for _, candidate in ipairs({ "origin/main", "origin/master" }) do
+			vim.fn.system("git rev-parse --verify --quiet " .. candidate)
+			if vim.v.shell_error == 0 then
+				return candidate
+			end
+		end
+		vim.notify("Unable to determine the default branch", vim.log.levels.ERROR)
+		return nil
+	end
+	return ref
+end
+
 return {
 	"esmuellert/codediff.nvim",
 	cmd = "CodeDiff",
@@ -24,21 +39,10 @@ return {
 			mode = "n",
 			"<leader>db",
 			function()
-				local ref = vim.fn.systemlist("git symbolic-ref --short refs/remotes/origin/HEAD")[1]
-				if vim.v.shell_error ~= 0 or not ref or ref == "" then
-					for _, candidate in ipairs({ "origin/main", "origin/master" }) do
-						vim.fn.system("git rev-parse --verify --quiet " .. candidate)
-						if vim.v.shell_error == 0 then
-							ref = candidate
-							break
-						end
-					end
+				local ref = default_branch_ref()
+				if ref then
+					vim.cmd("CodeDiff " .. ref .. "...HEAD")
 				end
-				if not ref or ref == "" then
-					vim.notify("Unable to determine the default branch", vim.log.levels.ERROR)
-					return
-				end
-				vim.cmd("CodeDiff " .. ref .. "...HEAD")
 			end,
 			desc = "Open the diffview of the current branch against the default branch",
 		},
@@ -50,20 +54,28 @@ return {
 		},
 		{
 			mode = "n",
-			"<leader>dc",
+			"<leader>dh",
 			function()
-				require("codediff.ui.lifecycle").close()
+				local ref = default_branch_ref()
+				if ref then
+					vim.cmd("CodeDiff history " .. ref .. "..HEAD")
+				end
 			end,
-			desc = "Close the diffview tab",
+			desc = "Open the commit log with diffs of the current branch against the default branch",
 		},
 	},
 	opts = {
 		diff = {
 			layout = "inline",
 		},
+		history = {
+			position = "bottom",
+			date_format = "%Y-%m-%d %H:%M",
+		},
 		explorer = {
 			position = "bottom",
 			view_mode = "tree",
+			focus_on_select = true,
 			auto_open_on_cursor = true,
 			line_stats = {
 				enabled = true,
