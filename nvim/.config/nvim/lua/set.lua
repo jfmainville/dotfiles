@@ -39,6 +39,14 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
+-- Remove the "Press ENTER" prompt for messages
+require("vim._core.ui2").enable({
+	msg = {
+		targets = "msg",
+		msg = { height = 1, timeout = 4000 },
+	},
+})
+
 -- Copy the buffer clipboard to the system clipboard
 vim.opt.clipboard = "unnamedplus"
 
