@@ -5,10 +5,23 @@ return {
 	keys = {
 		{
 			"<leader>e",
-			"<cmd>Oil<cr>",
+			function()
+				require("oil").open(nil, { preview = { vertical = true, split = "belowright" } })
+			end,
 			desc = "Open Oil explorer",
 		},
 	},
+	init = function()
+		-- Show the preview window whenever an Oil directory is opened
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "OilEnter",
+			callback = function()
+				if not require("oil.util").get_preview_win() then
+					require("oil").open_preview({ vertical = true, split = "belowright" })
+				end
+			end,
+		})
+	end,
 	opts = {
 		view_options = {
 			show_hidden = true,
