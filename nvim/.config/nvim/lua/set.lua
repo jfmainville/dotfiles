@@ -42,7 +42,7 @@ vim.opt.updatetime = 50
 -- Copy the buffer clipboard to the system clipboard
 vim.opt.clipboard = "unnamedplus"
 
--- Use OSC 52 to copy through the terminal in remote SSH sessions
+-- Use OSC 52 to copy through the terminal in remote SSH sessions and herdr
 if vim.env.SSH_TTY then
 	local function paste()
 		return { vim.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") }
