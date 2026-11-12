@@ -1,11 +1,9 @@
 return {
 	"emrearmagan/atlas.nvim",
 	branch = "dev",
-	-- dir = "~/projects/atlas.nvim", -- For development only
+	dir = "~/projects/atlas.nvim", -- For development only
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
-		"MeanderingProgrammer/render-markdown.nvim",
-		"esmuellert/codediff.nvim",
 	},
 	keys = {
 		{
