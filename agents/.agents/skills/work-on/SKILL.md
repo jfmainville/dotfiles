@@ -1,6 +1,6 @@
 ---
 name: work-on
-description: Start work on a task - takes a single TASK-ID-branch-name argument, looks up TASK-ID as a ClickUp custom task ID to pull the task's requirements, creates the branch from the default branch (or a specified base), makes the requested changes, commits with a conventional-commit message, and opens a PR back to the default branch. Use when the user says things like "work on NUA-1234-add-login", or asks to begin/kick off a ticket/task.
+description: Start work on a task - takes a single TASK-ID-branch-name argument, looks up TASK-ID as a ClickUp custom task ID to pull the task's requirements, creates the branch from the default branch (or a specified base), makes the requested changes, commits with a conventional-commit message, and opens a draft PR back to the default branch. Use when the user says things like "work on NUA-1234-add-login", or asks to begin/kick off a ticket/task.
 license: MIT
 compatibility: Requires git and gh (GitHub CLI) installed, an authenticated gh session for the current repo, and the ClickUp MCP server connected.
 allowed-tools: Bash(git *) Bash(gh *) mcp__clickup__clickup_get_task mcp__clickup__clickup_get_task_comments
@@ -110,10 +110,11 @@ Commit author:
 git push -u origin "$BRANCH_NAME"
 ```
 
-Open a PR back to the base branch resolved in Step 3, assigned to the authenticated user creating it:
+Open a PR back to the base branch resolved in Step 3, always as a draft, assigned to the authenticated user creating it:
 
 ```bash
 gh pr create \
+  --draft \
   --base "$BASE_BRANCH" \
   --assignee @me \
   --title "<type>(<scope>): <subject> (<TASK-ID>)" \
