@@ -144,4 +144,19 @@ EOF
 - Never use a colon (`:`) or a semicolon (`;`) anywhere in the body, including inside bullets and code. Rephrase instead of a colon, e.g. "Added login support with OAuth." rather than "Login: added OAuth support.", and use a comma instead of a semicolon, e.g. "Added the endpoint, the client still uses the old one.". The section headings contain neither.
 - Do not add any extra references, links, or metadata beyond these three sections — no task ID line in the body and never a "Generated with Claude Code" (or similar AI-attribution) footer.
 
+## Step 7: Keep the PR Up to Date After Each Commit
+
+Every time a further commit is pushed to the branch (e.g. follow-up fixes or review changes), re-evaluate the PR title and description against the full set of changes in the PR and update them if they no longer match:
+
+```bash
+git push
+gh pr edit --title "<type>(<scope>): <subject> (<TASK-ID>)" --body "$(cat <<'EOF'
+...
+EOF
+)"
+```
+
+- Only edit when needed, if the title and body still describe the PR accurately, leave them untouched.
+- Apply the same title and body rules as in Step 6, and keep the PR a draft.
+
 Report the PR URL back to the user when done.
