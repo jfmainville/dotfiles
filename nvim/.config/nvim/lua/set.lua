@@ -2,6 +2,12 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
+-- Show the diagnostic messages inline, at the end of the line
+vim.diagnostic.config({
+	virtual_text = true,
+	severity_sort = true,
+})
+
 -- Enable highlighting of the current line
 vim.opt.cursorline = true
 
