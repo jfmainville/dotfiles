@@ -22,6 +22,7 @@ Before writing anything, learn how this project tests:
 
 - Identify the language(s), the test framework, and the test runner command. Look at `package.json` scripts, `pyproject.toml` / `pytest.ini` / `tox.ini`, `go.mod`, `Cargo.toml`, `Makefile`, `justfile`, CI config (`.github/workflows/*`), and any `CONTRIBUTING`/`README` notes.
 - Find where tests live and how they are named (`tests/`, `__tests__/`, `*_test.go`, `test_*.py`, `*.spec.ts`, …).
+- Read the **Testing** and **Tooling** sections of `~/.agents/rules/<language>.md` for each language in the target (`lua.md`, `python.md`, `typescript.md`, `scss.md`, `shell.md`, `terraform.md`), plus `~/.agents/rules/general.md`. The project's existing setup wins when they disagree.
 - Read two or three existing test files close to the target so new tests match their structure, fixtures, mocking style, assertion library, and naming.
 - Run the existing test suite (or the relevant subset) **once before changing anything** to get a baseline. Record which tests already fail so you don't blame yourself for them or hide them.
 
@@ -48,11 +49,12 @@ For each unit of code in the target (function, method, class, module):
 
 A test that has never been seen failing is not trusted. For every test you added or changed:
 
-1. **Run it** with the project's runner, scoped to the changed test files first, and make it pass.
-2. **Check it can fail.** Temporarily break the behavior it covers (e.g. flip a condition, return a wrong value, comment out a line in the code under test), run the test, confirm it fails for the expected reason, then **revert the mutation**. Do this for at least the core assertion of each new test. Use `git diff` / `git stash` carefully so production code ends exactly as it started — verify with `git diff -- <production files>` showing no changes before you finish.
-3. **Run the full relevant suite** to confirm nothing else regressed, and compare against the baseline from step 1.
-4. If the project has a coverage tool already configured, run it for the target and report the coverage of the target files. Do not add a coverage tool that is not already there.
-5. If tests are flaky (pass/fail across runs), re-run them up to three times to confirm, and fix the source of nondeterminism.
+1. **Format and lint it:** run the Neovim format and lint check from the **Formatting and Linting** section of `~/.agents/rules/general.md` (`nvim --headless -c "luafile ~/.agents/scripts/nvim-check.lua" <files>`), or the language file's formatter and linter when Neovim isn't available, on the test files you changed only, never on production code.
+2. **Run it** with the project's runner, scoped to the changed test files first, and make it pass.
+3. **Check it can fail.** Temporarily break the behavior it covers (e.g. flip a condition, return a wrong value, comment out a line in the code under test), run the test, confirm it fails for the expected reason, then **revert the mutation**. Do this for at least the core assertion of each new test. Use `git diff` / `git stash` carefully so production code ends exactly as it started — verify with `git diff -- <production files>` showing no changes before you finish.
+4. **Run the full relevant suite** to confirm nothing else regressed, and compare against the baseline from step 1.
+5. If the project has a coverage tool already configured, run it for the target and report the coverage of the target files. Do not add a coverage tool that is not already there.
+6. If tests are flaky (pass/fail across runs), re-run them up to three times to confirm, and fix the source of nondeterminism.
 
 Do not report success unless the tests were actually executed and passed in this session. If you cannot run them (missing dependencies, services, credentials), say exactly what blocked you and the command you would have run.
 

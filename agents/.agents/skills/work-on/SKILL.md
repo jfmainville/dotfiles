@@ -7,7 +7,7 @@ allowed-tools: Bash(git *) Bash(gh *) mcp__clickup__clickup_get_task mcp__clicku
 argument-hint: <TASK-ID-branch-name> [base-branch]
 metadata:
   author: jfmainville
-  version: "1.14.0"
+  version: "1.16.0"
   homepage: https://github.com/jfmainville/dotfiles
 ---
 
@@ -72,20 +72,15 @@ If a local branch with `$BRANCH_NAME` already exists, stop and ask the user how 
 
 Implement whatever work the ClickUp task requires, per its description and comments fetched in Step 2 (plus anything else already discussed in this conversation). If the task's scope is still unclear after reading it, ask the user rather than fabricating work.
 
-Follow these rules while implementing:
+Follow the coding rules while implementing. Read `~/.agents/rules/general.md` first, then the rules file for each language you touch (`lua.md`, `python.md`, `typescript.md`, `scss.md`, `shell.md`, `terraform.md` in the same folder). The project's own `AGENTS.md`/`CLAUDE.md`, tool configs, and existing code win when they disagree.
 
-- **Simplicity first.** Implement the simplest solution that fully meets the task's requirements. Prefer plain, direct code over abstractions, indirection, configuration, or generalization the task doesn't need. Don't add a function unless it is reused or makes the code clearly easier to read, and inline one-off helpers instead.
-- **Don't reinvent the wheel.** Before writing non-trivial logic (e.g. date handling, parsing, validation, retries, HTTP clients, UI widgets), check whether the project's existing dependencies already cover it, then whether a popular, actively maintained package does. Only add a new package if its GitHub repository has at least 1,000 stars (check with `gh api repos/<owner>/<repo> -q .stargazers_count`), and prefer it over a custom implementation. Don't add a package for something a few lines of code or the standard library already handles.
-- **Reuse before writing.** Before adding any function, hook, component, style, constant, or type, search the codebase (and the project's existing dependencies) for one that already does the job, and use it. If an existing one almost fits, extend it with a parameter, prop, or variant instead of copying it. Only write something new when nothing reusable exists, and make it reusable too: put it in the project's shared location (e.g. `utils/`, `components/`, `shared/`) when more than one place needs it.
-- **Use SCSS variables.** When the project uses SCSS, never hard-code colors, spacing, font sizes, font weights, radii, shadows, z-indexes, transitions, or breakpoints: use the existing variables (and mixins/functions) from the project's variables files. If a value you need has no variable yet, add one to the existing variables file and use it, rather than writing the raw value.
-- **Merge and clean up as you go.** In the files and modules you touch for the task, merge duplicated functions, components, and styles into one shared version, and delete dead code: unused functions, components, imports, variables, types, CSS classes, SCSS variables and mixins, unreachable branches, and stale feature flags. Before deleting anything, search the whole codebase for references, including dynamic ones (string lookups, templates, config, routes, exports used by other packages), and keep it if you can't confirm it's unused. Stay within the area you're working in rather than cleaning up the whole repo. Commit the cleanup separately from the feature (e.g. `refactor(<scope>): merge duplicate date helpers`, `chore(<scope>): remove unused button styles`) and only mention it in the PR's Changes when it is significant.
-- **Comments only when necessary.** Don't add a comment unless the code can't be made clear on its own (e.g. a non-obvious workaround or business rule). A comment is never more than one line. Never comment what the code already says, and never leave commented-out code.
+Commit cleanup from the rules (merged duplicates, removed dead code) separately from the feature (e.g. `refactor(<scope>): merge duplicate date helpers`, `chore(<scope>): remove unused button styles`) and only mention it in the PR's Changes when it is significant.
 
-Run the project's lint/type-check/tests if available before committing.
+Run the type-check and test commands from each language's rules file (or the project's own scripts) before committing.
 
 ## Step 5: Commit
 
-Before committing, format every modified file with the project's formatter (e.g. `black` for Python, `npx prettier --write` for TypeScript/JavaScript) if one is used.
+Before committing, run the Neovim format and lint check from the **Formatting and Linting** section of `~/.agents/rules/general.md` (`nvim --headless -c "luafile ~/.agents/scripts/nvim-check.lua" <files>`), or the language file's formatter and linter when Neovim isn't available, on every modified file. Fix every issue you introduced and run it again until it passes.
 
 Commit using the conventional commit structure `<type>(<scope>): <subject>`, with **a title line only — no body/description and no task ID reference** (the branch name already carries the task ID):
 

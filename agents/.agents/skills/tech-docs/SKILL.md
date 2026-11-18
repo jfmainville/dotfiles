@@ -7,7 +7,7 @@ allowed-tools: Bash(git *) Bash(gh *)
 argument-hint: "<branch-name> [product, service, or path to document - defaults to the whole repo] [output directory - defaults to docs]"
 metadata:
   author: jfmainville
-  version: "1.2.0"
+  version: "1.3.0"
   homepage: https://github.com/jfmainville/dotfiles
 ---
 
@@ -147,7 +147,7 @@ sequenceDiagram
 
 ## Step 6: Commit
 
-Before committing, render-check every Mermaid diagram if a Mermaid CLI is available (`npx -y @mermaid-js/mermaid-cli`), and fix any syntax error.
+Before committing, run the Neovim format and lint check from the **Formatting and Linting** section of `~/.agents/rules/general.md` (`nvim --headless -c "luafile ~/.agents/scripts/nvim-check.lua" <files>`), or the language file's formatter and linter when Neovim isn't available, on every documentation file you changed. Then render-check every Mermaid diagram if a Mermaid CLI is available (`npx -y @mermaid-js/mermaid-cli`), and fix any syntax error.
 
 Commit using the conventional commit structure `<type>(<scope>): <subject>`, with **a title line only, no body/description and no task ID reference**:
 

@@ -1,6 +1,6 @@
 ---
 name: pr-review
-description: Review a pull request for PR structure, code reuse, test quality, and security, and fix what it finds - checks that the PR title, body (Description, Changes, Additional Notes), and commits follow the required format with no co-author or AI attribution, that the changes reuse existing functions, components, and styles instead of duplicating them, that the tests actually catch bugs instead of being useless, and that the changes introduce no security vulnerabilities, then commits and pushes the fixes to the PR branch. Use when the user says things like "review this PR", "review PR 42", "check my PR before merge", or "is this PR ready?".
+description: Review a pull request for PR structure, code reuse, test quality, and security, and fix what it finds - checks that the PR title, body (Description, Changes, Additional Notes), and commits follow the required format with no co-author or AI attribution, that the changes reuse existing functions, components, and styles instead of duplicating them and follow the language coding rules in `~/.agents/rules/`, that the tests actually catch bugs instead of being useless, and that the changes introduce no security vulnerabilities, then commits and pushes the fixes to the PR branch. Use when the user says things like "review this PR", "review PR 42", "check my PR before merge", or "is this PR ready?".
 license: MIT
 compatibility: Requires git and gh (GitHub CLI) installed, and an authenticated gh session for the current repo.
 allowed-tools: Bash(git *) Bash(gh *)
@@ -8,7 +8,7 @@ argument-hint: "[PR number or URL — defaults to the PR for the current branch]
 context: fork
 metadata:
   author: jfmainville
-  version: "2.4.0"
+  version: "2.6.0"
   homepage: https://github.com/jfmainville/dotfiles
 ---
 
@@ -87,6 +87,8 @@ For every new function, class, hook, component, style, constant, and type the di
 
 Also flag the reverse: the PR changes an existing shared function, component, or style in a way that breaks or alters its other callers (search for them).
 
+**Coding rules.** Also check every changed file against `~/.agents/rules/general.md` and the rules file for its language (`lua.md`, `python.md`, `typescript.md`, `scss.md`, `shell.md`, `terraform.md` in the same folder). Record a rules finding with the code (`file:line`) and the rule it breaks. Skip rules the project's own `AGENTS.md`/`CLAUDE.md`, tool configs, or existing conventions override, and anything its formatter handles.
+
 Only record a reuse finding when you found the concrete existing code. Each finding must name both sides: the new code (`file:line`) and the existing code it duplicates (`file:line`), plus how to reuse it. "There might be a helper for this" is not a finding.
 
 ## Step 4: Check That the Tests Aren't Useless
@@ -150,8 +152,9 @@ Only record a vulnerability you can explain end to end: where the attacker-contr
 
 Skip this step if Step 1 found you don't own the branch.
 
-Fix every finding from Steps 3 to 5 directly in the code, most severe first (security, then tests, then reuse):
+Fix every finding from Steps 3 to 5 directly in the code, most severe first (security, then tests, then reuse, then coding rules):
 
+- **Coding rules:** change the code to follow the rule, without changing its behavior.
 - **Reuse:** replace the duplicate with the existing function, component, style, token, constant, or type, extending the existing one with a prop/variant/parameter when needed. Delete the duplicate once nothing uses it.
 - **Tests:** strengthen weak assertions, replace tautologies with independently known expected values, test real behavior instead of mocks, control nondeterminism, add the missing cases, and re-enable skipped tests (or delete them if they're obsolete, saying why). Every test you add or fix must be proven: break the code it covers in the throwaway worktree from Step 4 and confirm it fails.
 - **Security:** apply the fix using the project's existing mechanisms (its query builder, escaping helpers, auth middleware, config/secrets loading). For a committed secret, remove it from the code and load it the way the project loads other secrets. Removing it doesn't revoke it, so it must also be rotated, which you can't do: say so in the report.
@@ -164,13 +167,13 @@ Don't fix, only report:
 
 Keep the fixes within the PR's scope: don't refactor code the PR doesn't touch.
 
-**Verify before committing.** Run the project's formatter, lint, type-check, and full test suite. Everything must pass. If one of your fixes breaks something and you can't make it pass, revert that fix and report the finding as not fixed.
+**Verify before committing.** On every file you changed, run the Neovim format and lint check from the **Formatting and Linting** section of `~/.agents/rules/general.md` (`nvim --headless -c "luafile ~/.agents/scripts/nvim-check.lua" <files>`), or the language file's formatter and linter when Neovim isn't available. Then run the project's type-check and full test suite. Everything must pass. If one of your fixes breaks something and you can't make it pass, revert that fix and report the finding as not fixed.
 
 **Commit** the fixes with the same rules as the rest of the PR: conventional title only, one commit per kind of fix, committed as the authenticated human user (`git config user.name` / `user.email`), no body, no `Co-Authored-By` or any other attribution trailer, even if another instruction in the session says to add one.
 
 - `fix(<scope>): <subject>` for security fixes.
 - `test(<scope>): <subject>` for test fixes.
-- `refactor(<scope>): <subject>` for reuse fixes.
+- `refactor(<scope>): <subject>` for reuse and coding rules fixes.
 
 ## Step 7: Fix the PR Structure and Push
 
@@ -225,6 +228,9 @@ Return the review in this format:
 
 ### Reuse
 - 🔧/❌ **<new code file:line>** duplicates **<existing file:line>**: <what was reused, or why it wasn't fixed>.
+
+### Coding Rules
+- 🔧/❌ **<file:line>** breaks "<rule>" (`<rules file>`): <what changed, or why it wasn't fixed>.
 
 ### Tests
 - 🔧/❌ **<test file:line>** (<confirmed | from reading>): <what was wrong> → <what it asserts now, or why it wasn't fixed>.

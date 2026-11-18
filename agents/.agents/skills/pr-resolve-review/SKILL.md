@@ -6,7 +6,7 @@ compatibility: Requires git and gh (GitHub CLI) installed.
 allowed-tools: Bash(gh api *) Bash(gh pr *) Bash(git add *) Bash(git commit *) Bash(git push *)
 metadata:
   author: jfmainville
-  version: "1.9.0"
+  version: "1.11.0"
   homepage: https://github.com/jfmainville/dotfiles
 ---
 
@@ -105,7 +105,7 @@ Read the referenced code and determine:
 
 - Bot doesn't understand the framework/library patterns
 - Code is intentionally structured that way (with comments explaining why)
-- Bot is flagging style preferences, not bugs
+- Bot is flagging style preferences, not bugs, unless the preference is in the coding rules (`~/.agents/rules/`)
 - The "bug" is actually a feature or intentional behavior
 - Bot misread the code flow
 
@@ -140,7 +140,7 @@ For both bot and human comments:
 
 #### Act on Evaluation
 
-**If TRUE POSITIVE / ACTIONABLE:** Fix the code. Track the comment ID and a brief description of the fix.
+**If TRUE POSITIVE / ACTIONABLE:** Fix the code, following `~/.agents/rules/general.md` and the rules file for the file's language (`lua.md`, `python.md`, `typescript.md`, `scss.md`, `shell.md`, `terraform.md`). Track the comment ID and a brief description of the fix.
 
 **If FALSE POSITIVE:** Do NOT change the code. Track the comment ID and the reason it's not a real bug.
 
@@ -158,7 +158,7 @@ Do NOT reply to comments yet. Replies happen after the commit (Step 5).
 
 After evaluating and fixing ALL unanswered comments:
 
-1. Run your project's lint and type-check
+1. On every file you changed, run the Neovim format and lint check from the **Formatting and Linting** section of `~/.agents/rules/general.md` (`nvim --headless -c "luafile ~/.agents/scripts/nvim-check.lua" <files>`), or the language file's formatter and linter when Neovim isn't available. Then run the type-check from each changed language's rules file (or the project's own scripts)
 2. Group the fixes by what they actually touch (e.g. one group per component/module/concern), not by which comment prompted them. Unrelated fixes go in separate commits; closely related ones can share a commit.
 3. For each group, stage just those files and commit using the conventional commit structure without a description and DO NOT include any task ID or a co-author trailer. Write `<TYPE>(<SCOPE>)` and the summary from the actual diff being committed, not a generic message. Commit as the currently configured git user, then push:
    ```bash
@@ -271,7 +271,7 @@ Print a short summary for the user with one line per processed thread and change
 
 - Verify findings before fixing - bots have false positives, humans rarely do
 - Keep fixes minimal and focused - don't refactor unrelated code
-- Ensure type-check and lint pass before committing
+- Ensure the Neovim format and lint check and the type-check pass before committing
 - Group related fixes into a single commit
 - `suggestion` blocks, from humans or Copilot, often contain ready-to-use fixes
 - If a human reviewer suggests a specific code change, prefer their version unless it introduces issues

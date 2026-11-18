@@ -96,6 +96,41 @@ symlink to `../.agents/skills`, which stow links into `~/.claude`.
 Stow only links `~/.claude/skills`, not the whole `~/.claude` folder, because Claude Code keeps credentials, history
 and session state there. If `~/.claude/skills` already exists, remove it before running `stow agents`.
 
+### Coding Rules
+
+The coding rules live in `agents/.agents/rules`: `general.md` for every language, plus one file per language:
+
+- `lua.md`
+- `python.md`
+- `typescript.md`
+- `scss.md`
+- `shell.md`
+- `terraform.md`
+
+The `work-on`, `pr-review`, `pr-resolve-review`
+and `tester` skills read them by path from `~/.agents/rules`, so they work in any harness. The `style-guide` skill
+generates or updates a language file.
+
+The global instructions in `agents/.agents/AGENTS.md` point every harness to the rules. Stow links them as:
+
+| Harness     | Global instructions                   | Rules                                  |
+| ----------- | ------------------------------------- | -------------------------------------- |
+| Claude Code | `~/.claude/CLAUDE.md`                 | `~/.claude/rules`, loaded by file type |
+| OpenCode    | `~/.config/opencode/AGENTS.md`        | Read by path from `~/.agents/rules`    |
+| Others      | Link their global file to `AGENTS.md` | Read by path from `~/.agents/rules`    |
+
+Create `~/.config/opencode` before running `stow agents`, so stow links only `AGENTS.md` instead of the whole folder.
+
+The formatters and linters are installed by Mason, from `nvim/.config/nvim/lua/plugins/mason.lua`.
+
+Every skill formats and lints the files it changes through Neovim with `agents/.agents/scripts/nvim-check.lua`, so agents
+use the same formatters, linters and settings as the editor. It falls back to each language's command-line tools when
+Neovim isn't installed:
+
+```bash
+nvim --headless -c "luafile ~/.agents/scripts/nvim-check.lua" <files>
+```
+
 ## Oh My Posh
 
 The `oh-my-posh` folder contains the configuration files for the Oh My Posh terminal theme configuration. To make it more flexible, it's possible to point the configuration to a remote file hosted in GitHub. Add the following line to the `~/.bashrc` or `~/.zshrc` file:
