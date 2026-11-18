@@ -5,12 +5,59 @@ return {
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+		-- Detect Ansible files by their directory names so ansiblels attaches to them
+		local ansible_dir_names = {
+			playbooks = true,
+			roles = true,
+			tasks = true,
+			handlers = true,
+			group_vars = true,
+			host_vars = true,
+			inventory = true,
+			inventories = true,
+			molecule = true,
+			collections = true,
+		}
+		local function ansible_filetype(path)
+			local lower = path:lower()
+			if lower:match("[^/]*playbook[^/]*%.ya?ml$") or lower:match("/site%.ya?ml$") then
+				return "yaml.ansible"
+			end
+			-- Check the directory names only, so the file name itself never counts
+			for dir in vim.fs.dirname(lower):gmatch("[^/]+") do
+				if
+					ansible_dir_names[dir]
+					or dir:find("ansible", 1, true)
+					or dir:match("_roles$")
+					or dir:match("_playbooks$")
+				then
+					return "yaml.ansible"
+				end
+			end
+		end
+		vim.filetype.add({
+			pattern = {
+				[".*%.ya?ml"] = ansible_filetype,
+			},
+		})
+
 		vim.lsp.config("cssls", {
 			capabilities = capabilities,
 		})
 		vim.lsp.enable("cssls")
 		vim.lsp.enable("stylelint_lsp")
 		vim.lsp.config("ansiblels", {
+			root_markers = {
+				"ansible.cfg",
+				".ansible-lint",
+				"roles",
+				"playbooks",
+				"group_vars",
+				"host_vars",
+				"inventory",
+				"molecule",
+				".git",
+			},
 			settings = {
 				ansible = {
 					ansible = {
@@ -18,9 +65,6 @@ return {
 					},
 					executionEnvironment = {
 						enabled = false,
-					},
-					python = {
-						interpreterPath = "python",
 					},
 					validation = {
 						enabled = true,
