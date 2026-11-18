@@ -60,3 +60,8 @@ vim.keymap.set("n", "N", function()
 	end
 	return "N"
 end, { expr = true, desc = "Center search previous" })
+-- Toggle the native Undotree window
+vim.keymap.set("n", "<leader>u", function()
+	vim.cmd.packadd("nvim.undotree")
+	require("undotree").open()
+end, { desc = "Toggle the Undotree window" })
