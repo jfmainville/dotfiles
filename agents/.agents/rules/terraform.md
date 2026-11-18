@@ -15,6 +15,13 @@ Apply after `~/.agents/rules/general.md`.
 | Lint     | `tflint --recursive`                                                   |
 | Test     | `terraform test`, only if the project already has `*.tftest.hcl` files |
 
+## Versions and Modern Features
+
+- Target `required_version`, otherwise the latest Terraform release.
+- Use `import` blocks instead of `terraform import`, `moved` and `removed` blocks instead of state commands, and `check` blocks, `precondition`, and `postcondition` for assertions.
+- Use `optional()` attributes with defaults in object variables, and `validation` blocks on variables.
+- Use ephemeral resources and write-only arguments for secrets only when `required_version` allows them.
+
 ## Conventions
 
 - Split each root module into `main.tf`, `variables.tf`, `outputs.tf`, `providers.tf`, and `versions.tf`.

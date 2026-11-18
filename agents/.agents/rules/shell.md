@@ -14,6 +14,12 @@ Apply after `~/.agents/rules/general.md`.
 | Lint   | `shellcheck <files>` (Bash and POSIX `sh` only, not Zsh) |
 | Test   | `bats`, only if the project already has it               |
 
+## Versions and Modern Features
+
+- macOS ships Bash 3.2. Scripts that must run there without Homebrew's Bash avoid Bash 4+ features: associative arrays, `mapfile`/`readarray`, `${var,,}`/`${var^^}`, and `|&`. Linux-only scripts can use Bash 4 and 5 features.
+- Zsh files can use Zsh features, such as glob qualifiers (`(N-/)`) and array helpers.
+- Use `printf` instead of `echo -e`, `readonly` for constants, and `command -v` instead of `which`.
+
 ## Conventions
 
 - Start scripts with `#!/usr/bin/env bash` and `set -euo pipefail`. Zsh config files (`.zshrc`) keep Zsh syntax and skip `set -e`.

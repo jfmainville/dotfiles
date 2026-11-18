@@ -15,6 +15,13 @@ Apply after `~/.agents/rules/general.md`.
 | Type-check | `pyright`                                                |
 | Test       | `pytest`                                                 |
 
+## Versions and Modern Features
+
+- Target `requires-python`, otherwise the oldest CPython release still getting security fixes (3.10 reached end of life in October 2026, so 3.11).
+- Use `match` for branching on structure, `tomllib` for TOML, `typing.Self`, `asyncio.TaskGroup` instead of `asyncio.gather`, and `@dataclass(slots=True, kw_only=True)`.
+- Only when the target is 3.12 or newer, use type parameter syntax (`def first[T](items: list[T]) -> T`), `type` aliases, `typing.override`, and `itertools.batched`.
+- Run `ruff check --select UP <files>` to find syntax older than the target version, and fix what it reports.
+
 ## Conventions
 
 - Add type hints to every function signature. Use built-in generics (`list[str]`, `dict[str, int]`, `X | None`).

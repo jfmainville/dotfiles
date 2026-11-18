@@ -6,7 +6,7 @@ compatibility: Requires git and gh (GitHub CLI) installed.
 allowed-tools: Bash(gh api *) Bash(gh pr *) Bash(git add *) Bash(git commit *) Bash(git push *)
 metadata:
   author: jfmainville
-  version: "1.12.0"
+  version: "1.13.0"
   homepage: https://github.com/jfmainville/dotfiles
 ---
 
@@ -170,13 +170,13 @@ After evaluating and fixing ALL unanswered comments:
 
 ### Step 4: Update the PR Description
 
-If Step 3 produced no commits, or none of its fixes are critical, skip this step. Otherwise, fetch the current PR body:
+If Step 3 produced no commits, skip this step. Otherwise, always update the description, as the **Keeping it up to date** rules in `~/.agents/rules/git.md` require. Fetch the current PR body:
 
 ```bash
 gh pr view "$PR_NUMBER" --json body -q .body
 ```
 
-Only add a bullet to the **Changes** section when a fix pushed in Step 3 is a critical change, as the **Changes** rule in `~/.agents/rules/git.md` defines. Most review fixes are minor and get no bullet. Keep every existing bullet, and only edit the Description paragraph or **Additional Notes** when a fix makes them inaccurate. Rewrite the whole body following the **Pull Requests** section of `~/.agents/rules/git.md`:
+Only add a bullet to the **Changes** section (or the repository PR template's equivalent section) when a fix pushed in Step 3 is a critical change, as the **Changes** rule in `~/.agents/rules/git.md` defines. Most review fixes are minor and get no bullet. Keep every existing bullet, and only edit the Description paragraph or **Additional Notes** when a fix makes them inaccurate. Rewrite the whole body following the **Pull Requests** section of `~/.agents/rules/git.md`:
 
 ```bash
 gh pr edit "$PR_NUMBER" --body "$(cat <<'EOF'

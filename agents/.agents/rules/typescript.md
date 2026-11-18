@@ -17,6 +17,14 @@ Apply after `~/.agents/rules/general.md`.
 
 Prefer the project's `package.json` scripts (`npm run lint`, `npm test`) when they exist.
 
+## Versions and Modern Features
+
+- Target `engines.node` or `.nvmrc` for Node, `browserslist` for browsers, and `tsconfig.json` `target`/`lib`. Otherwise target the oldest Node LTS still maintained and browser features that are Baseline "Widely available" on MDN.
+- Use ES modules, optional chaining (`?.`), nullish coalescing (`??`, `??=`), top-level `await` in modules, `Array.prototype.at`, `Object.hasOwn`, `structuredClone`, and the built-in `fetch`, `AbortController`, and `URL`.
+- Import Node built-ins with the `node:` prefix (`import { readFile } from "node:fs/promises"`).
+- In TypeScript, use `satisfies` to check a value against a type without widening it, `as const` for literal values, `import type` for type-only imports, and discriminated unions for state.
+- Check newer APIs (e.g. `Object.groupBy`, `Array.prototype.toSorted`, the new `Set` methods) against the targets on MDN before using them.
+
 ## Conventions
 
 - Write TypeScript for new code in a TypeScript project, with `strict` types.

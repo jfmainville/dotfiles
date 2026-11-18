@@ -5,7 +5,7 @@ license: MIT
 argument-hint: <language> [repository paths...]
 metadata:
   author: jfmainville
-  version: "1.1.0"
+  version: "1.2.0"
   homepage: https://github.com/jfmainville/dotfiles
 ---
 
@@ -33,6 +33,8 @@ The rules file is `~/.agents/rules/<language>.md`, all lowercase (e.g. `typescri
 
 **Base guide.** For gaps the code doesn't settle, use the language's best-known style guide (e.g. PEP 8 for Python, the Google style guides, Effective Go). Only add a rule from it when it is concrete and checkable.
 
+**Versions.** Find the versions the repositories support (see the **Versions and Modern Features** section of `general.md`), and list the newest stable language features and standard library APIs those versions allow, gating newer ones by version. Never list experimental or preview features.
+
 **Preferred packages.** For each common need you found (HTTP, validation, dates, CLI, testing), list the package the code already uses. Check that each one has at least 1,000 GitHub stars (`gh api repos/<owner>/<repo> -q .stargazers_count`) before listing it.
 
 ## Step 4: Write the Rules File
@@ -56,6 +58,8 @@ Apply after `~/.agents/rules/general.md`.
 | Lint       | ...     |
 | Type-check | ...     |
 | Test       | ...     |
+
+## Versions and Modern Features
 
 ## Conventions
 

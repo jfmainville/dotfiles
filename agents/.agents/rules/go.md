@@ -15,6 +15,13 @@ Apply after `~/.agents/rules/general.md`.
 | Type-check | `go build ./...`                                              |
 | Test       | `go test ./...` (`-race` for concurrent code)                 |
 
+## Versions and Modern Features
+
+- Target the `go` directive in `go.mod`, otherwise the oldest Go release still supported (Go supports the two most recent releases).
+- Use generics when they remove duplication, the `min`, `max`, and `clear` built-ins, and the `slices`, `maps`, and `cmp` packages instead of hand-written loops.
+- Use `for i := range n` and drop the old `v := v` loop variable copies (Go 1.22+).
+- Use range-over-func iterators (`iter.Seq`) only when the target is Go 1.23 or newer, and `t.Context()` and `b.Loop()` in tests only for Go 1.24 or newer.
+
 ## Conventions
 
 - Names are `MixedCaps`, exported with an uppercase first letter. Keep acronyms in one case (`userID`, `HTTPClient`).

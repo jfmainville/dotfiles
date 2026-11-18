@@ -88,6 +88,6 @@ Push the branch and open a draft PR back to the base branch resolved in Step 3, 
 
 ## Step 7: Keep the PR Up to Date After Each Commit
 
-Every time a further commit is pushed to the branch (e.g. follow-up fixes or review changes), update the PR title and body as the **Pull Requests** section of `~/.agents/rules/git.md` describes.
+Every time a further commit is pushed to the branch (e.g. follow-up fixes or review changes), always update the PR title and body right away, as the **Keeping it up to date** rules in `~/.agents/rules/git.md` describe.
 
 Report the PR URL back to the user when done.

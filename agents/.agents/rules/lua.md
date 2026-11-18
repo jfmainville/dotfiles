@@ -14,6 +14,13 @@ Apply after `~/.agents/rules/general.md`.
 | Lint and type-check | `lua-language-server --check <dir>`                                 |
 | Test                | `busted` or `nvim -l` scripts, only if the project already has them |
 
+## Versions and Modern Features
+
+- Neovim runs LuaJIT, which is Lua 5.1 plus `goto`. Don't use Lua 5.3+ syntax like `//` or bitwise operators: use the `bit` module.
+- Target the Neovim version the project documents, otherwise the latest stable release.
+- Use the current APIs: `vim.uv` (not `vim.loop`), `vim.system` (not `vim.fn.system` or `jobstart`), `vim.lsp.config` and `vim.lsp.enable`, `vim.iter`, `vim.fs`, `vim.hl` (not `vim.highlight`), and `vim.diagnostic.config`.
+- Only use experimental APIs (`vim._*`, e.g. `vim._core.ui2`) when the user asks for them.
+
 ## Conventions
 
 - Declare everything `local`. Never create globals, except Neovim's `vim` global.

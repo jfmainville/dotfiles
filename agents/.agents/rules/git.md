@@ -54,7 +54,13 @@ EOF
 
 - The conventional-commit subject that best describes the whole PR, suffixed with the task ID in parentheses when the branch name starts with one, e.g. `feat(auth): add OAuth login (NUA-1234)`.
 
-**Body**
+**Repository PR template**
+
+- Before writing a body, look for the repository's PR template: `.github/pull_request_template.md`, `.github/PULL_REQUEST_TEMPLATE.md`, `pull_request_template.md` or `docs/pull_request_template.md` (any casing), or a `.github/PULL_REQUEST_TEMPLATE/` folder.
+- When one exists, the body follows it instead of the three sections below: keep its headings, order, and checklists, fill every section, check only the boxes that are true, and delete its placeholder comments and instructions. With several templates in a folder, pick the one that matches the change and say which in your report.
+- Keep the template's own wording even when it uses colons. Everything you write in it still follows the rules below: critical changes only, no task ID line, links, or metadata the template doesn't ask for, no attribution, and the writing style.
+
+**Body without a template**
 
 - Exactly the three sections above, in that order, and nothing else: no task ID line, links, or metadata.
 - **Description** is a single paragraph that starts with "This PR contains" and summarizes the change.
@@ -62,10 +68,12 @@ EOF
 - **Additional Notes** lists only critical caveats, risks, or trade-offs. Leave out anything obvious from the diff.
 - The last bullet of **Additional Notes** is the last line of the body. Never end it with a blank line or whitespace. The `EOF` line goes directly after that bullet.
 - Follow the writing style below.
+- The same rules apply to the matching sections of a repository template (its summary, list of changes, and notes).
 
 **Keeping it up to date**
 
-- After every further push, check the title and body against the full set of changes in the PR, and update them with `gh pr edit` only when they no longer match.
+- After every commit pushed to a branch with an open PR, always update the PR description in the same step: fetch the current body (`gh pr view --json title,body`), rewrite the title and body to reflect the full set of changes in the PR, and apply it with `gh pr edit`. Never push a commit and leave the description for later.
+- Add new critical changes to **Changes**, and fix the Description, **Additional Notes**, and title wherever the new commit made them inaccurate. Keep everything that is still true.
 - Keep the PR a draft. The user marks it ready for review.
 
 ## Writing Style

@@ -14,6 +14,14 @@ Apply these rules to every language, then the language file for each file you to
 
 For branches, commits, pull requests, and review replies, follow `~/.agents/rules/git.md`.
 
+## Versions and Modern Features
+
+- Before writing code, find the versions the project supports: `requires-python` in `pyproject.toml`, `engines`, `.nvmrc`, and `browserslist` for JavaScript, `tsconfig.json` `target`, the `go` directive in `go.mod`, Terraform's `required_version`, `.tool-versions` or `mise.toml`, and the CI matrix.
+- Use the newest stable language features and standard library APIs that all those versions support, as each language file describes. Never use a feature newer than the oldest supported version.
+- When the project doesn't say, target the oldest version still supported upstream, so the code runs for most users.
+- Never use experimental, preview, or nightly-only features unless the project already does or the user asks.
+- Replace deprecated APIs and outdated idioms in the code you touch.
+
 ## Simplicity
 
 - Implement the simplest solution that fully meets the requirements. Prefer plain, direct code over abstractions, indirection, configuration, or generalization nobody asked for.
