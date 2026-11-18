@@ -163,7 +163,6 @@ The following table shows the list of all the plugins that are used by Neovim wi
 
 | Plugin Name                                                                         | Purpose          |
 | ----------------------------------------------------------------------------------- | :--------------- |
-| [autotag](https://github.com/windwp/nvim-ts-autotag)                                | Utility          |
 | [aerial](https://github.com/stevearc/aerial.nvim)                                   | LSP              |
 | [telescope](https://github.com/nvim-telescope/telescope.nvim)                       | Navigator        |
 | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)               | Code Highlighter |

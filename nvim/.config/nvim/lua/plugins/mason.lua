@@ -122,8 +122,11 @@ return {
 			},
 		})
 
+		-- Auto rename the paired HTML/JSX tags through the LSP
+		vim.lsp.linked_editing_range.enable(true)
 		vim.lsp.enable("ts_ls")
 		vim.lsp.enable("eslint")
+		vim.lsp.enable("html")
 		vim.lsp.enable("cssmodules_ls")
 		vim.lsp.enable("tailwindcss")
 		vim.lsp.enable("emmet_language_server")
@@ -174,6 +177,7 @@ return {
 				"ts_ls",
 				"eslint",
 				"cssls",
+				"html",
 				"cssmodules_ls",
 				"tailwindcss",
 				"emmet_language_server",
