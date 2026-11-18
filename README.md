@@ -32,12 +32,12 @@ backend by completing the following steps:
 
 ```bash
 # MacOS
-brew install neovim tmux stow ripgrep fzf zsh zsh-autosuggestions zsh-syntax-highlighting jandedobbeleer/oh-my-posh/oh-my-posh
+brew install neovim stow ripgrep fzf zsh zsh-autosuggestions zsh-syntax-highlighting jandedobbeleer/oh-my-posh/oh-my-posh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 
 # Debian/Ubuntu
-sudo apt-get install neovim tmux stow ripgrep fzf
+sudo apt-get install neovim stow ripgrep fzf
 ```
 
 2. Execute the below command to download the repository to your local machine:
@@ -52,8 +52,7 @@ sudo apt-get install neovim tmux stow ripgrep fzf
    the following bash script as your regular user (it calls `sudo` where needed):
 
 ```bash
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-stow nvim tmux alacritty ghostty herdr agents zsh
+stow nvim alacritty ghostty herdr agents zsh
 chmod +x ~/dotfiles/init.sh
 ~/dotfiles/init.sh
 
@@ -77,7 +76,6 @@ The table below presents the folder structure for this repository:
 | fonts      | Contains the fonts that needs to be deployed       |
 | nvim       | Contains the Neovim configuration files            |
 | oh-my-posh | Contains the Oh My Posh configuration files        |
-| tmux       | Contains the Tmux configuration files              |
 | alacritty  | Contains the alacritty terminal configuration file |
 | herdr      | Contains the Herdr terminal multiplexer config     |
 | agents     | Contains the shared AI coding agent skills         |
@@ -176,17 +174,15 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)                        | Theme            |
 | [vim-fugitive](https://github.com/tpope/vim-fugitive)                               | Git              |
 | [conform.nvim](https://github.com/stevearc/conform.nvim)                            | Formatter        |
-| [render-markdown](https://github.com/MeanderingProgrammer/render-markdown.nvim)     | Utility          |
 | [treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context)    | Utility          |
 | [trouble.nvim](https://github.com/folke/trouble.nvim)                               | Utility          |
 | [nvim-lspconfig.nvim](https://github.com/neovim/nvim-lspconfig)                     | LSP              |
-| [mason.nvim](https://github.com/williamboman/mason.nvim)                            | LSP              |
+| [mason.nvim](https://github.com/williambaman/mason.nvim)                            | LSP              |
 | [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)        | LSP              |
 | [blink.cmp](https://github.com/saghen/blink.cmp)                                    | LSP              |
 | [LuaSnip](https://github.com/L3MON4D3/LuaSnip)                                      | Snippets         |
 | [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)                | Snippets         |
 | [oil.nvim](https://github.com/stevearc/oil.nvim)                                    | Navigator        |
-| [atlas.nvim](https://github.com/emrearmagan/atlas.nvim)                             | Git              |
 | [fluovibe.nvim](https://github.com/jfmainville/fluovibe.nvim)                       | Theme            |
 | [nudge.nvim](https://github.com/jfmainville/nudge.nvim)                             | Utility          |
 | [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)                            | Utility          |
