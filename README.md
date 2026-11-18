@@ -173,7 +173,6 @@ The following table shows the list of all the plugins that are used by Neovim wi
 | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)                         | Git              |
 | [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)                 | Theme            |
 | [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)                   | Utility          |
-| [Comment.nvim](https://github.com/numToStr/Comment.nvim)                            | Utility          |
 | [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)                        | Theme            |
 | [vim-fugitive](https://github.com/tpope/vim-fugitive)                               | Git              |
 | [conform.nvim](https://github.com/stevearc/conform.nvim)                            | Formatter        |
