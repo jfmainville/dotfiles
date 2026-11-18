@@ -10,6 +10,7 @@ Apply these rules to every language, then the language file for each file you to
 | SCSS/CSS              | `scss.md`       | `*.scss`, `*.css`                                  |
 | Shell                 | `shell.md`      | `*.sh`, `*.bash`, `*.zsh`, `.zshrc`                |
 | Terraform             | `terraform.md`  | `*.tf`, `*.tfvars`, `*.hcl`                        |
+| Go                    | `go.md`         | `*.go`, `go.mod`                                   |
 
 ## Simplicity
 

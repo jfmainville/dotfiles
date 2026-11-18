@@ -140,7 +140,7 @@ For both bot and human comments:
 
 #### Act on Evaluation
 
-**If TRUE POSITIVE / ACTIONABLE:** Fix the code, following `~/.agents/rules/general.md` and the rules file for the file's language (`lua.md`, `python.md`, `typescript.md`, `scss.md`, `shell.md`, `terraform.md`). Track the comment ID and a brief description of the fix.
+**If TRUE POSITIVE / ACTIONABLE:** Fix the code, following `~/.agents/rules/general.md` and the rules file for the file's language (`lua.md`, `python.md`, `typescript.md`, `scss.md`, `shell.md`, `terraform.md`, `go.md`). Track the comment ID and a brief description of the fix.
 
 **If FALSE POSITIVE:** Do NOT change the code. Track the comment ID and the reason it's not a real bug.
 

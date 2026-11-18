@@ -12,6 +12,7 @@ Before writing or reviewing code, read `~/.agents/rules/general.md`, then the ru
 | SCSS/CSS              | `~/.agents/rules/scss.md`       |
 | Shell                 | `~/.agents/rules/shell.md`      |
 | Terraform             | `~/.agents/rules/terraform.md`  |
+| Go                    | `~/.agents/rules/go.md`         |
 
 The project's own `AGENTS.md`/`CLAUDE.md`, tool configs, and existing code win over these rules when they disagree.
 

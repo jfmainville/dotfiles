@@ -22,7 +22,7 @@ Before writing anything, learn how this project tests:
 
 - Identify the language(s), the test framework, and the test runner command. Look at `package.json` scripts, `pyproject.toml` / `pytest.ini` / `tox.ini`, `go.mod`, `Cargo.toml`, `Makefile`, `justfile`, CI config (`.github/workflows/*`), and any `CONTRIBUTING`/`README` notes.
 - Find where tests live and how they are named (`tests/`, `__tests__/`, `*_test.go`, `test_*.py`, `*.spec.ts`, …).
-- Read the **Testing** and **Tooling** sections of `~/.agents/rules/<language>.md` for each language in the target (`lua.md`, `python.md`, `typescript.md`, `scss.md`, `shell.md`, `terraform.md`), plus `~/.agents/rules/general.md`. The project's existing setup wins when they disagree.
+- Read the **Testing** and **Tooling** sections of `~/.agents/rules/<language>.md` for each language in the target (`lua.md`, `python.md`, `typescript.md`, `scss.md`, `shell.md`, `terraform.md`, `go.md`), plus `~/.agents/rules/general.md`. The project's existing setup wins when they disagree.
 - Read two or three existing test files close to the target so new tests match their structure, fixtures, mocking style, assertion library, and naming.
 - Run the existing test suite (or the relevant subset) **once before changing anything** to get a baseline. Record which tests already fail so you don't blame yourself for them or hide them.
 

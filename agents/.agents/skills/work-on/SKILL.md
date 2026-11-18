@@ -72,7 +72,7 @@ If a local branch with `$BRANCH_NAME` already exists, stop and ask the user how 
 
 Implement whatever work the ClickUp task requires, per its description and comments fetched in Step 2 (plus anything else already discussed in this conversation). If the task's scope is still unclear after reading it, ask the user rather than fabricating work.
 
-Follow the coding rules while implementing. Read `~/.agents/rules/general.md` first, then the rules file for each language you touch (`lua.md`, `python.md`, `typescript.md`, `scss.md`, `shell.md`, `terraform.md` in the same folder). The project's own `AGENTS.md`/`CLAUDE.md`, tool configs, and existing code win when they disagree.
+Follow the coding rules while implementing. Read `~/.agents/rules/general.md` first, then the rules file for each language you touch (`lua.md`, `python.md`, `typescript.md`, `scss.md`, `shell.md`, `terraform.md`, `go.md` in the same folder). The project's own `AGENTS.md`/`CLAUDE.md`, tool configs, and existing code win when they disagree.
 
 Commit cleanup from the rules (merged duplicates, removed dead code) separately from the feature (e.g. `refactor(<scope>): merge duplicate date helpers`, `chore(<scope>): remove unused button styles`) and only mention it in the PR's Changes when it is significant.
 

@@ -87,7 +87,7 @@ For every new function, class, hook, component, style, constant, and type the di
 
 Also flag the reverse: the PR changes an existing shared function, component, or style in a way that breaks or alters its other callers (search for them).
 
-**Coding rules.** Also check every changed file against `~/.agents/rules/general.md` and the rules file for its language (`lua.md`, `python.md`, `typescript.md`, `scss.md`, `shell.md`, `terraform.md` in the same folder). Record a rules finding with the code (`file:line`) and the rule it breaks. Skip rules the project's own `AGENTS.md`/`CLAUDE.md`, tool configs, or existing conventions override, and anything its formatter handles.
+**Coding rules.** Also check every changed file against `~/.agents/rules/general.md` and the rules file for its language (`lua.md`, `python.md`, `typescript.md`, `scss.md`, `shell.md`, `terraform.md`, `go.md` in the same folder). Record a rules finding with the code (`file:line`) and the rule it breaks. Skip rules the project's own `AGENTS.md`/`CLAUDE.md`, tool configs, or existing conventions override, and anything its formatter handles.
 
 Only record a reuse finding when you found the concrete existing code. Each finding must name both sides: the new code (`file:line`) and the existing code it duplicates (`file:line`), plus how to reuse it. "There might be a helper for this" is not a finding.
 
