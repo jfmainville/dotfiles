@@ -116,6 +116,7 @@ return {
 				"shfmt",
 				"clang-format",
 				"shellcheck",
+				"ansible-lint",
 				"stylelint-language-server",
 			}) do
 				local package = registry.get_package(name)
