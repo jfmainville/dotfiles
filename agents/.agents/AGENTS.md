@@ -2,7 +2,7 @@
 
 ## Coding Rules
 
-Before writing or reviewing code, read `~/.agents/rules/general.md`, then the rules file for each language you touch:
+Before writing or reviewing code, follow `~/.agents/rules/general.md`, then the rules file for each language you touch:
 
 | Language              | Rules file                      |
 | --------------------- | ------------------------------- |
@@ -15,6 +15,14 @@ Before writing or reviewing code, read `~/.agents/rules/general.md`, then the ru
 | Go                    | `~/.agents/rules/go.md`         |
 
 The project's own `AGENTS.md`/`CLAUDE.md`, tool configs, and existing code win over these rules when they disagree.
+
+## Git
+
+For branches, commits, pull requests, and review replies, follow `~/.agents/rules/git.md`.
+
+## Reading the Rules
+
+Only read a rules file when its content isn't already in your context. Claude Code loads `general.md` and `git.md` on its own, plus the language file for each file you open, so don't read them again there. Other harnesses read them by path.
 
 ## Skills
 

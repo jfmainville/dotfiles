@@ -106,6 +106,8 @@ The coding rules live in `agents/.agents/rules`: `general.md` for every language
 - `terraform.md`
 - `go.md`
 
+`git.md` holds the shared standard for branches, commits, pull requests and review replies.
+
 The `work-on`, `pr-review`, `pr-resolve-review`
 and `tester` skills read them by path from `~/.agents/rules`, so they work in any harness. The `style-guide` skill
 generates or updates a language file.

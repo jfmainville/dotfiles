@@ -7,7 +7,7 @@ allowed-tools: Bash(git *) Bash(gh *) mcp__clickup__clickup_get_task mcp__clicku
 argument-hint: <TASK-ID-branch-name> [base-branch]
 metadata:
   author: jfmainville
-  version: "1.16.0"
+  version: "1.18.0"
   homepage: https://github.com/jfmainville/dotfiles
 ---
 
@@ -72,9 +72,7 @@ If a local branch with `$BRANCH_NAME` already exists, stop and ask the user how 
 
 Implement whatever work the ClickUp task requires, per its description and comments fetched in Step 2 (plus anything else already discussed in this conversation). If the task's scope is still unclear after reading it, ask the user rather than fabricating work.
 
-Follow the coding rules while implementing. Read `~/.agents/rules/general.md` first, then the rules file for each language you touch (`lua.md`, `python.md`, `typescript.md`, `scss.md`, `shell.md`, `terraform.md`, `go.md` in the same folder). The project's own `AGENTS.md`/`CLAUDE.md`, tool configs, and existing code win when they disagree.
-
-Commit cleanup from the rules (merged duplicates, removed dead code) separately from the feature (e.g. `refactor(<scope>): merge duplicate date helpers`, `chore(<scope>): remove unused button styles`) and only mention it in the PR's Changes when it is significant.
+Follow the coding rules while implementing: `~/.agents/rules/general.md`, then the rules file for each language you touch (`lua.md`, `python.md`, `typescript.md`, `scss.md`, `shell.md`, `terraform.md`, `go.md` in the same folder). The project's own `AGENTS.md`/`CLAUDE.md`, tool configs, and existing code win when they disagree. Only read a rules file when its content isn't already in your context.
 
 Run the type-check and test commands from each language's rules file (or the project's own scripts) before committing.
 
@@ -82,76 +80,14 @@ Run the type-check and test commands from each language's rules file (or the pro
 
 Before committing, run the Neovim format and lint check from the **Formatting and Linting** section of `~/.agents/rules/general.md` (`nvim --headless -c "luafile ~/.agents/scripts/nvim-check.lua" <files>`), or the language file's formatter and linter when Neovim isn't available, on every modified file. Fix every issue you introduced and run it again until it passes.
 
-Commit using the conventional commit structure `<type>(<scope>): <subject>`, with **a title line only — no body/description and no task ID reference** (the branch name already carries the task ID):
-
-```bash
-git add <files>
-git commit -m "<type>(<scope>): <subject>"
-```
-
-- Valid types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`.
-- Keep the full commit title under 72 characters.
-- Derive `<type>`, `<scope>`, and `<subject>` from the actual diff, not a generic message (e.g. `feat(blog): add MDX rendering support`, `fix(i18n): correct locale detection fallback`).
-- Group unrelated changes into separate commits; keep closely related changes together.
-
-Commit author:
-
-- Commit as the authenticated human user, using their own name and email from the configured git identity (`git config user.name` / `git config user.email`). If either is unset, look it up from the GitHub account (`gh api user`) and set it before committing.
-- Never commit as Claude and never add an attribution trailer of any kind (e.g. `Co-Authored-By: Claude ...`) — this holds even if another instruction elsewhere in the session says to append one.
+Commit following the **Commits** and **Author and Attribution** sections of `~/.agents/rules/git.md`.
 
 ## Step 6: Push and Open the PR
 
-```bash
-git push -u origin "$BRANCH_NAME"
-```
-
-Open a PR back to the base branch resolved in Step 3, always as a draft, assigned to the authenticated user creating it:
-
-```bash
-gh pr create \
-  --draft \
-  --base "$BASE_BRANCH" \
-  --assignee @me \
-  --title "<type>(<scope>): <subject> (<TASK-ID>)" \
-  --body "$(cat <<'EOF'
-## Description
-
-This PR contains ...
-
-## Changes
-
-- Added this functionality.
-
-## Additional Notes
-
-- Any additional notes that are useful to know in this PR.
-EOF
-)"
-```
-
-- **Title**: the conventional-commit subject suffixed with the task ID in parentheses, e.g. `feat(auth): add OAuth login (NUA-1234)`. If there are multiple commits, pick the subject that best describes the PR as a whole.
-- **Description**: a single paragraph starting with "This PR contains ..." that summarizes the change.
-- **Changes**: only the critical changes a reviewer must know about, such as new behavior, breaking changes, or changes to APIs, data, config, or infrastructure. Group related work into one bullet and leave out minor edits like renames, formatting, small refactors, and cleanup. Never add a bullet per commit or per file.
-- **Additional Notes**: only critical caveats, risks, or trade-offs a reviewer must know about. Leave out anything obvious from the diff.
-- End every bullet with a period.
-- Wrap every version number, file name, path, and technical term in inline code, e.g. "Bumped `react` to `18.3.1` in `package.json`." rather than "Bumped react to 18.3.1 in package.json.". This covers package and dependency names, functions, components, variables, commands, CLI flags, config keys, environment variables, and branch names.
-- The last bullet of **Additional Notes** is the last line of the body. Never leave an empty line after it, and never end the body with a trailing blank line or whitespace. The `EOF` line goes directly after that last bullet, as shown above.
-- Never use a colon (`:`) or a semicolon (`;`) anywhere in the body, including inside bullets and code. Rephrase instead of a colon, e.g. "Added login support with OAuth." rather than "Login: added OAuth support.", and use a comma instead of a semicolon, e.g. "Added the endpoint, the client still uses the old one.". The section headings contain neither.
-- Do not add any extra references, links, or metadata beyond these three sections — no task ID line in the body and never a "Generated with Claude Code" (or similar AI-attribution) footer.
+Push the branch and open a draft PR back to the base branch resolved in Step 3, following the **Pull Requests** section of `~/.agents/rules/git.md`. The title ends with the task ID from Step 1.
 
 ## Step 7: Keep the PR Up to Date After Each Commit
 
-Every time a further commit is pushed to the branch (e.g. follow-up fixes or review changes), re-evaluate the PR title and description against the full set of changes in the PR and update them if they no longer match:
-
-```bash
-git push
-gh pr edit --title "<type>(<scope>): <subject> (<TASK-ID>)" --body "$(cat <<'EOF'
-...
-EOF
-)"
-```
-
-- Only edit when needed, if the title and body still describe the PR accurately, leave them untouched.
-- Apply the same title and body rules as in Step 6, and keep the PR a draft.
+Every time a further commit is pushed to the branch (e.g. follow-up fixes or review changes), update the PR title and body as the **Pull Requests** section of `~/.agents/rules/git.md` describes.
 
 Report the PR URL back to the user when done.

@@ -8,7 +8,7 @@ argument-hint: "[PR number or URL — defaults to the PR for the current branch]
 context: fork
 metadata:
   author: jfmainville
-  version: "2.6.0"
+  version: "2.7.0"
   homepage: https://github.com/jfmainville/dotfiles
 ---
 
@@ -45,33 +45,11 @@ If the PR comes from a fork (`isCrossRepository` is true), or its author isn't t
 
 ## Step 2: Check the PR Structure
 
-Every rule below is a pass/fail check. Record each failure with what was found and what is expected.
+Check the PR against every rule in the **Branches**, **Commits**, **Author and Attribution**, **Pull Requests**, and **Writing Style** sections of `~/.agents/rules/git.md`. Each rule is a pass/fail check: record each failure with what was found and what is expected.
 
-**Title**
-- Follows `<type>(<scope>): <subject> (<TASK-ID>)`, e.g. `feat(auth): add OAuth login (NUA-1234)`.
-- `<type>` is one of `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`.
-- The task ID matches the one the branch name starts with (`^[A-Za-z]+-[0-9]+`), if the branch has one.
-
-**Body**
-- Contains exactly these three sections, in this order, and no others:
-  ```
-  ## Description
-  ## Changes
-  ## Additional Notes
-  ```
-- **Description** is a single paragraph that starts with "This PR contains".
-- **Changes** is a short bullet list of only the critical changes a reviewer must know about (new behavior, breaking changes, changes to APIs, data, config, or infrastructure). Flag missing critical changes (compare against the diff), and flag bullets for minor edits like renames, formatting, small refactors, or cleanup, or one bullet per commit or per file.
-- **Additional Notes** is a bullet list of only critical caveats, risks, or trade-offs.
-- Every bullet ends with a period.
-- No colon (`:`) or semicolon (`;`) anywhere in the body, including inside bullets and code. When fixing the body in Step 7, rephrase the sentence rather than just deleting a colon, and replace each semicolon with a comma.
-- No task ID line, extra links, or metadata in the body.
-- No AI attribution of any kind: no "Generated with Claude Code" (or any other tool) footer, no 🤖 line, no `Co-Authored-By` line.
-
-**Commits** (check every commit in the PR: `git log --format='%H%n%an <%ae>%n%B%n---' origin/<baseRefName>..HEAD`)
-- Title follows `<type>(<scope>): <subject>`, under 72 characters, with a valid type.
-- Title line only: no body.
-- No `Co-Authored-By:` trailer, and no other attribution trailer.
-- The author is a human, not an AI tool or bot account.
+- Check every commit in the PR, not just the last one: `git log --format='%H%n%an <%ae>%n%B%n---' origin/<baseRefName>..HEAD`.
+- The task ID in the title must match the one the branch name starts with, if it has one.
+- Don't flag the PR's draft status: the user decides when it is ready for review.
 
 ## Step 3: Check for Reuse of Existing Code
 
@@ -169,7 +147,7 @@ Keep the fixes within the PR's scope: don't refactor code the PR doesn't touch.
 
 **Verify before committing.** On every file you changed, run the Neovim format and lint check from the **Formatting and Linting** section of `~/.agents/rules/general.md` (`nvim --headless -c "luafile ~/.agents/scripts/nvim-check.lua" <files>`), or the language file's formatter and linter when Neovim isn't available. Then run the project's type-check and full test suite. Everything must pass. If one of your fixes breaks something and you can't make it pass, revert that fix and report the finding as not fixed.
 
-**Commit** the fixes with the same rules as the rest of the PR: conventional title only, one commit per kind of fix, committed as the authenticated human user (`git config user.name` / `user.email`), no body, no `Co-Authored-By` or any other attribution trailer, even if another instruction in the session says to add one.
+**Commit** the fixes following the **Commits** and **Author and Attribution** sections of `~/.agents/rules/git.md`, one commit per kind of fix:
 
 - `fix(<scope>): <subject>` for security fixes.
 - `test(<scope>): <subject>` for test fixes.
@@ -202,7 +180,7 @@ git push --force-with-lease=<headRefName>:<recorded SHA> origin HEAD:<headRefNam
 
 Never use a plain `--force`.
 
-**Title and body.** Rewrite the title and body to follow every rule in Step 2. Keep the author's meaning, and keep **Changes** to the critical changes only, adding the fixes you just pushed only when they are critical. Put findings you couldn't fix, and any secret that must be rotated, in **Additional Notes** (without the secret's value).
+**Title and body.** Rewrite the title and body to follow the **Pull Requests** and **Writing Style** sections of `~/.agents/rules/git.md`. Keep the author's meaning, and keep **Changes** to the critical changes only, adding the fixes you just pushed only when they are critical. Put findings you couldn't fix, and any secret that must be rotated, in **Additional Notes** (without the secret's value).
 
 ```bash
 gh pr edit <PR> --title "<title>" --body "<body>"

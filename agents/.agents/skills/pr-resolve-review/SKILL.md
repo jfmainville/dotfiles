@@ -6,7 +6,7 @@ compatibility: Requires git and gh (GitHub CLI) installed.
 allowed-tools: Bash(gh api *) Bash(gh pr *) Bash(git add *) Bash(git commit *) Bash(git push *)
 metadata:
   author: jfmainville
-  version: "1.11.0"
+  version: "1.12.0"
   homepage: https://github.com/jfmainville/dotfiles
 ---
 
@@ -160,7 +160,7 @@ After evaluating and fixing ALL unanswered comments:
 
 1. On every file you changed, run the Neovim format and lint check from the **Formatting and Linting** section of `~/.agents/rules/general.md` (`nvim --headless -c "luafile ~/.agents/scripts/nvim-check.lua" <files>`), or the language file's formatter and linter when Neovim isn't available. Then run the type-check from each changed language's rules file (or the project's own scripts)
 2. Group the fixes by what they actually touch (e.g. one group per component/module/concern), not by which comment prompted them. Unrelated fixes go in separate commits; closely related ones can share a commit.
-3. For each group, stage just those files and commit using the conventional commit structure without a description and DO NOT include any task ID or a co-author trailer. Write `<TYPE>(<SCOPE>)` and the summary from the actual diff being committed, not a generic message. Commit as the currently configured git user, then push:
+3. For each group, stage just those files and commit following the **Commits** and **Author and Attribution** sections of `~/.agents/rules/git.md`, then push:
    ```bash
    git add <CHANGE_GROUP>
    git commit -m "<TYPE>(<SCOPE>): <summary of this group's change>"
@@ -176,33 +176,14 @@ If Step 3 produced no commits, or none of its fixes are critical, skip this step
 gh pr view "$PR_NUMBER" --json body -q .body
 ```
 
-Only add a bullet to the **Changes** section when a fix pushed in Step 3 is a critical change (see below). Most review fixes are minor and get no bullet. Keep every existing bullet, and only edit the Description paragraph or **Additional Notes** when a fix makes them inaccurate. Rewrite the whole body so it follows the same standards as the `work-on` skill:
+Only add a bullet to the **Changes** section when a fix pushed in Step 3 is a critical change, as the **Changes** rule in `~/.agents/rules/git.md` defines. Most review fixes are minor and get no bullet. Keep every existing bullet, and only edit the Description paragraph or **Additional Notes** when a fix makes them inaccurate. Rewrite the whole body following the **Pull Requests** section of `~/.agents/rules/git.md`:
 
 ```bash
 gh pr edit "$PR_NUMBER" --body "$(cat <<'EOF'
-## Description
-
-This PR contains ...
-
-## Changes
-
-- Added this functionality.
-
-## Additional Notes
-
-- Any additional notes that are useful to know in this PR.
+<body>
 EOF
 )"
 ```
-
-- **Description**: a single paragraph starting with "This PR contains ..." that summarizes the change.
-- **Changes**: only the critical changes a reviewer must know about, such as new behavior, breaking changes, or changes to APIs, data, config, or infrastructure. Group related work into one bullet and leave out minor edits like renames, formatting, small refactors, and cleanup. Never add a bullet per commit or per file.
-- **Additional Notes**: only critical caveats, risks, or trade-offs a reviewer must know about. Leave out anything obvious from the diff.
-- End every bullet with a period.
-- Wrap every version number, file name, path, and technical term in inline code, e.g. "Bumped `react` to `18.3.1` in `package.json`." rather than "Bumped react to 18.3.1 in package.json.". This covers package and dependency names, functions, components, variables, commands, CLI flags, config keys, environment variables, and branch names.
-- The last bullet of **Additional Notes** is the last line of the body. Never leave an empty line after it, and never end the body with a trailing blank line or whitespace. The `EOF` line goes directly after that last bullet, as shown above.
-- Never use a colon (`:`) or a semicolon (`;`) anywhere in the body, including inside bullets and code. Rephrase instead of a colon, e.g. "Added login support with OAuth." rather than "Login: added OAuth support.", and use a comma instead of a semicolon, e.g. "Added the endpoint, the client still uses the old one.". The section headings contain neither.
-- Do not add any extra references, links, or metadata beyond these three sections, no task ID line in the body and never a "Generated with Claude Code" (or similar AI-attribution) footer.
 
 ### Step 5: Reply to All Comments
 
@@ -217,13 +198,11 @@ When in doubt whether a fix was straightforward, leave the thread unresolved.
 
 **AI Agent prefix:** when the thread was started by your own login, start the reply with `🤖 *AI Agent:* ` so the user can tell the agent's reply apart from their own comments, since both are posted from the same account. Never add the prefix in a thread started by any other account, human or bot.
 
-**Reply message style:** follow the same standards as the PR description in Step 4:
+**Reply message style:** follow the **Writing Style** section of `~/.agents/rules/git.md`, plus:
 
 - Keep it as short as possible while staying clear. One sentence is the target, two at most. Lead with the outcome, e.g. "Fixed, `token` is now checked for `null` before use." or "Not a bug, `retry` is intentionally capped at `3`.".
 - No greetings, thanks, restating the comment, or explaining what the reviewer already said.
-- Plain sentences only, each ending with a period. No em dashes.
-- Wrap every version number, file name, path, and technical term in inline code.
-- Never use a colon (`:`) or a semicolon (`;`) anywhere in the reply, including inside code. Rephrase instead, or use a comma. The only exception is the colon inside the `🤖 *AI Agent:* ` prefix.
+- The only colon allowed is the one inside the `🤖 *AI Agent:* ` prefix.
 - No trailing blank lines or whitespace at the end of the reply.
 - No commit SHA, links, references, or AI-attribution footer. The `🤖 *AI Agent:* ` prefix is the only attribution, and only in threads started by your own login.
 

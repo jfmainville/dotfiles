@@ -12,6 +12,8 @@ Apply these rules to every language, then the language file for each file you to
 | Terraform             | `terraform.md`  | `*.tf`, `*.tfvars`, `*.hcl`                        |
 | Go                    | `go.md`         | `*.go`, `go.mod`                                   |
 
+For branches, commits, pull requests, and review replies, follow `~/.agents/rules/git.md`.
+
 ## Simplicity
 
 - Implement the simplest solution that fully meets the requirements. Prefer plain, direct code over abstractions, indirection, configuration, or generalization nobody asked for.

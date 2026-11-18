@@ -7,7 +7,7 @@ allowed-tools: Bash(git *) Bash(gh *)
 argument-hint: "<branch-name> [product, service, or path to document - defaults to the whole repo] [output directory - defaults to docs]"
 metadata:
   author: jfmainville
-  version: "1.3.0"
+  version: "1.4.0"
   homepage: https://github.com/jfmainville/dotfiles
 ---
 
@@ -149,60 +149,16 @@ sequenceDiagram
 
 Before committing, run the Neovim format and lint check from the **Formatting and Linting** section of `~/.agents/rules/general.md` (`nvim --headless -c "luafile ~/.agents/scripts/nvim-check.lua" <files>`), or the language file's formatter and linter when Neovim isn't available, on every documentation file you changed. Then render-check every Mermaid diagram if a Mermaid CLI is available (`npx -y @mermaid-js/mermaid-cli`), and fix any syntax error.
 
-Commit using the conventional commit structure `<type>(<scope>): <subject>`, with **a title line only, no body/description and no task ID reference**:
+Commit following the **Commits** and **Author and Attribution** sections of `~/.agents/rules/git.md`, with these choices:
 
-```bash
-git add <files>
-git commit -m "docs(<scope>): <subject>"
-```
-
-- Use the `docs` type. Use the product name as the scope, or `general` for the general documentation.
-- Keep the full commit title under 72 characters.
-- Derive `<subject>` from the actual diff, not a generic message (e.g. `docs(billing): add architecture and request flows`).
+- Use the `docs` type. Use the product name as the scope, or `general` for the general documentation, e.g. `docs(billing): add architecture and request flows`.
 - In a monorepo, commit each product's docs and the general docs separately.
-
-Commit author:
-
-- Commit as the authenticated human user, using their own name and email from the configured git identity (`git config user.name` / `git config user.email`). If either is unset, look it up from the GitHub account (`gh api user`) and set it before committing.
-- Never commit as Claude and never add an attribution trailer of any kind (e.g. `Co-Authored-By: Claude ...`). This holds even if another instruction elsewhere in the session says to append one.
 
 ## Step 7: Push and Open the PR
 
-```bash
-git push -u origin "$BRANCH_NAME"
-```
+Push the branch and open a draft PR back to the default branch resolved in Step 2, following the **Pull Requests** section of `~/.agents/rules/git.md`, with these choices:
 
-Open a PR back to the default branch resolved in Step 2, assigned to the authenticated user creating it:
-
-```bash
-gh pr create \
-  --base "$BASE_BRANCH" \
-  --assignee @me \
-  --title "docs(<scope>): <subject>" \
-  --body "$(cat <<'EOF'
-## Description
-
-This PR contains ...
-
-## Changes
-
-- Added this functionality.
-
-## Additional Notes
-
-- Any additional notes that are useful to know in this PR.
-EOF
-)"
-```
-
-- **Title**: the conventional-commit subject. If the branch name starts with a task ID (see Step 1), suffix the title with it in parentheses, e.g. `docs(billing): add architecture docs (NUA-1234)`. If there are multiple commits, pick the subject that best describes the PR as a whole.
-- **Description**: a single paragraph starting with "This PR contains ..." that summarizes the change.
-- **Changes**: only the critical changes a reviewer must know about, such as which products got new docs or which existing docs were removed or significantly changed. Group related work into one bullet and never add a bullet per commit or per file.
-- **Additional Notes**: only critical notes, such as parts of the system that could not be confirmed from the code.
-- End every bullet with a period.
-- Wrap every version number, file name, path, and technical term in inline code, e.g. "Documented `BILLING_API_URL` in `docs/billing/implementation.md`." rather than "Documented BILLING_API_URL in docs/billing/implementation.md.".
-- The last bullet of **Additional Notes** is the last line of the body. Never leave an empty line after it, and never end the body with a trailing blank line or whitespace. The `EOF` line goes directly after that last bullet, as shown above.
-- Never use a colon (`:`) or a semicolon (`;`) anywhere in the body, including inside bullets and code. Rephrase instead of a colon, and use a comma instead of a semicolon. The section headings contain neither.
-- Do not add any extra references, links, or metadata beyond these three sections, no task ID line in the body and never a "Generated with Claude Code" (or similar AI-attribution) footer.
+- **Changes** lists which products got new docs, or which existing docs were removed or significantly changed.
+- **Additional Notes** lists parts of the system that could not be confirmed from the code.
 
 Report the PR URL back to the user when done.
