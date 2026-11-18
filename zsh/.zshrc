@@ -17,7 +17,7 @@ else
 fi
 
 # Paths
-export PATH="$HOME/.local/bin:$HOME/.local/bin/nvim/bin:$HOME/bin:$PATH"
+export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin:$HOME/.local/bin:$HOME/.local/bin/nvim/bin:$HOME/bin:$PATH"
 
 # Secrets
 [ -f ~/.secrets ] && chmod 600 ~/.secrets && source ~/.secrets
