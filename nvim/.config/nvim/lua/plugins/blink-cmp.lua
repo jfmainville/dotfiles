@@ -1,13 +1,19 @@
 return {
 	"saghen/blink.cmp",
 	version = "1.*",
+	dependencies = { "L3MON4D3/LuaSnip" },
 	opts = {
 		keymap = {
 			preset = "none",
+			["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+			["<C-e>"] = { "hide", "fallback" },
 			["<C-y>"] = { "accept", "fallback" },
 			["<C-k>"] = { "select_prev", "fallback" },
 			["<C-j>"] = { "select_next", "fallback" },
+			["<Tab>"] = { "snippet_forward", "fallback" },
+			["<S-Tab>"] = { "snippet_backward", "fallback" },
 		},
+		snippets = { preset = "luasnip" },
 		appearance = {
 			nerd_font_variant = "mono",
 		},
@@ -17,7 +23,7 @@ return {
 			},
 			documentation = {
 				auto_show = true,
-				auto_show_delay_ms = 500,
+				auto_show_delay_ms = 0,
 				window = { border = "single" },
 			},
 		},

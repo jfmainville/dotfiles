@@ -2,8 +2,9 @@ return {
 	"williamboman/mason.nvim",
 	dependencies = { "neovim/nvim-lspconfig", "williamboman/mason-lspconfig.nvim" },
 	config = function()
-		local capabilities = vim.lsp.protocol.make_client_capabilities()
-		capabilities.textDocument.completion.completionItem.snippetSupport = true
+		-- Share the blink.cmp capabilities with every language server
+		local capabilities = require("blink.cmp").get_lsp_capabilities()
+		vim.lsp.config("*", { capabilities = capabilities })
 
 		-- Detect Ansible files by their directory names so ansiblels attaches to them
 		local ansible_dir_names = {
