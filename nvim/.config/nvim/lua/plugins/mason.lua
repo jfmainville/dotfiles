@@ -9,6 +9,7 @@ return {
 			capabilities = capabilities,
 		})
 		vim.lsp.enable("cssls")
+		vim.lsp.enable("stylelint_lsp")
 		vim.lsp.config("ansiblels", {
 			settings = {
 				ansible = {
@@ -55,6 +56,18 @@ return {
 				},
 			},
 		})
+		vim.lsp.config("ruff", {
+			init_options = {
+				settings = {
+					-- Use the project's ruff config when it has one, these settings otherwise
+					configurationPreference = "filesystemFirst",
+					lineLength = 88,
+					lint = {
+						select = { "E", "F", "W", "I", "B", "UP", "SIM" },
+					},
+				},
+			},
+		})
 		vim.lsp.config("lua_ls", {
 			settings = {
 				Lua = {
@@ -75,6 +88,7 @@ return {
 		vim.lsp.enable("ansiblels")
 		vim.lsp.enable("dockerls")
 		vim.lsp.enable("pyright")
+		vim.lsp.enable("ruff")
 		vim.lsp.enable("bashls")
 		vim.lsp.enable("jsonls")
 		vim.lsp.enable("prismals")
@@ -91,6 +105,25 @@ return {
 		vim.lsp.enable("marksman")
 
 		require("mason").setup({})
+
+		-- Install the formatters used by conform and the tools mason-lspconfig can't resolve on its own
+		local registry = require("mason-registry")
+		registry.refresh(function()
+			for _, name in ipairs({
+				"stylua",
+				"black",
+				"prettier",
+				"shfmt",
+				"clang-format",
+				"shellcheck",
+				"stylelint-language-server",
+			}) do
+				local package = registry.get_package(name)
+				if not package:is_installed() then
+					package:install()
+				end
+			end
+		end)
 		require("mason-lspconfig").setup({
 			ensure_installed = {
 				"ts_ls",
@@ -103,6 +136,7 @@ return {
 				"dockerls",
 				"yamlls",
 				"pyright",
+				"ruff",
 				"bashls",
 				"lua_ls",
 				"jsonls",
