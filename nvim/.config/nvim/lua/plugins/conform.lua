@@ -53,7 +53,7 @@ return {
 			require_cwd = true,
 		})
 
-		-- Commands for toggling formmatting
+		-- Commands for toggling formatting
 		vim.api.nvim_create_user_command("ConformDisable", function(args)
 			if args.bang then
 				-- :ConformDisable! disables autoformat for this buffer only
