@@ -1,7 +1,7 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	lazy = false,
-	branch = "main", -- This branch is frozen and will be removed eventually, need to upgrade soon
+	branch = "main",
 	build = ":TSUpdate",
 	config = function()
 		require("nvim-treesitter").setup({
@@ -38,6 +38,12 @@ return {
 			"vimdoc",
 			"query",
 			"gitcommit",
+		})
+		-- The main branch doesn't enable highlighting automatically
+		vim.api.nvim_create_autocmd("FileType", {
+			callback = function(args)
+				pcall(vim.treesitter.start, args.buf)
+			end,
 		})
 	end,
 }
