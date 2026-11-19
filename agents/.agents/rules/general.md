@@ -1,65 +1,42 @@
 # General Coding Rules
 
-Apply these rules to every language, then the language file for each file you touch (`~/.agents/rules/<language>.md`). The project's own `AGENTS.md`/`CLAUDE.md`, tool configs, and existing code win over these files when they disagree.
+Apply to every language, then `~/.agents/rules/<language>.md` per file touched (`lua`, `python`, `typescript` for JS/TS, `scss` for CSS, `shell`, `terraform`, `ansible`, `go`). The project's own `AGENTS.md`/`CLAUDE.md`, tool configs, and existing code win when they disagree.
 
-| Language              | Rules file      | Applies to                                         |
-| --------------------- | --------------- | -------------------------------------------------- |
-| Lua                   | `lua.md`        | `*.lua`                                            |
-| Python                | `python.md`     | `*.py`                                             |
-| TypeScript/JavaScript | `typescript.md` | `*.ts`, `*.tsx`, `*.js`, `*.jsx`, `*.mjs`, `*.cjs` |
-| SCSS/CSS              | `scss.md`       | `*.scss`, `*.css`                                  |
-| Shell                 | `shell.md`      | `*.sh`, `*.bash`, `*.zsh`, `.zshrc`                |
-| Terraform             | `terraform.md`  | `*.tf`, `*.tfvars`, `*.hcl`                        |
-| Go                    | `go.md`         | `*.go`, `go.mod`                                   |
+## Project Instructions
 
-For branches, commits, pull requests, and review replies, follow `~/.agents/rules/git.md`.
+- Never edit the project's `CLAUDE.md` or `AGENTS.md` to record your changes. Only edit them when the user asks, or when a change makes a line false, and then change only that line.
 
-## Versions and Modern Features
+## Versions
 
-- Before writing code, find the versions the project supports: `requires-python` in `pyproject.toml`, `engines`, `.nvmrc`, and `browserslist` for JavaScript, `tsconfig.json` `target`, the `go` directive in `go.mod`, Terraform's `required_version`, `.tool-versions` or `mise.toml`, and the CI matrix.
-- Use the newest stable language features and standard library APIs that all those versions support, as each language file describes. Never use a feature newer than the oldest supported version.
-- When the project doesn't say, target the oldest version still supported upstream, so the code runs for most users.
-- Never use experimental, preview, or nightly-only features unless the project already does or the user asks.
-- Replace deprecated APIs and outdated idioms in the code you touch.
+- Find the supported versions first (`requires-python`, `engines`, `.nvmrc`, `browserslist`, `tsconfig.json` `target`, `go.mod`, `required_version`, `.tool-versions`, `mise.toml`, CI matrix). If none, target the oldest version still supported upstream.
+- Use the newest stable features all supported versions allow, never newer. No experimental or preview features unless the project already uses them or the user asks.
+- Replace deprecated APIs and outdated idioms in code you touch.
 
-## Simplicity
+## Simplicity and Reuse
 
-- Implement the simplest solution that fully meets the requirements. Prefer plain, direct code over abstractions, indirection, configuration, or generalization nobody asked for.
-- Don't add a function unless it is reused or makes the code clearly easier to read. Inline one-off helpers.
-
-## Don't Reinvent the Wheel
-
-- Before writing non-trivial logic (date handling, parsing, validation, retries, HTTP clients, UI widgets), check the project's existing dependencies, then popular, actively maintained packages.
-- Only add a new package if its GitHub repository has at least 1,000 stars (`gh api repos/<owner>/<repo> -q .stargazers_count`). Don't add one for something a few lines of code or the standard library already handles.
-- Each language file lists preferred packages. Use them unless the project already uses an alternative.
-
-## Reuse Before Writing
-
-- Before adding any function, component, style, constant, or type, search the codebase and its dependencies for one that already does the job, and use it.
-- If an existing one almost fits, extend it with a parameter, prop, or variant instead of copying it.
-- When something new is needed in more than one place, put it in the project's shared location (e.g. `utils/`, `components/`, `shared/`).
+- Write the simplest code that fully meets the requirements. No abstraction, configuration, or generalization nobody asked for.
+- Add a function only when it is reused or clearly improves readability. Inline one-off helpers.
+- Before adding a function, component, style, constant, or type, search the codebase and its dependencies for one that does the job. Extend a near fit with a parameter or variant instead of copying it. Put shared code in the project's shared location.
+- For non-trivial logic (dates, parsing, validation, retries, HTTP, UI widgets), use an existing dependency, the language file's preferred package, or a maintained package with at least 1,000 GitHub stars (`gh api repos/<owner>/<repo> -q .stargazers_count`). Not for what a few lines or the standard library handle.
 
 ## Clean Up What You Touch
 
-- In the files you change, merge duplicated code into one shared version and delete dead code: unused functions, imports, variables, types, styles, unreachable branches, and stale feature flags.
-- Before deleting anything, search the whole codebase for references, including dynamic ones (string lookups, templates, config, routes, exports used by other packages). Keep it if you can't confirm it's unused.
-- Stay within the area you're working in rather than cleaning up the whole repo.
+- In files you change, merge duplicates and delete dead code (unused functions, imports, variables, types, styles, unreachable branches, stale flags).
+- Search the whole codebase first, including dynamic references (string lookups, templates, config, routes, exports). Keep it if unsure. Stay within your area.
 
 ## Comments
 
-- Only comment when the code can't be made clear on its own (a non-obvious workaround or business rule). A comment is never more than one line.
-- Never comment what the code already says, and never leave commented-out code.
+- Comment only what the code can't make clear (a workaround or business rule), in one line. Never restate the code or leave commented-out code.
 
 ## Formatting and Linting
 
-- Formatting is the formatter's job: never hand-format against it.
-- Before committing, format and lint every file you changed through Neovim when `nvim` and `~/.agents/scripts/nvim-check.lua` exist, from the repository root:
+- Never hand-format against the formatter.
+- Before committing, from the repository root, run on every changed file:
 
   ```bash
-  nvim --headless -c "luafile ~/.agents/scripts/nvim-check.lua" <changed files>
+  nvim --headless -c "luafile ~/.agents/scripts/nvim-check.lua" <files>
   ```
 
-  It formats and saves each file with the user's Neovim formatters, then prints the language servers' errors, warnings, and info as `file:line:col: severity [source code] message`, and exits with `1` when there are any. Fix every issue you introduced, then run it again until it passes or only issues that were already there remain. It uses the project's own formatter and linter configs when they exist.
+  It formats with the user's Neovim formatters and prints LSP issues as `file:line:col: severity [source code] message`, exiting `1` when any exist. Fix the issues you introduced and rerun until only pre-existing ones remain.
 
-- When Neovim isn't available, run the formatter and linter commands from the language file instead.
-- Type-checks and tests always run through the commands in the language file or the project's own scripts, since Neovim only checks the files it opens.
+- Without `nvim`, use the language file's format and lint commands. Type-checks and tests always use the language file's commands or the project's scripts.

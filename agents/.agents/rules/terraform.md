@@ -4,8 +4,6 @@ paths: ["**/*.tf", "**/*.tfvars", "**/*.hcl"]
 
 # Terraform Rules
 
-Apply after `~/.agents/rules/general.md`.
-
 ## Tooling
 
 | Task     | Command                                                                |

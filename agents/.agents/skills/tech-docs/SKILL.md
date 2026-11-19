@@ -1,164 +1,58 @@
 ---
 name: tech-docs
-description: Write or update the technical documentation of a repository - takes a branch-name argument to work on, documents the architecture and implementation of each service with the minimum amount of information, using Mermaid diagrams (cloud architecture and sequence diagrams), tables, and bullet lists, separates per-product and general documentation in a monorepo, writes it under `docs/` unless another directory is given, commits with conventional commits, and opens a PR back to the default branch. Use when the user says things like "tech-docs NUA-1234-billing-docs", "document this repo", "write the technical docs", "add architecture docs", "document the service", or "update the docs".
+description: Write or update a repository's technical docs (architecture and implementation per service, with Mermaid diagrams and tables) on a given branch, then commit and open a draft PR. Use for "tech-docs NUA-1234-billing-docs", "document this repo", or "update the docs".
 license: MIT
-compatibility: Requires git and gh (GitHub CLI) installed, and an authenticated gh session for the current repo.
+compatibility: Requires git and an authenticated gh.
 allowed-tools: Bash(git *) Bash(gh *)
-argument-hint: "<branch-name> [product, service, or path to document - defaults to the whole repo] [output directory - defaults to docs]"
+argument-hint: "<branch-name> [product, service, or path] [output directory, defaults to docs]"
 metadata:
   author: jfmainville
-  version: "1.4.0"
+  version: "2.0.0"
   homepage: https://github.com/jfmainville/dotfiles
 ---
 
-Write the technical documentation of a repository for humans first. Document how each service is built and how it works, with only the information a new engineer needs, then commit it and open a PR.
+Document how each service is built and works, with only what a new engineer needs. Rules live in `~/.agents/rules/`.
 
-## Step 1: Parse Arguments
+## 1. Parse and Branch
 
-The user invoked this with: $ARGUMENTS
+Arguments: $ARGUMENTS (`<branch-name> [target] [output-dir]`)
 
-Expected form: `<branch-name> [target] [output-directory]`
+- The branch name is required and used verbatim. Its leading `^[A-Za-z]+-[0-9]+` is the task ID, if there is one.
+- The target defaults to the whole repo, and the output directory to `docs/`.
+- If `git status` shows changes or the branch exists, ask the user. Otherwise branch from the freshly pulled default branch (`gh repo view --json defaultBranchRef -q .defaultBranchRef.name`).
 
-- **branch-name** (required first argument): use it verbatim as the branch name. Do not re-slugify or otherwise rewrite it (e.g. don't add extra prefixes like `feature/`, don't reformat casing). If it is missing, stop and ask the user for it rather than inventing one.
-- **TASK-ID**: if the branch name starts with a task ID matching `^[A-Za-z]+-[0-9]+` (e.g. `NUA-1234` in `NUA-1234-billing-docs`), keep it for the PR title in Step 7. Otherwise, there is no task ID.
-- **Target** (optional second argument): the product, service, or path to document. If omitted, document the whole repository.
-- **Output directory** (optional third argument): where the documentation goes. If omitted, use `docs/` at the repository root.
+## 2. Understand
 
-## Step 2: Create the Branch
+Never document what you haven't confirmed in code, config, or infrastructure.
 
-Determine the repo's default branch:
+- Detect a monorepo (`apps/`, `services/`, `packages/`, workspace files, several deployables).
+- Per service, find the entry points, interfaces (routes, gRPC, queues, CLI), data stores, external dependencies, and configuration.
+- Find the cloud provider and managed services from the infrastructure and CI files.
+- Update existing docs and `README.md` files instead of rewriting them, and remove what is no longer true.
 
-```bash
-gh repo view --json defaultBranchRef -q .defaultBranchRef.name
-```
+## 3. Structure
 
-Fall back to `git remote show origin | sed -n '/HEAD branch/s/.*: //p'` if the `gh` call fails (e.g. no GitHub remote).
-
-Before switching branches, run `git status`. If there are uncommitted changes, stop and ask the user whether to stash them, include them in the new branch, or abort. Do not guess.
-
-Update the default branch to the latest remote state and branch off it:
-
-```bash
-git fetch origin "$BASE_BRANCH"
-git checkout "$BASE_BRANCH"
-git pull --ff-only origin "$BASE_BRANCH"
-git checkout -b "$BRANCH_NAME"
-```
-
-If a local branch with `$BRANCH_NAME` already exists, stop and ask the user how to proceed (reuse it, or pick a different name) rather than overwriting it.
-
-## Step 3: Understand the Repository
-
-Read the code before writing anything. Never document behavior you haven't confirmed in the code, config, or infrastructure files.
-
-- Detect whether the repo is a **monorepo**. Signs include `apps/`, `services/`, `packages/`, or `products/` directories, workspace files (`pnpm-workspace.yaml`, `turbo.json`, `nx.json`, `go.work`, a Cargo workspace), or several independent deployables.
-- For each service, find its entry points, public interfaces (HTTP routes, gRPC services, queues, CLI commands), data stores, external dependencies, and configuration (environment variables, config files).
-- Find the infrastructure and deployment setup (`terraform/`, `pulumi/`, `cdk/`, `k8s/`, `helm/`, `Dockerfile`, CI workflows) to identify the cloud provider and the managed services in use.
-- Read any existing documentation in the output directory and in `README.md` files. Update and reuse it instead of rewriting it, and remove what is no longer true.
-
-## Step 4: Plan the Structure
-
-Keep the number of files to the minimum. Split a file only when it gets too long to scan.
-
-**Single service repository:**
+Use as few files as possible:
 
 ```
-docs/
-├── README.md            # Overview and index
-├── architecture.md      # Components, cloud resources, and data flows
-└── implementation.md    # Code layout, key modules, configuration, and local setup
+docs/README.md            # What it is, why it exists, and a table linking every doc
+docs/architecture.md      # Cloud diagram, components table, sequence diagrams, data stores, dependencies
+docs/implementation.md    # Code layout, key modules, configuration and env vars, run, test, deploy
 ```
 
-**Monorepo:** keep a clear separation between the general documentation, which applies to the whole repo, and the documentation of each product.
+For a monorepo, use `docs/README.md` (the product index), `docs/general/architecture.md` (shared infrastructure and how products interact), `docs/general/conventions.md` (only if needed), and `docs/<product>/` with the three files above, named after the product's directory. Link to general content instead of repeating it.
 
-```
-docs/
-├── README.md            # Overview of the repo and index of every product
-├── general/
-│   ├── architecture.md  # Platform-wide architecture, shared infrastructure, and how products interact
-│   └── conventions.md   # Shared tooling, repo layout, build, CI/CD, and contribution rules
-└── <product>/
-    ├── README.md        # What the product does and its index
-    ├── architecture.md
-    └── implementation.md
-```
+## 4. Write
 
-- Name each product directory after the product's directory in the repo (e.g. `docs/billing/` for `services/billing/`).
-- Never repeat general content inside a product's docs. Link to it instead.
-- Only create `general/conventions.md` when there are shared conventions worth documenting.
+- Write for humans, concisely, with no intro or summary filler. Explain the why of non-obvious decisions only.
+- Prefer tables and lists, with paragraphs of three sentences at most. Every bullet ends with a period.
+- No em dashes, semicolons, or colons as separators outside code, paths, URLs, and Mermaid.
+- Headings are short and Title Case, with no separators. No horizontal rules.
+- Inline code for file names, paths, versions, commands, env vars, and technical terms. Link to source files with relative paths instead of copying code.
+- Use Mermaid for every diagram, never images or ASCII art, with one sentence above each saying what it shows and one idea per diagram.
+  - Architecture is a `flowchart` with nested `subgraph`s for provider, account, region, and network, with nodes named after the real managed services (`Amazon RDS`, `Cloud Run`).
+  - Each main flow (a request, auth, a job, a deploy) gets a `sequenceDiagram`. Use `erDiagram` or `stateDiagram-v2` when they fit.
 
-## Step 5: Write the Content
+## 5. Commit and Open the PR
 
-### What Each File Covers
-
-| File | Content |
-| --- | --- |
-| `README.md` | One short paragraph on what it is and why it exists, then a table linking every doc. |
-| `architecture.md` | A cloud architecture diagram, a components table, the main flows as sequence diagrams, data stores, and external dependencies. |
-| `implementation.md` | Code layout, key modules and their responsibility, configuration and environment variables, and how to run, test, and deploy. |
-
-### Formatting Rules
-
-- Write for humans first. Use plain language, explain the why behind non-obvious decisions, and skip what the code already makes obvious.
-- Be straight to the point and concise. No introductions, filler, or closing summaries.
-- Prefer tables and bullet lists over paragraphs. Keep paragraphs to two or three sentences.
-- End every bullet list item with a period.
-- Never use an em dash (`—`), a semicolon (`;`), or a colon (`:`) as a separator anywhere in the text. Rephrase or use a comma instead. Colons are only allowed inside code, paths, URLs, and Mermaid syntax.
-- Headings are short, use Title Case (e.g. `## Request Flow`, `## Environment Variables`), and never contain a separator such as a colon, dash, or pipe (e.g. never `## Auth: Overview` or `## API - Endpoints`). Never use horizontal rules (`---`) between sections.
-- Wrap every file name, path, version number, command, environment variable, and technical term in inline code.
-- Link to source files with relative paths (e.g. [`src/server.ts`](../src/server.ts)) instead of copying code. Only include short code blocks for commands to run.
-
-### Diagrams
-
-Use Mermaid for every diagram, and use as many as help understanding. Never use images or ASCII art for diagrams.
-
-**Architecture diagrams:** use a `flowchart` with nested `subgraph`s for the cloud provider, account or project, region, and network (VPC, subnets), and name each node after the actual managed service (e.g. `AWS Lambda`, `Amazon RDS`, `Cloud Run`, `Azure Service Bus`).
-
-```mermaid
-flowchart LR
-    user([User]) --> cdn[Amazon CloudFront]
-    subgraph aws[AWS]
-        subgraph vpc[VPC]
-            cdn --> alb[Application Load Balancer]
-            alb --> api[ECS Fargate API]
-            api --> db[(Amazon RDS PostgreSQL)]
-        end
-        api --> queue[[Amazon SQS]]
-        queue --> worker[AWS Lambda Worker]
-    end
-```
-
-**Sequence diagrams:** use a `sequenceDiagram` for each main flow (e.g. a request, authentication, a background job, a deployment).
-
-```mermaid
-sequenceDiagram
-    actor User
-    participant API
-    participant DB as Database
-    User->>API: POST /orders
-    API->>DB: Insert order
-    DB-->>API: Order ID
-    API-->>User: 201 Created
-```
-
-- Use other Mermaid types when they fit better, such as `erDiagram` for data models and `stateDiagram-v2` for lifecycles.
-- Keep each diagram focused on one idea. Split a diagram that gets crowded.
-- Add one short sentence above each diagram saying what it shows.
-
-## Step 6: Commit
-
-Before committing, run the Neovim format and lint check from the **Formatting and Linting** section of `~/.agents/rules/general.md` (`nvim --headless -c "luafile ~/.agents/scripts/nvim-check.lua" <files>`), or the language file's formatter and linter when Neovim isn't available, on every documentation file you changed. Then render-check every Mermaid diagram if a Mermaid CLI is available (`npx -y @mermaid-js/mermaid-cli`), and fix any syntax error.
-
-Commit following the **Commits** and **Author and Attribution** sections of `~/.agents/rules/git.md`, with these choices:
-
-- Use the `docs` type. Use the product name as the scope, or `general` for the general documentation, e.g. `docs(billing): add architecture and request flows`.
-- In a monorepo, commit each product's docs and the general docs separately.
-
-## Step 7: Push and Open the PR
-
-Push the branch and open a draft PR back to the default branch resolved in Step 2, following the **Pull Requests** section of `~/.agents/rules/git.md`, with these choices:
-
-- **Changes** lists which products got new docs, or which existing docs were removed or significantly changed.
-- **Additional Notes** lists parts of the system that could not be confirmed from the code.
-
-Report the PR URL back to the user when done.
+Run the format and lint check from `general.md` and render-check the diagrams (`npx -y @mermaid-js/mermaid-cli`, if available). Commit per `git.md` with the `docs` type, with the product or `general` as scope, one commit per product in a monorepo. Open a draft PR per `git.md`. **Changes** lists the products documented or docs significantly changed, and **Additional Notes** lists what couldn't be confirmed from the code. Report the PR URL.

@@ -4,8 +4,6 @@ paths: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.mjs", "**/*.cjs"]
 
 # TypeScript and JavaScript Rules
 
-Apply after `~/.agents/rules/general.md`.
-
 ## Tooling
 
 | Task       | Command                                               |

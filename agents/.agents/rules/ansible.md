@@ -1,10 +1,15 @@
 ---
-paths: ["**/ansible/**/*.yml", "**/ansible/**/*.yaml", "**/playbooks/**/*.yml", "**/roles/**/*.yml", "**/*playbook*.yml"]
+paths:
+  [
+    "**/ansible/**/*.yml",
+    "**/ansible/**/*.yaml",
+    "**/playbooks/**/*.yml",
+    "**/roles/**/*.yml",
+    "**/*playbook*.yml",
+  ]
 ---
 
 # Ansible Rules
-
-Apply after `~/.agents/rules/general.md`.
 
 ## Tooling
 

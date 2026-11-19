@@ -1,35 +1,26 @@
 ---
 name: pr-resolve-review
-description: Reply to all PR review comments (human and bot) on current PR. Fetches comments awaiting a reply, evaluates each one, fixes real issues, dismisses false positives, applies suggestion blocks, fixes change requests from review summaries, updates the PR description with the new changes, and replies in-thread to every inline review comment with the outcome, never posting a new PR comment. Resolves only bot threads whose issue was fixed and pushed, leaving every human thread, dismissal, and question open so the user or reviewer can validate before resolving it.
+description: Handle every unanswered review comment and change request on the current PR. Fixes real issues, pushes, updates the PR description, replies in-thread, and resolves only fixed bot threads.
 license: MIT
-compatibility: Requires git and gh (GitHub CLI) installed.
+compatibility: Requires git and gh.
 allowed-tools: Bash(gh api *) Bash(gh pr *) Bash(git add *) Bash(git commit *) Bash(git push *)
 metadata:
   author: jfmainville
-  version: "1.13.0"
+  version: "2.0.0"
   homepage: https://github.com/jfmainville/dotfiles
 ---
 
-Process all review comments (both human and bot) already submitted on the current PR review: fetch them, evaluate each one, fix real issues, and reply in-thread to every comment with the outcome. Never post a new top-level PR comment, only replies inside existing review threads. Only bot threads whose issue was fixed and pushed get resolved. Every other thread is left open, so an unresolved thread always means a person still needs to look at it.
+Run unattended and never ask the user. Never post a top-level PR comment, only in-thread replies. An unresolved thread means a person still needs to look at it. Rules live in `~/.agents/rules/`.
 
-### Step 1: Fetch All Comments
-
-Determine the repository and PR number:
+## 1. Fetch
 
 ```bash
 gh pr view --json number,headRepositoryOwner,headRepository \
   -q '{owner: .headRepositoryOwner.login, repo: .headRepository.name, pr: .number}'
-```
-
-If this command fails (no PR associated with the current branch), print "No PR found for the current branch" and stop — do not proceed with any of the steps below.
-
-Determine your own GitHub login, used below to tell your own replies apart from the reviewer's:
-
-```bash
 gh api user -q .login
 ```
 
-Fetch inline review-thread comments, including resolution state, thread IDs, and each comment's author, via GraphQL:
+If there is no PR, print "No PR found for the current branch" and stop.
 
 ```bash
 gh api graphql -f query='
@@ -39,218 +30,62 @@ gh api graphql -f query='
         reviewThreads(first: 100, after: $cursor) {
           pageInfo { hasNextPage endCursor }
           nodes {
-            id
-            isResolved
-            path
-            line
-            startLine
-            comments(first: 50) {
-              nodes {
-                databaseId
-                author { login }
-                body
-                diffHunk
-              }
-            }
+            id isResolved path line startLine
+            comments(first: 50) { nodes { databaseId author { login } body diffHunk } }
           }
         }
       }
     }
-  }' -f owner="$OWNER" -f repo="$REPO" -F pr="$PR_NUMBER"
-```
-
-Skip resolved threads. Because this skill leaves most threads open on purpose, `isResolved: false` alone doesn't tell you whether a thread still needs a reply. Decide whether an unresolved `reviewThreads` node is unanswered based on who started it:
-
-- **Thread started by another account** (human reviewer or bot): unanswered only if its most recent comment is NOT authored by your own login.
-- **Thread started by your own login** (a comment or suggestion the user left on their own PR from this `gh` account): replies to these carry the `🤖 *AI Agent:* ` prefix (see Step 5), which is the only way to tell them apart from the user's own comments. The thread is unanswered if its most recent comment does NOT start with that prefix.
-
-Treat a comment from your own login that doesn't start with the prefix as a human comment from the user.
-
-Also fetch the submitted reviews, to pick up change requests written in a review summary instead of an inline comment:
-
-```bash
-gh api --paginate "repos/$OWNER/$REPO/pulls/$PR_NUMBER/reviews" \
+  }' -f owner="$OWNER" -f repo="$REPO" -F pr="$PR"
+gh api --paginate "repos/$OWNER/$REPO/pulls/$PR/reviews" \
   -q '.[] | {id, state, body, submitted_at, author: .user.login}'
 ```
 
-Keep only the latest review from each reviewer other than your own login. If that review's `state` is `CHANGES_REQUESTED` and its `body` is not empty, treat the body as an unanswered **change request**. A change request has no thread to reply in, so it is fixed but never replied to (see Step 5). Plain PR-level issue comments are ignored.
+- Skip resolved threads. A thread started by another account is unanswered when its last comment isn't from your login. A thread started by your login is unanswered when its last comment doesn't start with `🤖 *AI Agent:* `. Your login's comments without the prefix are the user's own.
+- A reviewer's latest review that is `CHANGES_REQUESTED` with a body is a **change request**. Ignore your own reviews and plain issue comments.
+- If nothing is unanswered, print "No unanswered comments found" and stop.
 
-If zero unanswered comments and zero change requests are found, print "No unanswered comments found" and stop.
+## 2. Evaluate
 
-### Step 2: Process Each Unanswered Comment
+Read the code for each comment. Evaluate change requests like human comments.
 
-For each unanswered comment and change request, apply the appropriate evaluation based on whether the author is a bot or a human. Evaluate a change request like a human comment. If its concern is already fixed in the code from an earlier run, it is ALREADY ADDRESSED and needs no change.
+- **Bot**: **TRUE POSITIVE** (a real bug), **FALSE POSITIVE** (misread code, framework patterns, intentional behavior, or style not in the rules), or **UNCERTAIN**.
+- **Human**: **ACTIONABLE**, **DISCUSSION** (unclear trade-off or subjective), **ALREADY ADDRESSED**, or **UNCERTAIN**. Humans usually have context you lack, so prefer their suggested code unless it adds issues.
+- **UNCERTAIN** covers architectural fixes, unclear intent, several valid readings, or risky side effects. Ask instead of guessing.
+- A ` ```suggestion ` block that is correct gets applied verbatim to `line` (from `startLine`), with only the changes needed to compile and lint.
 
-#### Suggestions
+Fix TRUE POSITIVE and ACTIONABLE minimally, following the coding rules. Change nothing for the others. Track each outcome and reason. Don't reply yet.
 
-When a comment contains a ```` ```suggestion ```` block, the reviewer has proposed the exact replacement for the commented lines. Evaluate it like any other comment. If it is correct, apply the suggested code verbatim to the lines the comment covers (`line`, and `startLine` for a multi-line suggestion), then adjust only what is needed to keep the code compiling and passing lint. If it is wrong or partly wrong, treat it as FALSE POSITIVE, DISCUSSION, or UNCERTAIN as usual, and say in the reply what is wrong with it.
+## 3. Commit and Push
 
-#### For Bot Comments
+Run the format and lint check from `general.md` and the type-check on changed files. Group fixes by what they touch, then commit each group per `git.md` and push. Keep the hashes.
 
-Read the referenced code and determine:
+## 4. Update the PR
 
-1. **TRUE POSITIVE** - A real bug that needs fixing
-2. **FALSE POSITIVE** - Not actually a bug (intentional behavior, bot misunderstanding)
-3. **UNCERTAIN** - Not sure; flag for clarification
+If anything was pushed, update the PR per `git.md`. Most review fixes aren't critical, so add a **Changes** bullet only for critical ones.
 
-**Likely TRUE POSITIVE:**
+## 5. Reply and Resolve
 
-- Code obviously violates stated behavior
-- Missing null checks on potentially undefined values
-- Type mismatches or incorrect function signatures
-- Logic errors in conditionals
-- Missing error handling for documented failure cases
-
-**Likely FALSE POSITIVE:**
-
-- Bot doesn't understand the framework/library patterns
-- Code is intentionally structured that way (with comments explaining why)
-- Bot is flagging style preferences, not bugs, unless the preference is in the coding rules (`~/.agents/rules/`)
-- The "bug" is actually a feature or intentional behavior
-- Bot misread the code flow
-
-#### For Human Comments
-
-Read the referenced code and the reviewer's comment. Human reviewers are generally more accurate and context-aware than bots. Determine:
-
-1. **ACTIONABLE** - The reviewer identified a real issue or requested a concrete change
-2. **DISCUSSION** - The comment raises a valid point but the right approach is unclear
-3. **ALREADY ADDRESSED** - The concern has already been fixed or is no longer relevant
-
-**Likely ACTIONABLE:**
-
-- Reviewer points out a bug or logic error
-- Reviewer requests a specific code change
-- Reviewer identifies missing edge cases or error handling
-
-**Likely DISCUSSION -- flag for clarification:**
-
-- Reviewer suggests an architectural change you're unsure about
-- Comment involves a tradeoff (performance vs readability, etc.)
-- The feedback is subjective without team consensus
-
-#### When UNCERTAIN -- flag for clarification
-
-For both bot and human comments:
-
-- The fix would require architectural changes
-- You're genuinely unsure if the behavior is intentional
-- Multiple valid interpretations exist
-- The fix could have unintended side effects
-
-#### Act on Evaluation
-
-**If TRUE POSITIVE / ACTIONABLE:** Fix the code, following `~/.agents/rules/general.md` and the rules file for the file's language (`lua.md`, `python.md`, `typescript.md`, `scss.md`, `shell.md`, `terraform.md`, `go.md`). Track the comment ID and a brief description of the fix.
-
-**If FALSE POSITIVE:** Do NOT change the code. Track the comment ID and the reason it's not a real bug.
-
-**If DISCUSSION:** Do NOT change the code. Track the comment ID and the tradeoff/ambiguity to raise with the reviewer.
-
-**If ALREADY ADDRESSED:** Track the comment ID and note why.
-
-**If UNCERTAIN:** Do NOT change the code. Track the comment ID and what specifically is unclear.
-
-Never pause execution to ask the user. For DISCUSSION and UNCERTAIN comments, keep going — they get a clarifying reply in Step 5 instead of a code change.
-
-Do NOT reply to comments yet. Replies happen after the commit (Step 5).
-
-### Step 3: Commit and Push
-
-After evaluating and fixing ALL unanswered comments:
-
-1. On every file you changed, run the Neovim format and lint check from the **Formatting and Linting** section of `~/.agents/rules/general.md` (`nvim --headless -c "luafile ~/.agents/scripts/nvim-check.lua" <files>`), or the language file's formatter and linter when Neovim isn't available. Then run the type-check from each changed language's rules file (or the project's own scripts)
-2. Group the fixes by what they actually touch (e.g. one group per component/module/concern), not by which comment prompted them. Unrelated fixes go in separate commits; closely related ones can share a commit.
-3. For each group, stage just those files and commit following the **Commits** and **Author and Attribution** sections of `~/.agents/rules/git.md`, then push:
-   ```bash
-   git add <CHANGE_GROUP>
-   git commit -m "<TYPE>(<SCOPE>): <summary of this group's change>"
-   git push
-   ```
-4. Capture each commit's hash from the output.
-
-### Step 4: Update the PR Description
-
-If Step 3 produced no commits, skip this step. Otherwise, always update the description, as the **Keeping it up to date** rules in `~/.agents/rules/git.md` require. Fetch the current PR body:
+Reply to each thread's first comment:
 
 ```bash
-gh pr view "$PR_NUMBER" --json body -q .body
+gh api "repos/$OWNER/$REPO/pulls/$PR/comments" -f body="<reply>" -F in_reply_to="$COMMENT_ID"
 ```
 
-Only add a bullet to the **Changes** section (or the repository PR template's equivalent section) when a fix pushed in Step 3 is a critical change, as the **Changes** rule in `~/.agents/rules/git.md` defines. Most review fixes are minor and get no bullet. Keep every existing bullet, and only edit the Description paragraph or **Additional Notes** when a fix makes them inaccurate. Rewrite the whole body following the **Pull Requests** section of `~/.agents/rules/git.md`:
+- Bot TRUE POSITIVE, fixed and pushed, gets the fix and is resolved. This is the only resolved outcome.
+- Bot FALSE POSITIVE gets why it isn't a bug, left open.
+- Human comments get the outcome, left open.
+- DISCUSSION and UNCERTAIN get a clarifying question, left open.
+- Change requests get no reply, since that would need a new comment. List them in the report.
+
+Replies follow the `git.md` Writing Style, at one sentence (two at most), leading with the outcome, e.g. "Fixed, `token` is now checked for `null` before use." No greetings, restating, SHAs, links, trailing whitespace, or attribution. In threads started by your login only, prefix `🤖 *AI Agent:* `, whose colon is the only one allowed.
+
+Resolve with:
 
 ```bash
-gh pr edit "$PR_NUMBER" --body "$(cat <<'EOF'
-<body>
-EOF
-)"
+gh api graphql -f query='mutation($id: ID!) { resolveReviewThread(input: {threadId: $id}) { thread { isResolved } } }' -f id="$THREAD_ID"
 ```
 
-### Step 5: Reply to All Comments
+## 6. Report
 
-Now that the commits are pushed, reply to every processed comment, then resolve only the threads listed as resolvable below:
-
-- **Bot TRUE POSITIVE, fixed and pushed**: reply with the fix, then resolve the thread. This is the only outcome that gets resolved.
-- **Bot FALSE POSITIVE**: reply with why it is not a real bug. Leave the thread unresolved, since the dismissal contradicts the comment and the user should validate it.
-- **Human comment, any outcome** (ACTIONABLE fixed and pushed, ALREADY ADDRESSED): reply with the outcome. Leave the thread unresolved so the reviewer can confirm and resolve it.
-- **DISCUSSION / UNCERTAIN outcomes**: reply asking the reviewer to clarify (state the tradeoff or what's unclear). Leave the thread unresolved.
-
-When in doubt whether a fix was straightforward, leave the thread unresolved.
-
-**AI Agent prefix:** when the thread was started by your own login, start the reply with `🤖 *AI Agent:* ` so the user can tell the agent's reply apart from their own comments, since both are posted from the same account. Never add the prefix in a thread started by any other account, human or bot.
-
-**Reply message style:** follow the **Writing Style** section of `~/.agents/rules/git.md`, plus:
-
-- Keep it as short as possible while staying clear. One sentence is the target, two at most. Lead with the outcome, e.g. "Fixed, `token` is now checked for `null` before use." or "Not a bug, `retry` is intentionally capped at `3`.".
-- No greetings, thanks, restating the comment, or explaining what the reviewer already said.
-- The only colon allowed is the one inside the `🤖 *AI Agent:* ` prefix.
-- No trailing blank lines or whitespace at the end of the reply.
-- No commit SHA, links, references, or AI-attribution footer. The `🤖 *AI Agent:* ` prefix is the only attribution, and only in threads started by your own login.
-
-Reply in-thread using the thread's first comment `databaseId`:
-
-```bash
-gh api "repos/$OWNER/$REPO/pulls/$PR_NUMBER/comments" \
-  -f body="<outcome or clarifying question>" -F in_reply_to="$COMMENT_DATABASE_ID"
-```
-
-**Change requests:** never reply to a change request from a review summary, since the only way would be a new comment. Fix it in Step 3, list it in the PR description in Step 4, and include it in the final report below.
-
-Never post a new top-level PR comment (`gh pr comment`, the issue comments endpoint, or a new review). Every message this skill posts is a reply inside an existing review thread.
-
-**Resolving a thread:** after replying, resolve a resolvable thread using its GraphQL thread `id` from Step 1:
-
-```bash
-gh api graphql -f query='
-  mutation($threadId: ID!) {
-    resolveReviewThread(input: {threadId: $threadId}) { thread { isResolved } }
-  }' -f threadId="$THREAD_ID"
-```
-
-### Step 6: Report
-
-Print a short summary for the user with one line per processed thread and change request, giving its outcome and whether the thread was resolved. List change requests separately, since they got no reply and the user should tell the reviewer or re-request their review.
-
-## Important Notes
-
-### Response Policy
-
-- **Every review thread gets a reply** - No silent ignores, and no new top-level comments
-- For bots: responses help train them and prevent re-raised false positives
-- For humans: replies keep reviewers informed and unblock approvals
-
-### Reviewer Interaction
-
-- Never pause execution to ask the user — run the whole skill unattended
-- When uncertain about a finding, or facing an architectural/business-logic tradeoff, don't guess: reply on the thread asking the reviewer to clarify, and move on
-- It's better to ask the reviewer than to make a wrong fix or wrong dismissal
-- Human reviewers often have context you don't - defer to them via a clarifying reply when unsure
-- Only resolve bot threads whose issue was fixed and pushed. Never resolve a human thread, a dismissed false positive, or a thread with an open question
-
-### Best Practices
-
-- Verify findings before fixing - bots have false positives, humans rarely do
-- Keep fixes minimal and focused - don't refactor unrelated code
-- Ensure the Neovim format and lint check and the type-check pass before committing
-- Group related fixes into a single commit
-- `suggestion` blocks, from humans or Copilot, often contain ready-to-use fixes
-- If a human reviewer suggests a specific code change, prefer their version unless it introduces issues
+One line per thread and change request with its outcome and whether it was resolved. List change requests separately, so the user can re-request review.

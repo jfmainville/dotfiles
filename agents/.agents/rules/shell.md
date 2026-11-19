@@ -4,8 +4,6 @@ paths: ["**/*.sh", "**/*.bash", "**/*.zsh", "**/.zshrc", "**/.bashrc"]
 
 # Shell Rules
 
-Apply after `~/.agents/rules/general.md`.
-
 ## Tooling
 
 | Task   | Command                                                  |

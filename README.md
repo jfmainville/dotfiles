@@ -104,12 +104,14 @@ The coding rules live in `agents/.agents/rules`: `general.md` for every language
 - `scss.md`
 - `shell.md`
 - `terraform.md`
+- `ansible.md`
 - `go.md`
 
 `git.md` holds the shared standard for branches, commits, pull requests and review replies.
 
-The `work-on`, `pr-review`, `pr-resolve-review`
-and `tester` skills read them by path from `~/.agents/rules`, so they work in any harness. The `style-guide` skill
+The skills read them by path from `~/.agents/rules` as `<language>.md`, so they work in any harness and a new language
+file needs no skill changes. Everything is kept short, since the global instructions, `general.md` and `git.md` load
+in every session. The `style-guide` skill
 generates or updates a language file.
 
 The global instructions in `agents/.agents/AGENTS.md` point every harness to the rules. Stow links them as:

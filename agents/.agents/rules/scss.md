@@ -4,8 +4,6 @@ paths: ["**/*.scss", "**/*.css"]
 
 # SCSS and CSS Rules
 
-Apply after `~/.agents/rules/general.md`.
-
 ## Tooling
 
 | Task   | Command                                                            |
