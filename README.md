@@ -122,7 +122,8 @@ The global instructions in `agents/.agents/AGENTS.md` point every harness to the
 
 Create `~/.config/opencode` before running `stow agents`, so stow links only `AGENTS.md` instead of the whole folder.
 
-The formatters and linters are installed by Mason, from `nvim/.config/nvim/lua/plugins/mason.lua`.
+The formatters and linters are installed by Mason, from `nvim/.config/nvim/lua/plugins/mason.lua`. The Go tools (`gopls`,
+`goimports`, `golangci-lint`) are only installed when `go` is on the `PATH`, since Mason builds them with `go install`.
 
 Every skill formats and lints the files it changes through Neovim with `agents/.agents/scripts/nvim-check.lua`, so agents
 use the same formatters, linters and settings as the editor. It falls back to each language's command-line tools when

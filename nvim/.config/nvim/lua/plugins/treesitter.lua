@@ -38,6 +38,10 @@ return {
 			"vimdoc",
 			"query",
 			"gitcommit",
+			"go",
+			"gomod",
+			"gosum",
+			"gowork",
 		})
 		-- The main branch doesn't enable highlighting automatically
 		vim.api.nvim_create_autocmd("FileType", {

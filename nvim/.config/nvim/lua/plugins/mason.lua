@@ -143,6 +143,8 @@ return {
 		vim.lsp.enable("intelephense")
 		vim.lsp.enable("rust_analyzer")
 		vim.lsp.enable("terraformls")
+		vim.lsp.enable("gopls")
+		vim.lsp.enable("golangci_lint_ls")
 		vim.lsp.enable("tflint")
 		vim.lsp.config("typos_lsp", {
 			init_options = {
@@ -156,17 +158,22 @@ return {
 
 		-- Install the formatters used by conform and the tools mason-lspconfig can't resolve on its own
 		local registry = require("mason-registry")
+		local packages = {
+			"stylua",
+			"black",
+			"prettier",
+			"shfmt",
+			"clang-format",
+			"shellcheck",
+			"ansible-lint",
+			"stylelint-language-server",
+		}
+		-- Mason builds the Go tools with `go install`, so they need Go on the PATH
+		if vim.fn.executable("go") == 1 then
+			vim.list_extend(packages, { "gopls", "goimports", "golangci-lint", "golangci-lint-langserver" })
+		end
 		registry.refresh(function()
-			for _, name in ipairs({
-				"stylua",
-				"black",
-				"prettier",
-				"shfmt",
-				"clang-format",
-				"shellcheck",
-				"ansible-lint",
-				"stylelint-language-server",
-			}) do
+			for _, name in ipairs(packages) do
 				local package = registry.get_package(name)
 				if not package:is_installed() then
 					package:install()

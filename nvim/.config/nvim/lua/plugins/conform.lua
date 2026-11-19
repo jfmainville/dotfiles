@@ -39,6 +39,7 @@ return {
 				hcl = { "hcl" },
 				markdown = { "prettier" },
 				cpp = { "clang-format" },
+				go = { "goimports", "gofmt", stop_after_first = true },
 				["*"] = { "trim_whitespace", "trim_newlines" },
 			},
 			format_on_save = function(bufnr)
