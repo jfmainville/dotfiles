@@ -167,10 +167,13 @@ return {
 			"shellcheck",
 			"ansible-lint",
 			"stylelint-language-server",
+			"debugpy",
+			"js-debug-adapter",
+			"bash-debug-adapter",
 		}
 		-- Mason builds the Go tools with `go install`, so they need Go on the PATH
 		if vim.fn.executable("go") == 1 then
-			vim.list_extend(packages, { "gopls", "goimports", "golangci-lint", "golangci-lint-langserver" })
+			vim.list_extend(packages, { "gopls", "goimports", "golangci-lint", "golangci-lint-langserver", "delve" })
 		end
 		registry.refresh(function()
 			for _, name in ipairs(packages) do
