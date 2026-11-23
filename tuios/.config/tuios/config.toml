@@ -37,6 +37,10 @@ last_pane = ["a"]
 launcher = []
 goto_picker = ["z"]
 prefix_fullscreen = []
+resize_pane_left_5 = ["opt+left", "ctrl+left", "shift+left"]
+resize_pane_down_5 = ["opt+down", "ctrl+down", "shift+down"]
+resize_pane_right_5 = ["opt+right", "ctrl+right", "shift+right"]
+resize_pane_up_5 = ["opt+up", "ctrl+up", "shift+up"]
 
 [[keybindings.command]]
 key = "ctrl+h"
