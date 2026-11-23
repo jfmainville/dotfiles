@@ -12,7 +12,7 @@ show_clock = true
 show_cpu = true
 show_ram = true
 dock_workspace_tabs = true
-dock_pill_caps = false
+dock_pill_caps = true
 dock_prefix_indicator = "pill"
 dock_compact = false
 confirm_close = "never"
@@ -51,6 +51,8 @@ border_gradient_angle = 45
 gap = 0
 drop_preview = "outline"
 master_position = "left"
+niri_scroll_snap = false
+dock_mode_split_letter = false
 
 [startup]
 tiled = true
@@ -99,9 +101,9 @@ subagent_rows = "rows"
 subagent_collapse = "off"
 subagent_max_rows = 0
 position = "right"
-sections = "sessions:25,terminals,files:25,git,agents:34"
+sections = "sessions,terminals,agents,spacer,git,files:50"
 header_case = "uppercase"
-row_style = "marker"
+row_style = "pill"
 header_style = "rule"
 density = "roomy"
 show_glyphs = true
@@ -120,8 +122,8 @@ enabled = false
 width = 35
 
 [dock]
-left = ["mode", "workspaces", "trail", "tape"]
-right = ["transfers", "notifications", "copy-help", "cpu", "ram", "clock", "session-controls"]
+left = ["mode", "session", "workspaces", "tape"]
+right = ["notifications", "transfers", "copy-help", "cpu", "ram", "clock", "session-controls"]
 center = ["windows"]
 
 [notifications]
@@ -143,6 +145,12 @@ addr = "pipmtllwks101"
 
 [agents]
 view_list = "column"
+name_hint = "off"
+enabled = true
+acp_version = 1
+card_preview = "auto"
+answer_advance = true
+fold_working = false
 
 [motion]
 workspace = "slide"
@@ -160,3 +168,25 @@ setup_async = false
 
 [appearance.scrollbar]
 style = "track"
+
+[review]
+scope = "base"
+focus = "diff"
+
+[panes]
+navigator_search = true
+navigator_layout = "tree"
+drag_and_drop = false
+
+[hints]
+all_panes = false
+
+[appearance.selection]
+multi_format = "plain"
+
+[path_picker]
+show_hidden = false
+
+[shell]
+login = false
+integration = "auto"
