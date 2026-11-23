@@ -1,8 +1,8 @@
 [appearance]
 theme = "retrowave"
 background = "off"
-glyphs = "default"
-dim_foreground = false
+glyphs = "unicode"
+dim_foreground = true
 session_border = false
 session_colors = true
 git_dirty = true
@@ -13,7 +13,7 @@ show_cpu = true
 show_ram = true
 dock_workspace_tabs = true
 dock_pill_caps = false
-dock_prefix_indicator = "badge"
+dock_prefix_indicator = "pill"
 dock_compact = false
 confirm_close = "never"
 confirm_quit = false
@@ -23,6 +23,34 @@ focus_wrap = false
 new_window_inherit_cwd = true
 new_window_follow_ssh = true
 tiling_scheme = "spiral"
+dock_mode_pill = "tiling"
+whichkey_enabled = true
+whichkey_delay_ms = 700
+wrap_lists = true
+click_to_type = "double"
+auto_enter_terminal_on_focus = "off"
+right_click_opens_menu = false
+zoom_max_width = 0
+master_grid = true
+link_hover = "safe"
+link_click = "both"
+links = "all"
+border_style = "normal"
+frame_panels = false
+pane_overlays = false
+window_title_position = "top"
+window_title_style = "pill"
+window_title_align = "left"
+host_title = "session"
+shared_borders = false
+hide_window_buttons = true
+window_button_style = "dots"
+window_button_position = "right"
+hide_scrollbar = false
+border_gradient_angle = 45
+gap = 0
+drop_preview = "outline"
+master_position = "left"
 
 [startup]
 tiled = true
@@ -57,7 +85,7 @@ enabled = false
 
 [appearance.sidebar]
 width = 30
-enabled = true
+enabled = false
 show_numbers = true
 file_icons = true
 file_icon_colors = true
@@ -70,13 +98,26 @@ marquee = true
 subagent_rows = "rows"
 subagent_collapse = "off"
 subagent_max_rows = 0
+position = "right"
+sections = "sessions:25,terminals,files:25,git,agents:34"
+header_case = "uppercase"
+row_style = "marker"
+header_style = "rule"
+density = "roomy"
+show_glyphs = true
+show_counts = false
+file_actions = true
+peek = false
+tooltips = false
+per_session = false
 
 [appearance.sidebar.right]
-width = 30
-enabled = true
+width = 35
+enabled = false
 
 [appearance.sidebar.left]
 enabled = false
+width = 35
 
 [dock]
 left = ["mode", "workspaces", "trail", "tape"]
@@ -85,13 +126,37 @@ center = ["windows"]
 
 [notifications]
 level = "info"
+style = "full"
+bell = "both"
+machine_offer = true
 
 [notifications.agent]
 sound = true
 sound_mode = "bell"
+enabled = true
 
 [workspaces]
 new_window_when_empty = true
 
 [hosts.pipmtllwks101]
 addr = "pipmtllwks101"
+
+[agents]
+view_list = "column"
+
+[motion]
+workspace = "slide"
+layout = "on"
+
+[daemon]
+resume_agents = "auto"
+keep_awake = "off"
+
+[tasks]
+auto_stage = true
+
+[worktree]
+setup_async = false
+
+[appearance.scrollbar]
+style = "track"
