@@ -20,13 +20,16 @@ confirm_quit = false
 whichkey_position = "bottom-right"
 nvim_navigation = false
 focus_wrap = false
+new_window_inherit_cwd = true
+new_window_follow_ssh = true
+tiling_scheme = "spiral"
 
 [startup]
 tiled = true
 daemon = true
 open_default_window = true
 layout = "bsp"
-start_in_terminal_mode = false
+start_in_terminal_mode = true
 
 [keybindings]
 leader_key = "ctrl+a"
@@ -42,33 +45,12 @@ resize_pane_down_5 = ["opt+down", "ctrl+down", "shift+down"]
 resize_pane_right_5 = ["opt+right", "ctrl+right", "shift+right"]
 resize_pane_up_5 = ["opt+up", "ctrl+up", "shift+up"]
 
-[[keybindings.command]]
-key = "ctrl+h"
-type = "shell"
-command = "~/.config/tuios/scripts/navigate.sh left"
-description = "navigate left (vim/tuios)"
-
-[[keybindings.command]]
-key = "ctrl+j"
-type = "shell"
-command = "~/.config/tuios/scripts/navigate.sh down"
-description = "navigate down (vim/tuios)"
-
-[[keybindings.command]]
-key = "ctrl+k"
-type = "shell"
-command = "~/.config/tuios/scripts/navigate.sh up"
-description = "navigate up (vim/tuios)"
-
-[[keybindings.command]]
-key = "ctrl+l"
-type = "shell"
-command = "~/.config/tuios/scripts/navigate.sh right"
-description = "navigate right (vim/tuios)"
-
-[hosts.macbook-jf]
-addr = "jfmainville@192.168.0.214"
-connect_timeout = 5
+[keybindings.terminal_mode]
+terminal_focus_left = ["ctrl+h", "alt+left"]
+terminal_focus_down = ["ctrl+j", "alt+down"]
+terminal_focus_up = ["ctrl+k", "alt+up"]
+terminal_focus_right = ["ctrl+l", "alt+right"]
+prefix_selection = ["alt+s"]
 
 [spotlight]
 enabled = false
@@ -107,3 +89,9 @@ level = "info"
 [notifications.agent]
 sound = true
 sound_mode = "bell"
+
+[workspaces]
+new_window_when_empty = true
+
+[hosts.pipmtllwks101]
+addr = "pipmtllwks101"
