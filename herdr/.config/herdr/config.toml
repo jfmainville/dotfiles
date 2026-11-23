@@ -131,11 +131,6 @@ copy_mode = "prefix+k"
 # height = "80%"
 
 [[keys.command]]
-key = "prefix+h"
-type = "plugin_action"
-command = "persiyanov.reviewr.toggle"
-
-[[keys.command]]
 key = "ctrl+h"
 type = "plugin_action"
 command = "vim-herdr-navigation.left"
