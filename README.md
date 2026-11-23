@@ -52,7 +52,7 @@ sudo apt-get install neovim stow ripgrep fzf
    the following bash script as your regular user (it calls `sudo` where needed):
 
 ```bash
-stow nvim alacritty ghostty herdr agents zsh
+stow nvim alacritty ghostty herdr tuios agents zsh
 chmod +x ~/dotfiles/init.sh
 ~/dotfiles/init.sh
 
@@ -78,6 +78,7 @@ The table below presents the folder structure for this repository:
 | oh-my-posh | Contains the Oh My Posh configuration files        |
 | alacritty  | Contains the alacritty terminal configuration file |
 | herdr      | Contains the Herdr terminal multiplexer config     |
+| tuios      | Contains the TUIOS window manager config           |
 | agents     | Contains the shared AI coding agent skills         |
 | zsh        | Contains the Zsh configuration file                |
 

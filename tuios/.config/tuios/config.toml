@@ -1,0 +1,105 @@
+[appearance]
+theme = "retrowave"
+background = "off"
+glyphs = "default"
+dim_foreground = false
+session_border = false
+session_colors = true
+git_dirty = true
+global_session = false
+dockbar_position = "top"
+show_clock = true
+show_cpu = true
+show_ram = true
+dock_workspace_tabs = true
+dock_pill_caps = false
+dock_prefix_indicator = "badge"
+dock_compact = false
+confirm_close = "never"
+confirm_quit = false
+whichkey_position = "bottom-right"
+nvim_navigation = false
+focus_wrap = false
+
+[startup]
+tiled = true
+daemon = true
+open_default_window = true
+layout = "bsp"
+start_in_terminal_mode = false
+
+[keybindings]
+leader_key = "ctrl+a"
+preset = "tmux"
+
+[keybindings.prefix_mode]
+last_pane = ["a"]
+launcher = []
+goto_picker = ["z"]
+prefix_fullscreen = []
+
+[[keybindings.command]]
+key = "ctrl+h"
+type = "shell"
+command = "~/.config/tuios/scripts/navigate.sh left"
+description = "navigate left (vim/tuios)"
+
+[[keybindings.command]]
+key = "ctrl+j"
+type = "shell"
+command = "~/.config/tuios/scripts/navigate.sh down"
+description = "navigate down (vim/tuios)"
+
+[[keybindings.command]]
+key = "ctrl+k"
+type = "shell"
+command = "~/.config/tuios/scripts/navigate.sh up"
+description = "navigate up (vim/tuios)"
+
+[[keybindings.command]]
+key = "ctrl+l"
+type = "shell"
+command = "~/.config/tuios/scripts/navigate.sh right"
+description = "navigate right (vim/tuios)"
+
+[hosts.macbook-jf]
+addr = "jfmainville@192.168.0.214"
+connect_timeout = 5
+
+[spotlight]
+enabled = false
+
+[appearance.sidebar]
+width = 30
+enabled = true
+show_numbers = true
+file_icons = true
+file_icon_colors = true
+folder_click = "both"
+file_drag = true
+files_style = "tree"
+file_delete = "trash"
+group_main = false
+marquee = true
+subagent_rows = "rows"
+subagent_collapse = "off"
+subagent_max_rows = 0
+
+[appearance.sidebar.right]
+width = 30
+enabled = true
+
+[appearance.sidebar.left]
+enabled = false
+
+[dock]
+left = ["mode", "workspaces", "trail", "tape"]
+right = ["transfers", "notifications", "copy-help", "cpu", "ram", "clock", "session-controls"]
+center = ["windows"]
+
+[notifications]
+level = "info"
+
+[notifications.agent]
+sound = true
+sound_mode = "bell"
