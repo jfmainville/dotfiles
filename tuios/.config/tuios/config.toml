@@ -53,6 +53,11 @@ drop_preview = "outline"
 master_position = "left"
 niri_scroll_snap = false
 dock_mode_split_letter = false
+dim_multifocus = false
+niri_reverse_scroll = false
+zoom_follows_focus = true
+zoom_borderless = false
+window_button_zoom = true
 
 [startup]
 tiled = true
@@ -67,8 +72,8 @@ preset = "tmux"
 
 [keybindings.prefix_mode]
 last_pane = ["a"]
+toggle_zoom = ["z"]
 launcher = []
-goto_picker = ["z"]
 prefix_fullscreen = []
 resize_pane_left_5 = ["opt+left", "ctrl+left", "shift+left"]
 resize_pane_down_5 = ["opt+down", "ctrl+down", "shift+down"]
@@ -95,15 +100,16 @@ folder_click = "both"
 file_drag = true
 files_style = "tree"
 file_delete = "trash"
-group_main = false
+editor = "nvim"
+group_main = true
 marquee = true
-subagent_rows = "rows"
+subagent_rows = "tree"
 subagent_collapse = "off"
 subagent_max_rows = 0
 position = "right"
-sections = "sessions,terminals,agents,spacer,git,files:50"
+sections = "sessions,git,agents,spacer,files:50"
 header_case = "uppercase"
-row_style = "pill"
+row_style = "underline"
 header_style = "rule"
 density = "roomy"
 show_glyphs = true
@@ -127,10 +133,11 @@ right = ["notifications", "transfers", "copy-help", "cpu", "ram", "clock", "sess
 center = ["windows"]
 
 [notifications]
-level = "info"
+level = "warning"
 style = "full"
 bell = "both"
 machine_offer = true
+duration = 3
 
 [notifications.agent]
 sound = true
@@ -155,6 +162,7 @@ fold_working = false
 [motion]
 workspace = "slide"
 layout = "on"
+zoom = "on"
 
 [daemon]
 resume_agents = "auto"
@@ -190,3 +198,6 @@ show_hidden = false
 [shell]
 login = false
 integration = "auto"
+
+[tape]
+show_status = true
