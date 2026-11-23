@@ -9,6 +9,34 @@ return {
 			end
 		end
 
+		local function oil_dir()
+			local ok, oil = pcall(require, "oil")
+			return ok and oil.get_current_dir() or ""
+		end
+
+		local function oil_git()
+			local dir = oil_dir()
+			if dir == "" then
+				return ""
+			end
+			local lines = vim.fn.systemlist({ "git", "-C", dir, "status", "--porcelain=v1", "--branch" })
+			if vim.v.shell_error ~= 0 or not lines[1] then
+				return ""
+			end
+			local branch = lines[1]:match("^## ([^%.%s]+)") or "HEAD"
+			local changes = #lines - 1
+			return " " .. branch .. (changes > 0 and (" ~" .. changes) or "")
+		end
+
+		local oil_extension = {
+			filetypes = { "oil" },
+			sections = {
+				lualine_a = { "mode" },
+				lualine_b = { oil_git },
+				lualine_c = { oil_dir },
+			},
+		}
+
 		require("lualine").setup({
 			icons_enabled = true,
 			options = {
@@ -30,7 +58,7 @@ return {
 				tabline = 1000,
 				winbar = 1000,
 			},
-			extensions = { "oil", "lazy", "fugitive", "aerial", "mason", "quickfix", "trouble" },
+			extensions = { oil_extension, "lazy", "fugitive", "aerial", "mason", "quickfix", "trouble" },
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = {
