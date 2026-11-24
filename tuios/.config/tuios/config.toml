@@ -127,6 +127,9 @@ enabled = false
 enabled = false
 width = 35
 
+[appearance.sidebar.agent_row]
+tokens = ["session", "need", "harness", "name", "elapsed", "context", "subagents", "pr", "meta", "now", "message"]
+
 [dock]
 left = ["mode", "session", "workspaces", "tape"]
 right = ["notifications", "transfers", "copy-help", "cpu", "ram", "clock", "session-controls"]
