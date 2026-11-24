@@ -121,7 +121,7 @@ per_session = false
 
 [appearance.sidebar.right]
 width = 35
-enabled = false
+enabled = true
 
 [appearance.sidebar.left]
 enabled = false
