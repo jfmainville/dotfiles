@@ -4,7 +4,7 @@ background = "off"
 glyphs = "unicode"
 dim_foreground = true
 session_border = false
-session_colors = true
+session_colors = false
 git_dirty = true
 global_session = false
 dockbar_position = "top"
@@ -92,7 +92,7 @@ enabled = false
 
 [appearance.sidebar]
 width = 30
-enabled = false
+enabled = true
 show_numbers = true
 file_icons = true
 file_icon_colors = true
@@ -107,7 +107,7 @@ subagent_rows = "tree"
 subagent_collapse = "off"
 subagent_max_rows = 0
 position = "right"
-sections = "sessions,git,agents,spacer,files"
+sections = "sessions,git,agents,files"
 header_case = "uppercase"
 row_style = "underline"
 header_style = "rule"
@@ -170,6 +170,7 @@ zoom = "on"
 [daemon]
 resume_agents = "auto"
 keep_awake = "off"
+window_size = "latest"
 
 [tasks]
 auto_stage = true
